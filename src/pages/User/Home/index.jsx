@@ -1,5 +1,7 @@
 
 import '../Home/index.css'
+import ItemProduct from '../../../components/ItemProduct/ItemProduct';
+import Voucher from '../../../components/Voucher/Voucher';
 
 function HomePage() {
     return (
@@ -110,6 +112,11 @@ function HomePage() {
             <p>Balo laptop</p>
         </div>
     </div>
+        <ItemProduct/>
+        <br />
+        <br />
+        <br />
+        <Voucher/>
         </>
       );
 }
