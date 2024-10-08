@@ -1,5 +1,9 @@
 
 import '../Home/index.css'
+import ItemProduct from '../../../components/ItemProduct/ItemProduct';
+import Voucher from '../../../components/Voucher/Voucher';
+import CartProduct from '../../../components/cartProuct';
+import NewTechnology from './newTechnology';
 
 function HomePage() {
     return (
@@ -118,6 +122,13 @@ function HomePage() {
             <p>Phụ kiện</p>
         </div>
     </div>
+        <ItemProduct/>
+        <br />
+        <br />
+        <br />
+        <Voucher/>
+        <CartProduct></CartProduct>
+        <NewTechnology></NewTechnology>
         </>
       );
 }

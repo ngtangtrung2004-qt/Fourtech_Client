@@ -1,0 +1,143 @@
+.header-pk {
+    /* width: 100%; */
+    height: 8px;
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.header-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-link h4 {
+    color: #0066FF;
+    font-size: 24px;
+    margin-right: 40px;
+}
+
+.nav-pk {
+}
+
+.nav-pk a {
+    color: #999;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.view-more {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.products-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 50px;
+   
+}
+
+.product-card {
+    /* width: 300px    ; */
+    height: 120px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    /* text-align: center; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-basis: 24%; /* Chiều rộng của mỗi thẻ sản phẩm */
+    position: relative;
+    /* padding-bottom: 40px; */
+    display: flex;
+}
+.product-card img {
+    width: calc(100%/3);
+    width: 40%;
+    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
+    /* margin-bottom: 10px; */
+    margin-right: 10px;
+}
+
+.product-content-n{
+    height: 100%;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0px;
+}
+
+.price-section {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF0000;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+    font-weight: 500;
+    margin: 0px;
+}
+.discount {
+    position: absolute;
+    bottom: 10px;
+    left: 90%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 50%);
+    color: #fff;
+    padding:10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* logo */
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 50px;
+}
+
+.logo-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.logo-card img {
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+    max-height: 100px; /* Adjust this height depending on logo dimensions */
+    
+}
