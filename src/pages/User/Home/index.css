@@ -52,7 +52,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); /* Định dạng lưới, tự điều chỉnh theo kích thước */
     gap: 20px;
-    padding: 20px;
+    padding: 8px;
     margin-top: 20px;
     background-color: #fff;
     border-radius: 10px;

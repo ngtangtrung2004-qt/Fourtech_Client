@@ -112,6 +112,10 @@ function HomePage() {
             <p>Balo laptop</p>
         </div>
     </div>
+        <br />
+        <br />
+        <br />
+
         <ItemProduct/>
         <br />
         <br />
