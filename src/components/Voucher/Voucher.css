@@ -1,0 +1,63 @@
+.item-Voucher{
+    display: flex;
+    gap: 20px;
+}
+.voucher-container{
+    max-width: 300px;
+    max-height: 150px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+
+}
+.code-Voucher{
+    padding-top: 6px;
+    margin: 10px ;
+    display: flex;
+    gap: 30px;
+}
+.code-Voucher .code{
+    font-size: 15px;
+    color: #007ef2;
+    font-weight: 700;
+}
+.code-Voucher .date{
+    font-size: 12px;
+    color: #b1b1b3;
+}
+.descripsion{
+    text-align: left;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 14px;
+}
+.bt{
+    display: flex;
+    margin-left: 35px;
+    gap: 10px;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.bt .btn-left{
+    border-radius: 20px;
+    border: 1px solid red;
+}
+.bt .btn-left:hover{
+    background-color: red;
+    color: white;
+}
+.bt .btn-right{
+    border-radius: 20px;
+    color: #b1b1b3;
+}
+@media screen and (max-width: 767px) { 
+    .item-Voucher{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-top: 50px;
+        margin-left: 50px;
+    }
+}

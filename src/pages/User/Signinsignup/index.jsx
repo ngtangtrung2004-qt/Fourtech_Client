@@ -3,6 +3,8 @@ import { useState } from 'react'
 import clsx from 'clsx';
 import logo from "/Logo.png"
 import { Link } from "react-router-dom";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 function SignupSignin() {
@@ -29,7 +31,7 @@ function SignupSignin() {
                 </form>
             </div>
             <div className="form-container sign-in">
-                <form >
+                <form>
                     <h2>Đăng nhập</h2>
                     <div className="social-icons">
                         <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
@@ -40,7 +42,7 @@ function SignupSignin() {
                     <input type="email" placeholder="Tên đăng nhập" />
                     <input type="password" placeholder="Mật khẩu" />
                     <Link to='/forgotPassword' >Quên mật khẩu!</Link>
-                    <button>Đăng nhập</button>
+                    <button type="submit">Đăng nhập</button>
                 </form>
             </div>
             <div className="toggle-container">
