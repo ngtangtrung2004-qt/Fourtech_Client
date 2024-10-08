@@ -109,14 +109,6 @@ function HomePage() {
             <img src="backpack.webp" alt="Balo laptop"/>
             <p>Balo laptop</p>
         </div>
-        <div className="product-item">
-            <img src="cable.webp" alt="Cáp sạc"/>
-            <p>Cáp sạc</p>
-        </div>
-        <div className="product-item">
-            <img src="accessory.webp" alt="Phụ kiện"/>
-            <p>Phụ kiện</p>
-        </div>
     </div>
         </>
       );
