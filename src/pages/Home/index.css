@@ -1,0 +1,83 @@
+
+
+
+.Banner{
+    display: flex;
+    margin:auto;
+    justify-content: space-between;
+
+
+}
+
+.right-section img {
+    width:200%;
+    margin: 0 10px 9px;
+    border-radius: 5px;
+}
+
+.info-banner {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 20px ;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 118%;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.info-text h4 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.info-text p {
+    font-size: 12px;
+    
+}
+.product-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Định dạng lưới, tự điều chỉnh theo kích thước */
+    gap: 20px;
+    padding: 20px;
+    margin: 10rem;
+    background-color: #fff;
+    border-radius: 10px;
+
+}
+
+.product-item {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.product-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.product-item p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

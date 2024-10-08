@@ -2,7 +2,7 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/Home'
-import SignupSignin from './pages/Signinsignup'
+import SignupSignin from './pages/Signinsignup/Singin'
 
 function App() {
 
