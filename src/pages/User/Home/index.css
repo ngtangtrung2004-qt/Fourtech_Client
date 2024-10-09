@@ -133,4 +133,7 @@
     .right-section{
         display: none;
     }
+    .container-home{
+        overflow-x: hidden;
+    }
 }

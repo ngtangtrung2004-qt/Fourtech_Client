@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
+   
 }
 .code-Voucher .code{
     font-size: 15px;
@@ -29,9 +30,10 @@
 }
 .descripsion{
     text-align: left;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-weight: 700;
     font-size: 14px;
+    color: black;
 }
 .bt{
     display: flex;
@@ -54,13 +56,35 @@
     border-radius: 20px;
     color: #b1b1b3;
 }
-@media screen and (max-width: 767px) { 
+@media screen and (max-width: 768px) { 
     .item-Voucher{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .voucher-container{
+        max-height: 100px;
+        padding-bottom: 30px;
+    }
+    .code-Voucher{
         width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding-top: 50px;
-        margin-left: 50px;
+    }
+    .code-Voucher .code{
+        font-size: 10px;
+        margin-top: -10px;
+    }
+    .code-Voucher .date{
+        font-size: 10px;
+        margin-top: -10px;
+    }
+    .descripsion{
+        font-size: 10px;
+    }
+    .bt .btn-left{
+        font-size: 10px;
+        border-radius: 20px;
+    }
+    .bt .btn-right{
+        font-size: 10px;
+        border-radius: 20px;
     }
 }
