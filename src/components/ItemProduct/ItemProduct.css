@@ -1,5 +1,5 @@
 .itemProduct-container{
-    background-color: #fff;
+    max-width: 1157px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
@@ -10,7 +10,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    width: 303px;
+    width: 90%;
     max-height: 489px;
     text-align: center;
 }
@@ -40,8 +40,8 @@
     padding: 10px;
     background-color:  rgb(255, 179, 179);
     text-align: center;
-    width: 57px;
-    height: 46px;
+    width: 10%;
+    height: 100%;
     color: red;
     border-radius: 10px;
     font-weight: 700;
@@ -53,6 +53,7 @@
     text-decoration: line-through;
     color: #888;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .product-pricing .price{
