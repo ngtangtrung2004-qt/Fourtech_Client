@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
+   
 }
 .code-Voucher .code{
     font-size: 15px;
@@ -27,6 +28,7 @@
     color: #b1b1b3;
 }
 .descripsion{
+    text-align: left;
     margin-left: 10px;
     font-weight: 700;
     font-size: 14px;
@@ -52,13 +54,21 @@
     border-radius: 20px;
     color: #b1b1b3;
 }
-@media screen and (max-width: 767px) { 
+@media screen and (max-width: 768px) { 
     .item-Voucher{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .voucher-container{
+        max-height: 100px;
+        padding-bottom: 30px;
+    }
+    .code-Voucher{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding-top: 40px;
+        padding-top: 50px;
         margin-left: 50px;
     }
 }
