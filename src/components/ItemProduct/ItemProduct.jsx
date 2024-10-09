@@ -1,4 +1,4 @@
-import './ItemProduct.css' 
+import './ItemProduct.css'
 
 
 
@@ -8,7 +8,7 @@ const ItemProduct = () => {
         <div className="itemProduct-container">
             <div className="itemProduct">
                 <div className="product-img">
-                    <img src='./bp1.png' alt="" />
+                    <img src='../public/bp1.png' alt="" />
                 </div>
                 <div className="product-description">
                 <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
@@ -22,7 +22,7 @@ const ItemProduct = () => {
             </div>
             <div className="itemProduct">
                 <div className="product-img">
-                    <img src='./tn-1.png' alt="" />
+                    <img src='../public/tn-1.png' alt="" />
                 </div>
                 <div className="product-description">
                 <p>Tai nghe không dây SENNHEISER Momentum 4 (giảm thêm 100k)</p>
@@ -36,7 +36,7 @@ const ItemProduct = () => {
             </div>
             <div className="itemProduct">
                 <div className="product-img">
-                    <img src='./loa-1.png' alt="" />
+                    <img src='../public/loa-1.png' alt="" />
                 </div>
                 <div className="product-description">
                 <p>Loa Bluetooth Rezo Play  IPX6 SOUNARC K2 (giảm thêm 100k)</p>
@@ -50,7 +50,7 @@ const ItemProduct = () => {
             </div>
             <div className="itemProduct">
                 <div className="product-img">
-                    <img src='./tn-2.png' alt="" />
+                    <img src='../public/tn-2.png' alt="" />
                 </div>
                 <div className="product-description">
                 <p>Tai nghe Belkin SoundForm Play AUC005btPK True Wireless Earbuds</p>

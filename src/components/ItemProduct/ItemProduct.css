@@ -1,5 +1,8 @@
 .itemProduct-container{
-    display: flex;
+    background-color: #fff;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
     gap: 20px;
 }
 .itemProduct{
@@ -7,14 +10,13 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    width: 100%;
+    width: 303px;
     max-height: 489px;
     text-align: center;
-    
 }
 .product-img img{
-    width: 200px;
-    height: 235px;
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
@@ -26,28 +28,30 @@
     font-size: 14px;
     font-weight: 700;
     padding: 10px;
+    color: black;
+
 }
 .product-pricing{
     display: flex;
-    gap: 50%;
+    justify-content: space-between;
 }
 .product-pricing .tag{
     margin: 0 0 -10px;
     padding: 10px;
     background-color:  rgb(255, 179, 179);
     text-align: center;
-    width: 100%;
-    height: 100%;
+    width: 57px;
+    height: 46px;
     color: red;
     border-radius: 10px;
     font-weight: 700;
     font-size: 14px;
 }
 .product-pricing-1{
+    display: block;
     text-align: left;
     text-decoration: line-through;
     color: #888;
-    margin: 5px 0;
     font-size: 14px;
 }
 
