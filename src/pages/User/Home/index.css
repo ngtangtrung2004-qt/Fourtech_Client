@@ -68,7 +68,7 @@
 
 
 .product-grid {
-    width: 99%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); /* Định dạng lưới, tự điều chỉnh theo kích thước */
     gap: 20px;
@@ -76,6 +76,7 @@
     margin-top: 20px;
     background-color: #fff;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .product-item {
