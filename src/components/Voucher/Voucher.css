@@ -4,7 +4,7 @@
 }
 .voucher-container{
     max-width: 305px;
-    max-height: 160px;
+    max-height: 100%;
     background-color: white;
     border-radius: 20px;
     text-align: center;
@@ -37,7 +37,8 @@
     gap: 10px;
     border-radius: 20px;
     padding-top: 5px;
-    padding-bottom: 5px;
+    margin-bottom: 10px;
+
 }
 .bt .btn-left{
     border-radius: 20px;

@@ -2,6 +2,7 @@
 import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
+import Event from '../../../components/Event/Event';
 
 function HomePage() {
     return (
@@ -112,11 +113,39 @@ function HomePage() {
             <p>Balo laptop</p>
         </div>
     </div>
+        <br />
+        <br />
         <ItemProduct/>
         <br />
         <br />
-        <br />
         <Voucher/>
+        <br />
+        <div className="recommend">
+           <div className="item-1">Gợi ý hôm nay</div>
+           <div className="item-2">
+            <a href="#">Máy chơi game</a>
+            <a href="#">Tai nghe</a>
+            <a href="#">Phụ kiện</a>
+           </div>
+           <div className="item-3"><a href="#">Xem thêm</a></div>
+        </div>
+        <br />
+        <ItemProduct/>
+        <br />
+        <br />
+        <div className="recommend">
+           <div className="item-1">Sản phẩm bán chạy</div>
+           <div className="item-2">
+            <a href="#">Máy chơi game</a>
+            <a href="#">Tai nghe</a>
+            <a href="#">Phụ kiện</a>
+           </div>
+           <div className="item-3"><a href="#">Xem thêm</a></div>
+        </div>
+        <br />
+        <ItemProduct/>
+
+        <Event/>
         </>
       );
 }
