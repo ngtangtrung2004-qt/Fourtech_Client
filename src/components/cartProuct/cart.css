@@ -1,0 +1,140 @@
+.header-pk {
+    /* width: 100%; */
+    height: 8px;
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.header-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-link h4 {
+    color: #0066FF;
+    font-size: 24px;
+    margin-right: 40px;
+}
+
+.nav-pk {
+}
+
+.nav-pk a {
+    color: #999;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.view-more {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.products-item {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 50px;
+}
+
+.product-card {
+    display: flex;
+    gap: 10px;
+    /* width: 300px; */
+    height: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.product-card img {
+    width: 35%;
+    border-radius: 8px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* .product-content-n{
+    height: 100%;
+} */
+
+.product-name p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0px;
+    text-align: left;
+    display: -webkit-box;        /* Sử dụng hộp flex */
+    -webkit-box-orient: vertical; /* Xếp các dòng theo chiều dọc */
+    overflow: hidden;            /* Ẩn phần văn bản bị tràn */
+    -webkit-line-clamp: 2;       /* Hiển thị tối đa 2 dòng */
+    text-overflow: ellipsis;     /* Thêm dấu ba chấm khi bị cắt */
+}
+
+.price-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 10px;
+}
+
+.price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FF0000;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+    font-weight: 500;
+    margin: 0px;
+}
+.discount {
+    bottom: 10px;
+    background-color: rgba(255, 0, 0, 50%);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* logo */
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 50px;
+}
+
+.logo-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.logo-card img {
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+    max-height: 100px; /* Adjust this height depending on logo dimensions */
+    
+}
