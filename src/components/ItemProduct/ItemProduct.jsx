@@ -18,11 +18,10 @@ const ItemProduct = () => {
                             <span className="price">3.600.000₫</span>
                             <span className="tag">20%</span>
                         </div>
-                        <div className="product-pricing-1">4.500.000₫</div>
+                        <del className="product-pricing-1">4.500.000₫</del>
                         <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
                     </a>
                 </div>
-
                 <div className="itemProduct">
                     <a href=''>
                         <div className="product-img">
@@ -35,11 +34,10 @@ const ItemProduct = () => {
                             <span className="price">3.600.000₫</span>
                             <span className="tag">20%</span>
                         </div>
-                        <div className="product-pricing-1">4.500.000₫</div>
+                        <del className="product-pricing-1">4.500.000₫</del>
                         <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
                     </a>
                 </div>
-
                 <div className="itemProduct">
                     <a href=''>
                         <div className="product-img">
@@ -52,11 +50,10 @@ const ItemProduct = () => {
                             <span className="price">3.600.000₫</span>
                             <span className="tag">20%</span>
                         </div>
-                        <div className="product-pricing-1">4.500.000₫</div>
+                        <del className="product-pricing-1">4.500.000₫</del>
                         <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
                     </a>
                 </div>
-
                 <div className="itemProduct">
                     <a href=''>
                         <div className="product-img">
@@ -69,7 +66,7 @@ const ItemProduct = () => {
                             <span className="price">3.600.000₫</span>
                             <span className="tag">20%</span>
                         </div>
-                        <div className="product-pricing-1">4.500.000₫</div>
+                        <del className="product-pricing-1">4.500.000₫</del>
                         <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
                     </a>
                 </div>

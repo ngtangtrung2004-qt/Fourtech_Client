@@ -2,6 +2,8 @@
 import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
+import CartProduct from '../../../components/cartProuct';
+import NewTechnology from '../../../components/newTechnology';
 
 function HomePage() {
     return (
@@ -147,7 +149,8 @@ function HomePage() {
 
                 <ItemProduct />
                 <Voucher />
-
+                <CartProduct />
+                <NewTechnology />
             </div>
         </>
     );
