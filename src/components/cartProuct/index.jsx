@@ -89,16 +89,16 @@ function CartProduct() {
       </div>
 
       <div className="logo-grid">
-        <div className="logo-card"><img src="../../assets/images/acer-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/Dell-log.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/iphon-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/msi-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/samsung-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/Dell-log.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/msi-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/samsung-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/acer-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../assets/images/iphon-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/acer-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/iphon-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/msi-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/samsung-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/acer-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
       </div>
       <div className="header-pk">
         <div className="header-link">
