@@ -153,8 +153,9 @@ function HomePage() {
 
                 <ItemProduct />
                 <Voucher />
-                <CartProduct />
                 <Event/>
+                <CartProduct />
+                
                 <NewTechnology />
             </div>
 
