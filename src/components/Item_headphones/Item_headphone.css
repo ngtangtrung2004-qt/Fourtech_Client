@@ -1,0 +1,140 @@
+.container_headphone{
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+.iTem_1 .hp-1{
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.iTem_1 .hp-1 img{
+    padding-top: 12px;
+    transition: transform 0.3s ease;
+}
+.iTem_1 .hp-1 img:hover{
+    transform: scale(1.1);
+ }
+ .iTem_1 .hp_price{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    padding-top: 20px;
+ }
+ .iTem_1 .hp_price .price_hp{
+    color: red;
+    font-weight: 700;
+    font-size: 16px;
+ }
+ .iTem_1 .hp_price .tag_hp{
+    margin: 0 0 -10px;
+    padding: 10px;
+    background-color:  rgb(255, 179, 179);
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    color: red;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 20px;
+ }
+ .iTem_1 .hp-1 .discount-hp1{
+    display: block;
+    text-align: left;
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+ }
+.iTem_1 .hp-1 .hp1{
+    padding-top: 10px;
+    font-weight: 700;
+}
+.iTem_1 .hp-1 .btn-hp-1{
+    background-color: #E72C33;
+    border-radius: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+.iTem_1 .hp-1 .btn-hp-1:hover{
+    background-color: #218838;
+}
+.iTem_2{
+    margin-top: 50px;
+    background-color: #4E73DF;
+    border-radius: 15px;
+    height: 180px;
+    width: 400px;
+}
+.iTem_2 .hp-2 {
+    background-color: white;
+    margin-top: 50px;
+    width: 60%;
+    padding: 40px;
+    margin-left: 40px;
+    border-radius: 10px;
+}
+.hp-2 img{
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+}
+.hp-2 img:hover{
+    transform: scale(1.1);
+}
+.hp-2 .hp_center{
+    margin-top: 40px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.hp-2 .price_center{    
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    padding-top: 20px;
+}
+.hp-2 .price_center .price_center_hp{
+    color: red;
+    font-weight: 700;
+    font-size: 16px;
+}
+.hp-2 .price_center .center_tag_hp{
+    margin: 0 0 -10px;
+    padding: 10px;
+    background-color:  rgb(255, 179, 179);
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    color: red;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: -10px;
+}
+.hp-2 .discount-center{
+    display: block;
+    text-align: left;
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.hp-2 .btn-center-1{
+    background-color: #E72C33;
+    border-radius: 30px;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.hp-2 .btn-center-1:hover{
+    background-color: #218838;
+}
+ 

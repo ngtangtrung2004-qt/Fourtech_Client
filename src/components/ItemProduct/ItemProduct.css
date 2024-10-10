@@ -2,7 +2,7 @@
     max-width: 1157px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    grid-template-columns: repeat(4, minmax(150px,1fr));
     gap: 20px;
 }
 .itemProduct{
@@ -10,7 +10,6 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    width: 90%;
     max-height: 489px;
     text-align: center;
 }
@@ -27,9 +26,14 @@
 .product-description p{
     font-size: 14px;
     font-weight: 700;
-    padding: 10px;
+    height: 42px;
+    display: -webkit-box;        /* Sử dụng hộp flex */
+    -webkit-box-orient: vertical; /* Xếp các dòng theo chiều dọc */
+    overflow: hidden;            /* Ẩn phần văn bản bị tràn */
+    -webkit-line-clamp: 2;       /* Hiển thị tối đa 2 dòng */
+    text-overflow: ellipsis;     /* Thêm dấu ba chấm khi bị cắt */
+    /* padding: 10px; */
     color: black;
-
 }
 .product-pricing{
     display: flex;
@@ -75,4 +79,3 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-

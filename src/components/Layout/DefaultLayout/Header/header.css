@@ -1,0 +1,89 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    /* box-shadow: 0 10px 10px rgb(108, 108, 108) ; */
+    margin-bottom: 20px;
+    padding: 5px 60px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10000;
+}
+
+.header .header-left {
+    width: 10%;
+    text-align: left;
+}
+
+.header .header-right{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .nav .nav-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header .nav .nav-list .nav-item,
+.header .nav .nav-list .nav-item a {
+    list-style-type: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.header .header-right .search {
+    display: flex;
+    position: relative;
+}
+
+.header .header-right .search input {
+    border-radius: 10px;
+    background-color: #fff;
+    border: 0.5px solid black;
+    padding: 7px ;
+    width: 100%;
+}
+
+.header .header-right .search .icon-search{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.header .header-right .cart  {
+    position: relative;
+}
+
+.header .header-right .cart .icon-cart {
+    font-size: 1.5rem;
+}
+
+.header .header-right .cart .soluong{
+    position: absolute;
+    left: 60%;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(225, 255, 0);
+}
+
+.header .header-right .cart .soluong span{
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.header .header-right .account .icon-user a {
+    font-size: 1.5rem;
+    color: #213547;
+}

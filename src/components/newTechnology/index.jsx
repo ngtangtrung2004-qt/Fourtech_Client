@@ -15,7 +15,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiet</button>
+            <button className="card-btn">Xem chi tiết</button>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiet</button>
+            <button className="card-btn">Xem chi tiết</button>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiet</button>
+            <button className="card-btn">Xem chi tiết</button>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiet</button>
+            <button className="card-btn">Xem chi tiết</button>
           </div>
         </div>
       </div>
