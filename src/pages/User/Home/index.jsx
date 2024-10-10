@@ -152,6 +152,8 @@ function HomePage() {
                 </div>
 
                 <ItemProduct />
+
+                
                 <Voucher />
                 <Event/>
                 <CartProduct />

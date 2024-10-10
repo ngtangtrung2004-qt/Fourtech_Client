@@ -1,7 +1,6 @@
 .container-event{
-    max-width: 1158px;
     padding: 0;
-    margin: 70px 0 30px;
+    margin: 90px 0 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -27,12 +26,13 @@
 }
 .container-event .item-event img{
     width: 90%;
-    transform: translateY(-30%);
+    transform: translateY(-50px);
 }
 
 .container-event .item-event .description{
     text-align: left;
     color: white;
-    width: 90%;
+    /* width: 90%; */
+    padding: 0 10px;
     transform: translateY(-30px);
 }

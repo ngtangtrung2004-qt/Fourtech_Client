@@ -4,6 +4,7 @@ import "./header.css"
 function Header() {
     return (
         <>
+
             <header className='header'>
                 <div className="header-left">
                     <a href="">
@@ -31,7 +32,9 @@ function Header() {
 
                     <div className='cart'>
                         <div className='icon-cart'>
-                            <i className="fa-solid fa-cart-shopping"></i>
+                            <a href="">
+                                <i className="fa-solid fa-cart-shopping"></i>
+                            </a>
                         </div>
                         <div className='soluong'>
                             <span>0</span>
