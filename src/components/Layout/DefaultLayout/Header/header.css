@@ -3,9 +3,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0 10px 10px rgb(108, 108, 108) ;
+    /* box-shadow: 0 10px 10px rgb(108, 108, 108) ; */
     margin-bottom: 20px;
-    padding: 5px 60px
+    padding: 5px 60px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10000;
 }
 
 .header .header-left {
