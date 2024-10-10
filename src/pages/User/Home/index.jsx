@@ -7,6 +7,7 @@ import Event from '../../../components/Event/Event';
 
 import CartProduct from '../../../components/cartProuct';
 import NewTechnology from '../../../components/newTechnology';
+import Item_headphone from '../../../components/Item_headphones/Item_headphone';
 
 
 function HomePage() {
@@ -156,8 +157,10 @@ function HomePage() {
                 
                 <Voucher />
                 <Event/>
-                <CartProduct />
+                <Item_headphone/>
                 
+                <CartProduct />
+               
                 <NewTechnology />
             </div>
 
