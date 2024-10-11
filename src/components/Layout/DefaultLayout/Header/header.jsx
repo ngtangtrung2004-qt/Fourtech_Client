@@ -8,7 +8,7 @@ function Header() {
         <>
             <header className="header">
                 <div className="header-left">
-                    <Link to={''}>
+                    <Link to={'/'}>
                         <img src={logo} style={{ height: 70, width: 70 }} alt="" />
                     </Link>
                 </div>
@@ -17,7 +17,7 @@ function Header() {
                     <nav className="nav">
                         <ul className="nav-list">
                             <li className="nav-item">
-                                <Link to={""}>Trang chủ</Link>
+                                <Link to={"/"}>Trang chủ</Link>
                             </li>
 
                             <li className="nav-item">
