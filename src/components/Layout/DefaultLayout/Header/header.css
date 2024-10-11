@@ -1,41 +1,93 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    /* box-shadow: 0 10px 10px rgb(108, 108, 108) ; */
-    margin-bottom: 20px;
-    padding: 5px 60px;
+.container-header{
     width: 100%;
-    box-sizing: border-box;
-    position: fixed;
-    z-index: 10000;
 }
 
-.header .header-left {
-    width: 10%;
+.header {
+    background-color: #fff;
+    position: fixed;
+    z-index: 10000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.header .header-left a {
     text-align: left;
+    width: 5%;
 }
 
 .header .header-right{
     display: flex;
-    width: 80%;
-    justify-content: space-between;
+    width: 75%;
+    justify-content: end;
+    gap: 30px;
     align-items: center;
 }
 
 .header .nav .nav-list {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     width: 100%;
+    position: relative;
 }
 
-.header .nav .nav-list .nav-item,
-.header .nav .nav-list .nav-item a {
+.header .nav .nav-list .nav-item {
+    padding: 10px;
     list-style-type: none;
     color: #000;
     font-weight: bold;
-    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.header .nav .nav-list .nav-item:hover a{
+    color: #E72C33;
+}
+
+.header .nav .nav-list .nav-item:nth-child(2):hover .sub-nav {
+    display: block;
+    border-top: 3px solid #ef0000ef;
+}
+
+.header .nav .nav-list .nav-item .sub-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 10;
+    width: 100%;
+    min-height: 150px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    border-left: 1px solid #4d4c4c72;
+    border-right: 1px solid #4d4c4c72;
+    border-bottom: 1px solid #4d4c4c72;
+    box-shadow: 0 4px 8px rgb(134, 134, 134);
+    border-top: none;
+    font-weight: 400;
+    padding: 5px;
+}
+
+.header .nav .nav-list .nav-item .sub-nav .sub-nav-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.header .nav .nav-list .nav-item .sub-nav .sub-nav-list .sub-nav-item a{
+    color: #000;
+}
+
+.header .nav .nav-list .nav-item .sub-nav .sub-nav-list .sub-nav-item:hover a{
+    display: block;
+    background-color: #9e9d9d46;
+    color: #E72C33;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .header .header-right .search {
@@ -61,29 +113,126 @@
 
 .header .header-right .cart  {
     position: relative;
+    width: 50px;
 }
 
-.header .header-right .cart .icon-cart {
-    font-size: 1.5rem;
+.header .header-right .cart .icon-cart a{
+    font-size: 24px;
+    display: block;
+}
+
+.header .header-right .cart .icon-cart:hover .text-gio-hang{
+    display: block;
+}
+
+.header .header-right .cart .icon-cart .text-gio-hang{
+    position: absolute;
+    font-size: 12px;
+    background-color: #000;
+    color: white;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+.header .header-right .cart .icon-cart .text-gio-hang .arrow-up{
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #000;
 }
 
 .header .header-right .cart .soluong{
     position: absolute;
-    left: 60%;
+    left: 50%;
     top: 0;
-    width: 20px;
-    height: 20px;
+    padding: 2px 6px;
     border-radius: 50%;
-    background-color: rgb(225, 255, 0);
+    background-color: #E72C33;
+    min-width: 10px;
+    cursor: pointer;
 }
 
 .header .header-right .cart .soluong span{
     display: block;
-    font-size: 0.8rem;
+    font-size: 12px;
     font-weight: bold;
+    color: #fff;
 }
 
-.header .header-right .account .icon-user a {
-    font-size: 1.5rem;
-    color: #213547;
+.header .header-right .account .icon-user {
+    font-size: 26px;
+    position: relative;
+}
+
+.header .header-right .account .icon-user:hover .text-dang-nhap {
+    display: block;
+}
+
+.header .header-right .account .icon-user .text-dang-nhap{
+    display: none;
+    position: absolute;
+    right: -25px;
+    font-size: 12px;
+    background-color: #000;
+    color: white;
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.header .header-right .account .icon-user .text-dang-nhap .arrow-up {
+    position: absolute;
+    top: -5px;
+    left: 25px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #000;
+}
+
+.header .header-right .account .user {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px 0;
+}
+
+.header .header-right .account .user:hover .sub-user{
+    display: block;
+}
+
+.header .header-right .account .user .sub-user{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+    right: -25px;
+    background-color: rgb(255, 255, 255);
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #98989890;
+}
+
+.header .header-right .account .user .sub-user ul li a{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.header .header-right .account .user .sub-user ul li:hover a    {
+    background-color: #9b9b9b27;
+    color: #E72C33;
+}
+
+.header .header-right .account .user .sub-user ul li:first-child a{
+    border-bottom: 1px solid #98989890;
 }

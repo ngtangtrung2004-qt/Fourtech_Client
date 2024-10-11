@@ -6,6 +6,7 @@ html {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  list-style-type: none;
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -22,7 +23,6 @@ html {
 }
 
 body {
-  max-width: 1280px;
   height: auto;
   margin: 0 auto;
   text-align: center;
@@ -31,6 +31,10 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+a {
+  color: #000;
 }
 
 button {
