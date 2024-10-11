@@ -8,6 +8,7 @@ import Event from '../../../components/Event/Event';
 import CartProduct from '../../../components/cartProuct';
 import NewTechnology from '../../../components/newTechnology';
 import Item_headphone from '../../../components/Item_headphones/Item_headphone';
+import HeaderProduct from './headerProduct';
 
 
 function HomePage() {
@@ -151,14 +152,17 @@ function HomePage() {
                         </div>
                     </a>
                 </div>
-
+                <HeaderProduct title={"Gợi ý hôm nay"}/>
+                <ItemProduct />
+                <HeaderProduct title={"Bàn Phím"}/>
                 <ItemProduct />
                 <Voucher />
                 <Event/>
                 <Item_headphone/>
                 
                 <CartProduct />
-               
+                <HeaderProduct title={"Bản Tin công nghệ"}/>
+                
                 <NewTechnology />
             </div>
 
