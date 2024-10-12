@@ -1,6 +1,6 @@
 import HeaderProduct from '../../pages/User/Home/headerProduct';
-import './cart.css'
-function CartProduct() {
+import './itemAccessory.css'
+function ItemAccessory() {
   return (
     <>
     <HeaderProduct title="Phụ kiện chơi game"/>
@@ -97,4 +97,4 @@ function CartProduct() {
   );
 }
 
-export default CartProduct;
+export default ItemAccessory;
