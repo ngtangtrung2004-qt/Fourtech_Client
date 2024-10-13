@@ -1,28 +1,28 @@
-.container-header{
+.container-header {
     width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
 }
 
 .header {
-    background-color: #fff;
-    position: fixed;
-    z-index: 10000;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     box-sizing: border-box;
-
 }
 
 .header .header-left a {
     text-align: left;
-    width: 5%;
 }
 
 .header .header-right{
+    width: 70%;
     display: flex;
-    width: 75%;
-    justify-content: end;
+    justify-content: space-between;
     gap: 30px;
     align-items: center;
 }
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    width: 100%;
+    width: 550px;
     position: relative;
 }
 
@@ -41,7 +41,6 @@
     color: #000;
     font-weight: bold;
     box-sizing: border-box;
-    font-size: 14px;
 }
 
 .header .nav .nav-list .nav-item:hover a{
@@ -58,7 +57,7 @@
     position: absolute;
     left: 0;
     top: 40px;
-    z-index: 10;
+    z-index: 100;
     width: 100%;
     min-height: 150px;
     background-color: rgb(255, 255, 255);
@@ -90,56 +89,50 @@
     border-radius: 5px;
 }
 
-.header .header-right .search {
+.header .header-right .search-cart-user{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.header .header-right .search-cart-user .search{
+    width: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
 }
 
-.header .header-right .search input {
-    border-radius: 10px;
-    background-color: #fff;
-    border: 0.5px solid black;
-    padding: 7px ;
-    width: 100%;
-}
-
-.header .header-right .search .icon-search{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.header .header-right .cart  {
-    position: relative;
-    width: 50px;
-}
-
-.header .header-right .cart .icon-cart a{
+.header .header-right .search-cart-user .search .icon-search{
     font-size: 24px;
+    width: 100%;
+    color: #000;
+    cursor: pointer;
+    position: relative;
+}
+
+.header .header-right .search-cart-user .search .icon-search:hover .text-tim-kiem {
     display: block;
 }
 
-.header .header-right .cart .icon-cart:hover .text-gio-hang{
-    display: block;
-}
-
-.header .header-right .cart .icon-cart .text-gio-hang{
+.header .header-right .search-cart-user .search .icon-search .text-tim-kiem{
     position: absolute;
+    top: 40px;
+    right: -15px;
     font-size: 12px;
     background-color: #000;
     color: white;
-    width: 100%;
+    width: 60px;
     padding: 5px;
     border-radius: 5px;
     display: none;
 }
 
-.header .header-right .cart .icon-cart .text-gio-hang .arrow-up{
+.header .header-right .search-cart-user .search .icon-search .text-tim-kiem .arrow-up{
     position: absolute;
     top: -5px;
-    left: 20px;
+    left: 26px;
     width: 0;
     height: 0;
     border-left: 7px solid transparent;
@@ -147,7 +140,103 @@
     border-bottom: 10px solid #000;
 }
 
-.header .header-right .cart .soluong{
+.header .header-right .search-cart-user .search .sub-search{
+    position: absolute;
+    top: 55px;
+    right: -80px;
+    width: 300px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.5);
+    z-index: 12;
+}
+
+.header .header-right .search-cart-user .search .sub-search .arrow-up{
+    position: absolute;
+    top: -21px;
+    right: 90px;
+    color: #fff;
+    font-size: 40px;
+    filter: drop-shadow(0 -3px 1px rgba(0, 0, 0, 0.5));
+}
+
+
+.header .header-right .search-cart-user .search .sub-search .sub-search-text-tim-kiem h3{
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0 6px 10px;
+    margin-bottom: 10px;
+}
+
+.header .header-right .search-cart-user .search .sub-search .input{
+    display: flex;
+    position: relative;
+}
+
+.header .header-right .search-cart-user .search .sub-search .input input {
+    border-radius: 2px;
+    background-color: #f5f5f5;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.header .header-right .search-cart-user .search .sub-search .input input::placeholder {
+    color: #00000080;
+    font-weight: bold;
+}
+
+.header .header-right .search-cart-user .search .sub-search .input .sub-icon-search {
+    position: absolute;
+    font-size: 20px;
+    top: 8px;
+    right: 10px;
+    color: #00000080;
+    cursor: pointer;
+}
+
+
+.header .header-right .search-cart-user .cart  {
+    position: relative;
+    width: 40px;
+}
+
+.header .header-right .search-cart-user .cart .icon-cart a{
+    font-size: 24px;
+    display: block;
+}
+
+.header .header-right .search-cart-user .cart .icon-cart:hover .text-gio-hang{
+    display: block;
+}
+
+.header .header-right .search-cart-user .cart .icon-cart .text-gio-hang{
+    position: absolute;
+    right: -20px;
+    font-size: 12px;
+    background-color: #000;
+    color: white;
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+.header .header-right .search-cart-user .cart .icon-cart .text-gio-hang .arrow-up{
+    position: absolute;
+    top: -5px;
+    left: 26px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #000;
+}
+
+.header .header-right .search-cart-user .cart .soluong{
     position: absolute;
     left: 50%;
     top: 0;
@@ -158,26 +247,30 @@
     cursor: pointer;
 }
 
-.header .header-right .cart .soluong span{
+.header .header-right .search-cart-user .cart .soluong span{
     display: block;
     font-size: 12px;
     font-weight: bold;
     color: #fff;
 }
 
-.header .header-right .account .icon-user {
+.header .header-right .search-cart-user .account {
+    width: 40px;
+}
+
+.header .header-right .search-cart-user .account .icon-user {
     font-size: 26px;
     position: relative;
 }
 
-.header .header-right .account .icon-user:hover .text-dang-nhap {
+.header .header-right .search-cart-user .account .icon-user:hover .text-dang-nhap {
     display: block;
 }
 
-.header .header-right .account .icon-user .text-dang-nhap{
+.header .header-right .search-cart-user .account .icon-user .text-dang-nhap{
     display: none;
     position: absolute;
-    right: -25px;
+    right: -19px;
     font-size: 12px;
     background-color: #000;
     color: white;
@@ -186,7 +279,7 @@
     border-radius: 5px;
 }
 
-.header .header-right .account .icon-user .text-dang-nhap .arrow-up {
+.header .header-right .search-cart-user .account .icon-user .text-dang-nhap .arrow-up {
     position: absolute;
     top: -5px;
     left: 25px;
@@ -197,30 +290,35 @@
     border-bottom: 10px solid #000;
 }
 
-.header .header-right .account .user {
+.header .header-right .search-cart-user .account .user {
     display: flex;
+    justify-content: center;
     align-items: center;
     position: relative;
     padding: 5px 0;
 }
 
-.header .header-right .account .user:hover .sub-user{
+.header .header-right .search-cart-user .account .user:hover .sub-user{
     display: block;
 }
 
-.header .header-right .account .user .sub-user{
+.header .header-right .search-cart-user .account .user .sub-user{
     display: none;
     flex-direction: column;
     position: absolute;
     top: 40px;
     right: -25px;
     background-color: rgb(255, 255, 255);
-    width: 130px;
+    width: 230px;
     border-radius: 5px;
     border: 1px solid #98989890;
 }
 
-.header .header-right .account .user .sub-user ul li a{
+.header .header-right .search-cart-user .account .user .sub-user ul li p{
+    padding: 2px 0;
+}
+
+.header .header-right .search-cart-user .account .user .sub-user ul li a{
     display: flex;
     gap: 5px;
     align-items: center;
@@ -228,11 +326,11 @@
     padding: 10px;
 }
 
-.header .header-right .account .user .sub-user ul li:hover a    {
+.header .header-right .search-cart-user .account .user .sub-user ul li:hover a    {
     background-color: #9b9b9b27;
     color: #E72C33;
 }
 
-.header .header-right .account .user .sub-user ul li:first-child a{
+.header .header-right .search-cart-user .account .user .sub-user ul li:first-child a{
     border-bottom: 1px solid #98989890;
 }

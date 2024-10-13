@@ -4,8 +4,7 @@ import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 
 import Event from '../../../components/Event/Event';
-
-import CartProduct from '../../../components/cartProuct';
+import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
 import Item_headphone from '../../../components/Item_headphones/Item_headphone';
 import HeaderProduct from './headerProduct';
@@ -162,7 +161,7 @@ function HomePage() {
                 <Event/>
                 <Item_headphone/>
                 
-                <CartProduct />
+                <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"}/>
                 
                 <NewTechnology />

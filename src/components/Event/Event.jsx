@@ -5,7 +5,7 @@ const Event = () => {
     <>
       <div className="container-event">
         <div className="item-event">
-          <img src="./event.png" alt="" />
+          <img className='img' src="./event.png" alt="" />
           <div className='description'>
             <h3>GIẢM GIÁ NHẬP HỌC 30%</h3>
             <p>Tai nghe, phụ kiện</p>
