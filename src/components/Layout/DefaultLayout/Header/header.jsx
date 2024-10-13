@@ -68,7 +68,7 @@ function Header() {
 
                     <div className="cart">
                         <div className="icon-cart">
-                            <Link to={""}>
+                            <Link to={"./Cart"}>
                                 <FontAwesomeIcon icon="fa-cart-shopping" />
                                 <div className="text-gio-hang">
                                     <div className="arrow-up"></div>

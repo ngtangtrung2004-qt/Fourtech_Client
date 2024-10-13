@@ -4,6 +4,7 @@ import HomePage from "../pages/User/Home"
 import Voucher from '../components/Voucher/Voucher'
 import Event from "../components/Event/Event"
 import Item_headphone from "../components/Item_headphones/Item_headphone"
+import Cart from "../pages/User/Cart/Cart"
 
 const publicRoutes = [
     {path: "/", component: HomePage},
@@ -11,7 +12,9 @@ const publicRoutes = [
     {path: '/signin', component: SignupSignin, layout: null},
     {path: '/voucher', component: Voucher},
     {path: '/event', component: Event},
-    {path: '/item_headphone', component: Item_headphone}
+    {path: '/item_headphone', component: Item_headphone},
+    {path: '/cart', component: Cart}
+
 ]
 
 
