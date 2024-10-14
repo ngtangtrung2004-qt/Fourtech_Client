@@ -1,7 +1,7 @@
 import"./signUpSignIn.css"
 import  { useState } from 'react'
 import clsx from 'clsx';
-import logo from "../../../public/Logo.png"
+import logo from "../../../../public/Logo.png"
 import { Link } from "react-router-dom";
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
