@@ -115,7 +115,7 @@ function Header() {
 
                             <div className="cart">
                                 <div className="icon-cart">
-                                    <Link to={""}>
+                                    <Link to={"/cart"}>
                                         <FontAwesomeIcon icon="fa-cart-shopping" />
                                         <div className="text-gio-hang">
                                             <div className="arrow-up"></div>
@@ -142,25 +142,27 @@ function Header() {
 
                                 {/* Phần này là để đăng nhập hiển thị người dùng */}
                                 {/* <div className="user">
-                            <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
-                            <p style={{marginLeft:5, fontWeight:"bold"}}>Tiến Đạt</p>
-                            <div className="sub-user">
-                                <ul>
-                                    <li>
-                                        <Link to={''}>
-                                            <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
-                                            <p>Hồ sơ</p>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to={''}>
-                                            <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
-                                            <p>Đăng xuất</p>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> */}
+                                    <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
+                                    <div className="sub-user">
+                                        <ul>
+                                            <li>
+                                                <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Tiến Đạt</span></p>
+                                            </li>
+                                            <li>
+                                                <Link to={''}>
+                                                    <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
+                                                    <p>Hồ sơ</p>
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link to={''}>
+                                                    <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
+                                                    <p>Đăng xuất</p>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
