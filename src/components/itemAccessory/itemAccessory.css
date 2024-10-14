@@ -8,6 +8,7 @@
     align-items: center;
     margin-bottom: 20px;
     margin-top: 20px;
+    border-radius: 10px;
 }
 .header-link{
     display: flex;
@@ -116,14 +117,15 @@
 .logo-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
+    gap: 10px 20px;
     margin-bottom: 50px;
 }
 
 .logo-card {
+    height: 50px;
     background-color: white;
     border-radius: 8px;
-    padding: 10px;
+    padding: 30px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -4,10 +4,8 @@ import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 
 import Event from '../../../components/Event/Event';
-
-import CartProduct from '../../../components/cartProuct';
+import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
-import Sale from '../../../components/Sale/sale';
 
 
 function HomePage() {
@@ -150,13 +148,30 @@ function HomePage() {
                             <p>Máy chơi game</p>
                         </div>
                     </a>
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="cable.webp" alt="Cáp sạc" />
+                            <p>Cáp sạc</p>
+                        </div>
+                    </a>
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="accessory.webp" alt="Phụ kiện" />
+                            <p>Phụ kiện</p>
+                        </div>
+                    </a>
                 </div>
-                <Sale/>
 
                 <ItemProduct />
+
+                
                 <Voucher />
-                <CartProduct />
                 <Event/>
+                {/* <Item_headphone/> */}
+                
+                <ItemAccessory />
+                {/* <HeaderProduct title={"Bản Tin công nghệ"}/> */}
+                
                 <NewTechnology />
             </div>
 

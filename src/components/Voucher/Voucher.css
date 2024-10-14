@@ -1,22 +1,24 @@
 .item-Voucher{
-    margin-top: 40px;
-    display: flex;
+    margin: 40px 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
 }
 .voucher-container{
-    width: 310px;
     height: 100%;
     background-color: white;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid black;
+    padding: 4px 10px;
+    /* border: 1px solid black; */
 }
 .code-Voucher{
     padding-top: 6px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px;
-   
 }
 .code-Voucher .code{
     font-size: 15px;
@@ -29,14 +31,14 @@
 }
 .descripsion{
     text-align: left;
-    margin-left: 10px;
     font-weight: 700;
     font-size: 14px;
     color: black;
 }
 .bt{
     display: flex;
-    margin-left: 30px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     gap: 10px;
     border-radius: 20px;
     margin-bottom: 10px;
@@ -58,17 +60,5 @@
     .item-Voucher{
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-    .voucher-container{
-        max-height: 100px;
-        padding-bottom: 30px;
-    }
-    .code-Voucher{
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding-top: 50px;
-        margin-left: 50px;
     }
 }

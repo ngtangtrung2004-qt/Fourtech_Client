@@ -1,18 +1,9 @@
-import './cart.css'
-function CartProduct() {
+import HeaderProduct from '../../pages/User/Home/headerProduct';
+import './itemAccessory.css'
+function ItemAccessory() {
   return (
     <>
-      <div className="header-pk">
-        <div className="header-link">
-          <h4>Phụ kiện chơi game</h4>
-          <div className="nav-pk">
-            <a href="#">Máy chơi game</a>/ <a href="#">Tai nghe</a>/
-            <a href="#"> Phụ kiện</a>
-          </div>
-        </div>
-        <a href="#" className="view-more">Xem thêm </a>
-      </div>
-
+    <HeaderProduct title="Phụ kiện chơi game"/>
       <div className="products-item">
         <div className="product-card">
           <img src="../../../public/anh1.jpg" alt="PS5 Standard Edition" />
@@ -89,27 +80,21 @@ function CartProduct() {
       </div>
 
       <div className="logo-grid">
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-        <div className="logo-card"><img src="../../../public/oppo.png" alt="Sony"></img></div>
-
+        <div className="logo-card"><img src="../../../src/assets/images/acer-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/iphon-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/msi-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/samsung-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Xiaomi-Logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/dareu.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Nokia-Logo.wine.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/Sony-logo.png" alt="Sony"/></div>
+        <div className="logo-card"><img src="../../../src/assets/images/ThinkPad-Logo.wine.png" alt="Sony"/></div>
       </div>
-      <div className="header-pk">
-        <div className="header-link">
-          <h4>Phụ kiện chơi game</h4>
-        </div>
-        <a href="#" className="view-more">Xem thêm </a>
-      </div>
+      
 
     </>
   );
 }
 
-export default CartProduct;
+export default ItemAccessory;
