@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .deal-banner {
+    background-color: #f5f5f5; /* Nền xám nhạt giống hình ảnh */
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .deal-title {
+    font-size: 38px; /* Kích thước lớn hơn để khớp */
+    color: red;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-left: 30px; /* Thêm khoảng cách giữa bên trái */
+  }
+  
+  .lightning-icon {
+    font-size: 30px; /* Kích thước lớn hơn cho icon */
+    color: #f8d67e;
+    margin-right: 15px;
+  }
+  
+  .countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px; /* Đẩy các khối countdown gần bên phải */
+  }
+  
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .time-box {
+    background-color: #e20f00;
+    color: white;
+    padding: 5px 5px ;
+    margin: 0 5px;
+    border-radius: 10px; /* Bo tròn thêm để giống hình */
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    width: 90px; /* Rộng hơn một chút */
+  }
+  
+  .time-box .number {
+    font-size: 20px; /* Kích thước số lớn hơn */
+    line-height: 20px; /* Điều chỉnh khoảng cách giữa số và nhãn */
+  }
+  
+  .time-box .label {
+    font-size: 18px;
+    margin-top: 5px;
+    text-transform: uppercase; /* Chữ in hoa giống hình */
+  }
+  
+  p {
+    font-size: 12px;
+    margin-right: 20px; /* Giảm khoảng cách giữa chữ và countdown */
+    color: #333;
+    text-align: right; /* Căn phải giống với hình */
+  }

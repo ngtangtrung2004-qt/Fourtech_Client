@@ -1,5 +1,6 @@
 .Cart{
 padding-top: 7%;
+padding-bottom: 7%;
 }
 .name-cart{
     display: flex;
@@ -23,22 +24,22 @@ padding-top: 7%;
     background-color: white;
     max-height: 250px;
     border-radius: 20px;
+    
 }
 .item-tong-cart .item{
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
+    
 }
 .item-tong-cart .item-cart{
     border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 60px;
-    width: 800px;
+    margin: 20px 20px 60px 50px;
     background-color: #D9D9D9;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
 .item .item-cart .img{
+    margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
@@ -139,5 +140,8 @@ padding-top: 7%;
 .tong-cart .bnt-thanhtoan:hover{
     background-color: green;
     color: white;
+}
+.icon .icon-large{
+    font-size: 24px;
 }
 
