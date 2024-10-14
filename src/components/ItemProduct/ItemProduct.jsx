@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './ItemProduct.css'
 
 
@@ -11,7 +12,7 @@ const ItemProduct = () => {
                     <img src='./bp1.png' alt="" />
                 </div>
                 <div className="product-description">
-                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+                <Link to="/detail">Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</Link>
                 </div>
                 <div className="product-pricing">
                     <span className="price">3.600.000₫</span>
