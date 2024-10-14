@@ -93,37 +93,6 @@ function Header() {
                                         <div className="arrow-up"></div>
                                         <p>Tìm kiếm</p>
                                     </div>
-<<<<<<< HEAD
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={""}>Khám phá</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={""}>Bài viết</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={""}>Liên hệ</Link>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div className="search">
-                        <input type="text" placeholder="Bạn muốn tìm gì?" />
-                        <div className="icon-search">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                    </div>
-
-                    <div className="cart">
-                        <div className="icon-cart">
-                            <Link to={"./Cart"}>
-                                <FontAwesomeIcon icon="fa-cart-shopping" />
-                                <div className="text-gio-hang">
-                                    <div className="arrow-up"></div>
-                                    <p>Giỏ hàng</p>
-=======
->>>>>>> 3d0b5e1c36da5db9ae387f52f78a9c68a4984238
                                 </div>
 
                                 {isSearchOpen && (<div className="overlay" onClick={() => setIsSearchOpen(false)}></div>)}
@@ -146,7 +115,7 @@ function Header() {
 
                             <div className="cart">
                                 <div className="icon-cart">
-                                    <Link to={""}>
+                                    <Link to={"/cart"}>
                                         <FontAwesomeIcon icon="fa-cart-shopping" />
                                         <div className="text-gio-hang">
                                             <div className="arrow-up"></div>

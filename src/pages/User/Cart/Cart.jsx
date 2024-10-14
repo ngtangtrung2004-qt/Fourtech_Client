@@ -1,5 +1,7 @@
 import './Cart.css'
 import { Link } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
 
 const Cart = () => {
   return (
@@ -28,8 +30,8 @@ const Cart = () => {
               </div>
               
               <Link to={'/'}><div className="home-page">
-                <div className='icon'>
-                  <img src="../src/assets/images/left.png" alt="" />
+                <div className='icon' size='1em'>
+                  <AiOutlineArrowLeft className='icon-large'/>
                 </div>
                 <div className="btn-home">
                   <button>Tiếp tục mua hàng</button>

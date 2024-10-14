@@ -1,5 +1,6 @@
 .Cart{
 padding-top: 7%;
+padding-bottom: 7%;
 }
 .name-cart{
     display: flex;
@@ -139,5 +140,8 @@ padding-top: 7%;
 .tong-cart .bnt-thanhtoan:hover{
     background-color: green;
     color: white;
+}
+.icon .icon-large{
+    font-size: 24px;
 }
 
