@@ -1,6 +1,6 @@
 
 
-import Voucher from '../../../components/Voucher/Voucher';
+import voucher from '../../../components/Voucher/Voucher';
 import'./ourProduct.css'
 
 const OurProduct = () => {

@@ -2,6 +2,8 @@
 import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
+import HeaderProduct from './headerProduct';
+import Item_headphone from '../../../components/Item_headphones/Item_headphone';
 
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
@@ -167,10 +169,10 @@ function HomePage() {
                 
                 <Voucher />
                 <Event/>
-                {/* <Item_headphone/> */}
+                <Item_headphone/>
                 
                 <ItemAccessory />
-                {/* <HeaderProduct title={"Bản Tin công nghệ"}/> */}
+                <HeaderProduct title={"Bản Tin công nghệ"}/>
                 
                 <NewTechnology />
             </div>
