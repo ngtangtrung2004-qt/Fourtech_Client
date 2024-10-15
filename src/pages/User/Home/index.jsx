@@ -6,9 +6,13 @@ import Voucher from '../../../components/Voucher/Voucher';
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
-
+import { useEffect } from "react";
 
 function HomePage() {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
+    }, []);
+
     return (
         <>
             <div className='container-home'>
@@ -164,14 +168,14 @@ function HomePage() {
 
                 <ItemProduct />
 
-                
+
                 <Voucher />
-                <Event/>
+                <Event />
                 {/* <Item_headphone/> */}
-                
+
                 <ItemAccessory />
                 {/* <HeaderProduct title={"Bản Tin công nghệ"}/> */}
-                
+
                 <NewTechnology />
             </div>
 

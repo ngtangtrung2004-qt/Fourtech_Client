@@ -30,7 +30,7 @@
     font-size: 14px;
     font-weight: 700;
     height: 42px;
-    display: -webkit-box;        /* Sử dụng hộp flex */
+    display: -webkit-box;        /* Sử dụng hộp box */
     -webkit-box-orient: vertical; /* Xếp các dòng theo chiều dọc */
     overflow: hidden;            /* Ẩn phần văn bản bị tràn */
     -webkit-line-clamp: 2;       /* Hiển thị tối đa 2 dòng */

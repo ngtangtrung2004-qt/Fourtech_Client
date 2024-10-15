@@ -6,6 +6,7 @@ import Event from "../components/Event/Event"
 import ProductDetails from "../pages/User/ProductDetails"
 import Cart from "../pages/User/Cart/Cart"
 import OurProduct from "../pages/User/ourProduct/Ourproduct"
+import Pay from "../pages/User/pay/pay"
 
 const publicRoutes = [
     {path: "/", component: HomePage},
@@ -15,8 +16,8 @@ const publicRoutes = [
     {path: '/event', component: Event},
     {path: '/detail', component: ProductDetails},
     {path: '/cart', component: Cart},
-    {path: '/ourProduct',component:OurProduct,}
-
+    {path: '/ourProduct',component:OurProduct},
+    {path: '/pay', component: Pay}
 ]
 
 

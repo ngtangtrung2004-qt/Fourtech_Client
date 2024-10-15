@@ -178,9 +178,9 @@
     justify-content: center;
     align-items: center;
     background-color: #FF0000;
+    color: #fff;
   }
   .btn_add_cart span{
-    color: #000;
     margin-right: 10px;
   }
   .btn_buy{

@@ -11,6 +11,7 @@ import {
 import Collapse from "./collapse";
 import ModalParameter from "./ModalParameter";
 import RelatedProduct from "./RelatedProduct";
+import { Link } from "react-router-dom";
 
 // import ProductInfo from "./collapse";
 
@@ -80,7 +81,9 @@ function ProductDetails() {
               </span>
               Thêm vào giỏ hàng
             </button>
-            <button className="btn_buy">Mua ngay</button>
+            <button className="btn_buy">
+              <Link to={'/pay'}> Mua ngay</Link>
+            </button>
           </div>
         </div>
         <div className="content_detail">
@@ -96,7 +99,7 @@ function ProductDetails() {
                 Major V có thể dễ dàng được thu nhỏ, thuận tiện cho việc cất giữ
                 và di chuyển. Chiếc tai nghe này không chỉ là phụ kiện âm nhạc
                 mà còn là món đồ thời trang độc đáo, thể hiện cá tính riêng của
-                bạn.<br/>
+                bạn.<br />
                 Tai nghe Marshallchinh phục người dùng bởi sự kết hợp tinh tế
                 giữa phong cách cổ điển và hiện đại. Lớp da tổng hợp cao cấp
                 cùng logo Marshall tạo nên vẻ ngoài sang trọng, đẳng cấp, khẳng
@@ -106,7 +109,7 @@ function ProductDetails() {
                 Major V có thể dễ dàng được thu nhỏ, thuận tiện cho việc cất giữ
                 và di chuyển. Chiếc tai nghe này không chỉ là phụ kiện âm nhạc
                 mà còn là món đồ thời trang độc đáo, thể hiện cá tính riêng của
-                bạn.<br/>
+                bạn.<br />
                 Tai nghe Marshallchinh phục người dùng bởi sự kết hợp tinh tế
                 giữa phong cách cổ điển và hiện đại. Lớp da tổng hợp cao cấp
                 cùng logo Marshall tạo nên vẻ ngoài sang trọng, đẳng cấp, khẳng
@@ -116,7 +119,7 @@ function ProductDetails() {
                 Major V có thể dễ dàng được thu nhỏ, thuận tiện cho việc cất giữ
                 và di chuyển. Chiếc tai nghe này không chỉ là phụ kiện âm nhạc
                 mà còn là món đồ thời trang độc đáo, thể hiện cá tính riêng của
-                bạn.<br/>
+                bạn.<br />
                 Tai nghe Marshallchinh phục người dùng bởi sự kết hợp tinh tế
                 giữa phong cách cổ điển và hiện đại. Lớp da tổng hợp cao cấp
                 cùng logo Marshall tạo nên vẻ ngoài sang trọng, đẳng cấp, khẳng
@@ -141,7 +144,7 @@ function ProductDetails() {
               <h3>Thông số kỹ thuật</h3> <span>▼</span>
             </div>
             <ModalParameter />
-            <RelatedProduct/>
+            <RelatedProduct />
           </div>
         </div>
       </div>
