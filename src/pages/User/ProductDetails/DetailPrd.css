@@ -96,10 +96,16 @@
     margin-right: 10px;
 }
 .describe_type{
-    display: flex;
-    text-align: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 70px 1fr;
     margin-bottom: 30px;
+}
+.describe_type .btn-mau{
+    width: 100%;
+    margin-left: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 .describe_type span{
     font-size: 16px;
@@ -107,14 +113,6 @@
 .describe_type button:first-child{
     border: 1px solid #FF0000;
 }
-.describe_type button{
-    /* display: flex; */
-    justify-content: space-between;
-    width: 100px;
-    border: 1px solid gray;
-    margin: 0px 0px 0px 17px;
-}
-
 
 /* sô lượng  */
 .escribe_quantity{
@@ -182,7 +180,8 @@
     background-color: #FF0000;
   }
   .btn_add_cart span{
-    color: #ffffff;
+    color: #000;
+    margin-right: 10px;
   }
   .btn_buy{
     width: 100%;

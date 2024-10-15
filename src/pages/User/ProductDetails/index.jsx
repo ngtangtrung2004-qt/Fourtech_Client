@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Carousel from "./Caroucel";
 // import React from 'react';
+import { useEffect } from "react";
 
 import "./DetailPrd.css";
 import {
@@ -14,6 +15,10 @@ import RelatedProduct from "./RelatedProduct";
 // import ProductInfo from "./collapse";
 
 function ProductDetails() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
+  }, []);
   return (
     <>
       <div className="main_detail">
@@ -27,7 +32,7 @@ function ProductDetails() {
             </div>
             <div className="describe_type">
               <span>Phân loại:</span>
-              <div>
+              <div className="btn-mau">
                 <button>Đen</button>
                 <button>Trắng</button>
                 <button>Vàng</button>

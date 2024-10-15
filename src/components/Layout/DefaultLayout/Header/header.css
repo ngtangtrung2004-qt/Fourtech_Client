@@ -75,6 +75,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    text-align: center;
 }
 
 .header .nav .nav-list .nav-item .sub-nav .sub-nav-list .sub-nav-item a{
@@ -94,6 +95,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    text-align: center;
 }
 .header .header-right .search-cart-user .search{
     width: 40px;
