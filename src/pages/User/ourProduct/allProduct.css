@@ -1,0 +1,84 @@
+.container-allproduct {
+    margin-top: 10%;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    
+}
+.product-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .product-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0066ff; /* Blue color */
+  }
+  
+  .filter-buttons button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: 1px solid #0066ff;
+    background-color: white;
+    color: #0066ff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .filter-buttons button.active {
+    background-color: #0066ff; /* Active blue color */
+    color: white;
+  }
+  
+  .filter-buttons button:hover {
+    background-color: #0056d6;
+    color: white;
+  }
+  .filter-section {
+    border: 1px solid #0066ff;
+    padding: 10px;
+    width: 200px;
+    background-color: white;
+  }
+  
+  .filter-group {
+    margin-bottom: 20px;
+  }
+  
+  .filter-item {
+    margin-bottom: 10px;
+  }
+  
+  .filter-item label {
+    margin-left: 5px;
+  }
+  
+  .show-more-btn {
+    color: #0066ff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .divider {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  .filter-section {
+    border: 1px solid #0066ff;
+    padding: 10px;
+    width: 200px;
+    margin-left:auto;
+    margin-top: 2%;
+  }
+  
