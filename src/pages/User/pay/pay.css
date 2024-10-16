@@ -1,0 +1,194 @@
+.container-pay {
+    margin: 100px 0 0;
+}
+
+.container-pay .header-pay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.container-pay .header-pay img {
+    height: 96px;
+    width: 98px;
+}
+
+.container-pay .header-pay hr {
+    height: 50px;
+    border: 2px solid black;
+}
+
+.container-pay .header-pay p {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.container-pay .pay-box {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 5px;
+    margin: 10px 0;
+}
+
+.container-pay .pay-box .pay-box-left {
+    background-color: #fff;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-header hr {
+    height: 50px;
+    border: 1px solid black;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-header p {
+    font-family: "Inknut Antiqua", serif;
+    font-weight: bold;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    column-gap: 20px;
+    margin: 20px;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-content .thong-tin-nhan-hang {
+    display: grid;
+    row-gap: 10px;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-content .van-chuyen-thanh-toan .van-chuyen .box-text-van-chuyen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 0 10px;
+    margin: 9px 0;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-content .van-chuyen-thanh-toan .thanh-toan {
+    width: 100%;
+}
+
+.container-pay .pay-box .pay-box-left .pay-box-left-content .van-chuyen-thanh-toan .thanh-toan .box-text-thanh-toan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 0 10px;
+    margin: 9px 0;
+}
+
+.ant-radio-checked .ant-radio-inner {
+    border-color: red !important;
+    background-color: red !important;
+    border: 1px solid black;
+}
+
+.ant-radio:hover .ant-radio-inner {
+    border-color: red;
+}
+
+.ant-radio-wrapper span:nth-child(2) {
+    font-size: 12px;
+}
+
+.container-pay .pay-box .pay-box-right {
+    background-color: #fff;
+}
+
+.container-pay .pay-box .pay-box-right .header-tong-san-pham {
+    border-bottom: 1px solid rgba(123, 123, 123, 0.299);
+}
+
+.container-pay .pay-box .pay-box-right .header-tong-san-pham h3 {
+    margin: 10px 30px;
+}
+
+.container-pay .pay-box .pay-box-right .box-san-pham {
+    width: 90%;
+    background-color: #D9D9D9;
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 10px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 0.7fr 2fr;
+}
+
+.container-pay .pay-box .pay-box-right .box-san-pham .thong-tin-san-pham h3{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+}
+.container-pay .pay-box .pay-box-right .box-san-pham .thong-tin-san-pham p:nth-child(2){
+    font-size: 12px;
+}
+
+.container-pay .pay-box .pay-box-right hr {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #d9d9d9;
+}
+
+.container-pay .pay-box .pay-box-right .ma-giam-gia {
+    display: flex;
+    width: 90%;
+    margin: 10px auto;
+    gap: 10px;
+}
+
+.container-pay .pay-box .pay-box-right .phi {
+    width: 90%;
+    margin: 10px auto;
+}
+
+.container-pay .pay-box .pay-box-right .phi .tam-tinh,
+.container-pay .pay-box .pay-box-right .phi .phi-van-chuyen{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.container-pay .pay-box .pay-box-right .tong-cong {
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-pay .pay-box .pay-box-right .tong-cong span {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+.container-pay .pay-box .pay-box-right .dat-hang {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-pay .pay-box .pay-box-right .dat-hang p {
+    color: red;
+    font-size: 13px;
+}

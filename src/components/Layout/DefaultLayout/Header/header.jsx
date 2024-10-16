@@ -114,18 +114,18 @@ function Header() {
                             </div>
 
                             <div className="cart">
-                                <div className="icon-cart">
-                                    <Link to={"/cart"}>
+                                <Link to={"/cart"}>
+                                    <div className="icon-cart">
                                         <FontAwesomeIcon icon="fa-cart-shopping" />
                                         <div className="text-gio-hang">
                                             <div className="arrow-up"></div>
                                             <p>Giỏ hàng</p>
                                         </div>
-                                    </Link>
-                                    <div className="soluong">
-                                        <span>0</span>
+                                        <div className="soluong">
+                                            <span>0</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
 
                             <div className="account">
