@@ -45,7 +45,7 @@ function Header() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link to={""}>Sản phẩm
+                                    <Link to={"/allProduct"}>Sản phẩm
                                         <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
                                         <div className="sub-nav">
                                             <ul className="sub-nav-list">
