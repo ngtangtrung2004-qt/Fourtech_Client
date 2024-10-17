@@ -173,10 +173,10 @@ function HomePage() {
 
                 <Voucher />
                 <Event />
-                {/* <Item_headphone/> */}
+                <Item_headphone/>
 
                 <ItemAccessory />
-                {/* <HeaderProduct title={"Bản Tin công nghệ"}/> */}
+                <HeaderProduct title={"Bản Tin công nghệ"}/>
 
                 <NewTechnology />
             </div>
