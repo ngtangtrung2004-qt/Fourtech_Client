@@ -7,20 +7,22 @@ const ItemProduct = () => {
   return (
     <>
         <div className="itemProduct-container">
-            <div className="itemProduct">
-                <div className="product-img">
-                    <img src='./bp1.png' alt="" />
+            <Link to={'/detail'}>
+                <div className="itemProduct">
+                    <div className="product-img">
+                        <img src='./bp1.png' alt="" />
+                    </div>
+                    <div className="product-description">
+                    <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+                    </div>
+                    <div className="product-pricing">
+                        <span className="price">3.600.000₫</span>
+                        <span className="tag">20%</span>
+                    </div>
+                    <div className="product-pricing-1">4.500.000₫</div>
+                    <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
                 </div>
-                <div className="product-description">
-                <Link to="/detail">Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</Link>
-                </div>
-                <div className="product-pricing">
-                    <span className="price">3.600.000₫</span>
-                    <span className="tag">20%</span>
-                </div>
-                <div className="product-pricing-1">4.500.000₫</div>
-                <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
-            </div>
+            </Link>
             <div className="itemProduct">
                 <div className="product-img">
                     <img src='./tn-1.png' alt="" />

@@ -3,7 +3,7 @@
 .container-footer{
     min-height: 300px;
     width: 90%;
-    margin: 0 auto;
+    margin: 30px auto 0;
     color: #fff;
 }
 
@@ -77,4 +77,5 @@
     width: 100%;
     color: black;
     padding: 10px 0;
+    text-align: center;
 }
