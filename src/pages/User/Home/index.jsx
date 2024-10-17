@@ -6,6 +6,7 @@ import Voucher from '../../../components/Voucher/Voucher';
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
+import Item_headphone from '../../../components/Item_headphones/Item_headphone';
 
 
 function HomePage() {
@@ -167,8 +168,8 @@ function HomePage() {
                 
                 <Voucher />
                 <Event/>
-                {/* <Item_headphone/> */}
-                
+                <Item_headphone/>
+
                 <ItemAccessory />
                 {/* <HeaderProduct title={"Bản Tin công nghệ"}/> */}
                 

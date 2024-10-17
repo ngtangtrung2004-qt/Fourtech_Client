@@ -53,9 +53,6 @@ const Cart = () => {
                 <button className='bnt-thanhtoan' >Thanh toán</button>
             </div>
         </div>
-        <h1>helllo</h1>
-        <h1>helllo</h1>
-        <h1>helllo</h1>
     </div>
   )
 }
