@@ -5,7 +5,7 @@ import Voucher from '../components/Voucher/Voucher'
 import Event from "../components/Event/Event"
 import ProductDetails from "../pages/User/ProductDetails"
 import Cart from "../pages/User/Cart/Cart"
-import OurProduct from "../pages/User/ourProduct/Ourproduct"
+import AllProduct from "../pages/User/allProduct/Allproduct"
 import Pay from "../pages/User/pay/pay"
 
 const publicRoutes = [
@@ -16,7 +16,7 @@ const publicRoutes = [
     {path: '/event', component: Event},
     {path: '/detail', component: ProductDetails},
     {path: '/cart', component: Cart},
-    {path: '/ourProduct',component:OurProduct},
+    {path: '/AllProduct',component:AllProduct},
     {path: '/pay', component: Pay}
 ]
 
