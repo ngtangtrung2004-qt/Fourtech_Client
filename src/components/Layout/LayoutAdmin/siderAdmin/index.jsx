@@ -6,12 +6,7 @@ const {  Sider } = Layout;
 
 import {
   DesktopOutlined,
-  // FileOutlined,
   PieChartOutlined,
-  // TeamOutlined,
-  // UserOutlined,
-  // BellOutlined,
-  // MailOutlined
 } from "@ant-design/icons";
 function getItem(label, key, icon, children) {
   return {

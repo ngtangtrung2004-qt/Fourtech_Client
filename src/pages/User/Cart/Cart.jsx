@@ -6,14 +6,19 @@ import {
   AiOutlineMinus,
   AiOutlinePlus
 } from "react-icons/ai";
-
+import { useEffect } from "react";
 
 const Cart = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
+  }, []);
+
   return (
     <div className='Cart'>
       <div className='name-cart'>
         <img src="../src/assets/images/logo_cart.png" alt="" />
-        <div><p className="name">Giỏ Hàng</p></div>
+        <hr />
+        <p className="name">GIỎ HÀNG</p>
       </div>
 
       <div className="item-tong-cart">
@@ -63,7 +68,9 @@ const Cart = () => {
             <p>Thành tiền:</p>
             <p className='total-item-thanh-tien'>4.350.000Đ</p>
           </div>
-          <button className='bnt-thanhtoan' >Thanh toán</button>
+          <Link to={'/pay'}>
+            <button className='bnt-thanhtoan'>Thanh toán</button>
+          </Link>
         </div>
       </div>
     </div>

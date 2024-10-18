@@ -45,7 +45,7 @@ function Header() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link to={""}>Sản phẩm
+                                    <Link to={"allproduct"}>Sản phẩm
                                         <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
                                         <div className="sub-nav">
                                             <ul className="sub-nav-list">
@@ -114,18 +114,18 @@ function Header() {
                             </div>
 
                             <div className="cart">
-                                <div className="icon-cart">
-                                    <Link to={"/cart"}>
+                                <Link to={"/cart"}>
+                                    <div className="icon-cart">
                                         <FontAwesomeIcon icon="fa-cart-shopping" />
                                         <div className="text-gio-hang">
                                             <div className="arrow-up"></div>
                                             <p>Giỏ hàng</p>
                                         </div>
-                                    </Link>
-                                    <div className="soluong">
-                                        <span>0</span>
+                                        <div className="soluong">
+                                            <span>0</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
 
                             <div className="account">

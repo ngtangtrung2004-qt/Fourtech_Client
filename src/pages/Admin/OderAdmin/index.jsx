@@ -1,51 +1,54 @@
 // import  { useState } from 'react';
-import { Table, Button } from 'antd';
-import { Link } from 'react-router-dom';
-import './orderDetail.css';
+import { Table, Button } from "antd";
+import { Link } from "react-router-dom";
+import "./orderDetail.css";
 
 // Dữ liệu giả lập cho danh sách đơn hàng
 const orders = [
   {
-    key: '1',
-    customerName: 'Nguyễn Văn A',
+    key: "1",
+    customerName: "Nguyễn Văn A",
     totalAmount: 52000000,
-    status: 'Chưa giao',
+    // database thay bằng false hoặc true
+    status: "Chưa giao",
   },
   {
-    key: '2',
-    customerName: 'Trần Thị B',
+    key: "2",
+    customerName: "Trần Thị B",
     totalAmount: 9450000,
-    status: 'Đã giao',
+    status: "Đã giao",
   },
   {
-    key: '3',
-    customerName: 'Lê Văn C',
+    key: "3",
+    customerName: "Lê Văn C",
     totalAmount: 22000000,
-    status: 'Đã hủy',
+    status: "Đã hủy",
   },
 ];
 
 function OrderList() {
   const columns = [
     {
-      title: 'Khách hàng',
-      dataIndex: 'customerName',
+      title: "Khách hàng",
+      dataIndex: "customerName",
     },
     {
-      title: 'Tổng cộng',
-      dataIndex: 'totalAmount',
+      title: "Tổng cộng",
+      dataIndex: "totalAmount",
       //format lại giá tiền
       render: (amount) => `${amount.toLocaleString()} đ`,
     },
     {
-      title: 'Trạng thái',
-      dataIndex: 'status',
+      title: "Trạng thái",
+      dataIndex: "status",
     },
     {
-      title: 'Hành động',
+      title: "Hành động",
       render: (text, record) => (
         <Link to={`/admin/orders/${record.key}`}>
-          <Button type="primary"><Link to='/admin/orderDetail'> Xem chi tiết</Link></Button>
+          <Button type="primary">
+            <Link to="/admin/orderDetail"> Xem chi tiết</Link>
+          </Button>
         </Link>
       ),
     },

@@ -1,14 +1,11 @@
-import ItemProduct from "../components/ItemProduct/ItemProduct"
+
 import SignupSignin from "../pages/User/Signinsignup/Singin"
 import HomePage from "../pages/User/Home"
-import Voucher from '../components/Voucher/Voucher'
-import Event from "../components/Event/Event"
 import ProductDetails from "../pages/User/ProductDetails"
 import Cart from "../pages/User/Cart/Cart"
-import OurProduct from "../pages/User/ourProduct/Ourproduct"
+// import OurProduct from "../pages/User/ourProduct/Ourproduct"
 import LayoutAdmin from "../components/Layout/LayoutAdmin/"
 import DefaultLayout from "../components/Layout/DefaultLayout/"
-
 import HomeAdmin from "../pages/Admin/HomeAdmin"
 import ProductAdmin from "../pages/Admin/ProductAdmin"
 import OrderList from "../pages/Admin/OderAdmin"
@@ -20,16 +17,17 @@ import OrderDetail from "../pages/Admin/OderAdmin/orderDetail"
 import EditProduct from "../pages/Admin/ProductAdmin/editProduct"
 // import OrderDetail from "../pages/Admin/OderAdmin/orderDetail"
 // import { GrOrderedList } from "react-icons/gr"
+import AllProduct from "../pages/User/allProduct/Allproduct"
+import Pay from "../pages/User/pay/pay"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
-    {path: "/itemProduct", component: ItemProduct},
     {path: '/signin', component: SignupSignin, layout: null},
-    {path: '/voucher', component: Voucher},
-    {path: '/event', component: Event},
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
-    {path: '/ourProduct',component:OurProduct,},
+    // {path: '/ourProduct',component:OurProduct,},
+    {path: '/AllProduct',component:AllProduct,layout: DefaultLayout},
+    {path: '/pay', component: Pay,layout: DefaultLayout}
 
 ]
 
