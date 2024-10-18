@@ -42,48 +42,183 @@ const filters = [
         ))}
       </div>
     </div>
-      <div className="filter-section">
-      <div className="filter-group">
-        <h3>Hãng sản xuất</h3>
-        {['Acer', 'Apple', 'Asus', 'Dell', 'Logitech','Corsair','Sony','Razer','Keychron'].map((bran, index) => (
-          <div key={index} className="filter-item">
-            <input type="checkbox" id={bran} />
-            <label htmlFor={bran}>{bran}</label>
-          </div>
-        ))}
-        <button className="show-more-btn" onClick={toggleShowMore}>
-          {showMore ? 'Thu gọn ' : 'Xem thêm '}
-        </button>
-      </div>
-      <div >
-      </div>
-      
-      <hr className="divider" />
-             <div className="filter-group">
-        <h3>Loại sản phẩm</h3>
-        {['Bàn nâng hạ', 'Laptop','Chuột không dây','Ghế công thái học','Điện thoại','Tai nghe','Máy chơi game'
-          ,'Máy tính (PC)','Máy tính bảng',
-        ].map((tag, index) => (
-          <div key={index} className="filter-item">
-            <input type="checkbox" id={tag} />
-            <label htmlFor={tag}>{tag}</label>
-          </div>
-        ))}
-      </div>
-      <hr className="divider" />
-             <div className="filter-group">
-        <h3>Giá</h3>
-        {['Giá dưới 1.000.000₫', '1.000.000₫ - 2.000.000₫','2.000.000₫ - 3.000.000₫',
-        '3.000.000₫ - 5.000.000₫','5.000.000₫ - 7.000.000₫','7.000.000₫ - 10.000.000₫','Giá trên 10.000.000₫',].map((tag, index) => (
-          <div key={index} className="filter-item">
-            <input type="checkbox" id={tag} />
-            <label htmlFor={tag}>{tag}</label>
-          </div>
-        ))}
-      </div>
-      
-    </div>
+
+      <div className="all-product">
+        <div className="item-products">
+          <ul className="product-all-item">
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            <li className="item-1">
+              <a href="">
+                <img src="../src/assets/images/sp-1.png" alt="" />
+              </a>
+              <div className="product-description-12">
+                <p>Bàn Phím Cơ Không Dây Lofree Dot Foundation (giảm thêm 100k)</p>
+              </div>
+              <div className="product-pricing-12">
+                <span className="price-12">3.600.000₫</span>
+                <span className="tag-12">20%</span>
+              </div>
+              <div className="product-pricing-123">4.500.000₫</div>
+              <button className="add-to-cart-btn-12">Thêm vào giỏ hàng</button>
+            </li>
+            
+          </ul>
+        </div>
+            <div className="filter-section">
+              <div className="filter-group">
+                <h3>Hãng sản xuất</h3>
+                {['Acer', 'Apple', 'Asus', 'Dell', 'Logitech','Corsair','Sony','Razer','Keychron'].map((bran, index) => (
+                  <div key={index} className="filter-item">
+                    <input type="checkbox" id={bran} />
+                    <label htmlFor={bran}>{bran}</label>
+                  </div>
+                ))}
+                <button className="show-more-btn" onClick={toggleShowMore}>
+                  {showMore ? 'Thu gọn ' : 'Xem thêm '}
+                </button>
+              </div>
+            <div >
             </div>
+            
+            <hr className="divider" />
+                  <div className="filter-group">
+              <h3>Loại sản phẩm</h3>
+              {['Bàn nâng hạ', 'Laptop','Chuột không dây','Ghế công thái học','Điện thoại','Tai nghe','Máy chơi game'
+                ,'Máy tính (PC)','Máy tính bảng',
+              ].map((tag, index) => (
+                <div key={index} className="filter-item">
+                  <input type="checkbox" id={tag} />
+                  <label htmlFor={tag}>{tag}</label>
+                </div>
+              ))}
+            </div>
+            <hr className="divider" />
+                  <div className="filter-group">
+              <h3>Giá</h3>
+              {['Giá dưới 1.000.000₫', '1.000.000₫ - 2.000.000₫','2.000.000₫ - 3.000.000₫',
+              '3.000.000₫ - 5.000.000₫','5.000.000₫ - 7.000.000₫','7.000.000₫ - 10.000.000₫','Giá trên 10.000.000₫',].map((tag, index) => (
+                <div key={index} className="filter-item">
+                  <input type="checkbox" id={tag} />
+                  <label htmlFor={tag}>{tag}</label>
+                </div>
+              ))}
+            </div>
+        
+      
+            </div>
+              </div>
+        </div>
         </>
     )
 }
