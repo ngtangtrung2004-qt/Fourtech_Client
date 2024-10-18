@@ -5,8 +5,8 @@ import './App.css'
 // import SignupSignin from './pages/User/Signinsignup'
 // import ItemProduct from './components/ItemProduct/ItemProduct'
 // import Voucher from './components/Voucher/Voucher'
-import { publicRoutes } from './routes/index'
-import { DefaultLayout } from './components/Layout'
+import { adminRoutes, publicRoutes } from './routes/index'
+// import { DefaultLayout } from './components/Layout'
 import { Fragment } from 'react'
 
 function App() {
@@ -15,16 +15,39 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            {publicRoutes.map((route, index) => {
-              //Fragment là 1 thẻ chứa nó ko sinh ra thẻ thật trong DOM
-              const Layout = route.layout === null ? Fragment : DefaultLayout;
-              const Page = route.component
-              return <Route key={index} path={route.path} element={
-                <Layout>
-                  <Page />
-                </Layout>
-              } />
-            })}
+             {/* Định tuyến cho Client */}
+          {publicRoutes.map((route, index) => {
+            const Layout = route.layout || Fragment;
+            const Page = route.component;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
+
+          {/* Định tuyến cho Admin */}
+          {adminRoutes.map((route, index) => {
+            const Layout = route.layout || Fragment;
+            const Page = route.component;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
           </Routes>
         </div>
         {/* <Route path={'/'} element={<HomePage />} />

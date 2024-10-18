@@ -44,6 +44,7 @@ function ModalParameter() {
         open={open}
         onCancel={() => setOpen(false)}
         onOk={()=>setOpen(false)}
+        
       >
         <div className='parameter_detail'>
     <table className="table"> {/* Corrected className here */}

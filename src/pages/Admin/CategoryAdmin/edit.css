@@ -1,0 +1,17 @@
+.btn-edit {
+  background-color: #1677ff;
+}
+.name_category {
+  width: 100%;
+}
+.name_category p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.name_category input {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
