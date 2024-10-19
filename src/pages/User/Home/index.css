@@ -94,9 +94,10 @@
 }
 
 .product-item p {
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .product-item:hover {
@@ -195,7 +196,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
   }
   
   .deal-title {
@@ -249,9 +249,9 @@
     text-transform: uppercase; /* Chữ in hoa giống hình */
   }
   
-  p {
+.countdown-container p {
     font-size: 13px;
-    margin-right: 20px; /* Giảm khoảng cách giữa chữ và countdown */
+    margin-right: 20px; 
     color: #333;
-    text-align: right; /* Căn phải giống với hình */
+    text-align: right; 
   }
