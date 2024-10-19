@@ -153,4 +153,11 @@
 .add-to-cart-btn-12:hover{
   background-color: #218838;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-right: 15%;
+}
 
