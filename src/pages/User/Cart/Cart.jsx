@@ -6,9 +6,13 @@ import {
   AiOutlineMinus,
   AiOutlinePlus
 } from "react-icons/ai";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { CartContext } from '../../../components/CartContext/CartContext';
 
 const Cart = () => {
+  const { cart, removeFromCart, addToCart, decreaseQuantity } = useContext(CartContext);
+
+
   useEffect(() => {
     window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
   }, []);
@@ -16,63 +20,74 @@ const Cart = () => {
   return (
     <div className='Cart'>
       <div className='name-cart'>
-        <img src="../src/assets/images/logo_cart.png" alt="" />
+        <img src="../src/assets/images/logo_cart.png" alt="logo" />
         <hr />
         <p className="name">GIỎ HÀNG</p>
       </div>
 
       <div className="item-tong-cart">
         <div className="item">
-          <div className="item-cart">
-            <div className='check-box'>
-              <input type="checkbox" />
-            </div>
-            <div className="img">
-              <img src="../src/assets/images/item-Cart.png" alt="" />
-            </div>
-            <div className="name-item">
-              <p className='item-name' title='Tai nghe Edifier W830BT'>Tai nghe Edifier W830BT</p>
-              <p className='item-coler'>Màu: Xám </p>
-              <p className='item-price'>4.350.000₫</p>
-            </div>
-            <div className="action">
-              <div className='xoa'>
-                <AiFillDelete />
+        {cart.length > 0 ? (
+          cart.map((item) => (
+            <div className="item-cart" key={item.id}>
+              <div className='check-box'>
+                <input type="checkbox" />
               </div>
-              <div className='quantity'>
-                <AiOutlineMinus className='btn-left' />
-                <span>1</span>
-                <AiOutlinePlus className='btn-right' />
+              <div className="img" >
+                <img style={{ width: '70px', height: '70px' }} src={item.image} alt={item.name} />
+              </div>
+              <div className="name-item">
+                <p className='item-name' title={item.name}>{item.name}</p>
+                <p className='item-coler'>Màu: Xám </p>
+                <p className='item-price'>{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
+              </div>
+              <div className="action">
+                <div className='xoa' onClick={() => removeFromCart(item.id)}>
+                  <AiFillDelete />
+                </div>
+                <div className='quantity'>
+                  <AiOutlineMinus className='btn-left' onClick={() => decreaseQuantity(item.id)} />
+                  <span>{item.quantity}</span>
+                  <AiOutlinePlus className='btn-right'  onClick={() => addToCart(item)} />
+                </div>
               </div>
             </div>
-          </div>
+          ))
+        ) : (
+          <p>Giỏ hàng của bạn đang trống.</p>
+        )}
 
-          <Link to={'/'}><div className="home-page">
+        <Link to={'/'}>
+          <div className="home-page">
             <div className='icon' size='1em'>
               <AiOutlineArrowLeft className='icon-large' />
             </div>
             <div className="btn-home">
               <button>Tiếp tục mua hàng</button>
             </div>
-
           </div>
-          </Link>
+        </Link>
         </div>
+      
 
-        <div className="tong-cart">
-          <div className="provisional">
-            <p>Tạm tính:</p>
-            <p className='total-item'>4.350.000Đ</p>
-          </div>
-          <div className="total">
-            <p>Thành tiền:</p>
-            <p className='total-item-thanh-tien'>4.350.000Đ</p>
-          </div>
-          <Link to={'/pay'}>
-            <button className='bnt-thanhtoan'>Thanh toán</button>
-          </Link>
+      <div className="tong-cart">
+        <div className="provisional">
+          <p>Tạm tính:</p>
+          <p className='total-item'>
+          {cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+          </p>
         </div>
+        <div className="total">
+          <p>Thành tiền:</p>
+          <p className='total-item-thanh-tien'>
+          {cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+          </p>
+        </div>
+        <Link to={'/pay'}>
+          <button className='bnt-thanhtoan'>Thanh toán</button>
+        </Link>
       </div>
+    </div>
     </div>
   )
 }

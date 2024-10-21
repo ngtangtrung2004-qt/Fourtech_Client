@@ -2,11 +2,13 @@ import logo from "/Logo.png";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState,useContext } from "react";
+import { CartContext } from "../../../CartContext/CartContext"; 
 
 function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const inputRef = useRef(null);
+    const { cartQuantity } = useContext(CartContext);
 
 
     useEffect(() => {
@@ -26,6 +28,9 @@ function Header() {
             document.removeEventListener('mousedown', handelClickOutSide);
         }
     }, [isSearchOpen])
+
+
+    
 
     return (
         <>
@@ -122,7 +127,7 @@ function Header() {
                                             <p>Giỏ hàng</p>
                                         </div>
                                         <div className="soluong">
-                                            <span>0</span>
+                                            <span>{cartQuantity}</span>
                                         </div>
                                     </div>
                                 </Link>

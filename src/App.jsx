@@ -8,12 +8,17 @@ import './App.css'
 import { adminRoutes, publicRoutes } from './routes/index'
 // import { DefaultLayout } from './components/Layout'
 import { Fragment } from 'react'
+import { CartProvider } from './components/CartContext/CartContext'
+import Cart from './pages/User/Cart/Cart';
+import ItemProduct from './components/ItemProduct/ItemProduct'
+
 
 function App() {
   return (
     <>
       <Router>
         <div className="App">
+        <CartProvider>
           <Routes>
              {/* Định tuyến cho Client */}
           {publicRoutes.map((route, index) => {
@@ -48,7 +53,10 @@ function App() {
               />
             );
           })}
+            <Route path="/" element={<ItemProduct />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
+        </CartProvider>
         </div>
         {/* <Route path={'/'} element={<HomePage />} />
           <Route path={'/Signin'} element={<SignupSignin />} />

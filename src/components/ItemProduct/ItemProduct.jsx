@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { useContext } from 'react';
+import { CartContext } from '../CartContext/CartContext';
 import './ItemProduct.css'
 
 const products = [
@@ -46,8 +48,13 @@ const products = [
     // Thêm nhiều sản phẩm khác nếu có
   ];
 
+
 const ItemProduct = () => {
+  const { addToCart } = useContext(CartContext);
+
     const Listproducts = products.slice(0, 4);
+
+    
   return (
     <>
 
@@ -63,11 +70,11 @@ const ItemProduct = () => {
                     <p>{products.name}</p>
                     </div>
                     <div className="product-pricing">
-                        <span className="price">{products.price}</span>
+                        <span className="price">{products.price}VNĐ</span>
                         <span className="tag">{products.discount}</span>
                     </div>
                     <div className="product-pricing-1">{products.originalPrice}</div>
-                    <button className="add-to-cart-btn">Thêm vào giỏ hàng</button>
+                    <button className="add-to-cart-btn" onClick={() => addToCart(products)}>Thêm vào giỏ hàng</button>
 
             </div>
             )}
