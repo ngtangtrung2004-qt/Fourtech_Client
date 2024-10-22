@@ -226,7 +226,7 @@ const filters = [
                      <button>&gt;</button>
                      
 </div>
-<div className="product-grid">
+             <div className="product-grid">
                     <a href=''>
                         <div className="product-item">
                             <img src="laptop.webp" alt="Laptop" />
