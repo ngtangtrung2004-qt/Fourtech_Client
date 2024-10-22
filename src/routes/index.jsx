@@ -23,7 +23,7 @@ const publicRoutes = [
     {path: '/signin', component: SignupSignin, layout: null},
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
-    {path: '/AllProduct',component:AllProduct,layout: DefaultLayout},
+    {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
     {path: '/pay', component: Pay,layout: DefaultLayout}
 
 ]
