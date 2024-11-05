@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 function CreateCategory() {
   const [categoryData, setCategoryData] = useState({
     categoryName: "",
@@ -24,26 +24,7 @@ function CreateCategory() {
   const handleSubmit =async (e) => {
     e.preventDefault();
     // Xử lý dữ liệu form tại đây, ví dụ: gửi dữ liệu lên server hoặc API
-    const formData = new FormData();
-    formData.append("categoryName", categoryData.categoryName);
-    formData.append("categoryImage", categoryData.categoryImage);
-    console.log(categoryData);
-     try {
-      // Gửi yêu cầu POST tới API server
-      const response = await axios.post("http://localhost:3001/api/categories", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (response.status === 201) {
-        alert("Danh mục mới đã được thêm thành công!");
-      } else {
-        alert("Có lỗi xảy ra, vui lòng thử lại.");
-      }
-    } catch (error) {
-      console.error("Lỗi khi thêm danh mục:", error);
-    }
+  
   };
   return (
     <div className="category-form-container">
@@ -62,7 +43,7 @@ function CreateCategory() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="categoryImage">Hình Ảnh Danh Mục</label>
+          <label htmlFor="categoryImage">Hình Ảnh Thương hiệu</label>
           <input
             type="file"
             id="categoryImage"
@@ -72,7 +53,7 @@ function CreateCategory() {
         </div>
 
         <button type="submit" className="submit-btn">
-          Thêm Danh Mục
+          Thêm Thương hiệu
         </button>
       </form>
     </div>
