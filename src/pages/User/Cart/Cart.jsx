@@ -33,11 +33,17 @@ const Cart = () => {
               <div className='check-box'>
                 <input type="checkbox" />
               </div>
+              
               <div className="img" >
+                <Link to={'/detail'}>
                 <img style={{ width: '70px', height: '70px' }} src={item.image} alt={item.name} />
+                </Link>
               </div>
+              
               <div className="name-item">
+              <Link to={'/detail'}>
                 <p className='item-name' title={item.name}>{item.name}</p>
+              </Link>
                 <p className='item-coler'>Màu: Xám </p>
                 <p className='item-price'>{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
               </div>
@@ -54,7 +60,7 @@ const Cart = () => {
             </div>
           ))
         ) : (
-          <p>Giỏ hàng của bạn đang trống.</p>
+          <p className='ght'>Giỏ hàng của bạn đang trống.</p>
         )}
 
         <Link to={'/'}>

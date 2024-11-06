@@ -1,15 +1,18 @@
+
 .itemProduct-container{
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
     gap: 20px;
+
 }
 .itemProduct{
     border: 1px solid #ddd;
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .product-img {
@@ -17,6 +20,7 @@
 }
 .product-img img{
     max-width: 100%;
+    max-height: 256px;
     display: block;
     height: auto;
     border-radius: 10px;
@@ -81,3 +85,17 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding-top: 20px;
+
+}
+.left-arrow, .right-arrow {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
