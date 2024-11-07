@@ -64,7 +64,7 @@ function Header() {
                                                     <Link>Màn hình</Link>
                                                 </li>
                                                 <li className="sub-nav-item">
-                                                    <Link>Chuột + Lót chuột</Link>
+                                                    <Link to={"/Mouse"}>Chuột + Lót chuột</Link>
                                                 </li>
                                                 <li className="sub-nav-item">
                                                     <Link>Máy chơi game</Link>
@@ -134,7 +134,7 @@ function Header() {
                             </div>
 
                             <div className="account">
-                                <div className="icon-user">
+                                {/* <div className="icon-user">
                                     <Link to={"/signin"}>
                                         <FontAwesomeIcon icon="fa-circle-user" />
                                         <div className="arrow-up"></div>
@@ -143,10 +143,10 @@ function Header() {
                                             <p>Đăng nhập</p>
                                         </div>
                                     </Link>
-                                </div>
+                                </div> */}
 
                                 {/* Phần này là để đăng nhập hiển thị người dùng */}
-                                {/* <div className="user">
+                                <div className="user">
                                     <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
                                     <div className="sub-user">
                                         <ul>
@@ -154,20 +154,20 @@ function Header() {
                                                 <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Tiến Đạt</span></p>
                                             </li>
                                             <li>
-                                                <Link to={''}>
+                                                <Link to={'/info'}>
                                                     <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
                                                     <p>Hồ sơ</p>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link to={''}>
+                                                <Link to={'/signin'}>
                                                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
                                                     <p>Đăng xuất</p>
                                                 </Link>
                                             </li>
                                         </ul>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                         </div>
                     </div>

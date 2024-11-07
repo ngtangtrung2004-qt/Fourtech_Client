@@ -17,6 +17,10 @@ import EditProduct from "../pages/Admin/ProductAdmin/editProduct"
 // import { GrOrderedList } from "react-icons/gr"
 import AllProduct from "../pages/User/allProduct/Allproduct"
 import Pay from "../pages/User/pay/pay"
+import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
+import InFor from "../pages/User/InFor/InFor"
+import forgotPassword from "../pages/User/Signinsignup/Forgotpassword"
+import CodePassword from "../pages/User/Signinsignup/CodePassword"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
@@ -24,7 +28,11 @@ const publicRoutes = [
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
     {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
-    {path: '/pay', component: Pay,layout: DefaultLayout}
+    {path: '/pay', component: Pay,layout: DefaultLayout},
+    {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
+    {path: '/info', component: InFor,layout: DefaultLayout},
+    {path: '/forgotPassword', component: forgotPassword,layout: DefaultLayout},
+    {path: '/code', component: CodePassword,layout: DefaultLayout},
 
 ]
 

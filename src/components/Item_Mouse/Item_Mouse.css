@@ -143,6 +143,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột để hiển thị sản phẩm ngang */
     gap: 20px;
+    padding-top: 80px;
+    padding-bottom: 50px;
 }
   ul.productItem_1{
     list-style: none;
