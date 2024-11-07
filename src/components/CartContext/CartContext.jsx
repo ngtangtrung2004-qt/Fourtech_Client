@@ -42,7 +42,7 @@ const decreaseQuantity = (productId) => {
   };
 
   // Tính tổng số lượng sản phẩm trong giỏ hàng
-  const cartQuantity = useMemo(() => cart.length, [cart]);
+  const cartQuantity = useMemo(() => cart.reduce((total, products) => total + products.quantity, 0), [cart]);
   // `useMemo` đảm bảo rằng giá trị này chỉ được tính lại khi `cart` thay đổi
 
 

@@ -47,6 +47,7 @@ function OrderList() {
       render: (text, record) => (
         <Link to={`/admin/orders/${record.key}`}>
           <Button type="primary">
+            Xem chi tiết
             <Link to="/admin/orderDetail"> Xem chi tiết</Link>
           </Button>
         </Link>

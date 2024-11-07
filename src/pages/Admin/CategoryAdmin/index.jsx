@@ -2,34 +2,27 @@ import { Table, Button } from "antd";
 import EditCategory from "./EditCategory";
 import "./edit.css";
 import { Link } from "react-router-dom";
-const data = [
-  {
-    key: "1",
-    name: "Điện thoại",
-    image: "../../../../public/anh1.jpg", 
-  },
-  {
-    key: "2",
-    name: "Bàn phím",
-    image: "../../../../public/anh1.jpg", 
-  },
-  {
-    key: "3",
-    name: "Tai nghe",
-    image: "../../../../public/anh1.jpg", 
-  },
-  {
-    key: "4",
-    name: "Đèn học",
-    image: "../../../../public/anh1.jpg", 
-  },
-  {
-    key: "5",
-    name: "Lót chuột",
-    image: "../../../../public/anh1.jpg", 
-  },
-];
+import { useEffect, useState } from "react";
 function CategoryAdmin() {
+  const [dataCategory,setDataCategory] = useState([])
+  useEffect(()=>{
+    const fetchCategory = async ()=>{
+      try{
+        const res = await fetch('http://localhost:3000/api/categories')
+        const data = await res.json();
+        const formatData = data.map((cate,index)=>({
+          key:index+1 ,
+          name:cate.categoryName,
+          image:cate.categoryImage
+        }))
+        setDataCategory(formatData)
+
+      }catch(error){
+        console.error('error fetching products:', error)
+      }
+    }
+    fetchCategory()
+  },[])
   const columns = [
     {
       title: "ID",
@@ -42,13 +35,7 @@ function CategoryAdmin() {
     {
       title: "Image",
       dataIndex: "image",
-      render: (img) => (
-        <img
-          src={img}
-          alt="Product"
-          style={{ width: "100px", height: "auto" }}
-        />
-      ),
+       render: (image) => <img src={image} alt="Category" style={{ width: "50px", height: "50px" }} />,
     },
     {
       title: "Action",
@@ -70,7 +57,7 @@ function CategoryAdmin() {
           <Link to="/admin/add-category">Thêm danh mục</Link>
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} pagination={{
+      <Table columns={columns} dataSource={dataCategory} pagination={{
           pageSize: 5, // Số lượng sản phẩm hiển thị trên mỗi trang
         }} />
     </>
