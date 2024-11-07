@@ -1,13 +1,13 @@
-import React from 'react';
-import {  Modal } from 'antd';
+// import React from 'react';
+// import {  Modal } from 'antd';
 
 import "./DetailPrd.css";
 
 function ModalParameter() {
-    const [open, setOpen] = React.useState(false);
-  const showLoading = () => {
-    setOpen(true);
-  };
+    // const [open, setOpen] = React.useState(false);
+  // const showLoading = () => {
+  //   setOpen(true);
+  // };
     return ( <>
     <div className="table-container">
   <table className="table"> {/* Corrected className here */}
@@ -32,14 +32,14 @@ function ModalParameter() {
       <td>Marshall Bluetooth</td>
     </tr>
   </table>
-  <div className="btn-container">
-    <button className="detail-button" onClick={showLoading}>
+  {/* <div className="btn-container">
+    <button className="detail-button">
       Xem chi tiết 
     </button>
-  </div>
+  </div> */}
 </div>
 
-<Modal
+{/* <Modal
         title={<h4 className='modal_title'>Chi tiết thông số</h4>}
         open={open}
         onCancel={() => setOpen(false)}
@@ -47,7 +47,7 @@ function ModalParameter() {
         
       >
         <div className='parameter_detail'>
-    <table className="table"> {/* Corrected className here */}
+    <table className="table"> 
     <tr>
       <th>Thời lượng pin tai nghe:</th>
       <td>Dùng 100 giờ - Sạc 3 giờ</td>
@@ -79,7 +79,7 @@ function ModalParameter() {
   </table>
 
         </div>
-      </Modal>
+      </Modal> */}
     </> );
 }
 

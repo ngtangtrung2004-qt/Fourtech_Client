@@ -3,31 +3,36 @@ import { Table, Button } from "antd";
 const data = [
   {
     key: "1",
-    name: "Điện thoại",
+    name: "honag hai",
+    phone: "0919907233",
     password: "111111111",
     email: "hoanghaihyh@gmail.com",
   },
   {
     key: "2",
-    name: "Bàn phím",
+    name: "honag hai",
+    phone: "0919907233",
     password: "111111111",
     email: "hoanghaihyh@gmail.com",
   },
   {
     key: "3",
-    name: "Tai nghe",
+    name: "honag hai",
+    phone: "0919907233",
     password: "111111111",
     email: "hoanghaihyh@gmail.com",
   },
   {
     key: "4",
-    name: "Đèn học",
+    name: "honag hai",
+    phone: "0919907233",
     password: "111111111",
     email: "hoanghaihyh@gmail.com",
   },
   {
     key: "5",
-    name: "Lót chuột",
+    name: "honag hai",
+    phone: "0919907233",
     password: "111111111",
     email: "hoanghaihyh@gmail.com",
   },
@@ -42,6 +47,9 @@ function UserAdmin() {
     {
       title: "UserName",
       dataIndex: "name",
+    },
+    {title:"Phone",
+      dataIndex:"phone"
     },
     {
       title: "Password",
