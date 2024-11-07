@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../../../../../public/Logo.png";
+import logo from "/Logo.png";
 import { Layout, Menu  } from "antd";
 import { Link } from "react-router-dom";
 const {  Sider } = Layout;
