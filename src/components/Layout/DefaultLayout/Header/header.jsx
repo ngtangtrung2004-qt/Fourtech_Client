@@ -140,11 +140,9 @@ function Header() {
 
                             <div className="account">
                                 <div className="icon-user">
-<<<<<<< HEAD
-                                    <Link to={"/signin"}>
-=======
+
                                     <Link to={"/login-register"}>
->>>>>>> cbd334abba7dae14cf246246f6dfce00e3d5ba69
+
                                         <FontAwesomeIcon icon="fa-circle-user" />
                                         <div className="arrow-up"></div>
                                         <div className="text-dang-nhap">
