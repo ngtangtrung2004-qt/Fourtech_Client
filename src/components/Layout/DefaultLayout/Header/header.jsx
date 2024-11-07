@@ -88,7 +88,7 @@ function Header() {
                                     <Link to={""}>Bài viết</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={""}>Liên hệ</Link>
+                                    <Link to='/contact'>Liên hệ</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -159,13 +159,13 @@ function Header() {
                                                 <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Trương Văn Tiến Đạt</span></p>
                                             </li>
                                             <li>
-                                                <Link to={''}>
+                                                <Link to={'/info'}>
                                                     <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
                                                     <p>Hồ sơ</p>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link to={''}>
+                                                <Link to={'/signin'}>
                                                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
                                                     <p>Đăng xuất</p>
                                                 </Link>

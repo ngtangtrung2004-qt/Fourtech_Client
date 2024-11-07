@@ -9,7 +9,7 @@ import HomeAdmin from "../pages/Admin/HomeAdmin"
 import ProductAdmin from "../pages/Admin/ProductAdmin"
 import OrderList from "../pages/Admin/OderAdmin"
 import CategoryAdmin from "../pages/Admin/CategoryAdmin"
-import UserAdmin from "../pages/Admin"
+// import UserAdmin from "../pages/Admin/UserAdmin"
 import CreateProduct from "../pages/Admin/ProductAdmin/createProduct"
 import CreateCategory from "../pages/Admin/CategoryAdmin/createCategory"
 import OrderDetail from "../pages/Admin/OderAdmin/orderDetail"
@@ -17,6 +17,19 @@ import EditProduct from "../pages/Admin/ProductAdmin/editProduct"
 // import { GrOrderedList } from "react-icons/gr"
 import AllProduct from "../pages/User/allProduct/Allproduct"
 import Pay from "../pages/User/pay/pay"
+<<<<<<< HEAD
+import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
+import InFor from "../pages/User/InFor/InFor"
+import forgotPassword from "../pages/User/Signinsignup/Forgotpassword"
+import CodePassword from "../pages/User/Signinsignup/CodePassword"
+=======
+import Brand from "../pages/Admin/brandAdmin"
+import Createbrand from "../pages/Admin/BrandAdmin/CreateBrand"
+import UserAdmin from "../pages/Admin/UserAdmin"
+import Contact from "../pages/User/Contact/Contact"
+// import {BrandAdmin} from "../pages/Admin/brandAdmin/index.jsx"
+// import BrandAdmin from "../pages/Admin/BrandAdmin"
+>>>>>>> 901edd7bfc4b3d533cf564b29fd6b32666e466ba
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
@@ -24,7 +37,15 @@ const publicRoutes = [
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
     {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
-    {path: '/pay', component: Pay,layout: DefaultLayout}
+    {path: '/pay', component: Pay,layout: DefaultLayout},
+<<<<<<< HEAD
+    {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
+    {path: '/info', component: InFor,layout: DefaultLayout},
+    {path: '/forgotPassword', component: forgotPassword,layout: DefaultLayout},
+    {path: '/code', component: CodePassword,layout: DefaultLayout},
+=======
+    {path:'/contact',component:Contact,layout: DefaultLayout}
+>>>>>>> 901edd7bfc4b3d533cf564b29fd6b32666e466ba
 
 ]
 
@@ -35,6 +56,9 @@ const adminRoutes = [
   { path: '/admin/orderDetail', component: OrderDetail, layout:  LayoutAdmin},
   { path: '/admin/category-admin', component: CategoryAdmin, layout:  LayoutAdmin},
   { path: '/admin/user-admin', component: UserAdmin, layout:  LayoutAdmin},
+  { path: '/admin/brand-admin', component: Brand, layout:  LayoutAdmin},
+  { path: '/admin/add-brand', component: Createbrand, layout:  LayoutAdmin},
+  // { path: '/admin/brandadmin', component: BrandAdmin, layout:  LayoutAdmin},
   { path: '/admin/add-product', component: CreateProduct, layout:  LayoutAdmin},
   { path: '/admin/editProduct', component: EditProduct, layout:  LayoutAdmin},
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},

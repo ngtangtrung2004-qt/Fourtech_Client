@@ -4,7 +4,9 @@ function CreateProduct() {
   const [formData, setFormData] = useState({
     productName: "",
     productPrice: "",
+    productQuantity: "",
     productDescription: "",
+    productDate:"",
     productCategory: "",
     productImage: null,
   });
@@ -59,18 +61,29 @@ function CreateProduct() {
               placeholder="Nhập giá sản phẩm"
             />
           </div>
-
-          <div className="form-group">
-            <label htmlFor="productDescription">Mô Tả Sản Phẩm</label>
-            <textarea
-              id="productDescription"
-              name="productDescription"
-              value={formData.productDescription}
+           <div className="form-group">
+            <label htmlFor="productQuantity">Số lượng sản phẩm</label>
+            <input
+              type="number"
+              id="productQuantity"
+              name="productQuantity"
+              value={formData.productQuantity}
               onChange={handleChange}
-              rows="4"
-              placeholder="Nhập mô tả sản phẩm"
+              placeholder="Nhập số lượng sản phẩm"
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="productDate">Ngày thêm</label>
+            <input
+              type="date"
+              id="productDate"
+              name="productDate"
+              value={formData.productDate}
+              onChange={handleChange}
+              placeholder="Nhập tên sản phẩ"
+            />
+          </div>
+
 
           <div className="form-group">
             <label htmlFor="productCategory">Danh Mục Sản Phẩm</label>
@@ -97,6 +110,17 @@ function CreateProduct() {
               name="productImage"
               onChange={handleFileChange}
             />
+          <div className="form-group">
+            <label htmlFor="productDescription">Mô Tả Sản Phẩm</label>
+            <textarea
+              id="productDescription"
+              name="productDescription"
+              value={formData.productDescription}
+              onChange={handleChange}
+              rows="4"
+              placeholder="Nhập mô tả sản phẩm"
+            />
+          </div>
           </div>
 
           <button type="submit" className="submit-btn">

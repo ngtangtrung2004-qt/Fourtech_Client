@@ -34,6 +34,16 @@ const items = [
     "5",
     <PieChartOutlined />
   ),
+  getItem(
+    <Link to="/admin/brand-admin">Brand</Link>,
+    "6",
+    <PieChartOutlined />
+  ),
+  // getItem(
+  //   <Link to="/admin/brandAdmin">Brand</Link>,
+  //   "6",
+  //   <PieChartOutlined />
+  // ),
   // menu phân cấp 
   // getItem("User", "sub1", <UserOutlined />, [
   //   getItem("Tom", "6"),

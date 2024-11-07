@@ -1,59 +1,40 @@
+import { useEffect, useState}  from "react";
 import { Table, Button } from "antd";
-import "./product.css";
 import { Link } from "react-router-dom";
-
-const data = [
-  {
-    key: "1",
-    name: "iPhone 16 Pro",
-    image: [
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-    ],
-    description:
-      "Vỏ titan, màn hình Super Retina XDR OLED 6.3 inch, hỗ trợ ProMotion 120Hz.",
-    category: "Điện thoại",
-    price: "26.000.000 đ",
-  },
-  {
-    key: "2",
-    name: "iPhone 16 Pro",
-    image: [
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-    ],
-    description:
-      "Vỏ titan, màn hình Super Retina XDR OLED 6.3 inch, hỗ trợ ProMotion 120Hz.",
-    category: "Điện thoại",
-    price: "26.000.000 đ",
-  },
-  {
-    key: "3 ",
-    name: "iPhone 16 Pro",
-    image: [
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-      "../../../../public/anh1.jpg",
-    ],
-    description:
-      "Vỏ titan, màn hình Super Retina XDR OLED 6.3 inch, hỗ trợ ProMotion 120Hz.",
-    category: "Điện thoại",
-    price: "26.000.000 đ",
-  },
-  // Các sản phẩm khác...
-];
+import "./product.css";
 
 function ProductAdmin() {
+  // Tạo state để lưu dữ liệu sản phẩm
+  const [products, setProducts] = useState([]);
+  // console.log(products)
+
+  // Gọi API để lấy dữ liệu từ server khi component được render
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/products"); // Địa chỉ API của bạn
+        const data = await response.json();
+        // Giả sử dữ liệu trả về có cấu trúc giống `data` trong ví dụ gốc
+        const formattedData = data.map((product, index) => ({
+          key: product.ProductID || index + 1,
+          name: product.Name,
+          image: product.Images, // Mảng hình ảnh sản phẩm
+          description: product.Description,
+          category: product.CategoryName,
+          price: `${product.Price} đ`,
+        }));
+        setProducts(formattedData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const columns = [
     {
-      // title tên cột
       title: "ID",
-      // dataIndex: lấy dữ liệu từ mảng có trường là key (có thể thay thế trông data là id)
       dataIndex: "key",
     },
     {
@@ -63,7 +44,6 @@ function ProductAdmin() {
     {
       title: "Image",
       dataIndex: "image",
-      //thay vì chỉ hiện thị 1 ảnh , dùng render truyển vào mảng image và map qua nó
       render: (images) => (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
           {images.map((src, index) => (
@@ -91,13 +71,11 @@ function ProductAdmin() {
     },
     {
       title: "Action",
-
       render: () => (
         <span className="action-product">
           <Button type="primary">
             <Link to="/admin/editProduct">Edit</Link>
           </Button>
-
           <Button type="primary" danger>
             Delete
           </Button>
@@ -115,12 +93,10 @@ function ProductAdmin() {
       </div>
 
       <Table
-        // truyền các props gồm cột và data
         columns={columns}
-        dataSource={data}
-        // phân trang
+        dataSource={products}
         pagination={{
-          pageSize: 5, // Số lượng sản phẩm hiển thị trên mỗi trang
+          pageSize: 5,
         }}
       />
     </>

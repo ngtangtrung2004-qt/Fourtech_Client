@@ -223,3 +223,86 @@
 .sign-in .quen-mat-khau:hover{
     color: #c62828;
 }
+
+.main_dlmk{
+    background-color: white;
+    width: 450px;
+    height: 100%;
+    margin: 100px 0 300px 500px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.main_dlmk .top_dlmk{
+    font-weight: 500;
+    padding: 20px 0 20px 20px;
+    display: flex;
+    gap: 110px;
+    align-items: center;
+    font-size: 20px;
+}
+.main_dlmk .center_dlmk{
+    padding: 20px 0 20px 70px;
+    width: 50px;
+}
+.main_dlmk .center_dlmk input{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    border: 0.5px solid #6e6e6e;
+}
+.main_dlmk .center_dlmk input[type="email"]{
+    padding-left: 20px; 
+    font-size: 15px;
+    color: #dddddd;
+}
+.main_dlmk .bot_dlmk button{
+    width: 320px;
+    background-color: red;
+    color: white;
+
+}
+.main_dlmk .bot_dlmk{
+    padding: 20px 0 20px 70px;
+}
+
+/* codepass */
+.main_code{
+    background-color: white;
+    width: 450px;
+    height: 100%;
+    margin: 100px 0 300px 500px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.main_code .top_code{
+    font-weight: 500;
+    padding: 20px 0 20px 20px;
+    display: flex;
+    gap: 110px;
+    align-items: center;
+    font-size: 20px;
+}
+.main_code .center_code{
+    padding: 20px 0 20px 70px;
+    width: 50px;
+}
+.main_code .center_code input{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    border: 0.5px solid #6e6e6e;
+}
+.main_code .center_code input[type="number"]{
+    padding-left: 20px; 
+    font-size: 15px;
+    color: #dddddd;
+}
+.main_code .bot_code button{
+    width: 320px;
+    background-color: red;
+    color: white;
+
+}
+.main_code .bot_code{
+    padding: 20px 0 20px 70px;
+}

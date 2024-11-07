@@ -12,6 +12,7 @@ import Collapse from "./collapse";
 import ModalParameter from "./ModalParameter";
 import RelatedProduct from "./RelatedProduct";
 import { Link } from "react-router-dom";
+import Comment from "./comment";
 
 // import ProductInfo from "./collapse";
 
@@ -31,7 +32,7 @@ function ProductDetails() {
               <h2 className="describe_price-new">4.350.000₫</h2>
               <span className="describe_price-old">5.220.000₫</span>
             </div>
-            <div className="describe_type">
+            {/* <div className="describe_type">
               <span>Phân loại:</span>
               <div className="btn-mau">
                 <button>Đen</button>
@@ -39,7 +40,7 @@ function ProductDetails() {
                 <button>Vàng</button>
                 <button>Hồng</button>
               </div>
-            </div>
+            </div> */}
             <div className="describe_promotion">
               <p>Khuyến mãi nổi bật</p>
               <ul>
@@ -138,10 +139,11 @@ function ProductDetails() {
             <Collapse title="Tiêu đề 3">
               <p>Nội dung của tiêu đề 3</p>
             </Collapse>
+            <Comment></Comment>
           </div>
           <div className="detail_parameter">
             <div className="parameter_header">
-              <h3>Thông số kỹ thuật</h3> <span>▼</span>
+              <h3>Thông số sản phẩm </h3> <span>▼</span>
             </div>
             <ModalParameter />
             <RelatedProduct />

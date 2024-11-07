@@ -3,7 +3,7 @@ import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 import HeaderProduct from './headerProduct';
-import Item_headphone from '../../../components/Item_headphones/Item_headphone';
+import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
 
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
@@ -229,14 +229,18 @@ function HomePage() {
         </div>
       </div>
     </div>
-
+                <HeaderProduct title={"Sản Phẩm Mới"}/>
                 <ItemProduct />
 
 
                 <Voucher />
                 <Event />
-                <Item_headphone/>
-
+                <HeaderProduct title={"Sản Phẩm Tai Nghe"}/>
+                
+                <ItemProduct id={'headphone'} />
+                <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"}/>
+                {/* <ItemProduct id={'chuotBanphim'}/> */}
+                <Item_Mouse/>
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"}/>
 
