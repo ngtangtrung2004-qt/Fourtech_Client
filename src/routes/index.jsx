@@ -28,7 +28,7 @@ import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
-    {path: '/signin', component: SignupSignin, layout: null},
+    {path: '/login-register', component: SignupSignin, layout: DefaultLayout},
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
     {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
@@ -54,11 +54,4 @@ const adminRoutes = [
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
 ];
 
-
-
-//private dùng khi các router bắt buộc phải đăng nhập
-const privateRoutes = [
-
-]
-
-export {publicRoutes, privateRoutes,adminRoutes}
+export {publicRoutes, adminRoutes}

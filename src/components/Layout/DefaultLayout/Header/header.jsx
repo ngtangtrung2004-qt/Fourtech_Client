@@ -2,14 +2,21 @@ import logo from "/Logo.png";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState,useContext } from "react";
-import { CartContext } from "../../../CartContext/CartContext"; 
+import { useEffect, useRef, useState, useContext } from "react";
+import { CartContext } from "../../../CartContext/CartContext";
 
 function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [account,setAccount] = useState()
     const inputRef = useRef(null);
     const { cartQuantity } = useContext(CartContext);
 
+    useEffect(() => {
+        let jwt = sessionStorage.getItem('account')
+        if(jwt) {
+            setAccount(account)
+        }
+    }, [])
 
     useEffect(() => {
         const handelClickOutSide = (event) => {
@@ -30,7 +37,7 @@ function Header() {
     }, [isSearchOpen])
 
 
-    
+
 
     return (
         <>
@@ -52,32 +59,30 @@ function Header() {
                                 <li className="nav-item">
                                     <Link to='/allproduct'>Sản phẩm
                                         <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
-                                        <div className="sub-nav">
-                                            <ul className="sub-nav-list">
-                                                <li className="sub-nav-item">
-                                                    <Link>Bàn phím</Link>
-                                                </li>
-                                                <li className="sub-nav-item">
-                                                    <Link>Laptop</Link>
-                                                </li>
-                                                <li className="sub-nav-item">
-                                                    <Link>Màn hình</Link>
-                                                </li>
-                                                <li className="sub-nav-item">
-                                                    <Link to={"/Mouse"}>Chuột + Lót chuột</Link>
-                                                </li>
-                                                <li className="sub-nav-item">
-                                                    <Link>Máy chơi game</Link>
-                                                </li>
-                                                <li className="sub-nav-item">
-                                                    <Link>Sạc dự phòng</Link>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={""}>Khám phá</Link>
+                                    <div className="sub-nav">
+                                        <ul className="sub-nav-list">
+                                            <li className="sub-nav-item">
+                                                <Link>Bàn phím</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Laptop</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Màn hình</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Chuột + Lót chuột</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Máy chơi game</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Sạc dự phòng</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+
                                 </li>
                                 <li className="nav-item">
                                     <Link to={""}>Bài viết</Link>
@@ -135,7 +140,11 @@ function Header() {
 
                             <div className="account">
                                 <div className="icon-user">
+<<<<<<< HEAD
                                     <Link to={"/signin"}>
+=======
+                                    <Link to={"/login-register"}>
+>>>>>>> cbd334abba7dae14cf246246f6dfce00e3d5ba69
                                         <FontAwesomeIcon icon="fa-circle-user" />
                                         <div className="arrow-up"></div>
                                         <div className="text-dang-nhap">
@@ -151,7 +160,7 @@ function Header() {
                                     <div className="sub-user">
                                         <ul>
                                             <li>
-                                                <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Tiến Đạt</span></p>
+                                                <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Trương Văn Tiến Đạt</span></p>
                                             </li>
                                             <li>
                                                 <Link to={'/info'}>

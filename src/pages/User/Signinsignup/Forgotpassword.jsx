@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function forgotPassword(){
     return(
-
+        
         <>
             <div className="main_dlmk">
                 <div className="top_dlmk">
