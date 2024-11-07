@@ -68,4 +68,5 @@ button:focus-visible {
 .Noi-dung-layout{
   margin: 0 auto;
   width: 90%;
+  padding-top: 100px !important;
 }

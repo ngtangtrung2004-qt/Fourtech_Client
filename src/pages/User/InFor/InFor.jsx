@@ -29,7 +29,7 @@ const InFor = () => {
     };
 
     const defaultImage = "../src/assets/images/avatar-mac-dinh.png";
-    const [ imageSrc, setImageSrc] = useState(defaultImage);
+    const [imageSrc, setImageSrc] = useState(defaultImage);
 
     function previewImage(event) {
         const file = event.target.files[0];
@@ -37,71 +37,76 @@ const InFor = () => {
             setImageSrc(URL.createObjectURL(file));
         }
     }
-  return (
-    <>
-        <div className='main_infor'>
-            <div className='name_infor'>
-                <FaUserTag className='icon_infor'/>
-                <hr />
-                <p className="name_if">Hồ Sơ Của Tôi</p>
-            </div>
-            <hr className='hr_1'/>
-            <div className="infor_Content">
-                <div className="infor_avata">
-                    <img src={imageSrc}  id="profile-picture"/><br></br>
-                    <label htmlFor="file-upload">Chọn Ảnh</label>
-                    <input
-                        type="file"
-                        id="file-upload"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={previewImage}
-                    />
-                    <div className="name_tdn"></div>
+    return (
+        <>
+            <div className='main_infor'>
+                <div className='name_infor'>
+                    <FaUserTag className='icon_infor' />
+                    <hr />
+                    <p className="name_if">Hồ Sơ Của Tôi</p>
                 </div>
-                <div className="infor">
-                    <p className='tdn_infor'>Tên đăng nhập: <span className='tdn_infor1'> DatPD07***</span></p>
-                    <div className='ten_infor'>Tên: 
-                        <input className='ten_1' type="text" placeholder='Tiến Đạt'/> 
+                <div className="infor_Content">
+                    <div className="infor_avata">
+                        <img src={imageSrc} id="profile-picture" />
+                        <label htmlFor="file-upload">Chọn Ảnh</label>
+                        <input
+                            type="file"
+                            id="file-upload"
+                            accept=".jpg, .jpeg, .png"
+                            onChange={previewImage}
+                        />
+                        <div className="name_tdn"></div>
                     </div>
-                    <p className='email_infor'>Email: <span className='tdn_infor1'> DatPD072@gmail.com</span></p>
-                    <div className="gender-selection">
-                        <div className='gt'>Giới tính:</div>
-                        <div className="gender-option">
-                            <input
-                                type="radio"
-                                id="male"
-                                name="gender"
-                                value="male"
-                                checked={selectedGender === "male"}
-                                onChange={handleGenderChange}
-                            />
-                            <label htmlFor="male">Nam</label>
+                    <div className="infor">
+                        <div className='ten_infor'>
+                            <label htmlFor='hovaten'>Họ và tên: </label>
+                            <input id='hovaten' className='hovaten-input' type="text" />
                         </div>
-                        <div className="gender-option">
-                            <input
-                                type="radio"
-                                id="female"
-                                name="gender"
-                                value="female"
-                                checked={selectedGender === "female"}
-                                onChange={handleGenderChange}
-                            />
-                            <label htmlFor="female">Nữ</label>
+
+                        <div className='email_infor'>
+                            <p>Email:</p>
+                            <span className='span-email'> DatPD072@gmail.com</span>
                         </div>
-                        <div className="gender-option">
-                            <input
-                                type="radio"
-                                id="other"
-                                name="gender"
-                                value="other"
-                                checked={selectedGender === "other"}
-                                onChange={handleGenderChange}
-                            />
-                            <label htmlFor="other">Khác</label>
+
+                        <div className="gender-selection">
+                            <div className='gt'>Giới tính:</div>
+                            <div className="gender-option">
+                                <input
+                                    type="radio"
+                                    id="male"
+                                    name="gender"
+                                    value="male"
+                                    checked={selectedGender === "male"}
+                                    onChange={handleGenderChange}
+                                />
+                                <label htmlFor="male">Nam</label>
+                            </div>
+                            <div className="gender-option">
+                                <input
+                                    type="radio"
+                                    id="female"
+                                    name="gender"
+                                    value="female"
+                                    checked={selectedGender === "female"}
+                                    onChange={handleGenderChange}
+                                />
+                                <label htmlFor="female">Nữ</label>
+                            </div>
+                            <div className="gender-option">
+                                <input
+                                    type="radio"
+                                    id="other"
+                                    name="gender"
+                                    value="other"
+                                    checked={selectedGender === "other"}
+                                    onChange={handleGenderChange}
+                                />
+                                <label htmlFor="other">Khác</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="dob-selection">
-                     <div className='SN'>Ngày sinh:</div>
+
+                        <div className="dob-selection">
+                            <div className='SN'>Ngày sinh:</div>
                             <select value={day} onChange={(e) => setDay(e.target.value)}>
                                 <option value="">Ngày</option>
                                 {days.map((d) => (
@@ -121,12 +126,12 @@ const InFor = () => {
                                 ))}
                             </select>
                         </div>
-                    <button className='btn_btn_infor'>Lưu</button>    
+                    </div>
                 </div>
+                <button className='btn_btn_infor'>Lưu</button>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default InFor

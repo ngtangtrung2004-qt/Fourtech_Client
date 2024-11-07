@@ -1,17 +1,21 @@
-
+.main_infor{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 20px 0;
+    gap: 20px;
+}
 .name_infor{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
-.hr_1{
-    border: 0.10px solid rgb(255, 255, 255);
-}
-.hr_2{
-    height: 50px;
-}
+
 .name_infor hr{
     height: 50px;
     border: 2px solid black;
@@ -24,10 +28,19 @@
     font-size: 50px;
 }
 .infor_Content{
-padding: 70px 0 70px 70px;
-display: grid;
-grid-template-columns: 1fr 5fr;
+    display: grid;
+    grid-template-columns: 0.7fr 1fr;
+    grid-column-gap: 40px;
+    padding:  0 40px;
 }
+.infor_Content .infor_avata{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .infor_Content .infor_avata img{
     width: 100px;
     height: 100px;
@@ -36,43 +49,65 @@ grid-template-columns: 1fr 5fr;
     display: none;
 }
 .infor_Content .infor_avata label{
-    padding-left: 10px;
+    cursor: pointer;
 }
-.gender-selection {
-    display: flex;
+
+.infor_Content .infor{
+    width: 100%;
+    text-align: left;
+    display: grid;
+    grid-row-gap: 20px;
+}
+
+.infor .ten_infor{
+    color: #6e6e6e;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+}
+.infor .hovaten-input{
+    width: 300px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0.5px solid #6e6e6e;
+    padding: 5px;
+}
+.infor .email_infor{
+    color: #6e6e6e;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+}
+.infor .email_infor .span-email{
+    color: rgb(165, 165, 165);
+    cursor: no-drop;
+}
+.infor .gender-selection {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr;
     align-items: center;
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #666;
-    padding-bottom: 20px;
 }
 
-.gender-selection label{
-    margin-right: 15px;
+.infor .gender-selection label{
     font-weight: bold;
     color: #666;
 }
 
-.gender-selection .gt {
-    margin-right: 15px;
+.infor .gender-selection .gt {
     color: #6e6e6e;
-    margin-left: 40px;
-    
 }
 
-.gender-option {
+.infor .gender-option {
     display: flex;
     align-items: center;
-    margin-right: 15px;
+    gap: 7px;
     color: #333;
 }
 
-.gender-option input[type="radio"] {
-    accent-color: #f53d2d; /* Đặt màu sắc cho nút radio */
-    margin-right: 5px;
-
-}
-.gender-option input[type="radio"] {
+.infor .gender-option input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
     width: 20px;
@@ -84,7 +119,7 @@ grid-template-columns: 1fr 5fr;
     position: relative;
 }
 
-.gender-option input[type="radio"]::before {
+.infor .gender-option input[type="radio"]::before {
     content: "";
     width: 10px; /* Điều chỉnh kích thước dấu chọn */
     height: 10px;
@@ -96,55 +131,26 @@ grid-template-columns: 1fr 5fr;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.2s ease;
 }
-.gender-option input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f53d2d;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-}
 
-.gender-option input[type="radio"]::before {
-    content: "";
-    width: 12px; /* Điều chỉnh kích thước dấu chọn */
-    height: 12px;
-    background-color: #f53d2d;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.1s ease;
-}
-
-.gender-option input[type="radio"]:checked::before {
+.infor .gender-option input[type="radio"]:checked::before {
     transform: translate(-50%, -50%) scale(1);
 }
-.dob-selection {
-    display: flex;
+
+.infor .dob-selection {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr;
     align-items: center;
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #666;
-    padding-bottom: 50px;
-    margin-left: 30px;
 }
-.dob-selection .SN{
-    margin-right: 18px;
-}
-.dob-selection label {
 
+.dob-selection label {
     font-weight: bold;
     color: #666;
-
 }
 
 .dob-selection select {
-    margin-right: 10px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -152,38 +158,14 @@ grid-template-columns: 1fr 5fr;
     color: #333;
     cursor: pointer;
 }
-.tdn_infor{
-    color: #6e6e6e;
-    padding-bottom: 20px;
-}
-.tdn_infor1{
-    color: black;
-    margin-left: 10px;
-}
-.ten_infor{
-    margin-left: 80px;
-    color: #6e6e6e;
-    padding-bottom: 20px;
-}
-.ten_1{
-    margin-left: 15px;
-    width: 300px;
-    height: 25px;
-    border-radius: 5px;
-    border: 0.5px solid #6e6e6e;
-}
-.email_infor{
-    color: #6e6e6e;
-    padding-bottom: 20px;
-    margin-left: 65px;
-}
+
 .btn_btn_infor{
     background-color: red;
+    width: 40%;
     color: white;
-    margin-left: 40px;
+    padding: 5px 20px;
 }
 .btn_btn_infor:hover{
     background-color: green;
     color: white;
-    margin-left: 40px;
 }
