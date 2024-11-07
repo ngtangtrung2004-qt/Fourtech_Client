@@ -134,7 +134,7 @@ function Header() {
                             </div>
 
                             <div className="account">
-                                {/* <div className="icon-user">
+                                <div className="icon-user">
                                     <Link to={"/signin"}>
                                         <FontAwesomeIcon icon="fa-circle-user" />
                                         <div className="arrow-up"></div>
@@ -143,10 +143,10 @@ function Header() {
                                             <p>Đăng nhập</p>
                                         </div>
                                     </Link>
-                                </div> */}
+                                </div>
 
                                 {/* Phần này là để đăng nhập hiển thị người dùng */}
-                                <div className="user">
+                                {/* <div className="user">
                                     <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
                                     <div className="sub-user">
                                         <ul>
@@ -167,7 +167,7 @@ function Header() {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
