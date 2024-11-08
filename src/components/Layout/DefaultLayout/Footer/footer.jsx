@@ -10,9 +10,9 @@ function Footer() {
             <footer style={{ backgroundImage: `url(${backgroundFooter})` }}>
                 <div className="container-footer">
                     <div className="footer-top">
-                        <a href="">
+                        <Link to={'/'}>
                             <img src="/Logo.png" alt="" style={{ height: 70, width: 70 }} />
-                        </a>
+                        </Link>
                         <hr />
                         <h2>FOURTECH</h2>
                     </div>
