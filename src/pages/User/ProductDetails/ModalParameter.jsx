@@ -12,8 +12,8 @@ function ModalParameter() {
     <div className="table-container">
   <table className="table"> {/* Corrected className here */}
     <tr>
-      <th>Thời lượng pin tai nghe:</th>
-      <td>Dùng 100 giờ - Sạc 3 giờ</td>
+      <th>Xuất xứ</th>
+      <td>Trung Quốc</td>
     </tr>
     <tr>
       <th>Cổng sạc:</th>

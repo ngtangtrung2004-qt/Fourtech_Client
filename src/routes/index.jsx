@@ -1,4 +1,3 @@
-
 import SignupSignin from "../pages/User/Signinsignup/Singin"
 import HomePage from "../pages/User/Home"
 import ProductDetails from "../pages/User/ProductDetails"
@@ -17,35 +16,25 @@ import EditProduct from "../pages/Admin/ProductAdmin/editProduct"
 // import { GrOrderedList } from "react-icons/gr"
 import AllProduct from "../pages/User/allProduct/Allproduct"
 import Pay from "../pages/User/pay/pay"
-<<<<<<< HEAD
-import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
-import InFor from "../pages/User/InFor/InFor"
-import forgotPassword from "../pages/User/Signinsignup/Forgotpassword"
-import CodePassword from "../pages/User/Signinsignup/CodePassword"
-=======
 import Brand from "../pages/Admin/brandAdmin"
 import Createbrand from "../pages/Admin/BrandAdmin/CreateBrand"
 import UserAdmin from "../pages/Admin/UserAdmin"
 import Contact from "../pages/User/Contact/Contact"
 // import {BrandAdmin} from "../pages/Admin/brandAdmin/index.jsx"
 // import BrandAdmin from "../pages/Admin/BrandAdmin"
->>>>>>> 901edd7bfc4b3d533cf564b29fd6b32666e466ba
+import InFor from "../pages/User/InFor/InFor"
+import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
-    {path: '/signin', component: SignupSignin, layout: null},
+    {path: '/login-register', component: SignupSignin, layout: DefaultLayout},
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
     {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
     {path: '/pay', component: Pay,layout: DefaultLayout},
-<<<<<<< HEAD
+    {path:'/contact',component:Contact,layout: DefaultLayout},
     {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
     {path: '/info', component: InFor,layout: DefaultLayout},
-    {path: '/forgotPassword', component: forgotPassword,layout: DefaultLayout},
-    {path: '/code', component: CodePassword,layout: DefaultLayout},
-=======
-    {path:'/contact',component:Contact,layout: DefaultLayout}
->>>>>>> 901edd7bfc4b3d533cf564b29fd6b32666e466ba
 
 ]
 
@@ -64,11 +53,4 @@ const adminRoutes = [
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
 ];
 
-
-
-//private dùng khi các router bắt buộc phải đăng nhập
-const privateRoutes = [
-
-]
-
-export {publicRoutes, privateRoutes,adminRoutes}
+export {publicRoutes, adminRoutes}
