@@ -34,6 +34,7 @@
   color: #888;
 }
 
+
 .overlay {
   cursor: pointer;
   position: fixed;
@@ -43,4 +44,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Màu đen xám */
   z-index: 10; /* Hiển thị trên cùng, dưới input */
+}
+
+.Toastify__toast-container {
+  z-index: 99999 !important; /* Đặt z-index cao hơn để hiển thị trên các thành phần khác */
 }
