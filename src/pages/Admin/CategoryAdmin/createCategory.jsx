@@ -1,10 +1,22 @@
 import { useState } from "react";
-import axios from "axios";
+import CategoryService from "../../../services/categoryService";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+
+
 function CreateCategory() {
+  const navigate = useNavigate()
   const [categoryData, setCategoryData] = useState({
     categoryName: "",
-    categoryImage: null,
+    categoryImage: []
   });
+  const [imagePreview, setImagePreview] = useState(null);
+  const [errorValidate, setErrorValidate] = useState({})
+  const [fileName, setFileName] = useState('Chưa có tệp nào được chọn');
+
+
   // cập nhật tên danh mục trong state khi người dùng nhập liệu.
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,39 +24,69 @@ function CreateCategory() {
       ...categoryData,
       [name]: value,
     });
+
   };
   //cập nhật ảnh danh mục khi người dùng chọn một file.
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFileName(e.target.files[0].name);
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setImagePreview(fileReader.result);
+      };
+      fileReader.readAsDataURL(file);
+    }
     setCategoryData({
       ...categoryData,
-      categoryImage: e.target.files[0],
+      categoryImage: file,
     });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Xử lý dữ liệu form tại đây, ví dụ: gửi dữ liệu lên server hoặc API
+    const newError = {};
+
+    if (!categoryData.categoryName.trim()) {
+      newError.categoryName = "Tên danh mục không được để trống!"
+    }
+
+    // Kiểm tra hình ảnh
+    if (!categoryData.categoryImage || !(categoryData.categoryImage instanceof File)) {
+      //categoryData.categoryImage instanceof File kiểm tra xem categoryData.categoryImage có phải là một đối tượng File hợp lệ hay không.
+      //Nếu điều kiện này trả về true, tức là người dùng đã chọn một tệp hợp lệ.
+      //Nếu trả về false, có thể tệp không được chọn, hoặc có sự cố khác với dữ liệu mà bạn nhận được.
+      newError.categoryImage = "Chưa có hình ảnh!";
+    }
+
+    // Nếu có lỗi, dừng lại không gửi form
+    if (Object.keys(newError).length > 0) {
+      setErrorValidate(newError);  // Cập nhật lỗi
+      console.log('Form errors:', newError); // Log errors to debug
+      return;  // Dừng và không gọi API
+    }
+    // Nếu không có lỗi, tiến hành gửi dữ liệu lên server
     const formData = new FormData();
     formData.append("categoryName", categoryData.categoryName);
     formData.append("categoryImage", categoryData.categoryImage);
-    console.log(categoryData);
-     try {
-      // Gửi yêu cầu POST tới API server
-      const response = await axios.post("http://localhost:3001/api/categories", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
 
-      if (response.status === 201) {
-        alert("Danh mục mới đã được thêm thành công!");
-      } else {
-        alert("Có lỗi xảy ra, vui lòng thử lại.");
-      }
-    } catch (error) {
-      console.error("Lỗi khi thêm danh mục:", error);
+    const data = await CategoryService.postCategory(formData);
+    switch (data && data.data && data.data.EC) {
+      case 1:
+        showToastError(data.data.message);
+        break;
+      case 0:
+        showToastSuccess(data.data.message);
+        navigate('/admin/category-admin');
+        break;
+      case -1:
+        showToastError("Lỗi hệ thống. Vui lòng thử lại sau!");
+        break;
+      default:
+        break;
     }
   };
+
   return (
     <div className="category-form-container">
       <h2>Thêm Danh Mục Mới</h2>
@@ -59,20 +101,33 @@ function CreateCategory() {
             onChange={handleChange}
             placeholder="Nhập tên danh mục"
           />
+          {errorValidate.categoryName && ((<span className="spanError">{errorValidate.categoryName}</span>))}
         </div>
 
         <div className="form-group">
-          <label htmlFor="categoryImage">Hình Ảnh Danh Mục</label>
+          <label htmlFor="categoryImage" className="custom-file-upload">
+            <FontAwesomeIcon icon={faCloudArrowUp} />
+            Up load file
+          </label>
           <input
             type="file"
             id="categoryImage"
             name="categoryImage"
+            accept="image/*"
             onChange={handleFileChange}
           />
+          <p>Tên tệp: {fileName}</p>
+          {errorValidate.categoryImage && ((<span className="spanError">{errorValidate.categoryImage}</span>))}
+          {imagePreview && (
+            <div>
+              <h4>Preview:</h4>
+              <img src={imagePreview} alt="Image Preview" style={{ width: '100px', height: 'auto' }} />
+            </div>
+          )}
         </div>
 
         <button type="submit" className="submit-btn">
-          Thêm Danh Mục
+          Thêm
         </button>
       </form>
     </div>

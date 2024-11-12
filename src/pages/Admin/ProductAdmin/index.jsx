@@ -1,4 +1,4 @@
-import { useEffect, useState}  from "react";
+import { useEffect, useState } from "react";
 import { Table, Button } from "antd";
 import { Link } from "react-router-dom";
 import "./product.css";
@@ -34,15 +34,23 @@ function ProductAdmin() {
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "key",
+      title: "STT",
+      dataIndex: "index",
     },
     {
-      title: "Name",
+      title: "Tên sản phẩm",
       dataIndex: "name",
     },
     {
-      title: "Image",
+      title: "Danh mục",
+      dataIndex: "category_id",
+    },
+    {
+      title: "Hãng",
+      dataIndex: "brand_id",
+    },
+    {
+      title: "Hình ảnh",
       dataIndex: "image",
       render: (images) => (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
@@ -51,23 +59,27 @@ function ProductAdmin() {
               key={index}
               src={src}
               alt="Product"
-              style={{ width: "100px", height: "auto" }}
+              style={{ width: "50px", height: "50px" }}
             />
           ))}
         </div>
       ),
     },
     {
-      title: "Description",
+      title: "Giá gốc",
+      dataIndex: "price",
+    },
+    {
+      title: "Giá khuyến mãi",
+      dataIndex: "promotion_price",
+    },
+    {
+      title: "Mô tả",
       dataIndex: "description",
     },
     {
-      title: "Category",
-      dataIndex: "category",
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
+      title: "Số lượng",
+      dataIndex: "quantity",
     },
     {
       title: "Action",
@@ -88,7 +100,7 @@ function ProductAdmin() {
     <>
       <div className="add-product">
         <Button type="primary">
-          <Link to="/admin/add-product">Add product</Link>
+          <Link to="/admin/add-product">Thêm Sản Phẩm</Link>
         </Button>
       </div>
 

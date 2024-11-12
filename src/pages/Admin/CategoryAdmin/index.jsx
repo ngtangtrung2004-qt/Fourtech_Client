@@ -1,65 +1,154 @@
-import { Table, Button } from "antd";
+import { Table, Button, Modal } from "antd";
 import EditCategory from "./EditCategory";
 import "./edit.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-function CategoryAdmin() {
-  const [dataCategory,setDataCategory] = useState([])
-  useEffect(()=>{
-    const fetchCategory = async ()=>{
-      try{
-        const res = await fetch('http://localhost:3000/api/categories')
-        const data = await res.json();
-        const formatData = data.map((cate,index)=>({
-          key:index+1 ,
-          name:cate.categoryName,
-          image:cate.categoryImage
-        }))
-        setDataCategory(formatData)
+import CategoryService from "../../../services/categoryService";
+import { formatDate } from "../../../config/formatDate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
-      }catch(error){
-        console.error('error fetching products:', error)
+function CategoryAdmin() {
+  const [listCategory, setListCategory] = useState([]);
+
+  //DELETE
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false); // Modal xóa
+  const [categoryId, setCategoryId] = useState(null); // Lưu ID của mục được chọn xóa
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
+  const fetchCategory = async () => {
+    try {
+      const dataCategory = await CategoryService.getAllCategory();
+      if (dataCategory && dataCategory.data && dataCategory.EC === 0) {
+        const formatData = dataCategory.data.map((cate, index) => ({
+          ...cate,
+          key: cate.id,
+          index: index + 1,
+          image: cate.image,
+        }));
+        setListCategory(formatData);
       }
+    } catch (error) {
+      console.error(error);
+      showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
     }
-    fetchCategory()
-  },[])
+  };
+
+  const handleDelete = async () => {
+    try {
+      if (categoryId) {
+        const category = await CategoryService.deleteCategory(categoryId);
+
+        switch (category && category.EC) {
+          case 1:
+            showToastError(category.message);
+            break;
+
+          case 0:
+            showToastSuccess(category.message);
+            await fetchCategory();
+            setModalDeleteOpen(false);
+            break;
+
+          case -1:
+            showToastError("System error. Please try again later.");
+            break;
+
+          default:
+            break;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
+    }
+  };
+
   const columns = [
     {
-      title: "ID",
-      dataIndex: "key",
+      title: "STT",
+      dataIndex: "index",
     },
     {
-      title: "Name_Category",
+      title: "Tên danh mục",
       dataIndex: "name",
     },
     {
-      title: "Image",
+      title: "Hình ảnh",
       dataIndex: "image",
-       render: (image) => <img src={image} alt="Category" style={{ width: "50px", height: "50px" }} />,
+      render: (image) => (
+        <img
+          src={import.meta.env.VITE_API_URL + "/uploads/" + image}
+          alt="Category"
+          style={{ width: "50px", height: "50px" }}
+        />
+      ),
     },
     {
-      title: "Action",
-      render: () => (
+      title: "Ngày thêm",
+      dataIndex: "created_at",
+      render: (text) => formatDate(text),
+    },
+    {
+      title: "Thao tác",
+      render: (text, record) => (
         <span className="action-product">
-          <EditCategory></EditCategory>
-          <Button type="primary" danger>
-            Delete
+          <EditCategory
+            categoryItem={{
+              id: record.id,
+              name: record.name,
+              image: record.image
+            }}
+            onEditSuccess={fetchCategory} // Truyền hàm callback để làm mới danh sách
+          />
+          <Button
+            type="primary"
+            danger
+            onClick={() => {
+              setCategoryId(record.id); // Lưu ID danh mục để xóa
+              setModalDeleteOpen(true); // Mở modal xác nhận xóa
+            }}
+          >
+            <FontAwesomeIcon icon={faTrash} />
           </Button>
+          <Modal
+            title="Xác nhận xóa!"
+            centered
+            open={modalDeleteOpen && categoryId === record.id} // Mở modal chỉ khi ID trùng với mục đang chọn
+            onOk={handleDelete}
+            okText="Xóa"
+            okButtonProps={{ className: "custom-ok-button" }} // Tùy chỉnh nút OK
+            onCancel={() => setModalDeleteOpen(false)} // Đóng modal khi nhấn Hủy
+            cancelText="Hủy"
+            getContainer={false} // Render modal bên trong DOM thay vì toàn bộ body
+          >
+            <p>
+              Bạn muốn xóa danh mục: <b>{record.name}</b>
+            </p>
+          </Modal>
         </span>
       ),
     },
   ];
+
   return (
     <>
-      {/* <div className='add-product' ><CreateProduct></CreateProduct></div> */}
       <div className="add-product">
         <Button type="primary">
           <Link to="/admin/add-category">Thêm danh mục</Link>
         </Button>
       </div>
-      <Table columns={columns} dataSource={dataCategory} pagination={{
+      <Table
+        columns={columns}
+        dataSource={listCategory}
+        pagination={{
           pageSize: 5, // Số lượng sản phẩm hiển thị trên mỗi trang
-        }} />
+        }}
+      />
     </>
   );
 }

@@ -1,4 +1,4 @@
-.form-edit-category {
+.form-edit-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,23 +21,19 @@
   color: #fff;
   font-weight: 600;
 }
-.name_category {
+.name_brand {
   width: 100%;
 }
-.name_category p {
+.name_brand p {
   font-size: 16px;
   font-weight: 600;
 }
-.name_category input {
+.name_brand input {
   width: 95%;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 18px;
-}
-
-#categoryImage {
-  display: none;
 }
 
 .custom-file-upload {
