@@ -38,6 +38,9 @@ function Brand() {
           <Button type="primary" danger>
             Delete
           </Button>
+           <Button type="primary" >
+            Sửa
+          </Button>
         </span>
       ),
     },

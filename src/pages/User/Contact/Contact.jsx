@@ -1,24 +1,42 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './contact.css'
+import { useState } from 'react';
+import axios from 'axios';
 
 function Contact() {
+    const [formData, setFormData] = useState({ name: '', email: '',phone:'', message: '' });
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        // console.log(e)
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('http://localhost:6060/api/contact', formData); // Gửi dữ liệu lên API
+            alert('Gửi thành công!');
+        } catch (error) {
+            console.error('Lỗi khi gửi phản hồi:', error);
+        }
+    };
+    console.log(formData)
     return ( 
         <>
         <div className="contact-form-container">
             <div className="form-section">
                 <h2>ĐỂ LẠI LỜI NHẮN</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Họ và tên:</label>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name"  onChange={handleChange} />
 
                     <label htmlFor="email">Địa chỉ email:</label>
-                    <input type="email" id="email" name="email" />
+                    <input type="email" id="email" name="email" onChange={handleChange} />
 
                     <label htmlFor="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" />
+                    <input type="text" id="phone" name="phone"onChange={handleChange}  />
 
                     <label htmlFor="message">Lời nhắn:</label>
-                    <textarea id="message" name="message" rows="4"></textarea>
+                    <textarea id="message" name="message" rows="4" onChange={handleChange} ></textarea>
 
                     <button type="submit" className="submit-button">GỬI TIN NHẮN</button>
                 </form>

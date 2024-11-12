@@ -38,7 +38,11 @@ const items = [
     <Link to="/admin/brand-admin">Brand</Link>,
     "6",
     <PieChartOutlined />
-  ),
+  ),getItem(
+    <Link to="/admin/contact-admin">Contact</Link>,
+    "7",
+    <PieChartOutlined />
+  )
   // getItem(
   //   <Link to="/admin/brandAdmin">Brand</Link>,
   //   "6",

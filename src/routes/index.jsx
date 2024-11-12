@@ -24,6 +24,7 @@ import Contact from "../pages/User/Contact/Contact"
 // import BrandAdmin from "../pages/Admin/BrandAdmin"
 import InFor from "../pages/User/InFor/InFor"
 import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
+import ContactAdmin from "../pages/Admin/ContactAdmin"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
@@ -51,6 +52,7 @@ const adminRoutes = [
   { path: '/admin/add-product', component: CreateProduct, layout:  LayoutAdmin},
   { path: '/admin/editProduct', component: EditProduct, layout:  LayoutAdmin},
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
+  {path:'/admin/contact-admin',component:ContactAdmin,layout: LayoutAdmin}
 ];
 
 export {publicRoutes, adminRoutes}
