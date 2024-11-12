@@ -8,30 +8,18 @@ import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
-import { useEffect, useRef, useState } from "react";
-import CategoryItem from '../../../components/CategoryItem/category-item';
+import { useEffect, useState } from "react";
 
 function HomePage() {
     useEffect(() => {
         window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
-
     }, []);
-
-    const itemAccessoryRef = useRef();
-
     const [time, setTime] = useState({
         days: 0,
         hours: 0,
         minutes: 0,
         seconds: 0,
     });
-
-
-    const hienThiDuLieuBrand = () => {
-        if (itemAccessoryRef.current) {
-            itemAccessoryRef.current.componentBrand(); // Gọi hàm từ component con
-        }
-    }
 
     // Set the target date to 2 days from now
     const targetDate = new Date();
@@ -55,7 +43,6 @@ function HomePage() {
 
         return timeLeft;
     };
-
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -118,7 +105,103 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <CategoryItem />
+                <div className="product-grid">
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="laptop.webp" alt="Laptop" />
+                            <p>Laptop</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="tablet.webp" alt="Máy tính bảng" />
+                            <p>Máy tính bảng</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="phone.webp" alt="Điện thoại" />
+                            <p>Điện thoại</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="headphone.webp" alt="Tai nghe" />
+                            <p>Tai nghe</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="keyboard.webp" alt="Bàn phím" />
+                            <p>Bàn phím</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="powerbank.webp" alt="Sạc dự phòng" />
+                            <p>Sạc dự phòng</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="mouse.webp" alt="Chuột + Lót chuột" />
+                            <p>Chuột + Lót chuột</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="charger.webp" alt="Củ sạc" />
+                            <p>Củ sạc</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="pc.webp" alt="Máy tính bàn (PC)" />
+                            <p>Máy tính bàn (PC)</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="monitor.webp" alt="Màn hình" />
+                            <p>Màn hình</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="audio.webp" alt="Thiết bị âm thanh" />
+                            <p>Thiết bị âm thanh</p>
+                        </div>
+                    </a>
+
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="playgame.webp" alt="Máy chơi game" />
+                            <p>Máy chơi game</p>
+                        </div>
+                    </a>
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="cable.webp" alt="Cáp sạc" />
+                            <p>Cáp sạc</p>
+                        </div>
+                    </a>
+                    <a href=''>
+                        <div className="product-item">
+                            <img src="accessory.webp" alt="Phụ kiện" />
+                            <p>Phụ kiện</p>
+                        </div>
+                    </a>
+                </div>
                 <div className="deal-banner">
                     <div className="deal-title">
                         <span className="lightning-icon">⚡</span>
@@ -158,9 +241,7 @@ function HomePage() {
                 <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} />
                 {/* <ItemProduct id={'chuotBanphim'}/> */}
                 <Item_Mouse />
-                <ItemAccessory
-                    componentBrand={hienThiDuLieuBrand}
-                />
+                <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} />
 
                 <NewTechnology />
