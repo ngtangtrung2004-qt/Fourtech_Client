@@ -1,23 +1,23 @@
 import { useState } from "react";
 // import axios from "axios";
-function CreateCategory() {
-  const [categoryData, setCategoryData] = useState({
-    categoryName: "",
-    categoryImage: null,
+function Createbrand() {
+  const [brandData, setbrandData] = useState({
+    brandName: "",
+    brandImage: null,
   });
   // cập nhật tên danh mục trong state khi người dùng nhập liệu.
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCategoryData({
-      ...categoryData,
+    setbrandData({
+      ...brandData,
       [name]: value,
     });
   };
   //cập nhật ảnh danh mục khi người dùng chọn một file.
   const handleFileChange = (e) => {
-    setCategoryData({
-      ...categoryData,
-      categoryImage: e.target.files[0],
+    setbrandData({
+      ...brandData,
+      brandImage: e.target.files[0],
     });
   };
 
@@ -27,27 +27,27 @@ function CreateCategory() {
   
   };
   return (
-    <div className="category-form-container">
-      <h2>Thêm Danh Mục Mới</h2>
-      <form className="category-form" onSubmit={handleSubmit}>
+    <div className="brand-form-container">
+      <h2>Thêm Thương Hiệu Mới</h2>
+      <form className="brand-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="categoryName">Tên Danh Mục</label>
+          <label htmlFor="brandName">Tên Danh Mục</label>
           <input
             type="text"
-            id="categoryName"
-            name="categoryName"
-            value={categoryData.categoryName}
+            id="brandName"
+            name="brandName"
+            value={brandData.brandName}
             onChange={handleChange}
             placeholder="Nhập tên danh mục"
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="categoryImage">Hình Ảnh Thương hiệu</label>
+          <label htmlFor="brandImage">Hình Ảnh Thương hiệu</label>
           <input
             type="file"
-            id="categoryImage"
-            name="categoryImage"
+            id="brandImage"
+            name="brandImage"
             onChange={handleFileChange}
           />
         </div>
@@ -60,4 +60,4 @@ function CreateCategory() {
   );
 }
 
-export default CreateCategory;
+export default Createbrand;

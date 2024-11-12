@@ -1,4 +1,3 @@
-
 import SignupSignin from "../pages/User/Signinsignup/Singin"
 import HomePage from "../pages/User/Home"
 import ProductDetails from "../pages/User/ProductDetails"
@@ -21,6 +20,7 @@ import Brand from "../pages/Admin/brandAdmin"
 import Createbrand from "../pages/Admin/BrandAdmin/CreateBrand"
 import UserAdmin from "../pages/Admin/UserAdmin"
 import Contact from "../pages/User/Contact/Contact"
+import Article from "../pages/User/Article/article"
 // import {BrandAdmin} from "../pages/Admin/brandAdmin/index.jsx"
 // import BrandAdmin from "../pages/Admin/BrandAdmin"
 import InFor from "../pages/User/InFor/InFor"
@@ -36,6 +36,8 @@ const publicRoutes = [
     {path:'/contact',component:Contact,layout: DefaultLayout},
     {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
     {path: '/info', component: InFor,layout: DefaultLayout},
+    {path: '/article', component: Article,layout: DefaultLayout},
+
 
 ]
 
