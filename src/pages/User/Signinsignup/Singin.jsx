@@ -258,8 +258,6 @@ const SignupSignin = () => {
                 </form>
             </div>
 
-
-
             <div className="toggle-container">
                 <div className="toggle">
                     <div className="toggle-panel toggle-left">

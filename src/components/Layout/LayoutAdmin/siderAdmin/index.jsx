@@ -1,12 +1,16 @@
 import { useState } from "react";
 import logo from "/Logo.png";
-import { Layout, Menu  } from "antd";
+import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
-const {  Sider } = Layout;
+const { Sider } = Layout;
 
 import {
-  DesktopOutlined,
-  PieChartOutlined,
+  DropboxOutlined,
+  HomeOutlined,
+  ShopOutlined,
+  ShoppingOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 function getItem(label, key, icon, children) {
   return {
@@ -17,32 +21,50 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem(<Link to="/admin/">Home</Link>, "1", <PieChartOutlined />),
   getItem(
-    <Link to="/admin/product-admin">product</Link>,
+    <Link to="/admin/">Trang chủ</Link>,
+    "1",
+    <HomeOutlined />
+  ),
+
+  getItem(
+    <Link to="/admin/category-admin">Danh mục</Link>,
     "2",
-    <PieChartOutlined />
+    <UnorderedListOutlined />
   ),
+
   getItem(
-    <Link to="/admin/category-admin">Category</Link>,
+    <Link to="/admin/brand-admin">Thương hiệu</Link>,
     "3",
-    <DesktopOutlined />
+    <ShopOutlined />
   ),
-  getItem(<Link to="/admin/user-admin">User</Link>, "4", <PieChartOutlined />),
+
   getItem(
-    <Link to="/admin/order-admin">Order</Link>,
+    <Link to="/admin/product-admin">Sản phẩm</Link>,
+    "4",
+    <DropboxOutlined />
+  ),
+
+  getItem(
+    <Link to="/admin/order-admin">Đặt hàng</Link>,
     "5",
-    <PieChartOutlined />
+    <ShoppingOutlined />
   ),
+
   getItem(
-    <Link to="/admin/brand-admin">Brand</Link>,
+    <Link to="/admin/user-admin">Người dùng</Link>,
     "6",
+<<<<<<< HEAD
     <PieChartOutlined />
   ),getItem(
     <Link to="/admin/contact-admin">Contact</Link>,
     "7",
     <PieChartOutlined />
   )
+=======
+    <UserOutlined />
+  ),
+>>>>>>> 47bc36b027b34927df6eabc70f7e6311c6a3d7b6
   // getItem(
   //   <Link to="/admin/brandAdmin">Brand</Link>,
   //   "6",
@@ -63,26 +85,26 @@ const items = [
 
 function SiderAdmin() {
 
-    const [collapsed, setCollapsed] = useState(false);
-    return ( <>
+  const [collapsed, setCollapsed] = useState(false);
+  return (<>
     <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        {/* <div className=''></div> */}
-        <div className={`logo_admin ${collapsed ? "collapsed" : ""}`}>
-          <img src={logo} alt="logo" />
-          {!collapsed && <span>ADMIN</span>}
-        </div>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
-        />
-      </Sider>
-    </> );
+      collapsible
+      collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
+    >
+      {/* <div className=''></div> */}
+      <div className={`logo_admin ${collapsed ? "collapsed" : ""}`}>
+        <img src={logo} alt="logo" />
+        {!collapsed && <span>ADMIN</span>}
+      </div>
+      <Menu
+        theme="dark"
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        items={items}
+      />
+    </Sider>
+  </>);
 }
 
 export default SiderAdmin;

@@ -4,30 +4,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import "./edit.css";
-import CategoryService from "../../../services/categoryService"; // Đảm bảo rằng service này có phương thức putCategory
+import BrandService from "../../../services/brandService";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
-function EditCategory({ categoryItem, onEditSuccess }) {
+function EditBrand({ brandItem, onEditSuccess }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [categoryInfo, setCategoryInfo] = useState({
-    id: categoryItem.id,
-    name: categoryItem.name || "",
-    image: categoryItem.image,
+
+  const [brandInfo, setBrandInfo] = useState({
+    id: brandItem.id,
+    name: brandItem.name || "",
+    logo: brandItem.logo,
   });
   const [imagePreview, setImagePreview] = useState(null);
 
-  const handleEditCategory = (item) => {
-    setCategoryInfo({
-      id: categoryItem.id,
+  const handleEditBrand = (item) => {
+    setBrandInfo({
+      id: brandItem.id,
       name: item.name || "",
-      image: item.image || null,
+      logo: item.logo || null,
     });
     setIsModalOpen(true);
   };
 
   const handleChangeName = (e) => {
     const { value } = e.target;
-    setCategoryInfo((prev) => ({
+    setBrandInfo((prev) => ({
       ...prev,
       name: value,
     }));
@@ -43,9 +44,9 @@ function EditCategory({ categoryItem, onEditSuccess }) {
       fileReader.readAsDataURL(file);
 
       // Cập nhật state với ảnh mới
-      setCategoryInfo({
-        ...categoryInfo,
-        image: file, // Đặt trực tiếp file vào `image`
+      setBrandInfo({
+        ...brandInfo,
+        logo: file, // Đặt trực tiếp file vào `logo`
       });
     }
   };
@@ -57,12 +58,12 @@ function EditCategory({ categoryItem, onEditSuccess }) {
 
     // Gửi yêu cầu cập nhật danh mục
     try {
-      const idCategory = categoryInfo.id
+      const idBrand = brandInfo.id
       const formData = new FormData();
-      formData.append('categoryName', categoryInfo.name);
-      formData.append('categoryImage', categoryInfo.image);
+      formData.append('brandName', brandInfo.name);
+      formData.append('brandImage', brandInfo.logo);
 
-      let data = await CategoryService.putCategory(idCategory, formData);
+      let data = await BrandService.putBrand(idBrand, formData);
 
       switch (data && data.EC) {
         case 1:
@@ -82,27 +83,27 @@ function EditCategory({ categoryItem, onEditSuccess }) {
       }
 
     } catch (error) {
-      console.error("Lỗi khi cập nhật danh mục", error);
+      console.error("Lỗi khi cập nhật thương hiệu.", error);
     }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setCategoryInfo(categoryItem);
+    setBrandInfo(brandItem);
     setImagePreview(null);
   };
 
   useEffect(() => {
-    // console.log("Updated categoryInfo:", categoryInfo);
-  }, [categoryInfo]);
+    // console.log("Updated brandInfo:", brandInfo);
+  }, [brandInfo]);
 
   return (
     <>
-      <Button type="primary" onClick={() => handleEditCategory(categoryItem)}>
+      <Button type="primary" onClick={() => handleEditBrand(brandItem)}>
         <FontAwesomeIcon icon={faPenToSquare} />
       </Button>
       <Modal
-        title="Sửa Danh Mục"
+        title="Sửa Thương Hiệu"
         className="modal-edit"
         open={isModalOpen}
         onCancel={handleCancel}
@@ -110,27 +111,28 @@ function EditCategory({ categoryItem, onEditSuccess }) {
         footer={null}
         getContainer={false}
       >
-        <form className="form-edit-category" onSubmit={handleEditSubmit}>
-          <label htmlFor="categoryName" className="name_category">Tên Danh Mục</label>
+        <form className="form-edit-brand" onSubmit={handleEditSubmit}>
+          <label htmlFor="brandName" className="name_brand">Tên Thương Hiệu</label>
           <input
             type="text"
-            id="categoryName"
-            name="categoryName"
-            placeholder="Nhập tên danh mục"
-            value={categoryInfo.name}
+            id="brandName"
+            name="brandName"
+            placeholder="Nhập tên thương hiệu"
+            value={brandInfo.name}
             onChange={handleChangeName}
           />
 
-          <label htmlFor="categoryImage" className="custom-file-upload">
+          <label htmlFor="brandImage" className="custom-file-upload">
             <FontAwesomeIcon icon={faCloudArrowUp} />
             {imagePreview ? "Ảnh đã chọn" : "Upload file"}
           </label>
           <input
             type="file"
-            id="categoryImage"
-            name="categoryImage"
+            id="brandImage"
+            name="brandImage"
             accept="image/*"
             onChange={handleFileChange}
+            style={{ display: 'none' }}
           />
 
           {imagePreview ? (
@@ -142,10 +144,10 @@ function EditCategory({ categoryItem, onEditSuccess }) {
               />
             </div>
           ) : (
-            categoryInfo.image && (
+            brandInfo.logo && (
               <div>
                 <img
-                  src={import.meta.env.VITE_API_URL + "/uploads/" + categoryInfo.image}
+                  src={import.meta.env.VITE_API_URL + "/uploads/" + brandInfo.logo}
                   alt="Current"
                   style={{ width: "100px", height: "100px", marginBottom: "10px" }}
                 />
@@ -160,13 +162,13 @@ function EditCategory({ categoryItem, onEditSuccess }) {
   );
 }
 
-EditCategory.propTypes = {
-  categoryItem: PropTypes.shape({
+EditBrand.propTypes = {
+  brandItem: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    logo: PropTypes.string.isRequired
   }).isRequired,
   onEditSuccess: PropTypes.func.isRequired
 };
 
-export default EditCategory;
+export default EditBrand;

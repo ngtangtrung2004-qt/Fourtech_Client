@@ -49,3 +49,7 @@
 .Toastify__toast-container {
   z-index: 99999 !important; /* Đặt z-index cao hơn để hiển thị trên các thành phần khác */
 }
+.spanError{
+  color: rgb(233, 29, 29);
+  font-size: 13px;
+}

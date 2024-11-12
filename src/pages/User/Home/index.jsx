@@ -8,7 +8,7 @@ import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
     useEffect(() => {
@@ -19,38 +19,38 @@ function HomePage() {
         hours: 0,
         minutes: 0,
         seconds: 0,
-      });
-    
-      // Set the target date to 2 days from now
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 2);
-    
-      const calculateTimeLeft = () => {
+    });
+
+    // Set the target date to 2 days from now
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 2);
+
+    const calculateTimeLeft = () => {
         const now = new Date().getTime(); // Get current time in milliseconds
         const difference = targetDate.getTime() - now;
-    
+
         let timeLeft = {};
         if (difference > 0) {
-          timeLeft = {
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-            seconds: Math.floor((difference % (1000 * 60)) / 1000),
-          };
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((difference % (1000 * 60)) / 1000),
+            };
         } else {
-          timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
         }
-    
+
         return timeLeft;
-      };
-    
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         const timer = setInterval(() => {
-          setTime(calculateTimeLeft());
+            setTime(calculateTimeLeft());
         }, 1000);
-    
+
         return () => clearInterval(timer);
-      }, []);
+    }, []);
     return (
         <>
             <div className='container-home'>
@@ -203,46 +203,46 @@ function HomePage() {
                     </a>
                 </div>
                 <div className="deal-banner">
-      <div className="deal-title">
-        <span className="lightning-icon">⚡</span>
-        <span>GIỜ VÀNG DEAL SỐC</span>
-      </div>
-      <div className="countdown-container">
-        <p>Nhanh lên nào! <br />Sự kiện sẽ kết thúc sau</p>
-        <div className="countdown">
-          <div className="time-box">
-            <span className="number">{time.days}</span>
-            <span className="label">Ngày</span>
-          </div>
-          <div className="time-box">
-            <span className="number">{time.hours}</span>
-            <span className="label">Giờ</span>
-          </div>
-          <div className="time-box">
-            <span className="number">{time.minutes}</span>
-            <span className="label">Phút</span>
-          </div>
-          <div className="time-box">
-            <span className="number">{time.seconds}</span>
-            <span className="label">Giây</span>
-          </div>
-        </div>
-      </div>
-    </div>
-                <HeaderProduct title={"Sản Phẩm Mới"}/>
+                    <div className="deal-title">
+                        <span className="lightning-icon">⚡</span>
+                        <span>GIỜ VÀNG DEAL SỐC</span>
+                    </div>
+                    <div className="countdown-container">
+                        <p>Nhanh lên nào! <br />Sự kiện sẽ kết thúc sau</p>
+                        <div className="countdown">
+                            <div className="time-box">
+                                <span className="number">{time.days}</span>
+                                <span className="label">Ngày</span>
+                            </div>
+                            <div className="time-box">
+                                <span className="number">{time.hours}</span>
+                                <span className="label">Giờ</span>
+                            </div>
+                            <div className="time-box">
+                                <span className="number">{time.minutes}</span>
+                                <span className="label">Phút</span>
+                            </div>
+                            <div className="time-box">
+                                <span className="number">{time.seconds}</span>
+                                <span className="label">Giây</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <HeaderProduct title={"Sản Phẩm Mới"} />
                 <ItemProduct />
 
 
                 <Voucher />
                 <Event />
-                <HeaderProduct title={"Sản Phẩm Tai Nghe"}/>
-                
+                <HeaderProduct title={"Sản Phẩm Tai Nghe"} />
+
                 <ItemProduct id={'headphone'} />
-                <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"}/>
+                <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} />
                 {/* <ItemProduct id={'chuotBanphim'}/> */}
-                <Item_Mouse/>
+                <Item_Mouse />
                 <ItemAccessory />
-                <HeaderProduct title={"Bản Tin công nghệ"}/>
+                <HeaderProduct title={"Bản Tin công nghệ"} />
 
                 <NewTechnology />
             </div>

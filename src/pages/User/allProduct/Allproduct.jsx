@@ -8,6 +8,7 @@ const AllProduct = () => {
     setShowMore(!showMore);
   }
   const [activeFilter, setActiveFilter] = useState('');
+
   
 const filters = [
     { key: 'giaTangDan', label: 'Giá tăng dần' },
@@ -18,8 +19,9 @@ const filters = [
   
    {key: 'moiNhat', label: 'Mới nhất' }
   ];
-
-
+  
+  
+  
 
     return (
         <>
@@ -226,7 +228,7 @@ const filters = [
                      <button>&gt;</button>
                      
 </div>
-<div className="product-grid">
+             <div className="product-grid">
                     <a href=''>
                         <div className="product-item">
                             <img src="laptop.webp" alt="Laptop" />

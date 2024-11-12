@@ -53,11 +53,6 @@
     height: 100%;
 }
 
-.container-login-register .form .spanError{
-    color: rgb(233, 29, 29);
-    font-size: 13px;
-}
-
 .container-login-register input{
     background-color: #eee;
     border: none;
