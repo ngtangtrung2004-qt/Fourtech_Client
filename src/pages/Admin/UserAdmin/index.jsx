@@ -1,70 +1,93 @@
 import { Table, Button } from "antd";
-
-const data = [
-  {
-    key: "1",
-    name: "honag hai",
-    phone: "0919907233",
-    password: "111111111",
-    email: "hoanghaihyh@gmail.com",
-  },
-  {
-    key: "2",
-    name: "honag hai",
-    phone: "0919907233",
-    password: "111111111",
-    email: "hoanghaihyh@gmail.com",
-  },
-  {
-    key: "3",
-    name: "honag hai",
-    phone: "0919907233",
-    password: "111111111",
-    email: "hoanghaihyh@gmail.com",
-  },
-  {
-    key: "4",
-    name: "honag hai",
-    phone: "0919907233",
-    password: "111111111",
-    email: "hoanghaihyh@gmail.com",
-  },
-  {
-    key: "5",
-    name: "honag hai",
-    phone: "0919907233",
-    password: "111111111",
-    email: "hoanghaihyh@gmail.com",
-  },
-];
+import { useEffect, useState } from "react";
+import AuthService from "../../../services/authService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { formatDate } from "../../../config/formatDate";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function UserAdmin() {
+  const [listUser, setListUser] = useState([])
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+  const fetchUser = async () => {
+    try {
+      let dataUser = await AuthService.getAllUser();
+
+      if (dataUser && dataUser.data && dataUser.EC === 0) {
+        const usersFormatData = dataUser.data.map((user, index) => ({
+          ...user,
+          key: user.id,
+          index: index + 1
+        }));
+        setListUser(usersFormatData)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleDelete = async (userId) => {
+    const user = await AuthService.deleteUser(userId)
+    console.log(user);
+    switch (user && user.EC) {
+      case 1:
+        showToastError(user.message)
+        break;
+      case 0:
+        showToastSuccess(user.message)
+        fetchUser()
+        break;
+      case -1:
+        showToastError("Lỗi hệ thống!")
+        break;
+
+      default:
+        break;
+    }
+  }
+
   const columns = [
     {
-      title: "ID",
-      dataIndex: "key",
+      title: "STT",
+      dataIndex: "index",
     },
     {
-      title: "UserName",
-      dataIndex: "name",
-    },
-    {title:"Phone",
-      dataIndex:"phone"
+      title: "Họ và tên",
+      dataIndex: "full_name",
     },
     {
-      title: "Password",
-      dataIndex: "password",
-    },
-    {
-      title: "email",
+      title: "Email",
       dataIndex: "email",
     },
     {
-      title: "Action",
-      render: () => (
-        <span className="action-product">
-          <Button type="primary" danger>
-            Delete
+      title: "Số điện thoại",
+      dataIndex: "phone",
+    },
+    // {
+    //   title: "Địa chỉ",
+    //   dataIndex: "address",
+    // },
+    {
+      title: "Chức vụ",
+      dataIndex: 'role'
+    },
+    {
+      title: "Ngày tạo tài khoản",
+      dataIndex: 'created_at',
+      render: (text) => formatDate(text)
+    },
+    {
+      title: "Thao tác",
+      render: (text, record) => (
+        <span className="action-user">
+          <Button type="primary" danger
+            onClick={() => handleDelete(record.id)}
+          >
+            <FontAwesomeIcon icon={faTrash} />
           </Button>
         </span>
       ),
@@ -72,7 +95,15 @@ function UserAdmin() {
   ];
   return (
     <>
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <Table
+        columns={columns}
+        dataSource={listUser}
+        pagination={{
+          pageSize: 3, // Số phần tử mỗi trang
+        }}
+        locale={{ emptyText: "Không có dữ liệu" }}
+        rowKey="id" // Khóa duy nhất cho mỗi hàng, sử dụng id của từng user
+      />
     </>
   );
 }
