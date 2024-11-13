@@ -5,7 +5,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
-.container-event .item-event{
+.container-event .item-event {
     width: 100%;
     border-radius: 20px;
     display: flex;
@@ -14,7 +14,10 @@
     margin-top: 20%;
 }
 
-
+.container-event .item-event img {
+    width: 100%;
+    border-radius: 30px;
+}
 
 .container-event .item-event:first-child {
     background-color: #E27235;

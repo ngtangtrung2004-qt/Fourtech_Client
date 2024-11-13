@@ -20,10 +20,12 @@ import Brand from "../pages/Admin/brandAdmin"
 import Createbrand from "../pages/Admin/BrandAdmin/CreateBrand"
 import UserAdmin from "../pages/Admin/UserAdmin"
 import Contact from "../pages/User/Contact/Contact"
+import Article from "../pages/User/Article/article"
 // import {BrandAdmin} from "../pages/Admin/brandAdmin/index.jsx"
 // import BrandAdmin from "../pages/Admin/BrandAdmin"
 import InFor from "../pages/User/InFor/InFor"
 import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
+import ContactAdmin from "../pages/Admin/ContactAdmin"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
@@ -35,6 +37,8 @@ const publicRoutes = [
     {path:'/contact',component:Contact,layout: DefaultLayout},
     {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
     {path: '/info', component: InFor,layout: DefaultLayout},
+    {path: '/article', component: Article,layout: DefaultLayout},
+
 
 ]
 
@@ -51,6 +55,7 @@ const adminRoutes = [
   { path: '/admin/add-product', component: CreateProduct, layout:  LayoutAdmin},
   { path: '/admin/editProduct', component: EditProduct, layout:  LayoutAdmin},
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
+  {path:'/admin/contact-admin',component:ContactAdmin,layout: LayoutAdmin}
 ];
 
 export {publicRoutes, adminRoutes}

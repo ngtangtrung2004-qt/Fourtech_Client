@@ -45,12 +45,11 @@ function OrderList() {
     {
       title: "Hành động",
       render: (text, record) => (
-        <Link to={`/admin/orders/${record.key}`}>
+        // <Link to={`/admin/orders/${record.key}`}>
           <Button type="primary">
-            Xem chi tiết
             <Link to="/admin/orderDetail"> Xem chi tiết</Link>
           </Button>
-        </Link>
+        // </Link>
       ),
     },
   ];
