@@ -1,0 +1,36 @@
+.product-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); /* Định dạng lưới, tự điều chỉnh theo kích thước */
+    gap: 20px;
+    padding: 8px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.product-item {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.product-item img {
+    width: 50%;
+    height: 50%;
+    margin-bottom: 5px;
+}
+
+.product-item p {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import Voucher from '../../../components/Voucher/Voucher';
 import './allProduct.css';
 import { CartContext } from '../../../components/CartContext/CartContext';
+import Category from '../../../components/Category/Category';
 
 
 
@@ -23,6 +24,7 @@ const AllProduct = () => {
       price: 990000,
       originalPrice: 4690000,
       discount: '-20%',
+      
     },
     {
         id: 14,
@@ -96,8 +98,7 @@ const filters = [
                   <span className="price-12">{product_2.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
                   <span className="tag-12">{product_2.discount}</span>
                 </div>
-                <div className="product-pricing-123">{product_2.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                <button className="add-to-cart-btn-12"  onClick={() => addToCart(product_2)}>Thêm vào giỏ hàng</button>
+                <div className="product-pricing-123">{product_2.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div> <button className="add-to-cart-btn-12"  onClick={() => addToCart(product_2)}>Thêm vào giỏ hàng</button>
             </li>
           ))}
         </ul>
@@ -153,106 +154,10 @@ const filters = [
                      <button>&gt;</button>
                      
 </div>
-             <div className="product-grid">
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="laptop.webp" alt="Laptop" />
-                            <p>Laptop</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="tablet.webp" alt="Máy tính bảng" />
-                            <p>Máy tính bảng</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="phone.webp" alt="Điện thoại" />
-                            <p>Điện thoại</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="headphone.webp" alt="Tai nghe" />
-                            <p>Tai nghe</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="keyboard.webp" alt="Bàn phím" />
-                            <p>Bàn phím</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="powerbank.webp" alt="Sạc dự phòng" />
-                            <p>Sạc dự phòng</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="mouse.webp" alt="Chuột + Lót chuột" />
-                            <p>Chuột + Lót chuột</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="charger.webp" alt="Củ sạc" />
-                            <p>Củ sạc</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="pc.webp" alt="Máy tính bàn (PC)" />
-                            <p>Máy tính bàn (PC)</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="monitor.webp" alt="Màn hình" />
-                            <p>Màn hình</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="audio.webp" alt="Thiết bị âm thanh" />
-                            <p>Thiết bị âm thanh</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="playgame.webp" alt="Máy chơi game" />
-                            <p>Máy chơi game</p>
-                        </div>
-                    </a>
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="cable.webp" alt="Cáp sạc" />
-                            <p>Cáp sạc</p>
-                        </div>
-                    </a>
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="accessory.webp" alt="Phụ kiện" />
-                            <p>Phụ kiện</p>
-                        </div>
-                    </a>
-                </div>
+             <Category></Category>
         </div>
         </>
     )
 }
 
-export default AllProduct
+export default AllProduct;
