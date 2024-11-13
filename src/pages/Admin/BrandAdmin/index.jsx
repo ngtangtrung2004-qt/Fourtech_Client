@@ -2,7 +2,7 @@ import { Table, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 import BrandService from "../../../services/brandService";
 import { useEffect, useState } from "react";
-import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import { showToastSuccess } from "../../../config/toastConfig";
 import './edit.css'
 import { formatDate } from "../../../config/formatDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,12 +31,12 @@ function Brand() {
           key: brand.id,
           index: index + 1,
           image: brand.logo,
+          category_id: brand.category_id,
         }))
         setListBrand(formatDat)
       }
     } catch (error) {
       console.log(error);
-      showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
     }
   }
 
@@ -45,28 +45,14 @@ function Brand() {
       if (brandId) {
         const brand = await BrandService.deleteBrand(brandId);
 
-        switch (brand && brand.EC) {
-          case 1:
-            showToastError(brand.message);
-            break;
-
-          case 0:
-            showToastSuccess(brand.message);
-            await fetchBrand();
-            setModalDeleteOpen(false);
-            break;
-
-          case -1:
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
-            break;
-
-          default:
-            break;
+        if (brand && brand.EC === 0) {
+          showToastSuccess(brand.message);
+          await fetchBrand();
+          setModalDeleteOpen(false);
         }
       }
     } catch (error) {
       console.log(error);
-      showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
     }
   };
 
@@ -80,6 +66,10 @@ function Brand() {
     {
       title: "Tên thương hiệu",
       dataIndex: "name",
+    },
+    {
+      title: "Tên danh mục",
+      dataIndex: "category_name",
     },
     {
       title: "Hình ảnh",
@@ -105,7 +95,8 @@ function Brand() {
             brandItem={{
               id: record.id,
               name: record.name,
-              logo: record.logo
+              logo: record.logo,
+              category_id: record.category_id
             }}
             onEditSuccess={fetchBrand} // Truyền hàm callback để làm mới danh sách
           />
