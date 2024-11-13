@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import clsx from 'clsx';
 import logo from "/Logo.png"
 import { Link } from "react-router-dom";
-import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import { showToastSuccess } from "../../../config/toastConfig";
 import 'react-toastify/dist/ReactToastify.css';
 import AuthService from "../../../services/authService";
 
@@ -78,22 +78,9 @@ const SignupSignin = () => {
         } else {
             const dataRegister = await AuthService.Register(formRegister)
 
-            switch (dataRegister && dataRegister.EC) {
-                case 1:
-                    showToastError(dataRegister.message)
-                    break;
-
-                case 0:
-                    showToastSuccess(dataRegister.message)
-                    setActive(false)
-                    break;
-
-                case -1:
-                    showToastError("Lỗi hệ thống!")
-                    break;
-
-                default:
-                    break;
+            if (dataRegister && dataRegister.EC === 0) {
+                showToastSuccess(dataRegister.message)
+                setActive(false)
             }
         }
     }
@@ -130,23 +117,9 @@ const SignupSignin = () => {
         } else {
             const dataLogin = await AuthService.Login(formLogin)
 
-            switch (dataLogin && dataLogin.EC) {
-                case 1:
-                    showToastError(dataLogin.message)
-                    break;
-
-                case 0: {
-                    showToastSuccess(dataLogin.message)
-                    navigate('/')
-                    break;
-                }
-
-                case -1:
-                    showToastError("Lỗi hệ thống!")
-                    break;
-
-                default:
-                    break;
+            if (dataLogin && dataLogin.EC === 0) {
+                showToastSuccess(dataLogin.message)
+                navigate('/')
             }
         }
     }

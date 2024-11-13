@@ -8,7 +8,7 @@ function HeaderProduct({title}) {
           <h4>{title}</h4>
           
         </div>
-        <a href="#" className="view-more">Xem thêm </a>
+        <a href="/Allproduct" className="view-more">Xem thêm </a>
       </div>
     </> );
 }

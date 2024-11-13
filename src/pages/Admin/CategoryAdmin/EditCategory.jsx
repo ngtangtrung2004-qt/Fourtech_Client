@@ -5,7 +5,7 @@ import { faCloudArrowUp, faPenToSquare } from "@fortawesome/free-solid-svg-icons
 import PropTypes from 'prop-types';
 import "./edit.css";
 import CategoryService from "../../../services/categoryService"; // Đảm bảo rằng service này có phương thức putCategory
-import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import { showToastSuccess } from "../../../config/toastConfig";
 
 function EditCategory({ categoryItem, onEditSuccess }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -64,23 +64,11 @@ function EditCategory({ categoryItem, onEditSuccess }) {
 
       let data = await CategoryService.putCategory(idCategory, formData);
 
-      switch (data && data.EC) {
-        case 1:
-          showToastError(data.message)
-          break;
-        case 0:
-          showToastSuccess(data.message)
-          setIsModalOpen(false);
-          onEditSuccess(); // Gọi callback để cập nhật lại danh sách trong `CategoryAdmin`
-          break;
-        case -1:
-          showToastError('Lỗi hệ thống. Vui lòng thử lại sau!')
-          break;
-
-        default:
-          break;
+      if(data && data.EC === 0) {
+        showToastSuccess(data.message)
+        setIsModalOpen(false);
+        onEditSuccess(); // Gọi callback để cập nhật lại danh sách trong `CategoryAdmin`
       }
-
     } catch (error) {
       console.error("Lỗi khi cập nhật danh mục", error);
     }

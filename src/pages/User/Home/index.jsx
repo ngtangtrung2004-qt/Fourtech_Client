@@ -9,6 +9,15 @@ import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
 import { useEffect, useState } from "react";
+import Category from '../../../components/Category/Category';
+
+
+
+const images = [
+    "Banner1.webp",
+    "Banner5.webp",
+  ];
+
 
 function HomePage() {
     useEffect(() => {
@@ -51,12 +60,32 @@ function HomePage() {
 
         return () => clearInterval(timer);
     }, []);
+
+    // State dùng để lưu vị trí của ảnh hiện tại trong slideshow
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // useEffect sẽ chạy khi component được render lần đầu tiên
+  useEffect(() => {
+    // Thiết lập một interval để tự động chuyển ảnh sau một khoảng thời gian nhất định
+    const interval = setInterval(() => {
+      // Cập nhật vị trí của ảnh hiện tại
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    // Trả về một hàm để xóa interval khi component bị unmount
+    // Điều này giúp tránh việc interval tiếp tục chạy gây memory leak
+    return () => clearInterval(interval);
+  }, []);
+
     return (
         <>
             <div className='container-home'>
                 <div className='Banner'>
                     <div className="left-section">
-                        <img className='Banner1' src='Banner1.webp' />
+                        <img className='Banner1' src={images[currentImageIndex]}
+        alt={`slide ${currentImageIndex}`} />
                     </div>
                     <div className='right-section'>
                         <img src='Banner2.webp' />
@@ -105,103 +134,7 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className="product-grid">
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="laptop.webp" alt="Laptop" />
-                            <p>Laptop</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="tablet.webp" alt="Máy tính bảng" />
-                            <p>Máy tính bảng</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="phone.webp" alt="Điện thoại" />
-                            <p>Điện thoại</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="headphone.webp" alt="Tai nghe" />
-                            <p>Tai nghe</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="keyboard.webp" alt="Bàn phím" />
-                            <p>Bàn phím</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="powerbank.webp" alt="Sạc dự phòng" />
-                            <p>Sạc dự phòng</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="mouse.webp" alt="Chuột + Lót chuột" />
-                            <p>Chuột + Lót chuột</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="charger.webp" alt="Củ sạc" />
-                            <p>Củ sạc</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="pc.webp" alt="Máy tính bàn (PC)" />
-                            <p>Máy tính bàn (PC)</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="monitor.webp" alt="Màn hình" />
-                            <p>Màn hình</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="audio.webp" alt="Thiết bị âm thanh" />
-                            <p>Thiết bị âm thanh</p>
-                        </div>
-                    </a>
-
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="playgame.webp" alt="Máy chơi game" />
-                            <p>Máy chơi game</p>
-                        </div>
-                    </a>
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="cable.webp" alt="Cáp sạc" />
-                            <p>Cáp sạc</p>
-                        </div>
-                    </a>
-                    <a href=''>
-                        <div className="product-item">
-                            <img src="accessory.webp" alt="Phụ kiện" />
-                            <p>Phụ kiện</p>
-                        </div>
-                    </a>
-                </div>
+                <Category></Category>
                 <div className="deal-banner">
                     <div className="deal-title">
                         <span className="lightning-icon">⚡</span>

@@ -82,7 +82,7 @@ function ProductAdmin() {
       dataIndex: "quantity",
     },
     {
-      title: "Action",
+      title: "Thao tác",
       render: () => (
         <span className="action-product">
           <Button type="primary">
