@@ -2,12 +2,15 @@ import { useContext, useState } from 'react'
 
 import Voucher from '../../../components/Voucher/Voucher';
 import './allProduct.css';
-const AllProduct = () => {
-    const [showMore, setShowMore] = useState(false);
+import { CartContext } from '../../../components/CartContext/CartContext';
+import Category from '../../../components/Category/Category';
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-  }
+
+
+const AllProduct = () => {
+  
+  const { addToCart } = useContext(CartContext);
+  const [showMore, setShowMore] = useState(false);
   const [activeFilter, setActiveFilter] = useState('');
 
     const toggleShowMore = () => {setShowMore(!showMore);
@@ -43,7 +46,7 @@ const AllProduct = () => {
 ];
 
 
-
+  
 const filters = [
     { key: 'giaTangDan', label: 'Giá tăng dần' },
 
@@ -53,7 +56,9 @@ const filters = [
   
    {key: 'moiNhat', label: 'Mới nhất' }
   ];
-
+  
+  
+  
 
     return (
         <>
@@ -92,8 +97,7 @@ const filters = [
                   <span className="price-12">{product_2.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
                   <span className="tag-12">{product_2.discount}</span>
                 </div>
-                <div className="product-pricing-123">{product_2.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                <button className="add-to-cart-btn-12"  onClick={() => addToCart(product_2)}>Thêm vào giỏ hàng</button>
+                <div className="product-pricing-123">{product_2.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div> <button className="add-to-cart-btn-12"  onClick={() => addToCart(product_2)}>Thêm vào giỏ hàng</button>
             </li>
           ))}
         </ul>
@@ -101,12 +105,15 @@ const filters = [
             <div className="filter-section">
               <div className="filter-group">
                 <h3>Hãng sản xuất</h3>
-                {['Acer', 'Apple', 'Asus', 'Dell', 'Logitech','Corsair','Sony','Razer','Keychron','HyperWork','Logitech','Valve','Intel','Herman Miller','Fnatic'].map((bran, index) => (
+                {['Acer', 'Apple', 'Asus', 'Dell', 'Logitech','Corsair','Sony','Razer','Keychron'].map((bran, index) => (
                   <div key={index} className="filter-item">
                     <input type="checkbox" id={bran} />
                     <label htmlFor={bran}>{bran}</label>
                   </div>
                 ))}
+                <button className="show-more-btn" onClick={toggleShowMore}>
+                  {showMore ? 'Thu gọn ' : 'Xem thêm '}
+                </button>
               </div>
             <div >
             </div>
@@ -146,10 +153,10 @@ const filters = [
                      <button>&gt;</button>
                      
 </div>
-        <Category></Category>
+             <Category></Category>
         </div>
         </>
     )
 }
 
-export default AllProduct
+export default AllProduct;

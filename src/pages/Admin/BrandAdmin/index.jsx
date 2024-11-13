@@ -119,11 +119,10 @@ function Brand() {
           >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-<<<<<<< HEAD
            <Button type="primary" >
             Sửa
           </Button>
-=======
+
           <Modal
             title="Xác nhận xóa!"
             centered
@@ -139,7 +138,7 @@ function Brand() {
               Bạn muốn xóa thương hiệu: <b>{record.name}</b>
             </p>
           </Modal>
->>>>>>> 47bc36b027b34927df6eabc70f7e6311c6a3d7b6
+
         </span>
       ),
     },
