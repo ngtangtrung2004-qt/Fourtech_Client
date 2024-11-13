@@ -1,4 +1,3 @@
-import { showToastError } from "../config/toastConfig";
 import { http } from "../utils/http";
 
 
@@ -9,7 +8,6 @@ const BrandService = {
             return data
         } catch (error) {
             console.log(error);
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
         }
     },
 
@@ -22,7 +20,6 @@ const BrandService = {
             })
             return data
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
             console.error(error);
         }
     },
@@ -36,7 +33,6 @@ const BrandService = {
             });
             return data;
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!");
             console.error(error);
         }
     },
@@ -46,8 +42,16 @@ const BrandService = {
             const { data } = await http.delete(`/brand/delete/${id}`)
             return data
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
             console.error(error);
+        }
+    },
+
+    getBrandsByCategory: async (idCategory) => {
+        try {
+            const data = await http.get(`/brand/categor/${idCategory}`);
+            return data
+        } catch (error) {
+            console.log(error);
         }
     }
 }

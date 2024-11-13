@@ -43,28 +43,14 @@ function CategoryAdmin() {
       if (categoryId) {
         const category = await CategoryService.deleteCategory(categoryId);
 
-        switch (category && category.EC) {
-          case 1:
-            showToastError(category.message);
-            break;
-
-          case 0:
-            showToastSuccess(category.message);
-            await fetchCategory();
-            setModalDeleteOpen(false);
-            break;
-
-          case -1:
-            showToastError("System error. Please try again later.");
-            break;
-
-          default:
-            break;
+        if (category && category.EC === 0) {
+          showToastSuccess(category.message);
+          await fetchCategory();
+          setModalDeleteOpen(false);
         }
       }
     } catch (error) {
       console.log(error);
-      showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
     }
   };
 
