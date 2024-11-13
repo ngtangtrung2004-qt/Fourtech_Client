@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 html {
-  background-color: #F0F2F5 !important;
+  background-color: #f0f2f5 !important;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -25,6 +25,10 @@ html {
 body {
   height: auto;
   margin: 0 auto;
+  /* overflow-y: hidden; */
+  /* /* width: calc(100% - 15px); */
+  width: calc(100%);
+  margin: 0px;
 }
 
 h1 {
@@ -65,7 +69,7 @@ button:focus-visible {
   }
 }
 
-.Noi-dung-layout{
+.Noi-dung-layout {
   margin: 0 auto;
   width: 90%;
   padding-top: 100px !important;
