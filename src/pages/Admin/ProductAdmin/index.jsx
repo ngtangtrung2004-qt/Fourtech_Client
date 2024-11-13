@@ -1,36 +1,36 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Table, Button } from "antd";
 import { Link } from "react-router-dom";
 import "./product.css";
 
 function ProductAdmin() {
   // Tạo state để lưu dữ liệu sản phẩm
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   // console.log(products)
 
   // Gọi API để lấy dữ liệu từ server khi component được render
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/products"); // Địa chỉ API của bạn
-        const data = await response.json();
-        // Giả sử dữ liệu trả về có cấu trúc giống `data` trong ví dụ gốc
-        const formattedData = data.map((product, index) => ({
-          key: product.ProductID || index + 1,
-          name: product.Name,
-          image: product.Images, // Mảng hình ảnh sản phẩm
-          description: product.Description,
-          category: product.CategoryName,
-          price: `${product.Price} đ`,
-        }));
-        setProducts(formattedData);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:3000/api/products"); // Địa chỉ API của bạn
+  //       const data = await response.json();
+  //       // Giả sử dữ liệu trả về có cấu trúc giống `data` trong ví dụ gốc
+  //       const formattedData = data.map((product, index) => ({
+  //         key: product.ProductID || index + 1,
+  //         name: product.Name,
+  //         image: product.Images, // Mảng hình ảnh sản phẩm
+  //         description: product.Description,
+  //         category: product.CategoryName,
+  //         price: `${product.Price} đ`,
+  //       }));
+  //       setProducts(formattedData);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
 
   const columns = [
     {
@@ -106,7 +106,7 @@ function ProductAdmin() {
 
       <Table
         columns={columns}
-        dataSource={products}
+        // dataSource={products}
         pagination={{
           pageSize: 5,
         }}

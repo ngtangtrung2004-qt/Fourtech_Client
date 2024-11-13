@@ -15,7 +15,7 @@ function ReplyContact({ EmailContact }) { // Giải cấu trúc EmailContact t�
     };
     const handleReply = async () => {
         try {
-            await axios.post('http://localhost:6060/api/reply', { email: EmailContact, message: replyMessage });
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/reply`, { email: EmailContact, message: replyMessage });
             alert('Gửi email trả lời thành công!');
             setIsModalOpen(false);
         } catch (error) {

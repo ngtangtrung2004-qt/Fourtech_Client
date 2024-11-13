@@ -7,6 +7,8 @@ function forgotPassword(){
         
         <>
             <div className="main_dlmk">
+                <form >
+
                 <div className="top_dlmk">
                     <Link to='/signin'>
                     <FaArrowLeftLong/>
@@ -21,6 +23,7 @@ function forgotPassword(){
                     <button>Tiếp Theo</button>
                 </div>
                 </Link>
+                </form>
             </div>
 
         </>
