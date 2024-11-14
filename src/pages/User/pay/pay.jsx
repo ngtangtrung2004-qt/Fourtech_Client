@@ -80,7 +80,7 @@ function Pay() {
                                     <h2>Vận chuyển</h2>
                                     <div className="box-text-van-chuyen">
                                         <Radio checked>
-                                            Giao hàng nhận nơi
+                                            Giao hàng tận nơi
                                         </Radio>
                                         <span>50.000đ</span>
                                     </div>
