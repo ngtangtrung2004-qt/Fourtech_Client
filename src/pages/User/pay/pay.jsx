@@ -46,13 +46,13 @@ function Pay() {
                             <div className="thong-tin-nhan-hang">
                                 <h2>Thông tin nhận hàng</h2>
                                 <Input placeholder='Họ và tên' size='large' />
-                                <div id="nameError" className="error-message">Vui lòng nhập họ và tên</div>
+                                
                                 <Input placeholder='Email' size='large' />
-                                <div id="emailError" className="error-message">Vui lòng nhập email hợp lệ</div>
+                             
                                 <Input placeholder='Số điện thoại' size='large' />
-                                <div id="phoneError" className="error-message">Vui lòng nhập số điện thoại</div>
+                                
                                 <Input placeholder='Địa chỉ' size='large' />
-                                <div id="addressError" className="error-message">Vui lòng nhập địa chỉ</div>
+                               
                                 <TextArea placeholder='Ghi chú' />
                             </div>
 
