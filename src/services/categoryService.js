@@ -1,3 +1,4 @@
+import { showToastError } from "../config/toastConfig";
 import { http } from "../utils/http";
 
 const CategoryService = {
@@ -19,6 +20,7 @@ const CategoryService = {
             })
             return data
         } catch (error) {
+            showToastError(error.response.data.error)
             console.error(error);
         }
     },
@@ -32,6 +34,7 @@ const CategoryService = {
             });
             return data;
         } catch (error) {
+            showToastError(error.response.data.error)
             console.error(error);
         }
     },
@@ -43,7 +46,7 @@ const CategoryService = {
         } catch (error) {
             console.error(error);
         }
-    }
+    },
 }
 
 export default CategoryService

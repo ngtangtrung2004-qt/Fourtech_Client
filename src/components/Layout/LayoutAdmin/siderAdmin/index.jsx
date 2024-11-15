@@ -28,15 +28,15 @@ const items = [
   ),
 
   getItem(
-    <Link to="/admin/category-admin">Danh mục</Link>,
+    <Link to="/admin/brand-admin">Thương hiệu</Link>,
     "2",
-    <UnorderedListOutlined />
+    <ShopOutlined />
   ),
 
   getItem(
-    <Link to="/admin/brand-admin">Thương hiệu</Link>,
+    <Link to="/admin/category-admin">Danh mục</Link>,
     "3",
-    <ShopOutlined />
+    <UnorderedListOutlined />
   ),
 
   getItem(

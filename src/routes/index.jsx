@@ -57,7 +57,7 @@ const adminRoutes = [
   { path: '/admin/add-brand', component: Createbrand, layout:  LayoutAdmin},
   // { path: '/admin/brandadmin', component: BrandAdmin, layout:  LayoutAdmin},
   { path: '/admin/add-product', component: CreateProduct, layout:  LayoutAdmin},
-  { path: '/admin/editProduct', component: EditProduct, layout:  LayoutAdmin},
+  { path: '/admin/edit-product/:id', component: EditProduct, layout:  LayoutAdmin},
   { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
   {path:'/admin/contact-admin',component:ContactAdmin,layout: LayoutAdmin}
 ];

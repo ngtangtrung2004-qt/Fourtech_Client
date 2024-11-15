@@ -4,7 +4,7 @@ import BrandService from "../../../services/brandService";
 import { useEffect, useState } from "react";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 import './edit.css'
-import { formatDate } from "../../../config/formatDate";
+import { formatDate } from "../../../config/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import EditBrand from "./EditBrand";
@@ -26,13 +26,17 @@ function Brand() {
     const dataBrand = await BrandService.getAllBrand();
     try {
       if (dataBrand && dataBrand.data && dataBrand.EC === 0) {
-        const formatDat = dataBrand.data.map((brand, index) => ({
+        const formatData = dataBrand.data.map((brand, index) => ({
           ...brand,
           key: brand.id,
           index: index + 1,
+<<<<<<< HEAD
           image: brand.logo,
+=======
+          image: brand.logo
+>>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
         }))
-        setListBrand(formatDat)
+        setListBrand(formatData)
       }
     } catch (error) {
       console.log(error);
@@ -105,7 +109,11 @@ function Brand() {
             brandItem={{
               id: record.id,
               name: record.name,
+<<<<<<< HEAD
               logo: record.logo
+=======
+              logo: record.logo,
+>>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
             }}
             onEditSuccess={fetchBrand} // Truyền hàm callback để làm mới danh sách
           />
@@ -119,6 +127,10 @@ function Brand() {
           >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
           <Modal
             title="Xác nhận xóa!"
             centered
@@ -149,7 +161,7 @@ function Brand() {
         columns={columns}
         dataSource={listBrand}
         pagination={{
-          pageSize: 5
+          pageSize: 10
         }}
       />
     </>
