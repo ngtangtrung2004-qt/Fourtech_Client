@@ -5,24 +5,40 @@ import { faCloudArrowUp, faPenToSquare } from "@fortawesome/free-solid-svg-icons
 import PropTypes from 'prop-types';
 import "./edit.css";
 import CategoryService from "../../../services/categoryService"; // Đảm bảo rằng service này có phương thức putCategory
-import { showToastSuccess } from "../../../config/toastConfig";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+
 
 function EditCategory({ categoryItem, onEditSuccess }) {
+  useEffect(() => {
+    setCategoryInfo({
+      id: categoryItem.id,
+      name: categoryItem.name || "",
+      image: categoryItem.image || null,
+    });
+  }, [categoryItem]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoryInfo, setCategoryInfo] = useState({
     id: categoryItem.id,
     name: categoryItem.name || "",
     image: categoryItem.image,
   });
+
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleEditCategory = (item) => {
     setCategoryInfo({
       id: categoryItem.id,
       name: item.name || "",
-      image: item.image || null,
+      image: item.image || null
     });
     setIsModalOpen(true);
+    setImagePreview(null); // Đặt lại imagePreview về null khi mở modal
+    // Reset lại input file
+    const fileInput = document.getElementById("categoryImage");
+    if (fileInput) {
+      fileInput.value = ""; // Reset giá trị của file input
+    }
   };
 
   const handleChangeName = (e) => {
@@ -50,39 +66,58 @@ function EditCategory({ categoryItem, onEditSuccess }) {
     }
   };
 
-
-
   const handleEditSubmit = async (e) => {
     e.preventDefault();
 
-    // Gửi yêu cầu cập nhật danh mục
+    // Kiểm tra nếu không có ảnh mới được chọn
+    const imageToSend = imagePreview || categoryInfo.image;
+
+    if (!categoryInfo.name) {
+      showToastError("Vui lòng nhập tên danh mục.");
+      return;
+    }
+
+    if (!imageToSend) {
+      showToastError("Vui lòng chọn ảnh.");
+      return;
+    }
+
     try {
-      const idCategory = categoryInfo.id
+      const idCategory = categoryInfo.id;
       const formData = new FormData();
       formData.append('categoryName', categoryInfo.name);
       formData.append('categoryImage', categoryInfo.image);
 
       let data = await CategoryService.putCategory(idCategory, formData);
 
-      if(data && data.EC === 0) {
-        showToastSuccess(data.message)
+      if (data && data.EC === 0) {
+        showToastSuccess(data.message);
         setIsModalOpen(false);
-        onEditSuccess(); // Gọi callback để cập nhật lại danh sách trong `CategoryAdmin`
+        setCategoryInfo({
+          id: '',
+          name: '',
+          image: null
+        });
+        onEditSuccess();  // Gọi lại fetchCategory từ CategoryAdmin để làm mới danh sách
       }
     } catch (error) {
       console.error("Lỗi khi cập nhật danh mục", error);
     }
   };
 
+
   const handleCancel = () => {
     setIsModalOpen(false);
-    setCategoryInfo(categoryItem);
-    setImagePreview(null);
+    setCategoryInfo({
+      id: categoryItem.id,
+      name: categoryItem.name || "",
+      image: categoryItem.image || null,
+    });
+    setImagePreview(null);  // Đặt lại ảnh preview về null
   };
 
-  useEffect(() => {
-    // console.log("Updated categoryInfo:", categoryInfo);
-  }, [categoryInfo]);
+
+
 
   return (
     <>

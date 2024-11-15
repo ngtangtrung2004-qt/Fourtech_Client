@@ -10,7 +10,7 @@ function CreateCategory() {
   const navigate = useNavigate()
   const [categoryData, setCategoryData] = useState({
     categoryName: "",
-    categoryImage: []
+    categoryImage: [],
   });
   const [imagePreview, setImagePreview] = useState(null);
   const [errorValidate, setErrorValidate] = useState({})

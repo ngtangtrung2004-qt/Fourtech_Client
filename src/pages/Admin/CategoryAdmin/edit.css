@@ -63,3 +63,14 @@
 .modal-delete .custom-ok-button {
   background-color: red;
 }
+
+.ant-table{
+  border: 0.1px solid rgb(216, 216, 216);
+}
+
+.ant-table td,
+.ant-table th {
+  text-align: center !important;
+  border: 0.1px solid rgb(216, 216, 216);
+}
+

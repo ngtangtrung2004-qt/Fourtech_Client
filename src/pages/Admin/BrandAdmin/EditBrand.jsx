@@ -5,35 +5,24 @@ import { faCloudArrowUp, faPenToSquare } from "@fortawesome/free-solid-svg-icons
 import PropTypes from 'prop-types';
 import "./edit.css";
 import BrandService from "../../../services/brandService";
-import { showToastSuccess } from "../../../config/toastConfig";
-import CategoryService from "../../../services/categoryService";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function EditBrand({ brandItem, onEditSuccess }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [categories, setCategories] = useState([]); // State để lưu danh sách các danh mục
-
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await CategoryService.getAllCategory();
-        if (response && response.data && response.data.length > 0) {
-          setCategories(response.data); // Cập nhật danh mục vào state
-        }
-      } catch (error) {
-        console.log("Lỗi khi lấy danh mục:", error);
-      }
-    };
-    fetchCategories();
-  }, []); // Chỉ chạy khi component được mount
+    setBrandInfo({
+      id: brandItem.id,
+      name: brandItem.name || "",
+      logo: brandItem.logo || null,
+    });
+  }, [brandItem]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [brandInfo, setBrandInfo] = useState({
     id: brandItem.id,
     name: brandItem.name || "",
-    category_id: brandItem.category_id || null, // Thêm giá trị mặc định
     logo: brandItem.logo,
   });
-  // console.log(brandInfo);
+
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleEditBrand = (item) => {
@@ -41,27 +30,21 @@ function EditBrand({ brandItem, onEditSuccess }) {
       id: brandItem.id,
       name: item.name || "",
       logo: item.logo || null,
-      category_id: item.category_id || "",
     });
     setIsModalOpen(true);
+    setImagePreview(null); // Đặt lại imagePreview về null khi mở modal
+    // Reset lại input file
+    const fileInput = document.getElementById("brandImage");
+    if (fileInput) {
+      fileInput.value = ""; // Reset giá trị của file input
+    }
   };
-
-
 
   const handleChangeName = (e) => {
     const { value } = e.target;
     setBrandInfo((prev) => ({
       ...prev,
       name: value,
-    }));
-  };
-
-  const handleChangeCategory = (e) => {
-    const { value } = e.target;
-    // console.log(e);
-    setBrandInfo((prev) => ({
-      ...prev,
-      category_id: +value,
     }));
   };
 
@@ -86,30 +69,52 @@ function EditBrand({ brandItem, onEditSuccess }) {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const idBrand = brandInfo.id
-    const formData = new FormData();
-    formData.append('brandName', brandInfo.name);
-    formData.append('category_id', brandInfo.category_id);
-    formData.append('brandImage', brandInfo.logo);
+    // Kiểm tra nếu không có ảnh mới được chọn
+    const imageToSend = imagePreview || brandInfo.image;
+    if (!brandInfo.name) {
+      showToastError("Vui lòng nhập tên danh mục.");
+      return;
+    }
 
-    let data = await BrandService.putBrand(idBrand, formData);
+    if (!imageToSend) {
+      showToastError("Vui lòng chọn ảnh.");
+      return;
+    }
 
-    if (data && data.EC === 0) {
-      showToastSuccess(data.message)
-      setIsModalOpen(false);
-      onEditSuccess(); // Gọi callback để cập nhật lại danh sách trong `CategoryAdmin`
+    try {
+      const idBrand = brandInfo.id
+      const formData = new FormData();
+      formData.append('brandName', brandInfo.name);
+      formData.append('brandImage', brandInfo.logo);
+
+      let data = await BrandService.putBrand(idBrand, formData);
+
+      if (data && data.EC === 0) {
+        showToastSuccess(data.message)
+        setIsModalOpen(false);
+        setBrandInfo({
+          id: '',
+          name: "",
+          logo: null,
+        });
+        onEditSuccess(); // Gọi callback để cập nhật lại danh sách trong `CategoryAdmin`
+      }
+    } catch (error) {
+      console.error("Lỗi khi cập nhật thương hiệu", error);
     }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setBrandInfo(brandItem);
+    setBrandInfo({
+      id: brandItem.id,
+      name: brandItem.name || "",
+      logo: brandItem.logo || null,
+    });
     setImagePreview(null);
   };
 
-  useEffect(() => {
-    // console.log("Updated brandInfo:", brandInfo);
-  }, [brandInfo]);
+
 
   return (
     <>
@@ -135,23 +140,6 @@ function EditBrand({ brandItem, onEditSuccess }) {
             value={brandInfo.name}
             onChange={handleChangeName}
           />
-
-          <div className="form-group" style={{ width: '100%' }}>
-            <label htmlFor="idCategory" style={{ fontWeight: 'normal', color: "#555555" }}>Danh mục:</label>
-            <select
-              id="idCategory"
-              name="idCategory"
-              value={brandInfo.category_id}
-              onChange={handleChangeCategory}
-            >
-              <option value="">Chọn danh mục</option>
-              {categories.map((category_id) => (
-                <option key={category_id.id} value={category_id.id}>
-                  {category_id.name}
-                </option>
-              ))}
-            </select>
-          </div>
 
           <label htmlFor="brandImage" className="custom-file-upload">
             <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -197,7 +185,6 @@ EditBrand.propTypes = {
   brandItem: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    category_id: PropTypes.number.isRequired,
     logo: PropTypes.string.isRequired
   }).isRequired,
   onEditSuccess: PropTypes.func.isRequired
