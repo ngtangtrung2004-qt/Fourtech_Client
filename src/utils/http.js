@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showToastError } from "../config/toastConfig";
 
 export const http = axios.create({
     // baseURL: 'https://some-domain.com/api/',
@@ -6,45 +7,45 @@ export const http = axios.create({
     timeout: 3000,
     // withCredentials: true
 });
-// http.interceptors.response.use(function (response) {
-//     return response.data
-// }, function (err) {
-//     const status = err && err.response && err.response.status || 500;
-//     console.log(status);
-//     switch (status) {
-//         // authentication (token related issues)
-//         case 401: {
-//             return Promise.reject(err)
-//         }
+http.interceptors.response.use(
+    response => response,
+    error => {
+        const status = (error && error.response && error.response.status || 500);
+        console.error('HTTP Status:', status);
 
-//         // forbidden (permission related issues)
-//         case 403: {
-//             return Promise.reject(err)
-//         }
+        // Kiểm tra xem có `response` và `data` trong lỗi hay không để hiển thị thông báo phù hợp
+        const errorMessage = error.response && error.response.data && error.response.data.message
+            ? error.response.data.message
+            : 'Lỗi không xác định. Vui lòng thử lại sau!';
 
-//         // bad request
-//         case 400: {
-//             return Promise.reject(err)
-//         }
+        switch (status) {
 
-//         // not found
-//         case 404: {
-//             return Promise.reject(err)
-//         }
+            // Thêm các mã lỗi khác nếu cần
+            case 400:
+                showToastError(errorMessage);
+                break;
 
-//         // conflict
-//         case 409: {
-//             return Promise.reject(err)
-//         }
+            case 401:
+                showToastError(errorMessage);
+                break;
 
-//         // unprocessable
-//         case 422: {
-//             return Promise.reject(err)
-//         }
+            case 403:
+                showToastError(errorMessage);
+                break;
 
-//         // generic api error (server related) unexpected
-//         default: {
-//             return Promise.reject(err)
-//         }
-//     }
-// })
+            case 404:
+                showToastError(errorMessage);
+                break;
+                
+            case 409:
+                showToastError(errorMessage);
+                break;
+
+            default:
+                showToastError('Lỗi hệ thống. Vui lòng thử lại sau!');
+                break;
+        }
+
+        return Promise.reject(error);
+    }
+);

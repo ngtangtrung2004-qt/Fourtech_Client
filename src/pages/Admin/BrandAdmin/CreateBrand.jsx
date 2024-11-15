@@ -1,33 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BrandService from "../../../services/brandService";
-import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import CategoryService from "../../../services/categoryService"; // Dịch vụ để lấy danh mục
+import { showToastSuccess } from "../../../config/toastConfig";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-
 function CreateBrand() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [brandData, setBrandData] = useState({
     brandName: "",
-    brandImage: []
+    brandImage: null,
+    idCategory: "",
   });
   const [imagePreview, setImagePreview] = useState(null);
-  const [errorValidate, setErrorValidate] = useState({})
-  const [fileName, setFileName] = useState('Chưa có tệp nào được chọn');
+  const [errorValidate, setErrorValidate] = useState({});
+  const [fileName, setFileName] = useState("Chưa có tệp nào được chọn");
+  const [categories, setCategories] = useState([]); // State để lưu danh sách các danh mục
 
+  // Lấy dữ liệu danh mục khi component được mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await CategoryService.getAllCategory(); 
+        if (response && response.data && response.data.length > 0) {
+          setCategories(response.data); // Cập nhật danh mục vào state
+        }
+      } catch (error) {
+        console.log("Lỗi khi lấy danh mục:", error);
+      }
+    };
+    fetchCategories();
+  }, []); // Chỉ chạy khi component được mount
 
-
-  // cập nhật tên thương hiệu trong state khi người dùng nhập liệu.
+  // Cập nhật tên thương hiệu trong state khi người dùng nhập liệu
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBrandData({
       ...brandData,
       [name]: value,
     });
-
   };
-  //cập nhật ảnh thương hiệu khi người dùng chọn một file.
+
+  // Cập nhật ảnh thương hiệu khi người dùng chọn một file
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -44,47 +59,43 @@ function CreateBrand() {
     });
   };
 
+  // Xử lý khi người dùng gửi form
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newError = {};
 
+    // Kiểm tra tên thương hiệu
     if (!brandData.brandName.trim()) {
-      newError.brandName = "Tên thương hiệu không được để trống!"
+      newError.brandName = "Tên thương hiệu không được để trống!";
     }
 
     // Kiểm tra hình ảnh
     if (!brandData.brandImage || !(brandData.brandImage instanceof File)) {
-      //brandData.brandImage instanceof File kiểm tra xem brandData.brandImage có phải là một đối tượng File hợp lệ hay không.
-      //Nếu điều kiện này trả về true, tức là người dùng đã chọn một tệp hợp lệ.
-      //Nếu trả về false, có thể tệp không được chọn, hoặc có sự cố khác với dữ liệu mà bạn nhận được.
       newError.brandImage = "Chưa có hình ảnh!";
+    }
+
+    // Kiểm tra danh mục
+    if (!brandData.idCategory) {
+      newError.idCategory = "Danh mục không được để trống!";
     }
 
     // Nếu có lỗi, dừng lại không gửi form
     if (Object.keys(newError).length > 0) {
-      setErrorValidate(newError);  // Cập nhật lỗi
-      console.log('Form errors:', newError); // Log errors to debug
-      return;  // Dừng và không gọi API
+      setErrorValidate(newError); // Cập nhật lỗi
+      return; // Dừng và không gọi API
     }
+
     // Nếu không có lỗi, tiến hành gửi dữ liệu lên server
     const formData = new FormData();
     formData.append("brandName", brandData.brandName);
     formData.append("brandImage", brandData.brandImage);
+    formData.append("category_id", brandData.idCategory); // Gửi idCategory lên server
 
     const data = await BrandService.postBrand(formData);
-    switch (data && data.data && data.data.EC) {
-      case 1:
-        showToastError(data.data.message);
-        break;
-      case 0:
-        showToastSuccess(data.data.message);
-        navigate('/admin/brand-admin');
-        break;
-      case -1:
-        showToastError("Lỗi hệ thống. Vui lòng thử lại sau!");
-        break;
-      default:
-        break;
+
+    if (data && data.data && data.data.EC === 0) {
+      showToastSuccess(data.data.message);
+      navigate("/admin/brand-admin");
     }
   };
 
@@ -101,14 +112,37 @@ function CreateBrand() {
             value={brandData.brandName}
             onChange={handleChange}
             placeholder="Nhập tên thương hiệu"
+            style={{ marginBottom: 0 }}
           />
-          {errorValidate.brandName && ((<span className="spanError">{errorValidate.brandName}</span>))}
+          {errorValidate.brandName && (
+            <span className="spanError">{errorValidate.brandName}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="idCategory">Danh mục:</label>
+          <select
+            id="idCategory"
+            name="idCategory"
+            value={brandData.idCategory}
+            onChange={handleChange}
+          >
+            <option value="">Chọn danh mục</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          {errorValidate.idCategory && (
+            <span className="spanError">{errorValidate.idCategory}</span>
+          )}
         </div>
 
         <div className="form-group">
           <label htmlFor="brandImage" className="custom-file-upload">
             <FontAwesomeIcon icon={faCloudArrowUp} />
-            Up load file
+            Upload file
           </label>
           <input
             type="file"
@@ -116,14 +150,20 @@ function CreateBrand() {
             name="brandImage"
             accept="image/*"
             onChange={handleFileChange}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
           <p>Tên tệp: {fileName}</p>
-          {errorValidate.brandImage && ((<span className="spanError">{errorValidate.brandImage}</span>))}
+          {errorValidate.brandImage && (
+            <span className="spanError">{errorValidate.brandImage}</span>
+          )}
           {imagePreview && (
             <div>
               <h4>Preview:</h4>
-              <img src={imagePreview} alt="Image Preview" style={{ width: '100px', height: 'auto' }} />
+              <img
+                src={imagePreview}
+                alt="Image Preview"
+                style={{ width: "100px", height: "auto" }}
+              />
             </div>
           )}
         </div>

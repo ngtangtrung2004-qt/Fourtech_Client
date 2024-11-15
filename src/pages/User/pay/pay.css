@@ -188,3 +188,10 @@
     color: red;
     font-size: 13px;
 }
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: -6px;
+    margin-bottom: 8px;
+    display: none;
+}

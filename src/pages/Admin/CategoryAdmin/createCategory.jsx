@@ -65,25 +65,20 @@ function CreateCategory() {
       console.log('Form errors:', newError); // Log errors to debug
       return;  // Dừng và không gọi API
     }
+    if (typeof categoryData.categoryImage === 'string') {
+      showToastError('Vui lòng chọn ảnh hợp lệ trước khi cập nhật!');
+      return;
+    }
     // Nếu không có lỗi, tiến hành gửi dữ liệu lên server
     const formData = new FormData();
     formData.append("categoryName", categoryData.categoryName);
     formData.append("categoryImage", categoryData.categoryImage);
 
     const data = await CategoryService.postCategory(formData);
-    switch (data && data.data && data.data.EC) {
-      case 1:
-        showToastError(data.data.message);
-        break;
-      case 0:
-        showToastSuccess(data.data.message);
-        navigate('/admin/category-admin');
-        break;
-      case -1:
-        showToastError("Lỗi hệ thống. Vui lòng thử lại sau!");
-        break;
-      default:
-        break;
+
+    if (data && data.data && data.data.EC === 0) {
+      showToastSuccess(data.data.message);
+      navigate('/admin/category-admin');
     }
   };
 

@@ -3,7 +3,7 @@ import Logo_pay from '../../../assets/images/logo_pay.png'
 import Logo from '/Logo.png'
 import anhSanPham from '../../../assets/images/item-Cart.png'
 import Momo from '../../../assets/images/logo-momo.png'
-import { Input, Select, Radio, Space, Button } from 'antd';
+import { Input,Radio, Space, Button } from 'antd';
 import { AiFillBank } from "react-icons/ai";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import TextArea from 'antd/es/input/TextArea';
@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 function Pay() {
-    const { Option } = Select
+    
     useEffect(() => {
         window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
     }, []);
@@ -21,6 +21,10 @@ function Pay() {
         console.log('radio checked', e.target.value);
         setValue(e.target.value);
     };
+
+    // const [formCart, setformCar] = useState({
+
+    // });
     return (
         <>
             <div className="container-pay">
@@ -42,36 +46,13 @@ function Pay() {
                             <div className="thong-tin-nhan-hang">
                                 <h2>Thông tin nhận hàng</h2>
                                 <Input placeholder='Họ và tên' size='large' />
+                                <div id="nameError" className="error-message">Vui lòng nhập họ và tên</div>
                                 <Input placeholder='Email' size='large' />
+                                <div id="emailError" className="error-message">Vui lòng nhập email hợp lệ</div>
                                 <Input placeholder='Số điện thoại' size='large' />
-                                <Select
-                                    placeholder="Chọn tỉnh/thành"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Quảng Bình">
-                                        Quảng Bình
-                                    </Option>
-                                </Select>
-                                <Select
-                                    placeholder="Chọn quận/huyện"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Lệ Thủy">
-                                        Lệ Thủy
-                                    </Option>
-                                </Select>
-                                <Select
-                                    placeholder="Chọn phường/xã"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Thị trấn Kiến Giang">
-                                        Thị trấn Kiến Giang
-                                    </Option>
-                                </Select>
-                                <Input placeholder='Số nhà' size='large' />
+                                <div id="phoneError" className="error-message">Vui lòng nhập số điện thoại</div>
+                                <Input placeholder='Địa chỉ' size='large' />
+                                <div id="addressError" className="error-message">Vui lòng nhập địa chỉ</div>
                                 <TextArea placeholder='Ghi chú' />
                             </div>
 

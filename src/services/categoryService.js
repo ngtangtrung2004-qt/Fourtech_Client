@@ -1,4 +1,3 @@
-import { showToastError } from "../config/toastConfig";
 import { http } from "../utils/http";
 
 const CategoryService = {
@@ -7,7 +6,6 @@ const CategoryService = {
             const { data } = await http.get('/category', dataAllCategory)
             return data
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
             console.log(error);
         }
     },
@@ -21,7 +19,6 @@ const CategoryService = {
             })
             return data
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
             console.error(error);
         }
     },
@@ -35,7 +32,6 @@ const CategoryService = {
             });
             return data;
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!");
             console.error(error);
         }
     },
@@ -45,7 +41,6 @@ const CategoryService = {
             const { data } = await http.delete(`/category/delete/${id}`)
             return data
         } catch (error) {
-            showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
             console.error(error);
         }
     }
