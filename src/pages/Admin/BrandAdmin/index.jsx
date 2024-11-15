@@ -4,7 +4,7 @@ import BrandService from "../../../services/brandService";
 import { useEffect, useState } from "react";
 import { showToastSuccess } from "../../../config/toastConfig";
 import './edit.css'
-import { formatDate } from "../../../config/formatDate";
+import { formatDate } from "../../../config/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import EditBrand from "./EditBrand";
@@ -26,14 +26,13 @@ function Brand() {
     const dataBrand = await BrandService.getAllBrand();
     try {
       if (dataBrand && dataBrand.data && dataBrand.EC === 0) {
-        const formatDat = dataBrand.data.map((brand, index) => ({
+        const formatData = dataBrand.data.map((brand, index) => ({
           ...brand,
           key: brand.id,
           index: index + 1,
-          image: brand.logo,
-          category_id: brand.category_id,
+          image: brand.logo
         }))
-        setListBrand(formatDat)
+        setListBrand(formatData)
       }
     } catch (error) {
       console.log(error);
@@ -68,10 +67,6 @@ function Brand() {
       dataIndex: "name",
     },
     {
-      title: "Tên danh mục",
-      dataIndex: "category_name",
-    },
-    {
       title: "Hình ảnh",
       dataIndex: "image",
       render: (image) => (
@@ -96,7 +91,6 @@ function Brand() {
               id: record.id,
               name: record.name,
               logo: record.logo,
-              category_id: record.category_id
             }}
             onEditSuccess={fetchBrand} // Truyền hàm callback để làm mới danh sách
           />
@@ -109,9 +103,6 @@ function Brand() {
             }}
           >
             <FontAwesomeIcon icon={faTrash} />
-          </Button>
-           <Button type="primary" >
-            Sửa
           </Button>
 
           <Modal
@@ -145,7 +136,7 @@ function Brand() {
         columns={columns}
         dataSource={listBrand}
         pagination={{
-          pageSize: 5
+          pageSize: 10
         }}
       />
     </>

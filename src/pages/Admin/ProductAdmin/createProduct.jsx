@@ -5,8 +5,8 @@ import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import ProductService from "../../../services/productService";
 import { useNavigate } from "react-router-dom";
 import CategoryService from "../../../services/categoryService";
-import BrandService from "../../../services/brandService";
 import { showToastSuccess } from "../../../config/toastConfig";
+import BrandService from "../../../services/brandService";
 function CreateProduct() {
 
   const navigate = useNavigate();
@@ -16,47 +16,43 @@ function CreateProduct() {
     category_id: "",
     brand_id: "",
     image: [],
-    price: "",
-    promotion_price: "",
+    price: '',
+    promotion_price: '',
     description: "",
-    quantity: "",
+    quantity: '',
   });
 
   // const [imagePreview, setImagePreview] = useState(null);
-  const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchBrand = async () => {
+      const dataBrand = await BrandService.getAllBrand()
+      if (dataBrand && dataBrand.data && dataBrand.EC === 0) {
+        setBrands(dataBrand.data)
+      }
+    }
+
+    fetchBrand()
+  }, [])
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const dataCategory = await CategoryService.getAllCategory();
-      if (dataCategory && dataCategory.data && dataCategory.EC === 0) {
-        setCategories(dataCategory.data)
+      try {
+        const dataCategory = await CategoryService.getAllCategory()
+        if (dataCategory && dataCategory.data && dataCategory.EC === 0 || dataCategory.data.data.length > 0) {
+          setCategories(dataCategory.data);
+        } else {
+          setCategories([]);
+        }
+      } catch (error) {
+        console.error("Không thể tìm được danh mục", error);
       }
     }
 
     fetchCategory()
   }, [])
-
-  useEffect(() => {
-    const fetchBrand = async () => {
-      if (formDataProduct.category_id) {
-        try {
-          const dataBrand = await BrandService.getBrandsByCategory(formDataProduct.category_id);
-          if (dataBrand && dataBrand.data && dataBrand.data.EC === 0 || dataBrand.data.data.length > 0) {
-            setBrands(dataBrand.data.data);
-          } else {
-            setBrands([]);
-          }
-        } catch (error) {
-          console.error("Không thể tìm được thương hiệu.", error);
-        }
-      } else {
-        setBrands([]);
-      }
-    }
-
-    fetchBrand()
-  }, [formDataProduct.category_id])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,13 +64,27 @@ function CreateProduct() {
   };
 
   const handleFileChange = (e) => {
+    // const file = e.target.files;
+    // if (file) {
+    //   const fileReader = new FileReader();
+    //   fileReader.onload = () => {
+    //     setImagePreview(fileReader.result);
+    //   };
+    //   fileReader.readAsDataURL(file);
+    // }
+    // setImagePreview(file)
     // lưu file ảnh 
     setFormDataProduct({
       ...formDataProduct,
       image: Array.from(e.target.files), // Chuyển đổi FileList thành mảng
     });
   };
-  // console.log(formDataProduct);
+
+  const preView = () => {
+    return ([...formDataProduct.image].map((img, index) => (
+      <img key={index} src={URL.createObjectURL(img)} width='150px' height='100px' style={{ border: '1px solid black' }} />
+    )))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,8 +108,6 @@ function CreateProduct() {
       showToastSuccess(data.message);
       navigate('/admin/product-admin')
     }
-
-    console.log(data);
   };
   return (
     <>
@@ -107,7 +115,7 @@ function CreateProduct() {
         <h2>THÊM MỚI SẢN PHẨM</h2>
         <form className="product-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Tên Sản Phẩm</label>
+            <label htmlFor="name">Tên Sản Phẩm:</label>
             <input
               type="text"
               id="name"
@@ -116,21 +124,6 @@ function CreateProduct() {
               onChange={handleChange}
               placeholder="Nhập tên sản phẩm"
             />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="category_id">Danh Mục Sản Phẩm</label>
-            <select
-              id="category_id"
-              name="category_id"
-              value={formDataProduct.category_id}
-              onChange={handleChange}
-            >
-              <option value="">Chọn danh mục</option>
-              {categories.map((cate) => (
-                <option key={cate.id} value={cate.id}>{cate.name}</option>
-              ))}
-            </select>
           </div>
 
           <div className="form-group">
@@ -155,7 +148,28 @@ function CreateProduct() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="price">Giá Sản Phẩm</label>
+            <label htmlFor="category_id">Danh Mục Sản Phẩm:</label>
+            <select
+              id="category_id"
+              name="category_id"
+              value={formDataProduct.category_id}
+              onChange={handleChange}
+            >
+              <option value="">Chọn danh mục</option>
+              {categories.length > 0 ? (
+                categories.map((cate) => (
+                  <option key={cate.id} value={cate.id}>
+                    {cate.name}
+                  </option>
+                ))
+              ) : (
+                <option>Không có danh mục nào</option>
+              )}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="price">Giá Sản Phẩm:</label>
             <input
               type="number"
               id="price"
@@ -163,11 +177,12 @@ function CreateProduct() {
               value={formDataProduct.price}
               onChange={handleChange}
               placeholder="Nhập giá sản phẩm"
+              onWheel={(e) => e.target.blur()}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="promotion_price">Giá Khuyến mãi</label>
+            <label htmlFor="promotion_price">Giá Khuyến Mãi:</label>
             <input
               type="number"
               id="promotion_price"
@@ -175,11 +190,12 @@ function CreateProduct() {
               value={formDataProduct.promotion_price}
               onChange={handleChange}
               placeholder="Nhập giá khuyến mãi"
+              onWheel={(e) => e.target.blur()}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="quantity">Số lượng sản phẩm</label>
+            <label htmlFor="quantity">Số Lượng Sản Phẩm:</label>
             <input
               type="number"
               id="quantity"
@@ -187,11 +203,12 @@ function CreateProduct() {
               value={formDataProduct.quantity}
               onChange={handleChange}
               placeholder="Nhập số lượng sản phẩm"
+              onWheel={(e) => e.target.blur()}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="image">Hình Ảnh Sản Phẩm</label>
+            <label htmlFor="image">Hình Ảnh Sản Phẩm:</label>
             <label htmlFor="image" className="custom-file-upload">
               <FontAwesomeIcon icon={faCloudArrowUp} />
               Upload file
@@ -205,16 +222,10 @@ function CreateProduct() {
               multiple
               style={{ display: "none" }}
             />
-            {/* {imagePreview && (
-              <div>
-                <h4>Preview:</h4>
-                <img
-                  src={imagePreview}
-                  alt="Image Preview"
-                  style={{ width: "100px", height: "auto" }}
-                />
-              </div>
-            )} */}
+
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {preView()}
+            </div>
 
             <div className="form-group">
               <label htmlFor="description">Mô Tả Sản Phẩm</label>

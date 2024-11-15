@@ -2,7 +2,7 @@
 import "./style.css";
 
 
-import { Layout, theme  } from "antd";
+import { Layout, theme } from "antd";
 import PropTypes from "prop-types";
 
 import FooterAdmin from "./footerAdmin";
@@ -24,11 +24,11 @@ const LayoutAdmin = ({ children }) => {
         minHeight: "100vh",
       }}
     >
-      <SiderAdmin/>
+      <SiderAdmin />
       <Layout>
 
 
-        <HeaderAdmin/>
+        <HeaderAdmin />
 
 
 
@@ -50,7 +50,7 @@ const LayoutAdmin = ({ children }) => {
         </Content>
 
 
-        <FooterAdmin/>
+        <FooterAdmin />
 
 
       </Layout>

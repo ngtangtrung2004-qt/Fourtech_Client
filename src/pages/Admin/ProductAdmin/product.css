@@ -3,9 +3,14 @@
   justify-content: flex-start;
   margin-bottom: 20px;
 }
+
 .action-product {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 /* form product  */
 .product-form-container {
   background-color: #fff;
@@ -93,4 +98,15 @@
 
 .edit-product h2 {
   margin-bottom: 20px;
+}
+
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper .ant-table-cell,
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper .ant-table-thead>tr>th,
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper .ant-table-tbody>tr>th,
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper .ant-table-tbody>tr>td,
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper tfoot>tr>th,
+.css-dev-only-do-not-override-vryruh .ant-table-wrapper tfoot>tr>td {
+  position: relative;
+  overflow-wrap: break-word;
+  padding: 5px !important;
 }

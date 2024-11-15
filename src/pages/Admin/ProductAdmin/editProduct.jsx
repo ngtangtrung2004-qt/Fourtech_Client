@@ -1,58 +1,106 @@
 import { useEffect, useState } from "react";
-import { Form, Input, Button, Upload, message } from "antd";
+import { Form, Input, Button, Upload, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./product.css";
+import ProductService from "../../../services/productService";
+import CategoryService from "../../../services/categoryService";
+import BrandService from "../../../services/brandService";
+import { showToastSuccess } from "../../../config/toastConfig";
 
 const EditProduct = () => {
+  const navigate = useNavigate()
   const [form] = Form.useForm();
-  const { productId } = useParams(); // Lấy productId từ URL
+  const { id } = useParams(); // Lấy productId từ URL
   const [product, setProduct] = useState(null);
   const [imageList, setImageList] = useState([]); // Danh sách hình ảnh
+  const [imageEdit, setImageEdit] = useState([])
+  const [listBrand, setListBrand] = useState([])
+  const [listCategory, setListCategory] = useState([])
 
-  // Giả lập việc lấy dữ liệu sản phẩm từ API
+
   useEffect(() => {
-    // Thay thế bằng API thực tế để lấy dữ liệu sản phẩm
-    const fetchProduct = async () => {
-      const fetchedProduct = {
-        id: productId,
-        name: "iPhone 16 Pro",
-        description: "Vỏ titan, màn hình Super Retina XDR OLED 6.3 inch.",
-        price: "26.000.000 đ",
-        images: ["../../../../public/anh1.jpg", "../../../../public/anh1.jpg"],
-      };
-      setProduct(fetchedProduct);
-      form.setFieldsValue(fetchedProduct);
-      setImageList(fetchedProduct.images);
+
+    const fetchAPIOneProduct = async () => {
+      try {
+        const dataOneProduct = await ProductService.getOneProduct(id);
+
+        if (dataOneProduct.data) {
+          const product = dataOneProduct.data;
+          // Đặt giá trị form
+          await form.setFieldsValue(product);
+          // Đặt hình ảnh nếu cần
+          setImageList(product.image);
+          // Cập nhật state sản phẩm
+          setProduct(product);
+        } else {
+          console.error("Dữ liệu sản phẩm không tồn tại hoặc không hợp lệ");
+        }
+      } catch (error) {
+        console.error("Đã xảy ra lỗi khi gọi API:", error);
+      }
     };
 
-    fetchProduct();
-  }, [form, productId]);
-  const handleUploadChange = (info) => {
-    if (info.file.status === "done") {
-      // Giả lập việc nhận URL của hình ảnh đã tải lên
-      setImageList((prev) => [
-        ...prev,
-        URL.createObjectURL(info.file.originFileObj),
-      ]);
-      message.success(`${info.file.name} tải lên thành công!`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} tải lên thất bại.`);
+    fetchAPIOneProduct();
+    fetchBrand()
+    fetchCategory()
+  }, [id, form]);
+
+  const fetchCategory = async () => {
+    const dataCategory = await CategoryService.getAllCategory()
+    if (dataCategory && dataCategory.data && dataCategory.data.length > 0) {
+      setListCategory(dataCategory.data)
+    } else {
+      console.log("Lấy danh mục thất bại hoặc không có danh mục nào!");
     }
+  }
+
+  const fetchBrand = async () => {
+    const dataBrand = await BrandService.getAllBrand()
+    if (dataBrand && dataBrand.data && dataBrand.data.length > 0) {
+      setListBrand(dataBrand.data)
+    } else {
+      console.log("Lấy danh mục thất bại hoặc không có danh mục nào!");
+    }
+  }
+
+  const handleUploadChange = (info) => {
+    setImageEdit(info.fileList.map((file) => file.originFileObj)); // Chỉ giữ ảnh mới
   };
-  const onFinish = (values) => {
-    console.log("Updated Product:", values);
-    message.success("Cập nhật sản phẩm thành công!");
-    // Gửi dữ liệu đến máy chủ hoặc cập nhật trạng thái ở đây
+
+  const handleSubmitEdit = async (values) => {
+    const formData = new FormData()
+
+    for (let key in values) {
+      formData.append(key, values[key]);
+    }
+
+    if (imageEdit.length > 0) {
+      imageEdit.forEach((file) => {
+        formData.append('image', file);
+      });
+    }
+
+    try {
+      const dataEditProduct = await ProductService.putProduct(id, formData);
+
+      if (dataEditProduct && dataEditProduct.data && dataEditProduct.data.EC === 0) {
+        showToastSuccess(dataEditProduct.data.message);
+        navigate('/admin/product-admin')
+      }
+    } catch (error) {
+      console.error("Lỗi khi cập nhật sản phẩm:", error);
+    }
   };
 
   return (
     <div className="edit-product">
-      <h2>Chỉnh sửa sản phẩm</h2>
+      <h2>CHỈNH SỬA SẢN PHẨM</h2>
       {product && (
-        <Form form={form} layout="vertical" onFinish={onFinish}>
+        <Form form={form} layout="vertical" onFinish={handleSubmitEdit}>
           <Form.Item
-            label="Tên sản phẩm"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            label="Tên Sản Phẩm"
             name="name"
             rules={[{ required: true, message: "Vui lòng nhập tên sản phẩm!" }]}
           >
@@ -60,38 +108,109 @@ const EditProduct = () => {
           </Form.Item>
 
           <Form.Item
-            label="Mô tả"
+            label="Thương Hiệu"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            name="brand_id"
+            rules={[{ required: true, message: "Vui lòng chọn thương hiệu!" }]}
+          >
+            <Select placeholder="Chọn thương hiệu">
+              {listBrand && listBrand.length > 0 ? (
+                listBrand.map((bra) => (
+                  <Select.Option key={bra.id} value={bra.id}>{bra.name}</Select.Option>
+                ))
+              ) : (
+                <Select.Option value="">Không có thương hiệu nào</Select.Option>
+              )}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label="Danh Mục"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            name="category_id"
+            rules={[{ required: true, message: "Vui lòng chọn danh mục!" }]}
+          >
+            <Select placeholder="Chọn danh mục">
+              {listCategory && listCategory.length > 0 ? (
+                listCategory.map((cate) => (
+                  <Select.Option key={cate.id} value={cate.id}>{cate.name}</Select.Option>
+                ))
+              ) : (
+                <Select.Option value="">Không có danh mục nào</Select.Option>
+              )}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label="Giá:"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            name="price"
+            rules={[{ required: true, message: "Vui lòng nhập giá sản phẩm!" }]}
+          >
+            <Input
+              type="number"
+              onWheel={(e) => e.target.blur()}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Giá Khuyến Mãi:"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            name="promotion_price"
+            rules={[{ required: true, message: "Vui lòng nhập giá khuyễn mãi!" }]}
+          >
+            <Input
+              type="number"
+              onWheel={(e) => e.target.blur()}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Số Lượng Sản Phẩm:"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            name="quantity"
+            rules={[{ required: true, message: "Vui lòng nhập số lượng sản phẩm!" }]}
+          >
+            <Input
+              type="number"
+              onWheel={(e) => e.target.blur()}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Mô tả:"
             name="description"
+            labelCol={{ style: { fontWeight: 'bold' } }}
             rules={[
               { required: true, message: "Vui lòng nhập mô tả sản phẩm!" },
             ]}
           >
-            <Input.TextArea rows={4} />
+            <Input.TextArea rows={10} />
           </Form.Item>
+
 
           <Form.Item
-            label="Giá"
-            name="price"
-            rules={[{ required: true, message: "Vui lòng nhập giá sản phẩm!" }]}
+            label="Hình ảnh:"
+            labelCol={{ style: { fontWeight: 'bold' } }}
+            getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
           >
-            <Input />
-          </Form.Item>
-
-          <Form.Item label="Hình ảnh">
             <Upload
               listType="picture"
               onChange={handleUploadChange}
+              accept="image/*"
               beforeUpload={() => false} // Ngăn không cho tải lên tự động
+              multiple
             >
               <Button icon={<UploadOutlined />}>Tải lên hình ảnh</Button>
             </Upload>
+
             {imageList.length > 0 && (
               <div className="image-preview">
                 {imageList.map((img, index) => (
                   <img
                     key={index}
-                    src={img}
-                    alt={`Product image ${index + 1}`}
+                    src={import.meta.env.VITE_API_URL + '/uploads/' + img}
+                    title={img}
                     style={{ width: "100px", margin: "10px" }}
                   />
                 ))}
@@ -99,11 +218,13 @@ const EditProduct = () => {
             )}
           </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Cập nhật
-            </Button>
-          </Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: '100%', fontSize: '20px', padding: '20px 0' }}
+          >
+            Cập nhật
+          </Button>
         </Form>
       )}
     </div>

@@ -4,7 +4,7 @@ import "./edit.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CategoryService from "../../../services/categoryService";
-import { formatDate } from "../../../config/formatDate";
+import { formatDate } from "../../../config/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
@@ -70,7 +70,7 @@ function CategoryAdmin() {
         <img
           src={import.meta.env.VITE_API_URL + "/uploads/" + image}
           alt="Category"
-          style={{ width: "50px", height: "50px" }}
+          style={{ width: "80px", height: "80px" }}
         />
       ),
     },
@@ -87,7 +87,7 @@ function CategoryAdmin() {
             categoryItem={{
               id: record.id,
               name: record.name,
-              image: record.image
+              image: record.image,
             }}
             onEditSuccess={fetchCategory} // Truyền hàm callback để làm mới danh sách
           />
@@ -132,8 +132,9 @@ function CategoryAdmin() {
         columns={columns}
         dataSource={listCategory}
         pagination={{
-          pageSize: 5, // Số lượng sản phẩm hiển thị trên mỗi trang
+          pageSize: 10, // Số lượng sản phẩm hiển thị trên mỗi trang
         }}
+        style={{textAlign: 'center'}}
       />
     </>
   );

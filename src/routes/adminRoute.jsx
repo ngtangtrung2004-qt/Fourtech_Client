@@ -1,6 +1,6 @@
 function AdminRoute() {
     return (<>
-    
+
     </>);
 }
 

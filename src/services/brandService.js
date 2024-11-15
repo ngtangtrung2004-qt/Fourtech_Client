@@ -1,3 +1,4 @@
+import { showToastError } from "../config/toastConfig";
 import { http } from "../utils/http";
 
 
@@ -20,6 +21,7 @@ const BrandService = {
             })
             return data
         } catch (error) {
+            showToastError(error.response.data.error)
             console.error(error);
         }
     },
@@ -33,6 +35,7 @@ const BrandService = {
             });
             return data;
         } catch (error) {
+            showToastError(error.response.data.error)
             console.error(error);
         }
     },
@@ -45,15 +48,6 @@ const BrandService = {
             console.error(error);
         }
     },
-
-    getBrandsByCategory: async (idCategory) => {
-        try {
-            const data = await http.get(`/brand/categor/${idCategory}`);
-            return data
-        } catch (error) {
-            console.log(error);
-        }
-    }
 }
 
 export default BrandService
