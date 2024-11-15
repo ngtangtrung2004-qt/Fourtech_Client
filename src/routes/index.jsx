@@ -26,12 +26,14 @@ import Article from "../pages/User/Article/article"
 import InFor from "../pages/User/InFor/InFor"
 import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
 import ContactAdmin from "../pages/Admin/ContactAdmin"
-import forgotPassword from "../pages/User/Signinsignup/Forgotpassword"
+import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword"
+import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
     {path: '/login-register', component: SignupSignin, layout: DefaultLayout},
-    {path: '/forgotPassword', component:forgotPassword , layout: DefaultLayout},
+    {path: '/forgotPassword', component:ForgotPassword , layout: DefaultLayout},
+    {path: '/reset-password/:token', component:ResetPassword , layout: DefaultLayout},
     {path: '/detail', component: ProductDetails,layout: DefaultLayout},
     {path: '/cart', component: Cart,layout: DefaultLayout},
     {path: '/allProduct',component:AllProduct,layout: DefaultLayout},
