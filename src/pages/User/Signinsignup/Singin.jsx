@@ -118,6 +118,7 @@ const SignupSignin = () => {
             const dataLogin = await AuthService.Login(formLogin)
 
             if (dataLogin && dataLogin.EC === 0) {
+                localStorage.setItem('access_token', JSON.stringify(dataLogin.data.access_token))
                 showToastSuccess(dataLogin.message)
                 navigate('/')
             }
