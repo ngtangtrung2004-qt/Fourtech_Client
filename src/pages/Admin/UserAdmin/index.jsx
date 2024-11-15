@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AuthService from "../../../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { formatDate } from "../../../config/formatDate";
+import { formatDate } from "../../../config/config";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function UserAdmin() {

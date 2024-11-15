@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BrandService from "../../../services/brandService";
-import CategoryService from "../../../services/categoryService"; // Dịch vụ để lấy danh mục
 import { showToastSuccess } from "../../../config/toastConfig";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,22 +15,6 @@ function CreateBrand() {
   const [imagePreview, setImagePreview] = useState(null);
   const [errorValidate, setErrorValidate] = useState({});
   const [fileName, setFileName] = useState("Chưa có tệp nào được chọn");
-  const [categories, setCategories] = useState([]); // State để lưu danh sách các danh mục
-
-  // Lấy dữ liệu danh mục khi component được mount
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await CategoryService.getAllCategory(); 
-        if (response && response.data && response.data.length > 0) {
-          setCategories(response.data); // Cập nhật danh mục vào state
-        }
-      } catch (error) {
-        console.log("Lỗi khi lấy danh mục:", error);
-      }
-    };
-    fetchCategories();
-  }, []); // Chỉ chạy khi component được mount
 
   // Cập nhật tên thương hiệu trong state khi người dùng nhập liệu
   const handleChange = (e) => {
@@ -74,11 +57,6 @@ function CreateBrand() {
       newError.brandImage = "Chưa có hình ảnh!";
     }
 
-    // Kiểm tra danh mục
-    if (!brandData.idCategory) {
-      newError.idCategory = "Danh mục không được để trống!";
-    }
-
     // Nếu có lỗi, dừng lại không gửi form
     if (Object.keys(newError).length > 0) {
       setErrorValidate(newError); // Cập nhật lỗi
@@ -89,7 +67,7 @@ function CreateBrand() {
     const formData = new FormData();
     formData.append("brandName", brandData.brandName);
     formData.append("brandImage", brandData.brandImage);
-    formData.append("category_id", brandData.idCategory); // Gửi idCategory lên server
+
 
     const data = await BrandService.postBrand(formData);
 
@@ -116,26 +94,6 @@ function CreateBrand() {
           />
           {errorValidate.brandName && (
             <span className="spanError">{errorValidate.brandName}</span>
-          )}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="idCategory">Danh mục:</label>
-          <select
-            id="idCategory"
-            name="idCategory"
-            value={brandData.idCategory}
-            onChange={handleChange}
-          >
-            <option value="">Chọn danh mục</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-          {errorValidate.idCategory && (
-            <span className="spanError">{errorValidate.idCategory}</span>
           )}
         </div>
 
