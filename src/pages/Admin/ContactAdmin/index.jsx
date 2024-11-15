@@ -1,7 +1,8 @@
 import {Table } from "antd";
 import { useState,useEffect } from "react";
 import ReplyContact from "./replyModel";
-import { formatDate } from "../../../config/formatDate";
+import { formatDate } from "../../../config/config";
+// import { formatDate } from "../../../config/formatDate";
 
 
 

@@ -30,11 +30,7 @@ function Brand() {
           ...brand,
           key: brand.id,
           index: index + 1,
-<<<<<<< HEAD
           image: brand.logo,
-=======
-          image: brand.logo
->>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
         }))
         setListBrand(formatData)
       }
@@ -109,11 +105,7 @@ function Brand() {
             brandItem={{
               id: record.id,
               name: record.name,
-<<<<<<< HEAD
               logo: record.logo
-=======
-              logo: record.logo,
->>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
             }}
             onEditSuccess={fetchBrand} // Truyền hàm callback để làm mới danh sách
           />
@@ -127,10 +119,6 @@ function Brand() {
           >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 898fa2737cc1cefd86c2833dcf8d5e501f39f0ae
           <Modal
             title="Xác nhận xóa!"
             centered
