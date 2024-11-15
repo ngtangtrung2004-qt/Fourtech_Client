@@ -94,7 +94,7 @@ function CreateProduct() {
 
     const data = await ProductService.postProduct(formData)
 
-    if (data && data.data && data.data.length > 0) {
+    if (data && data.data && data.EC === 0) {
       showToastSuccess(data.message);
       navigate('/admin/product-admin')
     }
