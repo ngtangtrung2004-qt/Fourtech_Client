@@ -10,12 +10,9 @@ import Category from '../../../components/Category/Category';
 const AllProduct = () => {
   
   const { addToCart } = useContext(CartContext);
-  const [showMore, setShowMore] = useState(false);
   const [activeFilter, setActiveFilter] = useState('');
 
-    const toggleShowMore = () => {setShowMore(!showMore);
-      
-  }
+  
   const AllProducts = [
     {
       id: 13,
@@ -111,9 +108,6 @@ const filters = [
                     <label htmlFor={bran}>{bran}</label>
                   </div>
                 ))}
-                <button className="show-more-btn" onClick={toggleShowMore}>
-                  {showMore ? 'Thu gọn ' : 'Xem thêm '}
-                </button>
               </div>
             <div >
             </div>

@@ -7,13 +7,13 @@ import { CartContext } from "../../../CartContext/CartContext";
 
 function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [account,setAccount] = useState()
+    const [account, setAccount] = useState()
     const inputRef = useRef(null);
     const { cartQuantity } = useContext(CartContext);
 
     useEffect(() => {
         let jwt = sessionStorage.getItem('account')
-        if(jwt) {
+        if (jwt) {
             setAccount(account)
         }
     }, [])
@@ -85,7 +85,7 @@ function Header() {
 
                                 </li>
                                 <li className="nav-item">
-                                    <Link to='/article'>Bài viết</Link>
+                                    <Link to='/a    rticle'>Bài viết</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to='/contact'>Liên hệ</Link>
@@ -139,42 +139,43 @@ function Header() {
                             </div>
 
                             <div className="account">
-                                <div className="icon-user">
-
-                                    <Link to={"/login-register"}>
-
-                                        <FontAwesomeIcon icon="fa-circle-user" />
-                                        <div className="arrow-up"></div>
-                                        <div className="text-dang-nhap">
-                                            <div className="arrow-up"></div>
-                                            <p>Đăng nhập</p>
+                                {localStorage.getItem('access_token') ? (
+                                    <div className="user">
+                                        <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
+                                        <div className="sub-user">
+                                            <ul>
+                                                <li>
+                                                    <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Trương Văn Tiến Đạt</span></p>
+                                                </li>
+                                                <li>
+                                                    <Link to={'/info'}>
+                                                        <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
+                                                        <p>Hồ sơ</p>
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link to={'/login-register'}>
+                                                        <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
+                                                        <p
+                                                            onClick={() => localStorage.clear('access_token')}
+                                                        >Đăng xuất</p>
+                                                    </Link>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </Link>
-                                </div>
-
-                                {/* Phần này là để đăng nhập hiển thị người dùng */}
-                                {/* <div className="user">
-                                    <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
-                                    <div className="sub-user">
-                                        <ul>
-                                            <li>
-                                                <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Trương Văn Tiến Đạt</span></p>
-                                            </li>
-                                            <li>
-                                                <Link to={'/info'}>
-                                                    <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
-                                                    <p>Hồ sơ</p>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to={'/signin'}>
-                                                    <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
-                                                    <p>Đăng xuất</p>
-                                                </Link>
-                                            </li>
-                                        </ul>
                                     </div>
-                                </div> */}
+                                ) : (
+                                    <div className="icon-user">
+                                        <Link to={"/login-register"}>
+                                            <FontAwesomeIcon icon="fa-circle-user" />
+                                            <div className="arrow-up"></div>
+                                            <div className="text-dang-nhap">
+                                                <div className="arrow-up"></div>
+                                                <p>Đăng nhập</p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
