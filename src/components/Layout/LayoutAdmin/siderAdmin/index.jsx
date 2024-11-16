@@ -10,7 +10,7 @@ import {
   ShopOutlined,
   ShoppingOutlined,
   UnorderedListOutlined,
-  UserOutlined,
+  PieChartOutlined
 } from "@ant-design/icons";
 function getItem(label, key, icon, children) {
   return {
@@ -54,8 +54,12 @@ const items = [
   getItem(
     <Link to="/admin/user-admin">Người dùng</Link>,
     "6",
-    <UserOutlined />
-  ),
+    <PieChartOutlined />
+  ),getItem(
+    <Link to="/admin/contact-admin">Contact</Link>,
+    "7",
+    <PieChartOutlined />
+  )
   // getItem(
   //   <Link to="/admin/brandAdmin">Brand</Link>,
   //   "6",

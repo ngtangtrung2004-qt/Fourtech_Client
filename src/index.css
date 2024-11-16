@@ -27,7 +27,7 @@ body {
   margin: 0 auto;
   /* overflow-y: hidden; */
   /* /* width: calc(100% - 15px); */
-  width: calc(100%);
+  width: 100%;
   margin: 0px;
 }
 

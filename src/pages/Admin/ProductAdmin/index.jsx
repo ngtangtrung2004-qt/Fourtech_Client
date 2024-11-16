@@ -12,6 +12,7 @@ function ProductAdmin() {
   const navigate = useNavigate()
 
   const [products, setProducts] = useState([]);
+  console.log(products)
 
   //DELETE
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false); // Modal xóa
@@ -204,7 +205,7 @@ function ProductAdmin() {
 
       <Table
         columns={columns}
-        dataSource={products}
+        // dataSource={products}
         pagination={{
           pageSize: 5,
         }}
