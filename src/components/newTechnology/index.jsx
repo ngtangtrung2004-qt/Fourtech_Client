@@ -13,7 +13,7 @@ function NewTechnology() {
           <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
           <div className="card-action">
             <div className="card-date">
-              <span><FontAwesomeIcon icon={faCalendarDay} /></span>
+              <span><FontAwesomeIcon icon={faCalendarDay} /></span> 
               <span>13/12/2002</span>
             </div>
             <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>

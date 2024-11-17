@@ -85,7 +85,7 @@ function Header() {
 
                                 </li>
                                 <li className="nav-item">
-                                    <Link to='/a    rticle'>Bài viết</Link>
+                                    <Link to='/article'>Bài viết</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to='/contact'>Liên hệ</Link>
