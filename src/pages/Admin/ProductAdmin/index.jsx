@@ -95,7 +95,7 @@ function ProductAdmin() {
       dataIndex: "image",
       render: (images) => {
         return (
-          <div style={{ display: "flex", alignItems:'center', justifyContent: 'center' , flexWrap: "wrap", gap: "10px" }}>
+          <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', flexWrap: "wrap", gap: "10px" }}>
             {images.slice(0, 2).map((src, index) => (
               <img
                 key={index}
@@ -205,7 +205,7 @@ function ProductAdmin() {
 
       <Table
         columns={columns}
-        // dataSource={products}
+        dataSource={products}
         pagination={{
           pageSize: 5,
         }}

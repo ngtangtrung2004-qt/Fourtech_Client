@@ -37,7 +37,7 @@ http.interceptors.response.use(
                 console.log(error.response.data);
                 // showToastError("Vui lòng đăng nhập lại!");
                 setTimeout(() => {
-                    window.location.href = '/login-register'
+                    // window.location.href = '/login-register'
                 }, 2000)
                 break;
 

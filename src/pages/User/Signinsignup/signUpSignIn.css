@@ -225,7 +225,7 @@
   background-color: white;
   width: 450px;
   height: 100%;
-  margin: 100px 0 300px 500px;
+  margin: 0 auto;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -238,19 +238,18 @@
   font-size: 20px;
 }
 .main_dlmk .center_dlmk {
-  padding: 20px 0 20px 70px;
-  width: 50px;
+  width: 100%;
 }
 .main_dlmk .center_dlmk input {
+  display: block;
   height: 40px;
-  width: 300px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 10px;
   border-radius: 5px;
   border: 0.5px solid #6e6e6e;
-}
-.main_dlmk .center_dlmk input[type="email"] {
-  padding-left: 20px;
   font-size: 15px;
-  color: #dddddd;
+  color: #000;
 }
 .main_dlmk .bot_dlmk button {
   width: 320px;
