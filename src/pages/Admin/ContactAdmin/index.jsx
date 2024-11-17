@@ -1,6 +1,8 @@
 import {Table } from "antd";
 import { useState,useEffect } from "react";
 import ReplyContact from "./replyModel";
+import { formatDate } from "../../../config/config";
+// import { formatDate } from "../../../config/formatDate";
 
 
 
@@ -9,14 +11,15 @@ function ContactAdmin() {
   useEffect(()=>{
     const fetchCategory = async ()=>{
       try{
-        const res = await fetch('http://localhost:6060/api/contact')
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`)
         const data = await res.json();
         const formatData = data.map((ct,index)=>({
           key:index+1 ,
           UserContact:ct.UserContact,
           EmailContact:ct.EmailContact,
           PhoneContact:ct.PhoneContact,
-          messageContact:ct.messageContact
+          messageContact:ct.messageContact,
+          createdAt:ct.createdAt   
         }))
         setDataContact(formatData)
 
@@ -45,6 +48,11 @@ function ContactAdmin() {
     {
       title: "message",
       dataIndex: "messageContact",
+    },
+    {
+      title: "DateContact",
+      dataIndex: "createdAt",
+      render: (date) => formatDate(date),
     },
     
     {

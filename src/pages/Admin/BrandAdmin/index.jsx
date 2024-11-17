@@ -2,7 +2,7 @@ import { Table, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 import BrandService from "../../../services/brandService";
 import { useEffect, useState } from "react";
-import { showToastSuccess } from "../../../config/toastConfig";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 import './edit.css'
 import { formatDate } from "../../../config/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,12 +30,13 @@ function Brand() {
           ...brand,
           key: brand.id,
           index: index + 1,
-          image: brand.logo
+          image: brand.logo,
         }))
         setListBrand(formatData)
       }
     } catch (error) {
       console.log(error);
+      showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
     }
   }
 
@@ -44,14 +45,28 @@ function Brand() {
       if (brandId) {
         const brand = await BrandService.deleteBrand(brandId);
 
-        if (brand && brand.EC === 0) {
-          showToastSuccess(brand.message);
-          await fetchBrand();
-          setModalDeleteOpen(false);
+        switch (brand && brand.EC) {
+          case 1:
+            showToastError(brand.message);
+            break;
+
+          case 0:
+            showToastSuccess(brand.message);
+            await fetchBrand();
+            setModalDeleteOpen(false);
+            break;
+
+          case -1:
+            showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
+            break;
+
+          default:
+            break;
         }
       }
     } catch (error) {
       console.log(error);
+      showToastError("Lỗi hệ thống. Vui lòng thử lại sau.");
     }
   };
 
@@ -90,7 +105,7 @@ function Brand() {
             brandItem={{
               id: record.id,
               name: record.name,
-              logo: record.logo,
+              logo: record.logo
             }}
             onEditSuccess={fetchBrand} // Truyền hàm callback để làm mới danh sách
           />
@@ -104,7 +119,6 @@ function Brand() {
           >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-
           <Modal
             title="Xác nhận xóa!"
             centered
@@ -120,7 +134,6 @@ function Brand() {
               Bạn muốn xóa thương hiệu: <b>{record.name}</b>
             </p>
           </Modal>
-
         </span>
       ),
     },

@@ -13,7 +13,7 @@ function Contact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:6060/api/contact', formData); // Gửi dữ liệu lên API
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData); // Gửi dữ liệu lên API
             alert('Gửi thành công!');
         } catch (error) {
             console.error('Lỗi khi gửi phản hồi:', error);
