@@ -1,6 +1,15 @@
 import { http } from "../utils/http";
 
 const AuthService = {
+    getAccount: async (user) => {
+        try {
+            const dataUser = await http.get('/account', user)
+            return dataUser.data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     Register: async (dataRegister) => {
         try {
             const { data } = await http.post('/register', dataRegister)
@@ -13,6 +22,15 @@ const AuthService = {
     Login: async (dataLogin) => {
         try {
             const { data } = await http.post('/login', dataLogin)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    Logout: async () => {
+        try {
+            const { data } = await http.post('/logout')
             return data
         } catch (error) {
             console.log(error);

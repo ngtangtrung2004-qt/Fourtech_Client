@@ -1,5 +1,5 @@
 import "./signUpSignIn.css"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import clsx from 'clsx';
 import logo from "/Logo.png"
@@ -7,11 +7,16 @@ import { Link } from "react-router-dom";
 import { showToastSuccess } from "../../../config/toastConfig";
 import 'react-toastify/dist/ReactToastify.css';
 import AuthService from "../../../services/authService";
+import { UserContext } from "../../../components/context/authContext";
+
 
 
 const SignupSignin = () => {
     const navigate = useNavigate()
     const [active, setActive] = useState(false)
+
+    const { loginContext } = useContext(UserContext)
+
 
     const [formRegister, setFormRegister] = useState({
         full_nameRegister: "",
@@ -104,6 +109,8 @@ const SignupSignin = () => {
         e.preventDefault();
         const newError = {}
 
+
+
         if (!formLogin.valueLogin.trim()) {
             newError.valueLogin = "Email hoặc số điện thoại không được để trống!"
         }
@@ -118,9 +125,24 @@ const SignupSignin = () => {
             const dataLogin = await AuthService.Login(formLogin)
 
             if (dataLogin && dataLogin.EC === 0) {
-                localStorage.setItem('access_token', JSON.stringify(dataLogin.data.access_token))
+                let full_name = dataLogin?.data?.full_name
+                let email = dataLogin?.data?.email
+                let avatar = dataLogin?.data?.avatar
+                let role = dataLogin?.data?.role
+                const dataUser = {
+                    isAuthenticated: true,
+                    access_token: dataLogin.data.access_token,
+                    account: { full_name, email, avatar, role }
+                }
+                console.log('check dataUser>>>', dataUser);
+                loginContext(dataUser)
                 showToastSuccess(dataLogin.message)
-                navigate('/')
+                if (role === 'admin') {
+                    console.log('admin');
+                    navigate('/admin')
+                } else {
+                    navigate('/')
+                }
             }
         }
     }

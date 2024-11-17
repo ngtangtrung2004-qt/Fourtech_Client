@@ -13,7 +13,7 @@ function Category (){
     const fetchAPICategory = async () => {
         const dataCategory = await CategoryService.getAllCategory();
 
-        console.log(dataCategory);
+        console.log(dataCategory.data);
     }
 
     const category = [
