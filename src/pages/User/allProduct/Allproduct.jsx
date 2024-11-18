@@ -11,7 +11,8 @@ import { formatCurrency } from '../../../config/config';
 
 const AllProduct = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
-  const [pro, setAllProduct] = useState([])
+  const [pro, setAllProduct] = useState([]);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
 
   useEffect(() => {
     fetchAPIAllProduct()
@@ -27,6 +28,40 @@ const AllProduct = () => {
   const { addToCart } = useContext(CartContext);
   const [activeFilter, setActiveFilter] = useState('');
 
+  // Hàm xử lý khi thay đổi checkbox lọc giá
+  const handlePriceFilterChange = (event) => {
+  const { id, checked } = event.target;
+  setSelectedPriceRanges((prevSelectedRanges) =>
+    checked ? [...prevSelectedRanges, id] : prevSelectedRanges.filter((range) => range !== id)
+  );
+};
+// Hàm lọc sản phẩm theo giá
+const filterByPrice = (product) => {
+  if (!selectedPriceRanges.length) return true;
+
+  return selectedPriceRanges.some((range) => {
+    const price = product.price; // Thay "product.price" nếu bạn lưu giá ở property khác
+    switch (range) {
+      case 'Giá dưới 1.000.000₫':
+        return price < 1000000;
+      case '1.000.000₫ - 2.000.000₫':
+        return price >= 1000000 && price <= 2000000;
+      case '2.000.000₫ - 3.000.000₫':
+        return price > 2000000 && price <= 3000000;
+      case '3.000.000₫ - 5.000.000₫':
+        return price > 3000000 && price <= 5000000;
+      case '5.000.000₫ - 7.000.000₫':
+        return price > 5000000 && price <= 7000000;
+      case '7.000.000₫ - 10.000.000₫':
+        return price > 7000000 && price <= 10000000;
+      case 'Giá trên 10.000.000₫':
+        return price > 10000000;
+      default:
+        return false;
+    }
+  });
+};
+
    // Hàm xử lý thay đổi của checkbox
    const handleBrandFilterChange = (event) => {
     const { id, checked } = event.target;
@@ -37,8 +72,11 @@ const AllProduct = () => {
 
   // Lọc sản phẩm dựa trên tên sản phẩm chứa từ khóa đã chọn
   const filteredProducts = selectedBrands.length
-    ? pro.filter((product) => selectedBrands.some((brand) => product.name.includes(brand)))
-    : pro;
+  ? pro.filter(
+      (product) =>
+        selectedBrands.some((brand) => product.name.includes(brand)) && filterByPrice(product)
+    )
+  : pro.filter(filterByPrice);
 
   const filters = [
     { key: 'giaTangDan', label: 'Giá tăng dần' },
@@ -120,8 +158,12 @@ const AllProduct = () => {
                 , 'Máy tính (PC)', 'Máy tính bảng',
               ].map((tag, index) => (
                 <div key={index} className="filter-item">
-                  <input type="checkbox" id={tag} />
+                  <input 
+                      type="checkbox" 
+                      id={tag}
+                      onChange={handleBrandFilterChange}/>
                   <label htmlFor={tag}>{tag}</label>
+                  
                 </div>
               ))}
             </div>
@@ -131,7 +173,10 @@ const AllProduct = () => {
               {['Giá dưới 1.000.000₫', '1.000.000₫ - 2.000.000₫', '2.000.000₫ - 3.000.000₫',
                 '3.000.000₫ - 5.000.000₫', '5.000.000₫ - 7.000.000₫', '7.000.000₫ - 10.000.000₫', 'Giá trên 10.000.000₫',].map((tag, index) => (
                   <div key={index} className="filter-item">
-                    <input type="checkbox" id={tag} />
+                    <input 
+                      type="checkbox" 
+                      id={tag}
+                      onChange={handlePriceFilterChange} />
                     <label htmlFor={tag}>{tag}</label>
                   </div>
                 ))}
