@@ -96,7 +96,7 @@ function Category (){
         <>
               <div className="product-grid">
                 {category.map((item) => (
-                    <a key={category.id}>
+                    <a key={item.id}>
                         <div className="product-item">
                             <img src={import.meta.env.VITE_API_URL + '/uploads/' + item.image} alt="Laptop" />
                             <p>{item.name}</p>

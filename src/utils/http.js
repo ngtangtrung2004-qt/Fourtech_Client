@@ -7,6 +7,16 @@ export const http = axios.create({
     timeout: 3000,
     // withCredentials: true
 });
+
+
+http.interceptors.request.use(function (config) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
+
+    return config
+}, function (err) {
+    return Promise.reject(err)
+})
+
 http.interceptors.response.use(
     response => response,
     error => {
@@ -36,7 +46,7 @@ http.interceptors.response.use(
             case 404:
                 showToastError(errorMessage);
                 break;
-                
+
             case 409:
                 showToastError(errorMessage);
                 break;
