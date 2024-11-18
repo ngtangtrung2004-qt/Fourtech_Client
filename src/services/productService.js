@@ -12,6 +12,15 @@ const ProductService = {
         }
     },
 
+    getAllProductTrash: async (data) => {
+        try {
+            const dataProductTrash = await http.get('/product-trash', data)
+            return dataProductTrash.data.data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     getOneProduct: async (id) => {
         try {
             const { data } = await http.get(`/product/${id}`)
@@ -46,6 +55,24 @@ const ProductService = {
         } catch (error) {
             showToastError(error.response.data.error)
             console.log(error);
+        }
+    },
+
+    deleteSoftProduct: async (id) => {
+        try {
+            const { data } = await http.delete(`/product/delete-soft/${id}`)
+            return data
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    restoreProduct: async (id) => {
+        try {
+            const { data } = await http.put(`/product/restore/${id}`)
+            return data
+        } catch (error) {
+            console.error(error);
         }
     },
 

@@ -8,37 +8,37 @@ export const http = axios.create({
     withCredentials: true
 });
 
-// http.interceptors.request.use(function (config) {
-//     config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
-//     return config
-// }, function (err) {
-//     return Promise.reject(err)
-// })
+http.interceptors.request.use(function (config) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`
+    return config
+}, function (err) {
+    return Promise.reject(err)
+})
 
 http.interceptors.response.use(
     response => response,
     error => {
         const status = (error && error.response && error.response.status || 500);
-        console.error('HTTP Status:', status);
 
         // Kiểm tra xem có `response` và `data` trong lỗi hay không để hiển thị thông báo phù hợp
         const errorMessage = error.response && error.response.data && error.response.data.message
             ? error.response.data.message
             : 'Lỗi không xác định. Vui lòng thử lại sau!';
 
+        if (status === 401) {
+            showToastError("Vui lòng đăng nhập lại!");
+            localStorage.removeItem('userInfo');
+            localStorage.removeItem('jwt');
+            window.location.href = '/login-register';
+
+            return Promise.reject(error);
+        }
+
         switch (status) {
 
             // Thêm các mã lỗi khác nếu cần
             case 400:
                 showToastError(errorMessage);
-                break;
-
-            case 401:
-                console.log(error.response.data);
-                // showToastError("Vui lòng đăng nhập lại!");
-                setTimeout(() => {
-                    // window.location.href = '/login-register'
-                }, 2000)
                 break;
 
             case 403:

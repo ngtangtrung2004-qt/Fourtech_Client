@@ -135,6 +135,7 @@ const SignupSignin = () => {
                     account: { full_name, email, avatar, role }
                 }
                 console.log('check dataUser>>>', dataUser);
+                localStorage.setItem('jwt', dataLogin.data.access_token)
                 loginContext(dataUser)
                 showToastSuccess(dataLogin.message)
                 if (role === 'admin') {

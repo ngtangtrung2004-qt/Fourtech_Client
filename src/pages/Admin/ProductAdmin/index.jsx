@@ -49,10 +49,10 @@ function ProductAdmin() {
   const handleDelete = async () => {
     try {
       if (productId) {
-        const brand = await ProductService.deleteProduct(productId);
+        const product = await ProductService.deleteSoftProduct(productId);
 
-        if (brand && brand.EC === 0) {
-          showToastSuccess(brand.message);
+        if (product && product.EC === 0) {
+          showToastSuccess(product.message);
           await fetchProducts();
           setModalDeleteOpen(false);
         }
@@ -200,6 +200,11 @@ function ProductAdmin() {
       <div className="add-product">
         <Button type="primary">
           <Link to="/admin/add-product">Thêm Sản Phẩm</Link>
+        </Button>
+        <Button type="primary" danger>
+          <Link to="/admin/trash-can-product">
+            Thùng rác
+          </Link>
         </Button>
       </div>
 
