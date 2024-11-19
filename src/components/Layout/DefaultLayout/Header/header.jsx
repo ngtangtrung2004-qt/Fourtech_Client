@@ -7,8 +7,26 @@ import { CartContext } from "../../../CartContext/CartContext";
 import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
+import CategoryService from "../../../../services/categoryService";
+
 
 function Header() {
+
+    const [category, setHeaderCategory] = useState([]);
+
+        useEffect(() => {
+            fetchAPICategory()
+        }, [
+
+        ])
+            const fetchAPICategory = async () => {
+                const dataCategory = await CategoryService.getAllCategory();
+                console.log(dataCategory.data);
+                setHeaderCategory(dataCategory.data);
+            }
+        
+
+
     const navigate = useNavigate()
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     // const [account, setAccount] = useState()
@@ -72,25 +90,13 @@ function Header() {
                                         <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
                                     </Link>
                                     <div className="sub-nav">
-                                        <ul className="sub-nav-list">
-                                            <li className="sub-nav-item">
-                                                <Link>Bàn phím</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Laptop</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Màn hình</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Chuột + Lót chuột</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Máy chơi game</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Sạc dự phòng</Link>
-                                            </li>
+                                        <ul className="sub-nav-list"> 
+                                            {category.map((item) => ( 
+                                                <li className="sub-nav-item" key={item.id}>
+                                                    <Link>{item.name}</Link>
+                                                </li>
+                                            ))}
+
                                         </ul>
                                     </div>
 
