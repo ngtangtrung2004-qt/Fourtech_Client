@@ -9,8 +9,13 @@ export const http = axios.create({
 });
 
 http.interceptors.request.use(function (config) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`
-    return config
+    const token = localStorage.getItem('jwt');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    } else {
+        delete config.headers.Authorization;
+    }
+    return config;
 }, function (err) {
     return Promise.reject(err)
 })
@@ -30,6 +35,7 @@ http.interceptors.response.use(
             localStorage.removeItem('userInfo');
             localStorage.removeItem('jwt');
             window.location.href = '/login-register';
+            delete axios.defaults.headers.common['Authorization'];
 
             return Promise.reject(error);
         }

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import AuthService from "../../services/authService";
 import { useLocation, useNavigate } from "react-router-dom";
+import { http } from "../../utils/http";
 
 const UserContext = createContext(null)
 
@@ -28,6 +29,8 @@ const UserProvder = ({ children }) => {
     const logoutContext = () => {
         setUser({ ...dataUserDefault, isLoadding: false })
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('jwt');
+        delete http.defaults.headers.common['Authorization'];
     }
 
     const fetchUser = async () => {

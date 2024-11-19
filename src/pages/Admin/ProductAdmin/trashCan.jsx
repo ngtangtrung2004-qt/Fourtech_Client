@@ -171,7 +171,7 @@ function TrashCanProduct() {
             title: "Thao tác",
             render: (text, record) => (
                 <span className="action-product">
-                    <Button type="primary"
+                    <Button type="primary" style={{ width: '100%' }}
                         onClick={() => {
                             setProductId(record.id); // Lưu ID danh mục để khôi phục
                             setModalRestoreOpen(true); // Mở modal xác nhận để khôi phục
@@ -199,6 +199,7 @@ function TrashCanProduct() {
                     <Button
                         type="primary"
                         danger
+                        style={{ width: '100%' }}
                         onClick={() => {
                             setProductId(record.id); // Lưu ID danh mục để xóa
                             setModalDeleteOpen(true); // Mở modal xác nhận xóa
