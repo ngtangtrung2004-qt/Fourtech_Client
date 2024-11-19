@@ -31,7 +31,9 @@ const Cart = () => {
               
               <div className="img" >
                 <Link to={'/detail'}>
-                <img style={{ width: '70px', height: '70px' }} src={item.image} alt={item.name} />
+                {item.image.slice(0, 1).map((imgSrc, index) => (
+                      <img className='img' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={imgSrc.name} />
+                    ))}
                 </Link>
               </div>
               

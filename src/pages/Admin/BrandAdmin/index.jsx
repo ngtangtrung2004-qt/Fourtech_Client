@@ -119,6 +119,9 @@ function Brand() {
           >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
+
+
+
           <Modal
             title="Xác nhận xóa!"
             centered
