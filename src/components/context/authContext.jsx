@@ -6,7 +6,10 @@ const UserContext = createContext(null)
 
 const UserProvder = ({ children }) => {
 
+    
+
     const location = useLocation()
+    
 
     const dataUserDefault = {
         isLoadding: true,
@@ -25,6 +28,7 @@ const UserProvder = ({ children }) => {
         setUser({ ...dataUserDefault, isLoadding: false })
     }
 
+    
     const fetchUser = async () => {
         let response = await AuthService.getAccount()
         if (response && response.EC === 0) {
@@ -51,10 +55,18 @@ const UserProvder = ({ children }) => {
         '/detail',
         '/article',
         '/contact',
-        '/login-register'
+        '/login-register',
+    '/forgotPassword',
+    '/reset-password'
     ]
 
     useEffect(() => {
+         // Kiểm tra nếu là trang reset password
+    if (location && location.pathname.startsWith('/reset-password')) {
+        // Không cần xác thực, đặt trạng thái mặc định
+        setUser({ ...dataUserDefault, isLoadding: false });
+        return;
+    }
         if (location && !pathToNoCheck.includes(location.pathname)) {
             fetchUser()
         } else {

@@ -28,6 +28,7 @@ import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
 import ContactAdmin from "../pages/Admin/ContactAdmin"
 import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword"
 import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
+// import SearchProducts from "../pages/User/Search"
 
 const publicRoutes = [
     {path: "/", component: HomePage, layout: DefaultLayout},
@@ -42,8 +43,7 @@ const publicRoutes = [
     {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
     {path: '/info', component: InFor,layout: DefaultLayout},
     {path: '/article', component: Article,layout: DefaultLayout},
-
-
+    // {path: '/search', component: SearchProducts,layout: DefaultLayout},
 ]
 
 const adminRoutes = [

@@ -205,7 +205,7 @@ function ProductAdmin() {
 
       <Table
         columns={columns}
-        // dataSource={products}
+        dataSource={products}
         pagination={{
           pageSize: 5,
         }}
