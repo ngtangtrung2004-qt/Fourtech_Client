@@ -5,17 +5,15 @@ export const http = axios.create({
     // baseURL: 'https://some-domain.com/api/',
     baseURL: `${import.meta.env.VITE_API_URL}/api/`,
     timeout: 3000,
-    // withCredentials: true
+    withCredentials: true
 });
 
-
-http.interceptors.request.use(function (config) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
-
-    return config
-}, function (err) {
-    return Promise.reject(err)
-})
+// http.interceptors.request.use(function (config) {
+//     config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
+//     return config
+// }, function (err) {
+//     return Promise.reject(err)
+// })
 
 http.interceptors.response.use(
     response => response,
@@ -36,7 +34,11 @@ http.interceptors.response.use(
                 break;
 
             case 401:
-                showToastError(errorMessage);
+                console.log(error.response.data);
+                // showToastError("Vui lòng đăng nhập lại!");
+                setTimeout(() => {
+                    window.location.href = '/login-register'
+                }, 2000)
                 break;
 
             case 403:

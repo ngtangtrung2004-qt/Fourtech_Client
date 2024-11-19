@@ -20,9 +20,6 @@ const images = [
 
 
 function HomePage() {
-    useEffect(() => {
-        window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
-    }, []);
     const [time, setTime] = useState({
         days: 0,
         hours: 0,

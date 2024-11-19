@@ -1,22 +1,22 @@
 import logo from "/Logo.png";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useContext } from "react";
 import { CartContext } from "../../../CartContext/CartContext";
+import { UserContext } from "../../../context/authContext";
+import AuthService from "../../../../services/authService";
+import { showToastSuccess } from "../../../../config/toastConfig";
 
 function Header() {
+    const navigate = useNavigate()
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [account, setAccount] = useState()
+    // const [account, setAccount] = useState()
+    const { user, logoutContext } = useContext(UserContext)
+
     const inputRef = useRef(null);
     const { cartQuantity } = useContext(CartContext);
 
-    useEffect(() => {
-        let jwt = sessionStorage.getItem('account')
-        if (jwt) {
-            setAccount(account)
-        }
-    }, [])
 
     useEffect(() => {
         const handelClickOutSide = (event) => {
@@ -35,6 +35,17 @@ function Header() {
             document.removeEventListener('mousedown', handelClickOutSide);
         }
     }, [isSearchOpen])
+
+
+    const handleLogout = async () => {
+        let data = await AuthService.Logout() //clear cookie
+
+        if (data && data.EC === 0) {
+            logoutContext() //clear context
+            showToastSuccess(data.message)
+            navigate('/login-register')
+        }
+    }
 
 
 
@@ -79,6 +90,27 @@ function Header() {
                                             </li>
                                             <li className="sub-nav-item">
                                                 <Link>Sạc dự phòng</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Tai nghe</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Máy tính bảng</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Ghế công thái học</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Thiết bị âm thanh</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Cáp sạc</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Phụ kiện</Link>
+                                            </li>
+                                            <li className="sub-nav-item">
+                                                <Link>Củ sạc</Link>
                                             </li>
                                         </ul>
                                     </div>
@@ -139,26 +171,32 @@ function Header() {
                             </div>
 
                             <div className="account">
-                                {localStorage.getItem('access_token') ? (
+                                {user && user.isAuthenticated === true ? (
                                     <div className="user">
-                                        <img src="../../../../src/assets/images/avatar-mac-dinh.png" style={{ height: 30, width: 30 }} alt="" />
+                                        <img src={import.meta.env.VITE_API_URL + '/uploads/' + user?.account?.avatar} style={{ height: 30, width: 30 }} alt="avatar" />
                                         <div className="sub-user">
                                             <ul>
                                                 <li>
-                                                    <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>Trương Văn Tiến Đạt</span></p>
+                                                    <p>Xin chào<span style={{ marginLeft: 5, fontWeight: "bold" }}>{user?.account?.full_name}</span></p>
                                                 </li>
+                                                {user?.account?.role === 'admin' ? (
+                                                    <li>
+                                                        <Link to="/admin/">
+                                                            <FontAwesomeIcon icon="fa-solid fa-pen-to-square" fixedWidth />
+                                                            <p>Quản lý</p>
+                                                        </Link>
+                                                    </li>
+                                                ) : ''}
                                                 <li>
-                                                    <Link to={'/info'}>
+                                                    <Link to="/info">
                                                         <FontAwesomeIcon icon="fa-regular fa-id-badge" fixedWidth />
                                                         <p>Hồ sơ</p>
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link to={'/login-register'}>
+                                                    <Link onClick={() => handleLogout()}>
                                                         <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" fixedWidth />
-                                                        <p
-                                                            onClick={() => localStorage.clear('access_token')}
-                                                        >Đăng xuất</p>
+                                                        <p>Đăng xuất</p>
                                                     </Link>
                                                 </li>
                                             </ul>
@@ -166,7 +204,7 @@ function Header() {
                                     </div>
                                 ) : (
                                     <div className="icon-user">
-                                        <Link to={"/login-register"}>
+                                        <Link to="/login-register">
                                             <FontAwesomeIcon icon="fa-circle-user" />
                                             <div className="arrow-up"></div>
                                             <div className="text-dang-nhap">

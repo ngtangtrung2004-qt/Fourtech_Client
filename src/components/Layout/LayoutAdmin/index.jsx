@@ -15,9 +15,7 @@ import SiderAdmin from "./siderAdmin";
 const { Content } = Layout;
 
 const LayoutAdmin = ({ children }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
   return (
     <Layout
       style={{
@@ -26,17 +24,8 @@ const LayoutAdmin = ({ children }) => {
     >
       <SiderAdmin />
       <Layout>
-
-
         <HeaderAdmin />
-
-
-
-        <Content
-          style={{
-            margin: "10px 16px 0px",
-          }}
-        >
+        <Content style={{margin: "10px 16px 0px"}}>
           <div
             style={{
               padding: 24,
@@ -48,11 +37,7 @@ const LayoutAdmin = ({ children }) => {
             {children}
           </div>
         </Content>
-
-
         <FooterAdmin />
-
-
       </Layout>
     </Layout>
   );

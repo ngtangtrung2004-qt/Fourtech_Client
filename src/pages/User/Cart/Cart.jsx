@@ -6,16 +6,11 @@ import {
   AiOutlineMinus,
   AiOutlinePlus
 } from "react-icons/ai";
-import { useEffect, useContext } from "react";
+import {  useContext } from "react";
 import { CartContext } from '../../../components/CartContext/CartContext';
 
 const Cart = () => {
   const { cart, removeFromCart, addToCart, decreaseQuantity } = useContext(CartContext);
-
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
-  }, []);
 
   return (
     <div className='Cart'>
