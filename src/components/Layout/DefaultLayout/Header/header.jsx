@@ -135,7 +135,7 @@ function Header() {
                             </div>
 
                             <div className="cart">
-                                <Link to={"/cart"}>
+                                <Link to={`/cart/${user.account.id}`}>
                                     <div className="icon-cart">
                                         <FontAwesomeIcon icon="fa-cart-shopping" />
                                         <div className="text-gio-hang">

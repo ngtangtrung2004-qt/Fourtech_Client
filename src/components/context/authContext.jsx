@@ -36,6 +36,7 @@ const UserProvder = ({ children }) => {
     const fetchUser = async () => {
         let response = await AuthService.getAccount()
         if (response && response.EC === 0) {
+            let id = response.data.id
             let full_name = response.data.full_name
             let email = response.data.email
             let avatar = response.data.avatar
@@ -44,7 +45,7 @@ const UserProvder = ({ children }) => {
             const dataUser = {
                 isAuthenticated: true,
                 access_token: access_token,
-                account: { full_name, email, avatar, role },
+                account: { id, full_name, email, avatar, role },
                 isLoadding: false
             }
             setTimeout(() => {

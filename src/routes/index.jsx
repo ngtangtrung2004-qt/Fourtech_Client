@@ -36,7 +36,7 @@ const publicRoutes = [
   { path: '/forgotPassword', component: ForgotPassword, layout: DefaultLayout },
   { path: '/reset-password/:token', component: ResetPassword, layout: DefaultLayout },
   { path: '/detail', component: ProductDetails, layout: DefaultLayout },
-  { path: '/cart', component: Cart, layout: DefaultLayout },
+  { path: '/cart/:id', component: Cart, layout: DefaultLayout },
   { path: '/allproduct', component: AllProduct, layout: DefaultLayout },
   { path: '/pay', component: Pay, layout: DefaultLayout },
   { path: '/contact', component: Contact, layout: DefaultLayout },
