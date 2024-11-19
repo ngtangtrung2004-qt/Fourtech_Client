@@ -32,7 +32,7 @@ function ContactAdmin() {
     };
     fetchContacts();
   }, []);
-
+console.log('data',dataContact)
   // Hàm xóa liên hệ
   const handleDeleteContact = async (id) => {
     console.log(id)

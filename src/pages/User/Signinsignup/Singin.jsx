@@ -125,6 +125,7 @@ const SignupSignin = () => {
             const dataLogin = await AuthService.Login(formLogin)
 
             if (dataLogin && dataLogin.EC === 0) {
+                let id = dataLogin?.data?.id
                 let full_name = dataLogin?.data?.full_name
                 let email = dataLogin?.data?.email
                 let avatar = dataLogin?.data?.avatar
@@ -132,9 +133,10 @@ const SignupSignin = () => {
                 const dataUser = {
                     isAuthenticated: true,
                     access_token: dataLogin.data.access_token,
-                    account: { full_name, email, avatar, role }
+                    account: { id, full_name, email, avatar, role }
                 }
                 console.log('check dataUser>>>', dataUser);
+                localStorage.setItem('jwt', dataLogin.data.access_token)
                 loginContext(dataUser)
                 showToastSuccess(dataLogin.message)
                 if (role === 'admin') {
