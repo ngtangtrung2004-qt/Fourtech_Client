@@ -4,7 +4,7 @@ import CategoryService from '../../services/categoryService'
 
 function Category() {
 
-    const [category, setCategory] = useState([])
+    const [category, setCategory] = useState([]);
 
     useEffect(() => {
         fetchAPICategory()
@@ -15,83 +15,9 @@ function Category() {
     const fetchAPICategory = async () => {
         const dataCategory = await CategoryService.getAllCategory();
         console.log(dataCategory.data);
-        setCategory(dataCategory.data)
+        setCategory(dataCategory.data);
     }
 
-    // const category = [
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },    
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Laptop',
-    //         image:'../laptop.webp',
-    //     },
-
-
-    // ]
     return (
         <>
             <div className="product-grid">

@@ -3,7 +3,7 @@ import Logo_pay from '../../../assets/images/logo_pay.png'
 import Logo from '/Logo.png'
 import anhSanPham from '../../../assets/images/item-Cart.png'
 import Momo from '../../../assets/images/logo-momo.png'
-import { Input, Select, Radio, Space, Button } from 'antd';
+import { Input, Radio, Space, Button } from 'antd';
 import { AiFillBank } from "react-icons/ai";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import TextArea from 'antd/es/input/TextArea';
@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 
 function Pay() {
-    const { Option } = Select
 
     const [value, setValue] = useState(0);
     const onChange = (e) => {
@@ -41,33 +40,6 @@ function Pay() {
                                 <Input placeholder='Họ và tên' size='large' />
                                 <Input placeholder='Email' size='large' />
                                 <Input placeholder='Số điện thoại' size='large' />
-                                <Select
-                                    placeholder="Chọn tỉnh/thành"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Quảng Bình">
-                                        Quảng Bình
-                                    </Option>
-                                </Select>
-                                <Select
-                                    placeholder="Chọn quận/huyện"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Lệ Thủy">
-                                        Lệ Thủy
-                                    </Option>
-                                </Select>
-                                <Select
-                                    placeholder="Chọn phường/xã"
-                                    size='large'
-                                    style={{ marginBottom: '10px' }}
-                                >
-                                    <Option value="Thị trấn Kiến Giang">
-                                        Thị trấn Kiến Giang
-                                    </Option>
-                                </Select>
                                 <Input placeholder='Số nhà' size='large' />
                                 <TextArea placeholder='Ghi chú' />
                             </div>
