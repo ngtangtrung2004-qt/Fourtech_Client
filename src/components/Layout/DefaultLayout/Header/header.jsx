@@ -11,7 +11,8 @@ import CategoryService from "../../../../services/categoryService";
 
 function Header() {
   const [category, setHeaderCategory] = useState([]);
-
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     fetchAPICategory();
   }, []);
@@ -20,8 +21,6 @@ function Header() {
     console.log(dataCategory.data);
     setHeaderCategory(dataCategory.data);
   };
-
-  const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   // const [account, setAccount] = useState()
   const { user, logoutContext } = useContext(UserContext);
@@ -56,7 +55,13 @@ function Header() {
       navigate("/login-register");
     }
   };
-
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${query}`); // Điều hướng đến trang tìm kiếm
+    setIsSearchOpen(false)
+    
+  };
+  // console.log('tìm kiếm',query)
   return (
     <>
       <header className="container-header">
@@ -124,12 +129,21 @@ function Header() {
                     <div className="sub-search-text-tim-kiem">
                       <h3>TÌM KIẾM</h3>
                     </div>
+                      <form onSubmit={handleSearchSubmit}>
                     <div className="input">
-                      <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-                      <div className="sub-icon-search">
-                        <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-                      </div>
+                        <input
+                          type="text"
+                          placeholder="Tìm kiếm sản phẩm..."
+                          // value={query}
+                          onChange={(e) => setQuery(e.target.value)}
+                        />
+                        <div className="sub-icon-search">
+                          <button type="submit">
+                            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+                          </button>
+                        </div>
                     </div>
+                      </form>
                   </div>
                 )}
               </div>

@@ -27,6 +27,8 @@ function SearchProducts() {
     return ( <>
     <div>
       <h2>Kết quả tìm kiếm cho: {query}</h2>
+      {results.length > 0 ?(
+        
       <ul>
         {results.map((product) => (
           <li key={product.id}>
@@ -36,6 +38,9 @@ function SearchProducts() {
           </li>
         ))}
       </ul>
+      ):(
+        <p>Khong tim thay ket qua nao</p>
+      )}
     </div>
     </> );
 }

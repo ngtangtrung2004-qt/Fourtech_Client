@@ -1,6 +1,6 @@
 import SignupSignin from "../pages/User/Signinsignup/Singin"
 import HomePage from "../pages/User/Home"
-import ProductDetails from "../pages/User/ProductDetails"
+import ProductDetail from "../pages/User/ProductDetail"
 import Cart from "../pages/User/Cart/Cart"
 import LayoutAdmin from "../components/Layout/LayoutAdmin/"
 import DefaultLayout from "../components/Layout/DefaultLayout/"
@@ -29,20 +29,22 @@ import ContactAdmin from "../pages/Admin/ContactAdmin"
 import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword"
 import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
 import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan"
+import SearchProducts from "../pages/User/Search"
 
 const publicRoutes = [
   { path: "/", component: HomePage, layout: DefaultLayout },
   { path: '/login-register', component: SignupSignin, layout: DefaultLayout },
   { path: '/forgotPassword', component: ForgotPassword, layout: DefaultLayout },
   { path: '/reset-password/:token', component: ResetPassword, layout: DefaultLayout },
-  { path: '/detail', component: ProductDetails, layout: DefaultLayout },
   { path: '/cart/:id', component: Cart, layout: DefaultLayout },
   { path: '/allproduct', component: AllProduct, layout: DefaultLayout },
+  { path: '/productDetail/:id', component: ProductDetail, layout: DefaultLayout },
   { path: '/pay', component: Pay, layout: DefaultLayout },
   { path: '/contact', component: Contact, layout: DefaultLayout },
   { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
   { path: '/info', component: InFor, layout: DefaultLayout },
   { path: '/article', component: Article, layout: DefaultLayout },
+  { path: '/search', component: SearchProducts, layout: DefaultLayout },
 
 
 ]

@@ -140,7 +140,7 @@ const ItemProduct = () => {
             {visibleProducts.map((products) =>
 
             <div key={products.id} className="itemProduct">
-                  <Link to={'/detail'}> 
+                  <Link to={`/productDetail/${products.id}`}> 
                       <div className="product-img">
                               <img src={products.image} alt="" />
                           </div>

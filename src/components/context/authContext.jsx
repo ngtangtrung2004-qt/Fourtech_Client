@@ -64,12 +64,13 @@ const UserProvder = ({ children }) => {
     const pathToNoCheck = [
         '/',
         '/allproduct',
-        '/detail',
         '/article',
         '/contact',
         '/login-register',
         '/forgotPassword',
-        '/reset-password'
+        '/reset-password',
+        '/search',
+        '/productDetail/:id',
     ]
 
     useEffect(() => {

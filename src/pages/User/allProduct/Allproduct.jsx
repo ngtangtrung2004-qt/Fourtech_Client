@@ -6,6 +6,7 @@ import { CartContext } from '../../../components/CartContext/CartContext';
 import Category from '../../../components/Category/Category';
 import ProductService from '../../../services/productService';
 import { formatCurrency } from '../../../config/config';
+import { Link } from 'react-router-dom';
 
 
 
@@ -123,7 +124,9 @@ const filterByPrice = (product) => {
                     ))}
                   </a>
                   <div className="product-description-12">
+                    <Link to={`/productDetail/${products.id}`}>
                     <p>{products.name}</p>
+                    </Link>
                   </div>
                   <div className="product-pricing-12">
                     <span className="price-12">{formatCurrency(products.promotion_price)}</span>
