@@ -74,55 +74,6 @@ function Header() {
                   <Link to={"/"}>Trang chủ</Link>
                 </li>
 
-<<<<<<< HEAD
-                                <li className="nav-item">
-                                    <Link to='/allproduct'>Sản phẩm
-                                        <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
-                                    </Link>
-                                    <div className="sub-nav">
-                                        <ul className="sub-nav-list">
-                                            <li className="sub-nav-item">
-                                                <Link>Bàn phím</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Laptop</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Màn hình</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Chuột + Lót chuột</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Máy chơi game</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Sạc dự phòng</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Tai nghe</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Máy tính bảng</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Ghế công thái học</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Thiết bị âm thanh</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Cáp sạc</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Phụ kiện</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Củ sạc</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-=======
                 <li className="nav-item">
                   <Link to="/allproduct">
                     Sản phẩm
@@ -146,7 +97,6 @@ function Header() {
                 </li>
               </ul>
             </nav>
->>>>>>> deb203552a2e29b6908d356a3e6609735254d42c
 
             <div className="search-cart-user">
               <div className="search" onClick={() => setIsSearchOpen(true)}>

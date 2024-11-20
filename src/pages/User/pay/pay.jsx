@@ -3,24 +3,14 @@ import Logo_pay from '../../../assets/images/logo_pay.png'
 import Logo from '/Logo.png'
 import anhSanPham from '../../../assets/images/item-Cart.png'
 import Momo from '../../../assets/images/logo-momo.png'
-<<<<<<< HEAD
-import { Input,Radio, Space, Button } from 'antd';
-=======
 import { Input, Radio, Space, Button } from 'antd';
->>>>>>> deb203552a2e29b6908d356a3e6609735254d42c
 import { AiFillBank } from "react-icons/ai";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import TextArea from 'antd/es/input/TextArea';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Link } from 'react-router-dom'
 
 function Pay() {
-<<<<<<< HEAD
-    useEffect(() => {
-        window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
-    }, []);
-=======
->>>>>>> deb203552a2e29b6908d356a3e6609735254d42c
 
     const [value, setValue] = useState(0);
     const onChange = (e) => {
@@ -56,13 +46,7 @@ function Pay() {
                                 <Input placeholder='Email' size='large' />
                              
                                 <Input placeholder='Số điện thoại' size='large' />
-<<<<<<< HEAD
-                                
-                                <Input placeholder='Địa chỉ' size='large' />
-                               
-=======
                                 <Input placeholder='Số nhà' size='large' />
->>>>>>> deb203552a2e29b6908d356a3e6609735254d42c
                                 <TextArea placeholder='Ghi chú' />
                             </div>
 
