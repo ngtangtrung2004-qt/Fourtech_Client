@@ -26,6 +26,7 @@ import Article from "../pages/User/Article/article"
 import InFor from "../pages/User/InFor/InFor"
 import Item_Mouse from "../components/Item_Mouse/Item_Mouse"
 import ContactAdmin from "../pages/Admin/ContactAdmin"
+import newArticle from "../pages/User/Article/newArticle"
 import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword"
 import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
 import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan"
@@ -43,7 +44,7 @@ const publicRoutes = [
   { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
   { path: '/info', component: InFor, layout: DefaultLayout },
   { path: '/article', component: Article, layout: DefaultLayout },
-
+  { path: '/newArticle', component: newArticle, layout: DefaultLayout },
 
 ]
 
