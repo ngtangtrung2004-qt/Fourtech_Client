@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import './Item_Mouse.css'
-import { CartContext } from '../CartContext/CartContext';
+import { CartContext } from '../context/CartContext'
 
 
 

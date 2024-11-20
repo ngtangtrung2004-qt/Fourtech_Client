@@ -3,7 +3,7 @@ import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useContext } from "react";
-import { CartContext } from "../../../CartContext/CartContext";
+import { CartContext } from "../../../../components/context/CartContext";
 import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
@@ -15,7 +15,7 @@ function Header() {
     const { user, logoutContext } = useContext(UserContext)
 
     const inputRef = useRef(null);
-    const { cartQuantity } = useContext(CartContext);
+    const { totalQuantity } = useContext(CartContext);
 
 
     useEffect(() => {
@@ -143,7 +143,14 @@ function Header() {
                                             <p>Giỏ hàng</p>
                                         </div>
                                         <div className="soluong">
-                                            <span>{cartQuantity}</span>
+                                            {totalQuantity && totalQuantity > 0 ? (
+                                                <span>{totalQuantity}</span>
+                                            )
+                                                :
+                                                (
+                                                    <span>0</span>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </Link>

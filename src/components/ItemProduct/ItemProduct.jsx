@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react';
-import { CartContext } from '../CartContext/CartContext'; //Lấy hàm `addToCart` từ CartContext để thêm sản phẩm vào giỏ hàng.
+import { CartContext } from '../context/CartContext'
 import './ItemProduct.css'
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
