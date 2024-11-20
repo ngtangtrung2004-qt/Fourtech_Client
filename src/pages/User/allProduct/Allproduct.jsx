@@ -26,7 +26,6 @@ const AllProduct = () => {
   }
 
   const { addToCart } = useContext(CartContext);
-  const [activeFilter, setActiveFilter] = useState('');
 
   // Hàm xử lý khi thay đổi checkbox lọc giá
   const handlePriceFilterChange = (event) => {
@@ -78,15 +77,6 @@ const filterByPrice = (product) => {
     )
   : pro.filter(filterByPrice);
 
-  const filters = [
-    { key: 'giaTangDan', label: 'Giá tăng dần' },
-
-
-    { key: 'giaGiamDan', label: 'Giá giảm dần' },
-
-
-    { key: 'moiNhat', label: 'Mới nhất' }
-  ];
   // Xử lý khi chọn checkbox hãng sản xuất
   
 
@@ -100,15 +90,7 @@ const filterByPrice = (product) => {
         <div className="product-filter">
           <h2 className="product-title">Tất cả các sản phẩm</h2>
           <div className="filter-buttons">
-            {filters.map((filter) => (
-              <button
-                key={filter.key}
-                className={activeFilter === filter.key ? 'active' : ''}
-                onClick={() => setActiveFilter(filter.key)}
-              >
-                {filter.label}
-              </button>
-            ))}
+
           </div>
         </div>
 
@@ -141,7 +123,8 @@ const filterByPrice = (product) => {
               <h3>Hãng sản xuất</h3>
               {['Samsung','Acer', 'Apple', 'Asus', 'Dell', 'Logitech', 'Corsair', 'Sony', 'Razer', 'Keychron'].map((bran, index) => (
                 <div key={index} className="filter-item">
-                  <input type="checkbox" 
+                  <input name='xét hãng sản phẩm'
+                type="radio" 
                          id={bran}
                          onChange={handleBrandFilterChange} />
                   <label htmlFor={bran}>{bran}</label>
@@ -158,8 +141,8 @@ const filterByPrice = (product) => {
                 , 'Máy tính (PC)', 'Máy tính bảng',
               ].map((tag, index) => (
                 <div key={index} className="filter-item">
-                  <input 
-                      type="checkbox" 
+                  <input name='xét soạn phẩm'
+                      type="radio" 
                       id={tag}
                       onChange={handleBrandFilterChange}/>
                   <label htmlFor={tag}>{tag}</label>
@@ -173,8 +156,8 @@ const filterByPrice = (product) => {
               {['Giá dưới 1.000.000₫', '1.000.000₫ - 2.000.000₫', '2.000.000₫ - 3.000.000₫',
                 '3.000.000₫ - 5.000.000₫', '5.000.000₫ - 7.000.000₫', '7.000.000₫ - 10.000.000₫', 'Giá trên 10.000.000₫',].map((tag, index) => (
                   <div key={index} className="filter-item">
-                    <input 
-                      type="checkbox" 
+                    <input name='xét giá'
+                      type="radio" 
                       id={tag}
                       onChange={handlePriceFilterChange} />
                     <label htmlFor={tag}>{tag}</label>

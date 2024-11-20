@@ -99,7 +99,7 @@ function UserAdmin() {
         columns={columns}
         dataSource={listUser}
         pagination={{
-          pageSize: 3, // Số phần tử mỗi trang
+          pageSize: 10, // Số phần tử mỗi trang
         }}
         locale={{ emptyText: "Không có dữ liệu" }}
         rowKey="id" // Khóa duy nhất cho mỗi hàng, sử dụng id của từng user

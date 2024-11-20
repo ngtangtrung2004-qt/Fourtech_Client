@@ -7,11 +7,10 @@ import { Input,Radio, Space, Button } from 'antd';
 import { AiFillBank } from "react-icons/ai";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import TextArea from 'antd/es/input/TextArea';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 
 function Pay() {
-    const { Option } = Select
     useEffect(() => {
         window.scrollTo(0, 0); // Cuộn lên đầu trang khi component được render
     }, []);

@@ -29,40 +29,45 @@ import ContactAdmin from "../pages/Admin/ContactAdmin"
 import newArticle from "../pages/User/Article/newArticle"
 import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword"
 import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
+import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan"
 
 const publicRoutes = [
-    {path: "/", component: HomePage, layout: DefaultLayout},
-    {path: '/login-register', component: SignupSignin, layout: DefaultLayout},
-    {path: '/forgotPassword', component:ForgotPassword , layout: DefaultLayout},
-    {path: '/reset-password/:token', component:ResetPassword , layout: DefaultLayout},
-    {path: '/detail', component: ProductDetails,layout: DefaultLayout},
-    {path: '/cart', component: Cart,layout: DefaultLayout},
-    {path: '/allproduct',component:AllProduct,layout: DefaultLayout},
-    {path: '/pay', component: Pay,layout: DefaultLayout},
-    {path:'/contact',component:Contact,layout: DefaultLayout},
-    {path: '/mouse', component: Item_Mouse,layout: DefaultLayout},
-    {path: '/info', component: InFor,layout: DefaultLayout},
-    {path: '/article', component: Article,layout: DefaultLayout},
-    {path: '/newArticle', component: newArticle,layout: DefaultLayout},
-
-
+  { path: "/", component: HomePage, layout: DefaultLayout },
+  { path: '/login-register', component: SignupSignin, layout: DefaultLayout },
+  { path: '/forgotPassword', component: ForgotPassword, layout: DefaultLayout },
+  { path: '/reset-password/:token', component: ResetPassword, layout: DefaultLayout },
+  { path: '/detail', component: ProductDetails, layout: DefaultLayout },
+  { path: '/cart/:id', component: Cart, layout: DefaultLayout },
+  { path: '/allproduct', component: AllProduct, layout: DefaultLayout },
+  { path: '/pay', component: Pay, layout: DefaultLayout },
+  { path: '/contact', component: Contact, layout: DefaultLayout },
+  { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
+  { path: '/info', component: InFor, layout: DefaultLayout },
+  { path: '/article', component: Article, layout: DefaultLayout },
+  { path: '/newArticle', component: newArticle, layout: DefaultLayout },
 
 ]
 
 const adminRoutes = [
-  { path: '/admin/', component: HomeAdmin, layout:  LayoutAdmin},
-  { path: '/admin/product-admin', component: ProductAdmin, layout:  LayoutAdmin},
-  { path: '/admin/order-admin', component: OrderList, layout:  LayoutAdmin},
-  { path: '/admin/orderDetail', component: OrderDetail, layout:  LayoutAdmin},
-  { path: '/admin/category-admin', component: CategoryAdmin, layout:  LayoutAdmin},
-  { path: '/admin/user-admin', component: UserAdmin, layout:  LayoutAdmin},
-  { path: '/admin/brand-admin', component: Brand, layout:  LayoutAdmin},
-  { path: '/admin/add-brand', component: Createbrand, layout:  LayoutAdmin},
-  // { path: '/admin/brandadmin', component: BrandAdmin, layout:  LayoutAdmin},
-  { path: '/admin/add-product', component: CreateProduct, layout:  LayoutAdmin},
-  { path: '/admin/edit-product/:id', component: EditProduct, layout:  LayoutAdmin},
-  { path: '/admin/add-category', component: CreateCategory, layout:  LayoutAdmin},
-  {path:'/admin/contact-admin',component:ContactAdmin,layout: LayoutAdmin}
+  { path: '/admin/', component: HomeAdmin, layout: LayoutAdmin },
+
+  { path: '/admin/brand-admin', component: Brand, layout: LayoutAdmin },
+  { path: '/admin/add-brand', component: Createbrand, layout: LayoutAdmin },
+
+  { path: '/admin/category-admin', component: CategoryAdmin, layout: LayoutAdmin },
+  { path: '/admin/add-category', component: CreateCategory, layout: LayoutAdmin },
+
+  { path: '/admin/product-admin', component: ProductAdmin, layout: LayoutAdmin },
+  { path: '/admin/add-product', component: CreateProduct, layout: LayoutAdmin },
+  { path: '/admin/edit-product/:id', component: EditProduct, layout: LayoutAdmin },
+  { path: '/admin/trash-can-product', component: TrashCanProduct, layout: LayoutAdmin },
+
+  { path: '/admin/order-admin', component: OrderList, layout: LayoutAdmin },
+  { path: '/admin/orderDetail', component: OrderDetail, layout: LayoutAdmin },
+
+  { path: '/admin/contact-admin', component: ContactAdmin, layout: LayoutAdmin },
+
+  { path: '/admin/user-admin', component: UserAdmin, layout: LayoutAdmin }
 ];
 
-export {publicRoutes, adminRoutes}
+export { publicRoutes, adminRoutes }

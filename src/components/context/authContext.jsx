@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import AuthService from "../../services/authService";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { http } from "../../utils/http";
 
 const UserContext = createContext(null)
 
 const UserProvder = ({ children }) => {
 
     const location = useLocation()
+
+    const navigate = useNavigate()
 
     const dataUserDefault = {
         isLoadding: true,
@@ -19,15 +22,21 @@ const UserProvder = ({ children }) => {
 
     const loginContext = (userData) => {
         setUser({ ...userData, isLoadding: false })
+        // Lưu thông tin vào localStorage
+        localStorage.setItem('userInfo', JSON.stringify(userData));
     }
 
     const logoutContext = () => {
         setUser({ ...dataUserDefault, isLoadding: false })
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem('jwt');
+        delete http.defaults.headers.common['Authorization'];
     }
 
     const fetchUser = async () => {
         let response = await AuthService.getAccount()
         if (response && response.EC === 0) {
+            let id = response.data.id
             let full_name = response.data.full_name
             let email = response.data.email
             let avatar = response.data.avatar
@@ -36,12 +45,15 @@ const UserProvder = ({ children }) => {
             const dataUser = {
                 isAuthenticated: true,
                 access_token: access_token,
-                account: { full_name, email, avatar, role },
+                account: { id, full_name, email, avatar, role },
                 isLoadding: false
             }
             setTimeout(() => {
                 setUser(dataUser)
             }, 1500)
+        } else {
+            setUser({ ...dataUserDefault, isLoadding: false })
+            navigate('/login-register')
         }
     }
 
@@ -51,16 +63,33 @@ const UserProvder = ({ children }) => {
         '/detail',
         '/article',
         '/contact',
-        '/login-register'
+        '/login-register',
+        '/forgotPassword',
+        '/reset-password/:token'
     ]
 
     useEffect(() => {
-        if (location && !pathToNoCheck.includes(location.pathname)) {
-            fetchUser()
+        const storedUser = localStorage.getItem('userInfo');
+
+        // Kiểm tra xem nếu người dùng đã đăng nhập (có thông tin trong localStorage)
+        if (storedUser) {
+            setUser({ ...JSON.parse(storedUser), isLoadding: false });
         } else {
-            setUser({ ...dataUserDefault, isLoadding: false })
+            // Kiểm tra nếu không phải là các trang không cần xác thực người dùng
+            if (location && !pathToNoCheck.includes(location.pathname)) {
+                fetchUser();
+            } else {
+                setUser({ ...dataUserDefault, isLoadding: false });
+            }
         }
-    }, [])
+
+        // Điều hướng nếu người dùng đã đăng nhập và đang cố truy cập /login-register
+        if (storedUser && location.pathname === '/login-register') {
+            navigate('/'); // Hoặc trang admin tùy thuộc vào yêu cầu
+        }
+
+    }, [location.pathname, navigate]); // Chỉ phụ thuộc vào location.pathname và navigate
+
 
     return (
         <UserContext.Provider value={{ user, loginContext, logoutContext }}>

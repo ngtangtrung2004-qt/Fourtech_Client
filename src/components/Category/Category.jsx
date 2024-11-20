@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import'./Category.css'
+import './Category.css'
 import CategoryService from '../../services/categoryService'
 
-function Category (){
+function Category() {
 
     const [category, setCategory] = useState([])
 
-    useEffect(() =>  {
+    useEffect(() => {
         fetchAPICategory()
-    },  [
-        
+    }, [
+
     ])
 
     const fetchAPICategory = async () => {
@@ -89,12 +89,12 @@ function Category (){
     //         name: 'Laptop',
     //         image:'../laptop.webp',
     //     },
-        
-    
+
+
     // ]
     return (
         <>
-              <div className="product-grid">
+            <div className="product-grid">
                 {category.map((item) => (
                     <a key={item.id}>
                         <div className="product-item">
@@ -103,7 +103,7 @@ function Category (){
                         </div>
                     </a>
                 ))}
-                </div>
+            </div>
 
         </>
     )

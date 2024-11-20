@@ -49,10 +49,10 @@ function ProductAdmin() {
   const handleDelete = async () => {
     try {
       if (productId) {
-        const brand = await ProductService.deleteProduct(productId);
+        const product = await ProductService.deleteSoftProduct(productId);
 
-        if (brand && brand.EC === 0) {
-          showToastSuccess(brand.message);
+        if (product && product.EC === 0) {
+          showToastSuccess(product.message);
           await fetchProducts();
           setModalDeleteOpen(false);
         }
@@ -95,7 +95,7 @@ function ProductAdmin() {
       dataIndex: "image",
       render: (images) => {
         return (
-          <div style={{ display: "flex", alignItems:'center', justifyContent: 'center' , flexWrap: "wrap", gap: "10px" }}>
+          <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', flexWrap: "wrap", gap: "10px" }}>
             {images.slice(0, 2).map((src, index) => (
               <img
                 key={index}
@@ -201,11 +201,16 @@ function ProductAdmin() {
         <Button type="primary">
           <Link to="/admin/add-product">Thêm Sản Phẩm</Link>
         </Button>
+        <Button type="primary" danger>
+          <Link to="/admin/trash-can-product">
+            Thùng rác
+          </Link>
+        </Button>
       </div>
 
       <Table
         columns={columns}
-        // dataSource={products}
+        dataSource={products}
         pagination={{
           pageSize: 5,
         }}
