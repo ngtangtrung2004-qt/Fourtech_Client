@@ -7,7 +7,10 @@ const UserContext = createContext(null)
 
 const UserProvder = ({ children }) => {
 
+    
+
     const location = useLocation()
+    
 
     const navigate = useNavigate()
 
@@ -33,6 +36,7 @@ const UserProvder = ({ children }) => {
         delete http.defaults.headers.common['Authorization'];
     }
 
+    
     const fetchUser = async () => {
         let response = await AuthService.getAccount()
         if (response && response.EC === 0) {
@@ -65,12 +69,16 @@ const UserProvder = ({ children }) => {
         '/contact',
         '/login-register',
         '/forgotPassword',
-        '/reset-password/:token'
+        '/reset-password'
     ]
 
     useEffect(() => {
         const storedUser = localStorage.getItem('userInfo');
-
+        if (location && location.pathname.startsWith('/reset-password')) {
+        // Không cần xác thực, đặt trạng thái mặc định
+        setUser({ ...dataUserDefault, isLoadding: false });
+        return;
+    }
         // Kiểm tra xem nếu người dùng đã đăng nhập (có thông tin trong localStorage)
         if (storedUser) {
             setUser({ ...JSON.parse(storedUser), isLoadding: false });

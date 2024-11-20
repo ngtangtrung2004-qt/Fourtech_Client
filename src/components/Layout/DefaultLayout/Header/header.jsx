@@ -7,15 +7,24 @@ import { CartContext } from "../../../../components/context/CartContext";
 import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
+import CategoryService from "../../../../services/categoryService";
 
 function Header() {
     const navigate = useNavigate()
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    // const [account, setAccount] = useState()
     const { user, logoutContext } = useContext(UserContext)
-
     const inputRef = useRef(null);
+    const [category, setHeaderCategory] = useState([]);
     const { totalQuantity } = useContext(CartContext);
+
+    useEffect(() => {
+        fetchAPICategory();
+    }, []);
+    const fetchAPICategory = async () => {
+        const dataCategory = await CategoryService.getAllCategory();
+        console.log(dataCategory.data);
+        setHeaderCategory(dataCategory.data);
+    };
 
 
     useEffect(() => {
@@ -36,19 +45,14 @@ function Header() {
         }
     }, [isSearchOpen])
 
-
     const handleLogout = async () => {
         let data = await AuthService.Logout() //clear cookie
-
         if (data && data.EC === 0) {
             logoutContext() //clear context
             showToastSuccess(data.message)
             navigate('/login-register')
         }
     }
-
-
-
 
     return (
         <>
@@ -68,32 +72,19 @@ function Header() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link to='/allproduct'>Sản phẩm
+                                    <Link to="/allproduct">
+                                        Sản phẩm
                                         <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
                                     </Link>
                                     <div className="sub-nav">
                                         <ul className="sub-nav-list">
-                                            <li className="sub-nav-item">
-                                                <Link>Bàn phím</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Laptop</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Màn hình</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Chuột + Lót chuột</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Máy chơi game</Link>
-                                            </li>
-                                            <li className="sub-nav-item">
-                                                <Link>Sạc dự phòng</Link>
-                                            </li>
+                                            {category.map((item) => (
+                                                <li className="sub-nav-item" key={item.id}>
+                                                    <Link>{item.name}</Link>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
-
                                 </li>
                                 <li className="nav-item">
                                     <Link to='/article'>Bài viết</Link>
@@ -143,7 +134,7 @@ function Header() {
                                             <p>Giỏ hàng</p>
                                         </div>
                                         <div className="soluong">
-                                            {totalQuantity && totalQuantity > 0 ? (
+                                            {totalQuantity > 0 ? (
                                                 <span>{totalQuantity}</span>
                                             )
                                                 :
@@ -151,6 +142,7 @@ function Header() {
                                                     <span>0</span>
                                                 )
                                             }
+
                                         </div>
                                     </div>
                                 </Link>

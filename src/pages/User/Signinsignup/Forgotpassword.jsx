@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
@@ -12,23 +13,21 @@ function ForgotPassword() {
       alert("Vui lòng nhập email!");
       return;
     }
+    setLoading(true);
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/forgot-password`,
-        { email },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+        { email }
       );
       alert("Email đặt lại mật khẩu đã được gửi.");
     } catch (error) {
       console.error("Lỗi khi yêu cầu đặt lại mật khẩu:", error);
       alert(
         error.response?.data?.message ||
-          "Đã xảy ra lỗi khi yêu cầu đặt lại mật khẩu."
+          "Có lỗi xảy ra khi gửi email. Vui lòng thử lại sau."
       );
+    }finally{
+      setLoading(false);
     }
   };
   console.log(email);
@@ -51,7 +50,7 @@ function ForgotPassword() {
             />
           </div>
           <div className="bot_dlmk">
-            <button onClick={handleForgotPassword}>Tiếp Theo</button>
+            <button onClick={handleForgotPassword}>{loading ? "Đang gửi..." : "Gửi email"}</button>
           </div>
         </form>
       </div>
