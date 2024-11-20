@@ -6,32 +6,29 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import "./signUpSignIn.css";
 
 function ResetPassword() {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+ const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const { token } = useParams(); // Lấy token từ URL
   const navigate = useNavigate();
-  console.log("token", token);
+
   const handleResetPassword = async () => {
     if (newPassword !== confirmPassword) {
-      alert("Mật khẩu không khớp.");
+      alert('Mật khẩu không khớp.');
       return;
     }
+    setLoading(true);
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/reset-password`,
-        { token, newPassword },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Mật khẩu đã được đặt lại thành công.");
-      navigate("/login-register"); // Điều hướng người dùng đến trang đăng nhập
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/reset-password`, { token, newPassword });
+      alert('Mật khẩu đã được đặt lại thành công.');
+      navigate('/login-register'); // Điều hướng người dùng đến trang đăng nhập
     } catch (error) {
-      console.error("Lỗi khi đặt lại mật khẩu:", error);
-      alert("Token không hợp lệ hoặc đã hết hạn.");
+      console.error('Lỗi khi đặt lại mật khẩu:', error);
+      alert('Token không hợp lệ hoặc đã hết hạn.');
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -64,7 +61,7 @@ function ResetPassword() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button className="resset-password-btn" onClick={handleResetPassword}>Đặt lại mật khẩu</button>
+        <button className="resset-password-btn" onClick={handleResetPassword}>{loading ? "Đang đặt lại mật khẩu..." : "Đổi mật khẩu"}</button>
       </div>
     </div>
   );

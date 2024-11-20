@@ -34,7 +34,7 @@ const Cart = () => {
           <div className="item-tong-cart">
             <div className="item">
               {cart.length > 0 ? (
-                cart.map((item) => (
+                cart.map((item) => ( 
                   <div className="item-cart" key={item.id}>
                     <div className='check-box'>
                       <input type="checkbox" />
@@ -42,7 +42,9 @@ const Cart = () => {
 
                     <div className="img" >
                       <Link to={'/detail'}>
-                        <img style={{ width: '70px', height: '70px' }} src={item.image} alt={item.name} />
+                        {item.image.slice(0, 1).map(( img, index) => (
+                        <img style={{ width: '70px', height: '70px' }} key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${img}`} alt={item.name} />
+                      ))}
                       </Link>
                     </div>
 

@@ -38,7 +38,7 @@ function Contact() {
                     <label htmlFor="message">Lời nhắn:</label>
                     <textarea id="message" name="message" rows="4" onChange={handleChange} ></textarea>
 
-                    <button type="submit" className="submit-button">GỬI TIN NHẮN</button>
+                    <button type="submit" className="submit_button-contact">GỬI TIN NHẮN</button>
                 </form>
             </div>
             <div className="contact-info-section">

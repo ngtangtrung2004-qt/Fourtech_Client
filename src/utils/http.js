@@ -36,6 +36,7 @@ http.interceptors.response.use(
             localStorage.removeItem('jwt');
             window.location.href = '/login-register';
             delete axios.defaults.headers.common['Authorization'];
+            console.log(error);
 
             return Promise.reject(error);
         }
