@@ -11,7 +11,7 @@ function SearchProducts() {
   useEffect(() => {
     if (query) {
       axios
-        .get(`http://localhost:3005/api/search?query=${query}`,{
+        .get(`${import.meta.env.VITE_API_URL}/api/search?query=${query}`,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
