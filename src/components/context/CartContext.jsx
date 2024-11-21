@@ -8,6 +8,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   // State để lưu trữ các sản phẩm trong giỏ hàng
   const [cart, setCart] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const { user } = useContext(UserContext);
 
@@ -22,10 +23,16 @@ export const CartProvider = ({ children }) => {
   // Hàm cập nhật giỏ hàng
   const updateCart = (newCart) => {
     setCart(newCart);
+    // Cập nhật totalQuantity khi cart thay đổi
+    const newTotalQuantity = newCart.reduce((total, item) => total + item.quantity, 0);
+    setTotalQuantity(newTotalQuantity);
   };
 
-  // Hàm tính tổng số lượng sản phẩm trong giỏ hàng
-  const totalQuantity = Array.isArray(cart) ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+  useEffect(() => {
+    // Tính toán lại tổng số lượng mỗi khi giỏ hàng thay đổi
+    const newTotalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalQuantity(newTotalQuantity);
+  }, [cart]);
 
   // Hàm lấy giỏ hàng từ API
   const fetchCart = async (id) => {
@@ -60,6 +67,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateCart,
         totalQuantity,
+        setTotalQuantity
       }}
     >
       {children}

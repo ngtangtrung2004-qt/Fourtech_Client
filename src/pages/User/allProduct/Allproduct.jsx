@@ -6,6 +6,9 @@ import { CartContext } from '../../../components/context/CartContext';
 import Category from '../../../components/Category/Category';
 import ProductService from '../../../services/productService';
 import { formatCurrency } from '../../../config/config';
+import CartService from '../../../services/cartService';
+import { UserContext } from '../../../components/context/authContext';
+import { showToastError } from '../../../config/toastConfig';
 
 
 
@@ -14,18 +17,22 @@ const AllProduct = () => {
   const [pro, setAllProduct] = useState([]);
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
 
+
+  const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
+  const { user } = useContext(UserContext)
+
+  const userId = user.account.id
+
   useEffect(() => {
     fetchAPIAllProduct()
-  }, [
+  }, [])
 
-  ])
   const fetchAPIAllProduct = async () => {
     const dataProduct = await ProductService.getAllProduct();
     console.log(dataProduct);
     setAllProduct(dataProduct);
   }
 
-  const { addToCart } = useContext(CartContext);
 
   // Hàm xử lý khi thay đổi checkbox lọc giá
   const handlePriceFilterChange = (event) => {
@@ -69,6 +76,69 @@ const AllProduct = () => {
     );
   };
 
+  const handleAddToCart = async (idProduct) => {
+
+    if (user.isAuthenticated === false) {
+      showToastError("Vui lòng đăng nhập")
+    } else {
+      try {
+        //Xác định số lượng sản phẩm cần thêm vào giỏ hàng là 1
+        const quantity = 1;
+
+        // Lấy thông tin giỏ hàng từ context
+        const cartItems = cart;
+
+        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa. 
+        //Tìm kiếm trong (mảng cartItems) xem có sản phẩm nào có product_id trùng với idProduct (ID của sản phẩm cần thêm vào giỏ hàng) không.
+        //Nếu tìm thấy sản phẩm (existingCartItem), thì nó sẽ trả về sản phẩm đó, nếu không sẽ trả về undefined.
+        const existingCartItem = cartItems.find(item => item.product_id === idProduct);
+
+        if (existingCartItem) {
+          // Cập nhật số lượng nếu sản phẩm đã có trong giỏ hàng
+          //Nếu sản phẩm đã có trong giỏ hàng (existingCartItem), số lượng của sản phẩm này được tăng thêm
+          existingCartItem.quantity += quantity;  // Tăng số lượng
+        } else {
+          // Thêm sản phẩm mới vào giỏ hàng
+          //Nếu sản phẩm chưa có trong giỏ hàng (else), một đối tượng sản phẩm mới được thêm vào giỏ hàng với product_id là idProduct và số lượng là quantity.
+          cartItems.push({
+            product_id: idProduct,
+            quantity: quantity
+          });
+        }
+
+        // Cập nhật lại giỏ hàng trong context
+        //Sau khi cập nhật hoặc thêm sản phẩm mới, hàm gọi setCart(cartItems) để cập nhật lại giỏ hàng trong context. 
+        //Điều này sẽ làm cho các component khác sử dụng CartContext nhận được giỏ hàng mới
+        setCart(cartItems);
+
+        // Cập nhật lại tổng số lượng trong giỏ hàng
+        const newTotalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+        //Tính tổng số lượng sản phẩm trong giỏ hàng. Hàm reduce sẽ cộng dồn giá trị của thuộc tính quantity của mỗi sản phẩm trong giỏ hàng.
+
+        // Cập nhật tổng số lượng sản phẩm trong giỏ hàng bằng newTotalQuantity
+        setTotalQuantity(newTotalQuantity);
+
+        // Gửi dữ liệu giỏ hàng lên server
+        const dataCart = await CartService.postCart({
+          user_id: userId,
+          product_id: idProduct,
+          quantity: quantity
+        });
+
+        if (dataCart && dataCart.EC === 0) {
+          // Cập nhật lại cart và thông báo thành công
+          updateCart(cartItems);
+        } else {
+          console.error(dataCart.message || 'Không thể thêm sản phẩm vào giỏ hàng');
+        }
+      } catch (error) {
+        console.error('Lỗi khi thêm sản phẩm vào giỏ hàng:', error.message);
+      }
+    }
+  };
+
+
+
   // Lọc sản phẩm dựa trên tên sản phẩm chứa từ khóa đã chọn
   const filteredProducts = selectedBrands.length
     ? pro.filter(
@@ -111,7 +181,7 @@ const AllProduct = () => {
                     <span className="price-12">{formatCurrency(products.promotion_price)}</span>
                   </div>
                   <div className="product-pricing-123">{formatCurrency(products.price)}</div>
-                  <button className="add-to-cart-btn-12" onClick={() => addToCart(products)}>
+                  <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
                     Thêm vào giỏ hàng
                   </button>
                 </li>

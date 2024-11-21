@@ -134,15 +134,7 @@ function Header() {
                                             <p>Giỏ hàng</p>
                                         </div>
                                         <div className="soluong">
-                                            {totalQuantity > 0 ? (
-                                                <span>{totalQuantity}</span>
-                                            )
-                                                :
-                                                (
-                                                    <span>0</span>
-                                                )
-                                            }
-
+                                            <span>{totalQuantity}</span>
                                         </div>
                                     </div>
                                 </Link>
