@@ -36,7 +36,6 @@ const AllProduct = () => {
     setAllProduct(dataProduct);
   }
 
-
   // Hàm xử lý khi thay đổi checkbox lọc giá
   const handlePriceFilterChange = (event) => {
     const { id, checked } = event.target;
@@ -191,8 +190,8 @@ const AllProduct = () => {
                 <li key={products.id} className="item-1">
                   <Link to="">
                     {products?.image[0] && (
-                      <img 
-                      className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
+                      <img
+                        className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
                     )}
                     <div className="product-description-12">
                       <p>{products.name}</p>
