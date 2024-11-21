@@ -95,6 +95,8 @@
     box-sizing: border-box;
     margin-bottom: 30px;
     text-align: center;
+    margin-bottom: 20px;
+    height: 400px;
   }
   ul.product-all-item li img{
   max-width: 100%;
@@ -157,9 +159,11 @@
   margin-right: 15%;
 }
 .product-all-item .imgproduct{
-  width: 100%;
+  width: 272px;
+  height: 200px;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-radius: 20px;
+
+
 }
 
