@@ -16,8 +16,7 @@ function Header() {
   const inputRef = useRef(null);
   const [category, setHeaderCategory] = useState([]);
   const { totalQuantity } = useContext(CartContext);
-
-  const [query,setQuery]=useState()
+  const [query,setQuery] = useState()
 
   useEffect(() => {
     fetchAPICategory();
@@ -54,14 +53,12 @@ function Header() {
       navigate("/login-register");
     }
   };
-
-  const handleSearchSubmit = (e) => {
+const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate(`/search?query=${query}`); // Điều hướng đến trang tìm kiếm
     setIsSearchOpen(false)
     
   };
-
 
   return (
     <>
@@ -130,7 +127,7 @@ function Header() {
                     <div className="sub-search-text-tim-kiem">
                       <h3>TÌM KIẾM</h3>
                     </div>
-                   <form onSubmit={handleSearchSubmit}>
+                    <form onSubmit={handleSearchSubmit}>
                     <div className="input">
                         <input
                           type="text"

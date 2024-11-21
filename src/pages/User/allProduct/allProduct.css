@@ -5,7 +5,8 @@
     
 }
 .product-filter {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     align-items: center;
     margin: 20px;
@@ -95,6 +96,8 @@
     box-sizing: border-box;
     margin-bottom: 30px;
     text-align: center;
+    margin-bottom: 20px;
+    height: 400px;
   }
   ul.product-all-item li img{
   max-width: 100%;
@@ -160,6 +163,5 @@
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-radius: 20px;
 }
 
