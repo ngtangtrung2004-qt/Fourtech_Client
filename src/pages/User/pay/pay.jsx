@@ -7,7 +7,7 @@ import { Input, Radio, Space, Button } from 'antd';
 import { AiFillBank } from "react-icons/ai";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import TextArea from 'antd/es/input/TextArea';
-import { useState } from 'react';
+import {  useState } from 'react';
 import { Link } from 'react-router-dom'
 
 function Pay() {
@@ -17,6 +17,10 @@ function Pay() {
         console.log('radio checked', e.target.value);
         setValue(e.target.value);
     };
+
+    // const [formCart, setformCar] = useState({
+
+    // });
     return (
         <>
             <div className="container-pay">
@@ -38,7 +42,9 @@ function Pay() {
                             <div className="thong-tin-nhan-hang">
                                 <h2>Thông tin nhận hàng</h2>
                                 <Input placeholder='Họ và tên' size='large' />
+                                
                                 <Input placeholder='Email' size='large' />
+                             
                                 <Input placeholder='Số điện thoại' size='large' />
                                 <Input placeholder='Số nhà' size='large' />
                                 <TextArea placeholder='Ghi chú' />
@@ -49,7 +55,7 @@ function Pay() {
                                     <h2>Vận chuyển</h2>
                                     <div className="box-text-van-chuyen">
                                         <Radio checked>
-                                            Giao hàng nhận nơi
+                                            Giao hàng tận nơi
                                         </Radio>
                                         <span>50.000đ</span>
                                     </div>

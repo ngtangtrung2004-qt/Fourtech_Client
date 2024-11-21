@@ -2,6 +2,7 @@ import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import './NewTechelogy.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 function NewTechnology() {
   return (<>
     <div className="item-new grid" >
@@ -12,10 +13,10 @@ function NewTechnology() {
           <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
           <div className="card-action">
             <div className="card-date">
-              <span><FontAwesomeIcon icon={faCalendarDay} /></span>
+              <span><FontAwesomeIcon icon={faCalendarDay} /></span> 
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiết</button>
+            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
           </div>
         </div>
       </div>
@@ -29,7 +30,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiết</button>
+            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiết</button>
+            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
           </div>
         </div>
       </div>
@@ -57,7 +58,7 @@ function NewTechnology() {
               <span><FontAwesomeIcon icon={faCalendarDay} /></span>
               <span>13/12/2002</span>
             </div>
-            <button className="card-btn">Xem chi tiết</button>
+            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
           </div>
         </div>
       </div>

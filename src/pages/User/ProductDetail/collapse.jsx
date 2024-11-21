@@ -2,7 +2,7 @@ import { useState } from 'react';
 import "./DetailPrd.css";
 import PropTypes from 'prop-types';
 
-const Collapse = ({ title, children, isOpenByDefault }) => {
+const Collapse = ({ title, children, isOpenByDefault=false }) => {
   // Sử dụng `isOpenByDefault` để đặt trạng thái ban đầu của `isOpen`
   const [isOpen, setIsOpen] = useState(isOpenByDefault);
 
@@ -39,9 +39,4 @@ Collapse.propTypes = {
   children: PropTypes.node,           // `children` có thể là bất kỳ React node nào
   isOpenByDefault: PropTypes.bool,    // `isOpenByDefault` xác định collapse có mở mặc định hay không
 };
-
-Collapse.defaultProps = {
-  isOpenByDefault: false,             // Mặc định là không mở
-};
-
 export default Collapse;

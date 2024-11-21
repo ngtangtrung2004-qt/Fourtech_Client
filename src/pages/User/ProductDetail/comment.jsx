@@ -9,59 +9,6 @@ function Comment() {
         <div className="review-header">
           <h2>Khách hàng nói về sản phẩm</h2>
         </div>
-        <div className="rating-review">
-          <div className="rating-total">
-            <div className="rating-score">5.0</div>
-            <div className="rating-stars">
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-            </div>
-            <p>1 lượt đánh giá</p>
-          </div>
-
-          {/* Rating breakdown */}
-          <div className="rating-breakdown">
-            <div className="rating-bar">
-              <span>5</span>
-              <FontAwesomeIcon icon="fa-regular fa-star" />
-              <div className="progress-bar" style={{ width: "100%" }}></div>
-              <span>1</span>
-            </div>
-            <div className="rating-bar">
-              <span>4</span>
-              <FontAwesomeIcon icon="fa-regular fa-star" />
-
-              <div className="progress-bar" style={{ width: "0%" }}></div>
-              <span>0</span>
-            </div>
-            <div className="rating-bar">
-              <span>3</span>
-              <FontAwesomeIcon icon="fa-regular fa-star" />
-
-              <div className="progress-bar" style={{ width: "0%" }}></div>
-              <span>0</span>
-            </div>
-            <div className="rating-bar">
-              <span>2</span>
-              <FontAwesomeIcon icon="fa-regular fa-star" />
-
-              <div className="progress-bar" style={{ width: "0%" }}></div>
-              <span>0</span>
-            </div>
-            <div className="rating-bar">
-              <span>1</span>
-              <FontAwesomeIcon icon="fa-regular fa-star" />
-
-              <div className="progress-bar" style={{ width: "0%" }}></div>
-              <span>0</span>
-            </div>
-          </div>
-        </div>
-
         {/* Comment input */}
         <div className="comment-section">
           <div className="comment-input">

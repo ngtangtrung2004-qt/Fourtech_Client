@@ -34,8 +34,9 @@ http.interceptors.response.use(
             showToastError("Vui lòng đăng nhập lại!");
             localStorage.removeItem('userInfo');
             localStorage.removeItem('jwt');
-            window.location.href = '/login-register';
+            // window.location.href = '/login-register';
             delete axios.defaults.headers.common['Authorization'];
+            console.log(error);
 
             return Promise.reject(error);
         }

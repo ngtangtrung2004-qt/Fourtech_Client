@@ -82,7 +82,7 @@ function HomePage() {
                 <div className='Banner'>
                     <div className="left-section">
                         <img className='Banner1' src={images[currentImageIndex]}
-        alt={`slide ${currentImageIndex}`} />
+                             alt={`slide ${currentImageIndex}`} />
                     </div>
                     <div className='right-section'>
                         <img src='Banner2.webp' />

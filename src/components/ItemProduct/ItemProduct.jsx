@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
 import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../CartContext/CartContext'; //Lấy hàm `addToCart` từ CartContext để thêm sản phẩm vào giỏ hàng.
+=======
+import { useContext, useState } from 'react';
+import { CartContext } from '../context/CartContext'
+>>>>>>> 5f171e8ce9a7f3bf9b8fd2311cde00af5fc6cd6c
 import './ItemProduct.css'
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import ProductService from '../../services/productService';
 import { formatCurrency } from '../../config/config';
 
+<<<<<<< HEAD
 // const products = [ // Danh sách sản phẩm giả lập với các thuộc tính như id, name, image, price, originalPrice và discount.
 //     {
 //       id: 1,
@@ -108,6 +114,110 @@ import { formatCurrency } from '../../config/config';
     
 //   ];
   
+=======
+const products = [ // Danh sách sản phẩm giả lập với các thuộc tính như id, name, image, price, originalPrice và discount.
+  {
+    id: 1,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-1.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 2,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-2.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 3,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-3.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 4,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-4.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+
+  {
+    id: 5,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-4.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 6,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-2.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 7,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-3.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 8,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-1.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 9,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-3.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 10,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-1.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 11,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-2.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  {
+    id: 12,
+    name: 'Bàn phím cơ Keychron K1 Pro',
+    image: '../hp-4.png', // đường dẫn ảnh của sản phẩm
+    price: 4590000,
+    originalPrice: 4690000,
+    discount: '-3%',
+  },
+  // Thêm nhiều sản phẩm khác nếu có
+
+];
+
+>>>>>>> 5f171e8ce9a7f3bf9b8fd2311cde00af5fc6cd6c
 
 
 const ItemProduct = ({filter}) => {
@@ -138,24 +248,24 @@ const ItemProduct = ({filter}) => {
 
   const nextSlide = () => {
     if (currentIndex < products.length - itemsPerPage) { // Nếu còn sản phẩm chưa hiển thị.
-        setCurrentIndex(currentIndex + itemsPerPage);    // Chuyển sang nhóm sản phẩm tiếp theo.
+      setCurrentIndex(currentIndex + itemsPerPage);    // Chuyển sang nhóm sản phẩm tiếp theo.
     }
   };
-  
+
   const prevSlide = () => {
-    if (currentIndex > 0){ // Nếu không phải nhóm đầu tiên.
+    if (currentIndex > 0) { // Nếu không phải nhóm đầu tiên.
       setCurrentIndex(currentIndex - itemsPerPage); // Quay lại nhóm sản phẩm trước đó.
     }
   };
 
   const visibleProducts = products.slice(currentIndex, currentIndex + itemsPerPage); // Lấy nhóm sản phẩm hiển thị dựa trên chỉ số hiện tại.
 
-    
+
   return (
     <>
 
-        
 
+<<<<<<< HEAD
 <div className="itemProduct-container">
         {visibleProducts.map((products) => (
           <div key={products.id} className="itemProduct">
@@ -165,10 +275,23 @@ const ItemProduct = ({filter}) => {
                       <img className='product-img' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={products.name} />
                     ))}
                   </a>
+=======
+
+      <div className="itemProduct-container" >
+
+        {visibleProducts.map((products) =>
+
+          <div key={products.id} className="itemProduct">
+            <Link to={'/detail'}>
+              <div className="product-img">
+                <img src={products.image} alt="" />
+              </div>
+>>>>>>> 5f171e8ce9a7f3bf9b8fd2311cde00af5fc6cd6c
               <div className="product-description">
                 <p>{products.name}</p>
               </div>
               <div className="product-pricing">
+<<<<<<< HEAD
                 <span className="price">
                   {formatCurrency(products.promotion_price)}
                 </span>
@@ -195,6 +318,28 @@ const ItemProduct = ({filter}) => {
                 <FaAngleRight />
               </button> 
             </div>
+=======
+                <span className="price">{products.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+                <span className="tag">{products.discount}</span>
+              </div>
+              <div className="product-pricing-1">{products.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
+            </Link>
+            <button className="add-to-cart-btn" onClick={() => addToCart(products)}>Thêm vào giỏ hàng</button>
+
+          </div>
+        )}
+
+      </div>
+
+      <div className="buttons">
+        <button className="left-arrow" onClick={prevSlide} disabled={currentIndex === 0}>
+          <FaAngleLeft />
+        </button>
+        <button className="right-arrow" onClick={nextSlide} disabled={currentIndex >= products.length - itemsPerPage}>
+          <FaAngleRight />
+        </button>
+      </div>
+>>>>>>> 5f171e8ce9a7f3bf9b8fd2311cde00af5fc6cd6c
     </>
   )
 }
