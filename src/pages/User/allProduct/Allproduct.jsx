@@ -13,6 +13,8 @@ const AllProduct = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [pro, setAllProduct] = useState([]);
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+  const itemsPerPage = 9; // Số sản phẩm mỗi trang
 
   useEffect(() => {
     fetchAPIAllProduct()
@@ -78,6 +80,25 @@ const filterByPrice = (product) => {
     )
   : pro.filter(filterByPrice);
 
+  //Tính toán các sản phẩm hiển thị trên trang hiện tại
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+
+  //Xử lý chuyển trang
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   const filters = [
     { key: 'giaTangDan', label: 'Giá tăng dần' },
 
@@ -115,7 +136,7 @@ const filterByPrice = (product) => {
         <div className="all-product">
           <div className="item-products">
             <ul className="product-all-item">
-              {filteredProducts.map((products) => (
+              {productsToDisplay.map((products) => (
                 <li key={products.id} className="item-1">
                   <a href="">
                     {products.image.slice(0, 1).map((imgSrc, index) => (
@@ -155,7 +176,7 @@ const filterByPrice = (product) => {
             <div className="filter-group">
               <h3>Loại sản phẩm</h3>
               {['Bàn nâng hạ', 'Laptop', 'Chuột không dây', 'Ghế công thái học', 'Điện thoại', 'Tai nghe', 'Máy chơi game'
-                , 'Máy tính (PC)', 'Máy tính bảng',
+                , 'Máy tính (PC)', 'Máy tính bảng','Loa','Ghế'
               ].map((tag, index) => (
                 <div key={index} className="filter-item">
                   <input 
@@ -184,14 +205,21 @@ const filterByPrice = (product) => {
           </div>
         </div>
         <div className="pagination">
-          <button>&lt;</button>
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>&gt;</button>
-
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            &lt;
+          </button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              className={currentPage === index + 1 ? 'active' : ''}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            &gt;
+          </button>
         </div>
         <Category></Category>
       </div>
