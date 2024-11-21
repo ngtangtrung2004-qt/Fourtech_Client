@@ -10,10 +10,8 @@ import Collapse from "./collapse"
 import RelatedProduct from "./RelatedProduct";
 import { Link, useParams } from "react-router-dom";
 import Comment from "./comment";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { CartContext } from "../../../components/CartContext/CartContext";
-import { formatCurrency } from "../../../config/config";
+import { useEffect, useState } from "react";
+import axios from "axios";import { formatCurrency } from "../../../config/config";
 import ProductService from '../../../services/productService';
 
 // import ProductInfo from "./collapse";
@@ -22,7 +20,6 @@ function ProductDetail() {
   const {id}= useParams();
   const [productDetail,setProductDetail]= useState([])
    const [allProduct, setAllProduct] = useState([]);
-   const { addToCart } = useContext(CartContext);
 
   
 
@@ -87,7 +84,7 @@ function ProductDetail() {
                 <button className="counter-btn plus">+</button>
               </div>
             </div>
-            <button className="btn_add_cart" onClick={() => addToCart(productDetail)}>
+            <button className="btn_add_cart" >
               {" "}
               <span>
                 <FontAwesomeIcon icon={faCartShopping} />
