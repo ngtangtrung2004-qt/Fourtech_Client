@@ -28,7 +28,7 @@ const AllProduct = () => {
   }
 
   const { addToCart } = useContext(CartContext);
-  const [activeFilter, setActiveFilter] = useState('');
+  
 
   // Hàm xử lý khi thay đổi checkbox lọc giá
   const handlePriceFilterChange = (event) => {
@@ -99,15 +99,7 @@ const filterByPrice = (product) => {
     }
   };
 
-  const filters = [
-    { key: 'giaTangDan', label: 'Giá tăng dần' },
-
-
-    { key: 'giaGiamDan', label: 'Giá giảm dần' },
-
-
-    { key: 'moiNhat', label: 'Mới nhất' }
-  ];
+  
   // Xử lý khi chọn checkbox hãng sản xuất
   
 
@@ -120,17 +112,7 @@ const filterByPrice = (product) => {
         <Voucher />
         <div className="product-filter">
           <h2 className="product-title">Tất cả các sản phẩm</h2>
-          <div className="filter-buttons">
-            {filters.map((filter) => (
-              <button
-                key={filter.key}
-                className={activeFilter === filter.key ? 'active' : ''}
-                onClick={() => setActiveFilter(filter.key)}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+          
         </div>
 
         <div className="all-product">
