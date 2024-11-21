@@ -9,6 +9,7 @@ import { formatCurrency } from '../../../config/config';
 import CartService from '../../../services/cartService';
 import { UserContext } from '../../../components/context/authContext';
 import { showToastError } from '../../../config/toastConfig';
+import { Link } from 'react-router-dom';
 
 
 
@@ -188,21 +189,22 @@ const AllProduct = () => {
             <ul className="product-all-item">
               {productsToDisplay.map((products) => (
                 <li key={products.id} className="item-1">
-                  <a href="">
-                    {products.image.slice(0, 1).map((imgSrc, index) => (
-                      <img className='imgproduct' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={products.name} />
-                    ))}
-                  </a>
-                  <div className="product-description-12">
-                    <p>{products.name}</p>
-                  </div>
-                  <div className="product-pricing-12">
-                    <span className="price-12">{formatCurrency(products.promotion_price)}</span>
-                  </div>
-                  <div className="product-pricing-123">{formatCurrency(products.price)}</div>
-                  <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
-                    Thêm vào giỏ hàng
-                  </button>
+                  <Link to="">
+                    {products?.image[0] && (
+                      <img 
+                      className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
+                    )}
+                    <div className="product-description-12">
+                      <p>{products.name}</p>
+                    </div>
+                    <div className="product-pricing-12">
+                      <span className="price-12">{formatCurrency(products.promotion_price)}</span>
+                    </div>
+                    <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                    <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
+                      Thêm vào giỏ hàng
+                    </button>
+                  </Link>
                 </li>
               ))}
             </ul>
