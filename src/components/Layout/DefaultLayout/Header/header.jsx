@@ -8,7 +8,6 @@ import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
 import CategoryService from "../../../../services/categoryService";
-
 function Header() {
   const [category, setHeaderCategory] = useState([]);
 
@@ -81,9 +80,10 @@ function Header() {
                   </Link>
                   <div className="sub-nav">
                     <ul className="sub-nav-list">
+                      
                       {category.map((item) => (
                         <li className="sub-nav-item" key={item.id}>
-                          <Link>{item.name}</Link>
+                          <Link>{item.name} </Link>
                         </li>
                       ))}
                     </ul>
