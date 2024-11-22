@@ -11,6 +11,7 @@ import CartService from '../../../services/cartService';
 import { UserContext } from '../../../components/context/authContext';
 import { showToastError } from '../../../config/toastConfig';
 import { Link } from 'react-router-dom';
+import CategoryService from '../../../services/categoryService';
 
 
 const AllProduct = () => {
@@ -19,11 +20,22 @@ const AllProduct = () => {
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const itemsPerPage = 9; // Số sản phẩm mỗi trang
-
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const { user } = useContext(UserContext)
-
+  const [category, setCategory] = useState([]);
   const userId = user.account.id
+  
+
+
+  useEffect(() => {
+    fetchAPICategory();
+  }, []);
+  const fetchAPICategory = async () => {
+    const dataCategory = await CategoryService.getAllCategory();
+    console.log(dataCategory.data);
+    setCategory(dataCategory.data);
+  };
+  
 
   useEffect(() => {
     fetchAPIAllProduct()
@@ -145,19 +157,24 @@ const AllProduct = () => {
   };
 
 
-  // Lọc sản phẩm dựa trên tên sản phẩm chứa từ khóa đã chọn
-  const filteredProducts = selectedBrands.length
-    ? pro.filter(
-      (product) =>
-        selectedBrands.some((brand) => product.name.includes(brand)) && filterByPrice(product)
-    )
-    : pro.filter(filterByPrice);
+  // Lọc sản phẩm dựa trên các tiêu chí đã chọn
+const filteredProducts = pro.filter((product) => {
+  // Kiểm tra theo thương hiệu
+  const matchesBrand = selectedBrands.length
+    ? selectedBrands.some((brand) => product.name.toLowerCase().includes(brand.toLowerCase()))
+    : true;
 
-  //Tính toán các sản phẩm hiển thị trên trang hiện tại
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+  // Kiểm tra theo giá
+  const matchesPrice = filterByPrice(product);
+
+  return matchesBrand && matchesPrice; // Chỉ giữ sản phẩm thỏa mãn cả hai điều kiện
+});
+
+// Tính toán phân trang dựa trên danh sách sản phẩm đã lọc
+const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+const startIndex = (currentPage - 1) * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
 
   //Xử lý chuyển trang
   const handleNextPage = () => {
@@ -203,11 +220,12 @@ const AllProduct = () => {
                     <div className="product-pricing-12">
                       <span className="price-12">{formatCurrency(products.promotion_price)}</span>
                     </div>
+                    </Link>
                     <div className="product-pricing-123">{formatCurrency(products.price)}</div>
                     <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
                       Thêm vào giỏ hàng
                     </button>
-                  </Link>
+                  
                 </li>
               ))}
             </ul>
@@ -218,7 +236,7 @@ const AllProduct = () => {
               {['Samsung', 'Acer', 'Apple', 'Asus', 'Dell', 'Logitech', 'Corsair', 'Sony', 'Razer', 'Keychron'].map((bran, index) => (
                 <div key={index} className="filter-item">
                   <input name='xét hãng sản phẩm'
-                    type="radio"
+                    type="checkbox"
                     id={bran}
                     onChange={handleBrandFilterChange} />
                   <label htmlFor={bran}>{bran}</label>
@@ -231,15 +249,13 @@ const AllProduct = () => {
             <hr className="divider" />
             <div className="filter-group">
               <h3>Loại sản phẩm</h3>
-              {['Bàn nâng hạ', 'Laptop', 'Chuột không dây', 'Ghế công thái học', 'Điện thoại', 'Tai nghe', 'Máy chơi game'
-                , 'Máy tính (PC)', 'Máy tính bảng', 'Loa', 'Ghế'
-              ].map((tag, index) => (
-                <div key={index} className="filter-item">
+              {category.map((category) => (
+                <div key={category.id} className="filter-item">
                   <input name='xét soạn phẩm'
-                    type="radio"
-                    id={tag}
+                    type="checkbox"
+                    id={category.name}
                     onChange={handleBrandFilterChange} />
-                  <label htmlFor={tag}>{tag}</label>
+                  <label htmlFor={category.name}>{category.name}</label>
 
                 </div>
               ))}
@@ -251,7 +267,7 @@ const AllProduct = () => {
                 '3.000.000₫ - 5.000.000₫', '5.000.000₫ - 7.000.000₫', '7.000.000₫ - 10.000.000₫', 'Giá trên 10.000.000₫',].map((tag, index) => (
                   <div key={index} className="filter-item">
                     <input name='xét giá'
-                      type="radio"
+                      type="checkbox"
                       id={tag}
                       onChange={handlePriceFilterChange} />
                     <label htmlFor={tag}>{tag}</label>

@@ -10,33 +10,38 @@ import { UserContext } from '../context/authContext';
 import CartService from '../../services/cartService';
 
 
-  
 
-const ItemProduct = ({filter}) => {
+
+const ItemProduct = ({ filter }) => {
   const [products, setProducts] = useState([]);
-  const {user} = useContext(UserContext)
-  const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext); 
+  const { user } = useContext(UserContext)
+  const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const [currentIndex, setCurrentIndex] = useState(0); // Khởi tạo state để theo dõi vị trí sản phẩm đang hiển thị (bắt đầu từ 0).
   const itemsPerPage = 4; // Số lượng sản phẩm hiển thị mỗi trang.
 
   useEffect(() => {
+    let isMounted = true;
     const fetchProducts = async () => {
       try {
-        const data = await ProductService.getAllProduct(filter); // Gọi API
-        if (data && Array.isArray(data)) {
-          setProducts(data); // Lưu sản phẩm vào state nếu dữ liệu hợp lệ
-        } else {
-          console.error("Dữ liệu trả về không hợp lệ:", data);
-          setProducts([]); // Đặt state rỗng nếu dữ liệu không hợp lệ
+        const data = await ProductService.getProductByCategory(filter);
+        if (data && data.EC === 0 && isMounted) {
+          setProducts(data.data);
+        } else if (isMounted) {
+          setProducts([]);
         }
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm từ API:", error);
-        setProducts([]); // Đặt state rỗng nếu có lỗi
+        if (isMounted) setProducts([]);
       }
     };
 
     fetchProducts();
+
+    return () => {
+      isMounted = false;
+    };
   }, [filter]);
+
 
   const userId = user.account.id
 
@@ -99,7 +104,7 @@ const ItemProduct = ({filter}) => {
       }
     }
   }
-  
+
 
   const nextSlide = () => {
     if (currentIndex < products.length - itemsPerPage) { // Nếu còn sản phẩm chưa hiển thị.
@@ -118,43 +123,47 @@ const ItemProduct = ({filter}) => {
   return (
     <>
 
-<div className="itemProduct-container">
-        {visibleProducts && visibleProducts.map((products) => (
-          <div key={products.id} className="itemProduct">
-            <Link to={"/detail"}>
-                    {products.image.slice(0, 1).map((imgSrc, index) => (
-                      <img className='product-img' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={products.name} />
-                    ))}
-              <div className="product-description">
-                <p>{products.name}</p>
-              </div>
-              <div className="product-pricing">
-                <span className="price">
-                  {formatCurrency(products.promotion_price)}
-                </span>
-               
-              </div>
-              <div className="product-pricing-1">
-                {formatCurrency(products.price)}
-              </div>
-            </Link>
-            <button className="add-to-cart-btn" onClick={() => handleAddToCart(products.id)}>
-              Thêm vào giỏ hàng
-            </button>
-          </div>
-        ))}
- 
-           
-            </div>
-            
-            <div className="buttons">
-              <button className="left-arrow" onClick={prevSlide} disabled={currentIndex === 0}>
-                <FaAngleLeft />
+      <div className="itemProduct-container">
+        {visibleProducts.length > 0 ? (
+          visibleProducts.map((products) => (
+            <div key={products.id} className="itemProduct">
+              <Link to={`/productDetail/${products.id}`}>
+                {products.image.slice(0, 1).map((imgSrc, index) => (
+                  <img className='product-img' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={products.name} />
+                ))}
+                <div className="product-description">
+                  <p>{products.name}</p>
+                </div>
+                <div className="product-pricing">
+                  <span className="price">
+                    {formatCurrency(products.promotion_price)}
+                  </span>
+
+                </div>
+                <div className="product-pricing-1">
+                  {formatCurrency(products.price)}
+                </div>
+              </Link>
+              <button className="add-to-cart-btn" onClick={() => handleAddToCart(products.id)}>
+                Thêm vào giỏ hàng
               </button>
-              <button className="right-arrow" onClick={nextSlide} disabled={currentIndex >= products.length - itemsPerPage}>
-                <FaAngleRight />
-              </button> 
             </div>
+          ))
+        ) : (
+          <p className="no-products">Không có sản phẩm nào để hiển thị.</p>
+        )}
+
+
+      </div>
+
+      <div className="buttons">
+        <button className="left-arrow" onClick={prevSlide} disabled={currentIndex === 0}>
+          <FaAngleLeft />
+        </button>
+        <button className="right-arrow" onClick={nextSlide} disabled={currentIndex >= products.length - itemsPerPage}>
+          <FaAngleRight />
+        </button>
+      </div>
     </>
   )
 }
