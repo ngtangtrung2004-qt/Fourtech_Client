@@ -13,14 +13,12 @@ import { showToastError } from '../../../config/toastConfig';
 import { Link } from 'react-router-dom';
 
 
-
 const AllProduct = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [pro, setAllProduct] = useState([]);
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const itemsPerPage = 9; // Số sản phẩm mỗi trang
-
 
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const { user } = useContext(UserContext)
@@ -30,7 +28,13 @@ const AllProduct = () => {
   useEffect(() => {
     fetchAPIAllProduct()
   }, [])
-
+  useEffect(() => {
+    const middlePosition = window.innerHeight / 2; // Tính vị trí giữa của màn hình
+    window.scrollTo({
+      top: middlePosition, // Đặt vị trí giữa
+      behavior: "smooth",  // Thêm hiệu ứng cuộn mượt mà
+    });
+  }, [currentPage]);
   const fetchAPIAllProduct = async () => {
     const dataProduct = await ProductService.getAllProduct();
     console.log(dataProduct);
@@ -141,7 +145,6 @@ const AllProduct = () => {
   };
 
 
-
   // Lọc sản phẩm dựa trên tên sản phẩm chứa từ khóa đã chọn
   const filteredProducts = selectedBrands.length
     ? pro.filter(
@@ -169,7 +172,6 @@ const AllProduct = () => {
     }
   };
 
-
   return (
     <>
       <div className="container-allproduct">
@@ -194,6 +196,7 @@ const AllProduct = () => {
                       <img
                         className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
                     )}
+                    
                     <div className="product-description-12">
                       <p>{products.name}</p>
                     </div>
@@ -281,3 +284,4 @@ const AllProduct = () => {
 }
 
 export default AllProduct;
+
