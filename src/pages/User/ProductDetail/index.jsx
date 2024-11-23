@@ -39,6 +39,8 @@ function ProductDetail() {
   }
     fetchAPIAllProduct()
   }, [])
+
+  console.log('id',typeof(id))
   return (
     <>
       <div className="main_detail">
@@ -109,7 +111,7 @@ function ProductDetail() {
             <Collapse title="Tiêu đề 3">
               <p>Nội dung của tiêu đề 3</p>
             </Collapse> */}
-            <Comment></Comment>
+            <Comment product_id={id}/>
           </div>
           <div className="detail_parameter">
           

@@ -201,10 +201,10 @@ const AllProduct = () => {
                       <span className="price-12">{formatCurrency(products.promotion_price)}</span>
                     </div>
                     <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                  </Link>
                     <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
                       Thêm vào giỏ hàng
                     </button>
-                  </Link>
                 </li>
               ))}
             </ul>
