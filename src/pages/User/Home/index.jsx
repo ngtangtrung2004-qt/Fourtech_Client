@@ -3,20 +3,21 @@ import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 import HeaderProduct from './headerProduct';
-import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
+// import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
 
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
 import { useEffect, useState } from "react";
 import Category from '../../../components/Category/Category';
+import CategoryService from '../../../services/categoryService';
 
 
 
 const images = [
     "Banner1.webp",
     "Banner5.webp",
-  ];
+];
 
 
 function HomePage() {
@@ -26,6 +27,22 @@ function HomePage() {
         minutes: 0,
         seconds: 0,
     });
+
+    const [category, setCategory] = useState([])
+
+    useEffect(() => {
+        fechtCategory()
+    }, [])
+
+    const fechtCategory = async () => {
+        const dataCategory = await CategoryService.getAllCategory()
+        if (dataCategory && dataCategory.EC === 0) {
+            setCategory(dataCategory.data)
+        }
+    }
+
+
+
 
     // Set the target date to 2 days from now
     const targetDate = new Date();
@@ -58,23 +75,25 @@ function HomePage() {
         return () => clearInterval(timer);
     }, []);
 
+
+
     // State dùng để lưu vị trí của ảnh hiện tại trong slideshow
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // useEffect sẽ chạy khi component được render lần đầu tiên
-  useEffect(() => {
-    // Thiết lập một interval để tự động chuyển ảnh sau một khoảng thời gian nhất định
-    const interval = setInterval(() => {
-      // Cập nhật vị trí của ảnh hiện tại
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
+    // useEffect sẽ chạy khi component được render lần đầu tiên
+    useEffect(() => {
+        // Thiết lập một interval để tự động chuyển ảnh sau một khoảng thời gian nhất định
+        const interval = setInterval(() => {
+            // Cập nhật vị trí của ảnh hiện tại
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000);
 
-    // Trả về một hàm để xóa interval khi component bị unmount
-    // Điều này giúp tránh việc interval tiếp tục chạy gây memory leak
-    return () => clearInterval(interval);
-  }, []);
+        // Trả về một hàm để xóa interval khi component bị unmount
+        // Điều này giúp tránh việc interval tiếp tục chạy gây memory leak
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <>
@@ -82,7 +101,7 @@ function HomePage() {
                 <div className='Banner'>
                     <div className="left-section">
                         <img className='Banner1' src={images[currentImageIndex]}
-                             alt={`slide ${currentImageIndex}`} />
+                            alt={`slide ${currentImageIndex}`} />
                     </div>
                     <div className='right-section'>
                         <img src='Banner2.webp' />
@@ -159,18 +178,37 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <HeaderProduct title={"Sản Phẩm Mới"} />
-                <ItemProduct />
+                {category.length > 0 && (
+                    <>
+                        {category.find(cat => cat.name === "Tai Nghe") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Tai Nghe").id} />
+                            </>
+                        )}
 
 
-                <Voucher />
-                <Event />
-                <HeaderProduct title={"Sản Phẩm Tai Nghe"} />
+                        <Voucher />
+                        <Event />
 
-                <ItemProduct id={'headphone'} />
-                <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} />
-                {/* <ItemProduct id={'chuotBanphim'}/> */}
-                <Item_Mouse />
+                        {category.find(cat => cat.name === "Máy Chơi Game") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Máy Chơi Game").id} />
+                            </>
+                        )}
+
+                        {/* <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} /> */}
+                        {/* <ItemProduct id={'chuotBanphim'}/> */}
+                    </>
+                )}
+                {/* <Item_Mouse /> */}
+                {category.find(cat => cat.name === "Chuột") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
+                            </>
+                        )}
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} />
 

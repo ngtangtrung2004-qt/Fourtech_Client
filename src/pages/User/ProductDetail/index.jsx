@@ -14,15 +14,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";import { formatCurrency } from "../../../config/config";
 import ProductService from '../../../services/productService';
 
+
+
 // import ProductInfo from "./collapse";
 
 function ProductDetail() {
   const {id}= useParams();
   const [productDetail,setProductDetail]= useState([])
-   const [allProduct, setAllProduct] = useState([]);
-
-  
-
+  const [allProduct, setAllProduct] = useState([]);
   useEffect(()=>{
     axios.get(
         `${import.meta.env.VITE_API_URL}/api/product/${id}`,
@@ -40,7 +39,6 @@ function ProductDetail() {
     fetchAPIAllProduct()
   }, [])
 
-  console.log('id',typeof(id))
   return (
     <>
       <div className="main_detail">

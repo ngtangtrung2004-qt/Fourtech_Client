@@ -84,6 +84,15 @@ const ProductService = {
             console.error(error);
         }
     },
+
+    getProductByCategory: async (idCategory) => {
+        try {
+            const {data} = await http.get(`/category/${idCategory}/products`)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 
