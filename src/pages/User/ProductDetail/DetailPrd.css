@@ -39,7 +39,7 @@
 .detail-img img {
   width: 90%;
   padding: 33px;
-  /* height: 448px; */
+  height: 448px;
 }
 .img-action {
   width: 100%;
@@ -51,8 +51,10 @@
 .action-icon {
   /* width: 50px;
     height: auto;
-    font-size: 14px; */
-  /* font-size: 50px; */
+    /* font-size: 50px; */
+  font-size: 24px;
+  padding: 30px 0px 30px 0px;
+  line-height: 100%;
   cursor: pointer;
 }
 .action-image {
@@ -65,7 +67,7 @@
   border-radius: 10px;
   width: calc(100% / 6);
   height: auto;
-  margin: 0px 14px;
+  margin: 0px 4;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -388,7 +390,7 @@
   color: #000000;
   margin-bottom: 10px;
   line-height: 1.2;
-  width: 100%;
+  width: 300px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

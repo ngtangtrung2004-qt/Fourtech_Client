@@ -75,7 +75,7 @@ function HomePage() {
     // Điều này giúp tránh việc interval tiếp tục chạy gây memory leak
     return () => clearInterval(interval);
   }, []);
-
+  
     return (
         <>
             <div className='container-home'>
@@ -160,14 +160,15 @@ function HomePage() {
                     </div>
                 </div>
                 <HeaderProduct title={"Sản Phẩm Mới"} />
-                <ItemProduct />
+                <ItemProduct filter={{ sort: "newest" }}/>
 
 
                 <Voucher />
                 <Event />
+                
                 <HeaderProduct title={"Sản Phẩm Tai Nghe"} />
+                <ItemProduct filter={{ category: "Tai Nghe" }}  />
 
-                <ItemProduct id={'headphone'} />
                 <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} />
                 {/* <ItemProduct id={'chuotBanphim'}/> */}
                 <Item_Mouse />

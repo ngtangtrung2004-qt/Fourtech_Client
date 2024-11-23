@@ -3,13 +3,19 @@ import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useContext } from "react";
-import { CartContext } from "../../../CartContext/CartContext";
+import { CartContext } from "../../../../components/context/CartContext";
 import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
 import CategoryService from "../../../../services/categoryService";
 function Header() {
+  const navigate = useNavigate();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { user, logoutContext } = useContext(UserContext);
+  const inputRef = useRef(null);
   const [category, setHeaderCategory] = useState([]);
+  const { totalQuantity } = useContext(CartContext);
+  const [query,setQuery] = useState()
 
   useEffect(() => {
     fetchAPICategory();
@@ -19,14 +25,6 @@ function Header() {
     console.log(dataCategory.data);
     setHeaderCategory(dataCategory.data);
   };
-
-  const navigate = useNavigate();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  // const [account, setAccount] = useState()
-  const { user, logoutContext } = useContext(UserContext);
-
-  const inputRef = useRef(null);
-  const { cartQuantity } = useContext(CartContext);
 
   useEffect(() => {
     const handelClickOutSide = (event) => {
@@ -48,12 +46,17 @@ function Header() {
 
   const handleLogout = async () => {
     let data = await AuthService.Logout(); //clear cookie
-
     if (data && data.EC === 0) {
       logoutContext(); //clear context
       showToastSuccess(data.message);
       navigate("/login-register");
     }
+  };
+const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${query}`); // Điều hướng đến trang tìm kiếm
+    setIsSearchOpen(false)
+    
   };
 
   return (
@@ -124,12 +127,22 @@ function Header() {
                     <div className="sub-search-text-tim-kiem">
                       <h3>TÌM KIẾM</h3>
                     </div>
+                    <form onSubmit={handleSearchSubmit}>
                     <div className="input">
-                      <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-                      <div className="sub-icon-search">
-                        <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-                      </div>
+                        <input
+                          type="text"
+                          placeholder="Tìm kiếm sản phẩm..."
+                          // value={query}
+                          onChange={(e) => setQuery(e.target.value)}
+                        />
+                        <div className="sub-icon-search">
+                          <button type="submit">
+                            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+                          </button>
+                        </div>
                     </div>
+                      </form>
+
                   </div>
                 )}
               </div>
@@ -143,7 +156,7 @@ function Header() {
                       <p>Giỏ hàng</p>
                     </div>
                     <div className="soluong">
-                      <span>{cartQuantity}</span>
+                      <span>{totalQuantity}</span>
                     </div>
                   </div>
                 </Link>
