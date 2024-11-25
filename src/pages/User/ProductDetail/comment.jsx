@@ -11,8 +11,13 @@ function Comment({ product_id }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [newRating, setNewRating] = useState(0);
-  const { user } = useContext(UserContext);
-  const [replyToCommentId, setReplyToCommentId] = useState(null);
+  const { user } = useContext(UserContext); // Thông tin user
+  const [replyToCommentId, setReplyToCommentId] = useState(null); // Bình luận được trả lời
+  const [replyContent, setReplyContent] = useState("");
+  const [page, setPage] = useState(1); // Trang hiện tại
+  const [total, setTotal] = useState(0); // Tổng số bình luận
+  // eslint-disable-next-line no-unused-vars
+  const [limit, setLimit] = useState(5); // Số lượng bình luận mỗi trang
 
   const handleReplyClick = (commentId) => {
     setReplyToCommentId(commentId); // Hiển thị input dưới commentId được chọn
@@ -21,18 +26,28 @@ function Comment({ product_id }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await http.get(`/comments/${product_id}`);
-        // console.log("API Response:", response);
-        setComments(response.data);
+        const response = await http.get(`/comments/${product_id}`, {
+          params: { page, limit }, // Gửi page và limit qua query string
+        });
+        console.log("API Response:", response);
+        setTotal(response.data.total);
+        setComments(response.data.comments);
       } catch (error) {
         console.error("Lỗi khi lấy bình luận:", error);
       }
     };
 
     fetchComments();
-  }, [product_id]);
-  // const token = localStorage.getItem("userInfo");
-  // console.log("Token in localStorage:", token);
+  }, [product_id, page, limit]);
+  const totalPages = Math.ceil(total / limit); // Tính tổng số trang
+
+  const handlePreviousPage = () => {
+    if (page > 1) setPage(page - 1); // Giảm số trang
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) setPage(page + 1); // Tăng số trang
+  };
   const handleAddComment = async () => {
     if (!user || !user.isAuthenticated) {
       alert("Bạn phải đăng nhập để bình luận.");
@@ -48,7 +63,8 @@ function Comment({ product_id }) {
             },
           }
         );
-         alert("Thêm bình luận thành công");
+        console.log("res", response);
+        alert("Thêm bình luận thành công");
         const newCommentData = {
           id: response.data.comment.id,
           content: response.data.comment.content,
@@ -58,6 +74,7 @@ function Comment({ product_id }) {
           userData: {
             id: response.data.comment.user_id,
             full_name: response.data.comment.userData.full_name,
+            role: response.data.comment.userData.role,
           },
           updatedAt: response.data.comment.updatedAt,
         };
@@ -70,6 +87,44 @@ function Comment({ product_id }) {
       }
     }
   };
+
+  // Gửi phản hồi
+  const handleReplySubmit = async () => {
+    if (!user || !user.isAuthenticated) {
+      alert("Bạn phải đăng nhập để phản hồi.");
+      return;
+    }
+    try {
+      const token = localStorage.getItem("token");
+      const response = await http.post(
+        `/comments/${product_id}`,
+        { content: replyContent, parent_comment_id: replyToCommentId }, // Thêm parent_comment_id
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Thêm phản hồi thành công");
+
+      // Cập nhật danh sách bình luận
+      const updatedComments = comments.map((comment) => {
+        if (comment.id === replyToCommentId) {
+          return {
+            ...comment,
+            replies: [...(comment.replies || []), response.data.comment],
+          };
+        }
+        return comment;
+      });
+      setComments(updatedComments);
+      setReplyContent("");
+      setReplyToCommentId(null); // Đóng ô nhập
+    } catch (error) {
+      console.error("Lỗi khi gửi phản hồi:", error);
+    }
+  };
+  // console.log('commemt',comments)
 
   return (
     <>
@@ -115,11 +170,25 @@ function Comment({ product_id }) {
                   <strong>{cmt.userData.full_name}</strong>{" "}
                   <span>
                     -{" "}
-                    {Math.floor(
-                      (Date.now() - new Date(cmt.updatedAt).getTime()) /
-                        (1000 * 60)
-                    )}{" "}
-                    phút trước
+                    {(() => {
+                      const now = Date.now();
+                      const updatedAt = new Date(cmt.updatedAt).getTime();
+                      const diffInMinutes = Math.floor(
+                        (now - updatedAt) / (1000 * 60)
+                      );
+                      const diffInHours = Math.floor(diffInMinutes / 60);
+                      // const diffInDays = Math.floor(diffInHours / 24);
+
+                      if (diffInMinutes < 60) {
+                        return `${diffInMinutes} phút trước`;
+                      } else if (diffInHours < 24) {
+                        return `${diffInHours} giờ trước`;
+                      } else {
+                        return new Date(cmt.updatedAt).toLocaleDateString(
+                          "vi-VN"
+                        );
+                      }
+                    })()}
                   </span>
                   <div className="rating-stars">
                     {[...Array(cmt.rating)].map((_, index) => (
@@ -130,28 +199,72 @@ function Comment({ product_id }) {
                       />
                     ))}
                   </div>
-                  {cmt.content}
+                  <p>{cmt.content}</p>
                 </div>
-                <div className="comment-actions" onClick={() => handleReplyClick(cmt.id)}>Trả lời</div>
+                <div
+                  className="comment-actions"
+                  onClick={() => handleReplyClick(cmt.id)}
+                >
+                  Trả lời
+                </div>
                 <div>
-
-               {replyToCommentId === cmt.id && (
-            <div className="reply-form">
-              <input
-                type="text"
-                placeholder="Nhập phản hồi của bạn..."
-                
-                // onChange={(e) => setReplyContent(e.target.value)}
-              />
-              <button>Gửi phản hồi</button>
-            </div>
-          )}
+                  {/* Form trả lời */}
+                  {replyToCommentId === cmt.id && (
+                    <div className="reply-form">
+                      <div className="comment-input">
+                        <input
+                          type="text"
+                          placeholder="Nhập phản hồi của bạn..."
+                          value={replyContent}
+                          onChange={(e) => setReplyContent(e.target.value)}
+                        />
+                        <button onClick={handleReplySubmit}>
+                          Gửi phản hồi
+                        </button>
+                      </div>
+                      <div
+                        className="form-close"
+                        onClick={() => setReplyToCommentId(null)}
+                      >
+                        X
+                      </div>
+                    </div>
+                  )}
+                  {/* Hiển thị phản hồi */}
+                  {cmt.replies &&
+                    cmt.replies.map((reply) => (
+                      ///
+                      <div key={reply.id} className="reply-item">
+                        <div className="comment-avata">
+                          {reply.userData.full_name[0]}
+                        </div>
+                        <div className="comment-content">
+                          <strong>
+                            {reply.userData.role === "admin"
+                              ? "Admin"
+                              : reply.userData.full_name}
+                          </strong>
+                          <p>{reply.content}</p>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
-              </div>
-              
             </div>
           );
         })}
+        {/* Phân trang */}
+        <div className="pagination">
+          <button onClick={handlePreviousPage} disabled={page === 1}>
+            Trang trước
+          </button>
+          <span>
+            Trang {page} / {totalPages}
+          </span>
+          <button onClick={handleNextPage} disabled={page === totalPages}>
+            Trang sau
+          </button>
+        </div>
       </div>
     </>
   );

@@ -59,6 +59,10 @@ const items = [
     <Link to="/admin/contact-admin">Contact</Link>,
     "7",
     <PieChartOutlined />
+  ),getItem(
+    <Link to="/admin/comment-admin">Bình Luận</Link>,
+    "8",
+    <PieChartOutlined />
   )
   // getItem(
   //   <Link to="/admin/brandAdmin">Brand</Link>,
