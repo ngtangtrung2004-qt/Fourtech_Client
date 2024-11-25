@@ -91,12 +91,15 @@
 }
 
 ul.product-all-item {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 20px; */
   /* Thay thế margin bằng gap */
   /* justify-content: space-between; */
   /* Đảm bảo các sản phẩm được dàn đều */
+  display: grid;
+  grid-template-columns: 270px 270px 270px;
+  gap: 20px;
 }
 
 ul.product-all-item li {
@@ -111,6 +114,7 @@ ul.product-all-item li {
   text-align: center;
   border-radius: 10px;
   margin-bottom: 10px;
+  min-height: 400px;
 }
 
 .imgproduct {
@@ -134,7 +138,7 @@ ul.product-all-item li {
 
 .product-pricing-12 {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .product-pricing-12 .price-12 {
@@ -146,11 +150,10 @@ ul.product-all-item li {
 
 .product-pricing-123 {
   display: block;
-  text-align: left;
+  text-align: center;
   text-decoration: line-through;
   color: #888;
   font-size: 14px;
-  margin-bottom: 10px;
   padding-left: 10px;
 }
 
@@ -158,10 +161,8 @@ ul.product-all-item li {
   background-color: #E72C33;
   border-radius: 30px;
   color: white;
-  margin-bottom: 20px;
-  margin-bottom: 20px;
   width: 200px;
-  margin-left: 17%;
+  margin: 5px auto 10px;
 }
 
 .add-to-cart-btn-12:hover {

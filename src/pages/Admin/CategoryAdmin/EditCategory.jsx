@@ -70,15 +70,9 @@ function EditCategory({ categoryItem, onEditSuccess }) {
     e.preventDefault();
 
     // Kiểm tra nếu không có ảnh mới được chọn
-    const imageToSend = imagePreview || categoryInfo.image;
 
     if (!categoryInfo.name) {
       showToastError("Vui lòng nhập tên danh mục.");
-      return;
-    }
-
-    if (!imageToSend) {
-      showToastError("Vui lòng chọn ảnh.");
       return;
     }
 
@@ -86,7 +80,13 @@ function EditCategory({ categoryItem, onEditSuccess }) {
       const idCategory = categoryInfo.id;
       const formData = new FormData();
       formData.append('categoryName', categoryInfo.name);
-      formData.append('categoryImage', categoryInfo.image);
+
+      // Gửi ảnh mới nếu có, nếu không giữ lại ảnh cũ
+      if (categoryInfo.image && categoryInfo.image !== imagePreview) {
+        formData.append('categoryImage', categoryInfo.image);
+      } else {
+        formData.append('categoryImage', categoryInfo.image);
+      }
 
       let data = await CategoryService.putCategory(idCategory, formData);
 
