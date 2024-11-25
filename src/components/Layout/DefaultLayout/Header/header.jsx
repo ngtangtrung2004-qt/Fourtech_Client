@@ -59,6 +59,8 @@ const handleSearchSubmit = (e) => {
     
   };
 
+
+
   return (
     <>
       <header className="container-header">
@@ -83,10 +85,9 @@ const handleSearchSubmit = (e) => {
                   </Link>
                   <div className="sub-nav">
                     <ul className="sub-nav-list">
-                      
-                      {category.map((item) => (
-                        <li className="sub-nav-item" key={item.id}>
-                          <Link>{item.name} </Link>
+                      {category.map((category) => (
+                        <li className="sub-nav-item" key={category.id}>
+                        <Link to={`/allproduct?category=${category.name}`}>{category.name}</Link>
                         </li>
                       ))}
                     </ul>
