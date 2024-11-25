@@ -32,6 +32,8 @@ import ResetPassword from "../pages/User/Signinsignup/ResetPassword"
 import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan"
 import SearchProducts from "../pages/User/Search"
 
+import Thankyou from "../pages/User/pay/thankyou"
+
 const publicRoutes = [
   { path: "/", component: HomePage, layout: DefaultLayout },
   { path: '/login-register', component: SignupSignin, layout: DefaultLayout },
@@ -47,6 +49,7 @@ const publicRoutes = [
   { path: '/article', component: Article, layout: DefaultLayout },
   { path: '/search', component: SearchProducts, layout: DefaultLayout },
   { path: '/newArticle', component: newArticle, layout: DefaultLayout },
+  { path: '/thankyou', component: Thankyou, layout: DefaultLayout },
 ]
 
 const adminRoutes = [

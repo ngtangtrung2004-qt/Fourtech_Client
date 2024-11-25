@@ -21,7 +21,7 @@ function Category() {
     return (
         <>
             <div className="product-grid">
-                {category.map((item) => (
+                {category && category.map((item) => (
                     <a key={item.id}>
                         <div className="product-item">
                             <img src={import.meta.env.VITE_API_URL + '/uploads/' + item.image} alt="Laptop" />
