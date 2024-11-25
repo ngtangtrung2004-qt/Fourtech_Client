@@ -24,7 +24,7 @@ const AllProduct = () => {
   const { user } = useContext(UserContext)
   const [category, setCategory] = useState([]);
   const userId = user.account.id
-  
+
 
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const AllProduct = () => {
     console.log(dataCategory.data);
     setCategory(dataCategory.data);
   };
-  
+
 
   useEffect(() => {
     fetchAPIAllProduct()
@@ -158,23 +158,23 @@ const AllProduct = () => {
 
 
   // Lọc sản phẩm dựa trên các tiêu chí đã chọn
-const filteredProducts = pro.filter((product) => {
-  // Kiểm tra theo thương hiệu
-  const matchesBrand = selectedBrands.length
-    ? selectedBrands.some((brand) => product.name.toLowerCase().includes(brand.toLowerCase()))
-    : true;
+  const filteredProducts = pro.filter((product) => {
+    // Kiểm tra theo thương hiệu
+    const matchesBrand = selectedBrands.length
+      ? selectedBrands.some((brand) => product.name.toLowerCase().includes(brand.toLowerCase()))
+      : true;
 
-  // Kiểm tra theo giá
-  const matchesPrice = filterByPrice(product);
+    // Kiểm tra theo giá
+    const matchesPrice = filterByPrice(product);
 
-  return matchesBrand && matchesPrice; // Chỉ giữ sản phẩm thỏa mãn cả hai điều kiện
-});
+    return matchesBrand && matchesPrice; // Chỉ giữ sản phẩm thỏa mãn cả hai điều kiện
+  });
 
-// Tính toán phân trang dựa trên danh sách sản phẩm đã lọc
-const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-const startIndex = (currentPage - 1) * itemsPerPage;
-const endIndex = startIndex + itemsPerPage;
-const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+  // Tính toán phân trang dựa trên danh sách sản phẩm đã lọc
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
 
   //Xử lý chuyển trang
   const handleNextPage = () => {
@@ -213,18 +213,30 @@ const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
                       <img
                         className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
                     )}
-                    
+
                     <div className="product-description-12">
                       <p>{products.name}</p>
                     </div>
-                    <div className="product-pricing-12">
-                      <span className="price-12">{formatCurrency(products.promotion_price)}</span>
-                    </div>
-                    <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                    {products?.promotion_price === 0 ?
+                      (
+                        <div className="product-pricing-12">
+                          <span className="price-12">{formatCurrency(products.price)}</span>
+                        </div>
+                      )
+                      :
+                      (
+                        <>
+                          <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                          <div className="product-pricing-12">
+                            <span className="price-12">{formatCurrency(products.promotion_price)}</span>
+                          </div>
+                        </>
+                      )
+                    }
                   </Link>
-                    <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
-                      Thêm vào giỏ hàng
-                    </button>
+                  <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
+                    Thêm vào giỏ hàng
+                  </button>
                 </li>
               ))}
             </ul>

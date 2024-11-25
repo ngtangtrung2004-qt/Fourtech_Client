@@ -67,7 +67,7 @@ const adminRoutes = [
   { path: '/admin/trash-can-product', component: TrashCanProduct, layout: LayoutAdmin },
 
   { path: '/admin/order-admin', component: OrderList, layout: LayoutAdmin },
-  { path: '/admin/orderDetail', component: OrderDetail, layout: LayoutAdmin },
+  { path: '/admin/orderDetail/:orderIdCode', component: OrderDetail, layout: LayoutAdmin },
 
   { path: '/admin/contact-admin', component: ContactAdmin, layout: LayoutAdmin },
 

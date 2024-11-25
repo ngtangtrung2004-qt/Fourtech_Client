@@ -22,3 +22,34 @@
 .order-list h2 {
   margin-bottom: 20px;
 }
+
+
+/* MODAL EDIT */
+:disabled{
+  cursor: no-drop;
+}
+.form-edit-order{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.form-edit-order .form-edit-order-item{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-edit-order .form-edit-order-item label{
+  font-weight: 500;
+}
+
+.form-edit-order .form-edit-order-item input{
+  outline: none;
+  padding: 5px;
+}
+
+.form-edit-order .form-edit-order-item select{
+  padding: 5px;
+  outline: none;
+}
