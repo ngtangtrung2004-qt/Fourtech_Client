@@ -23,7 +23,7 @@
 
 .container-pay .pay-box {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 400px;
     column-gap: 5px;
     margin: 10px 0;
 }
@@ -104,6 +104,7 @@
 
 .container-pay .pay-box .pay-box-right {
     background-color: #fff;
+    width: 100%;
 }
 
 .container-pay .pay-box .pay-box-right .header-tong-san-pham {
@@ -120,10 +121,14 @@
     margin: 15px auto;
     padding: 10px;
     border-radius: 10px;
-    display: grid;
+    display: flex;
+    gap: 10px;
     justify-items: center;
     align-items: center;
-    grid-template-columns: 0.7fr 2fr;
+}
+
+.container-pay .pay-box .pay-box-right .box-san-pham .thong-tin-san-pham{
+    width: 75%;
 }
 
 .container-pay .pay-box .pay-box-right .box-san-pham .thong-tin-san-pham h3{

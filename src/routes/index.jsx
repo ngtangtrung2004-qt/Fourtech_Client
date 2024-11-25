@@ -33,30 +33,26 @@ import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan";
 import SearchProducts from "../pages/User/Search";
 import Comment from "../pages/Admin/comment/comment";
 
+import Thankyou from "../pages/User/pay/thankyou"
+
 const publicRoutes = [
   { path: "/", component: HomePage, layout: DefaultLayout },
-  { path: "/login-register", component: SignupSignin, layout: DefaultLayout },
-  { path: "/forgotPassword", component: ForgotPassword, layout: DefaultLayout },
-  {
-    path: "/reset-password/:token",
-    component: ResetPassword,
-    layout: DefaultLayout,
-  },
-  { path: "/cart/:id", component: Cart, layout: DefaultLayout },
-  { path: "/allproduct", component: AllProduct, layout: DefaultLayout },
-  {
-    path: "/productDetail/:id",
-    component: ProductDetail,
-    layout: DefaultLayout,
-  },
-  { path: "/pay", component: Pay, layout: DefaultLayout },
-  { path: "/contact", component: Contact, layout: DefaultLayout },
-  { path: "/mouse", component: Item_Mouse, layout: DefaultLayout },
-  { path: "/info", component: InFor, layout: DefaultLayout },
-  { path: "/article", component: Article, layout: DefaultLayout },
-  { path: "/search", component: SearchProducts, layout: DefaultLayout },
-  { path: "/newArticle", component: newArticle, layout: DefaultLayout },
-];
+  { path: '/login-register', component: SignupSignin, layout: DefaultLayout },
+  { path: '/forgotPassword', component: ForgotPassword, layout: DefaultLayout },
+  { path: '/reset-password/:token', component: ResetPassword, layout: DefaultLayout },
+  { path: '/cart/:id', component: Cart, layout: DefaultLayout },
+  { path: '/allproduct', component: AllProduct, layout: DefaultLayout },
+  { path: '/productDetail/:id', component: ProductDetail, layout: DefaultLayout },
+  { path: '/pay', component: Pay, layout: DefaultLayout },
+  { path: '/contact', component: Contact, layout: DefaultLayout },
+  { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
+  { path: '/info', component: InFor, layout: DefaultLayout },
+  { path: '/article', component: Article, layout: DefaultLayout },
+  { path: '/search', component: SearchProducts, layout: DefaultLayout },
+  { path: '/newArticle', component: newArticle, layout: DefaultLayout },
+  { path: '/thankyou', component: Thankyou, layout: DefaultLayout },
+]
+
 
 const adminRoutes = [
   { path: "/admin/", component: HomeAdmin, layout: LayoutAdmin },
