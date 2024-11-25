@@ -618,7 +618,9 @@
   font-size: 14px;
   color: #333;
 }
-
+.star-icon {
+  cursor: pointer;
+}
 .comment-actions {
   color: #007bff;
   cursor: pointer;

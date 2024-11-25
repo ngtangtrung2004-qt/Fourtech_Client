@@ -3,13 +3,14 @@ import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 import HeaderProduct from './headerProduct';
-import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
+// import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
 
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';
 import { useEffect, useState } from "react";
 import Category from '../../../components/Category/Category';
+import CategoryService from '../../../services/categoryService';
 
 
 
@@ -26,6 +27,22 @@ function HomePage() {
         minutes: 0,
         seconds: 0,
     });
+
+    const [category, setCategory] = useState([])
+
+    useEffect(() => {
+        fechtCategory()
+    }, [])
+
+    const fechtCategory = async () => {
+        const dataCategory = await CategoryService.getAllCategory()
+        if (dataCategory && dataCategory.EC === 0) {
+            setCategory(dataCategory.data)
+        }
+    }
+
+
+
 
     // Set the target date to 2 days from now
     const targetDate = new Date();
@@ -57,6 +74,8 @@ function HomePage() {
 
         return () => clearInterval(timer);
     }, []);
+
+
 
     // State dùng để lưu vị trí của ảnh hiện tại trong slideshow
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -159,19 +178,37 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <HeaderProduct title={"Sản Phẩm Mới"} />
-                <ItemProduct filter={{ sort: "newest" }} />
+                {category.length > 0 && (
+                    <>
+                        {category.find(cat => cat.name === "Tai Nghe") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Tai Nghe").id} />
+                            </>
+                        )}
 
 
-                <Voucher />
-                <Event />
+                        <Voucher />
+                        <Event />
 
-                <HeaderProduct title={"Sản Phẩm Tai Nghe"} />
-                <ItemProduct filter={{ category: "Tai Nghe" }} />
+                        {category.find(cat => cat.name === "Máy Chơi Game") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Máy Chơi Game").id} />
+                            </>
+                        )}
 
-                <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} />
-                {/* <ItemProduct id={'chuotBanphim'}/> */}
-                <Item_Mouse />
+                        {/* <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} /> */}
+                        {/* <ItemProduct id={'chuotBanphim'}/> */}
+                    </>
+                )}
+                {/* <Item_Mouse /> */}
+                {category.find(cat => cat.name === "Chuột") && (
+                    <>
+                        <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} />
+                        <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
+                    </>
+                )}
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} />
 

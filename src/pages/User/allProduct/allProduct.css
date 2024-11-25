@@ -1,157 +1,173 @@
 .banner img {
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-    
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+
 }
+
 .product-filter {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px;
-  }
-  
-  .product-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #0066ff; /* Blue color */
-  }
-  
-  .filter-buttons button {
-    padding: 10px 20px;
-    margin-left: 10px;
-    border: 1px solid #0066ff;
-    background-color: white;
-    color: #0066ff;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .filter-buttons button.active {
-    background-color: #0066ff; /* Active blue color */
-    color: white;
-  }
-  
-  .filter-buttons button:hover {
-    background-color: #0056d6;
-    color: white;
-  }
-  .filter-section {
-    border: 1px solid #0066ff;
-    padding: 10px;
-    width: 200px;
-    background-color: white;
-  }
-  
-  .filter-group {
-    margin-bottom: 20px;
-  }
-  
-  .filter-item {
-    margin-bottom: 10px;
-  }
-  
-  .filter-item label {
-    margin-left: 5px;
-  }
-  
-  .show-more-btn {
-    color: #0066ff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .divider {
-    margin: 20px 0;
-    border: none;
-    border-top: 1px solid #ccc;
-  }
-  .filter-section {
-    border: 1px solid #0066ff;
-    padding: 10px;
-    width: 200px;
-    margin-left:auto;
-    margin-top: 2%;
-  }
-  .all-product{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-  }
-  ul.product-all-item{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  ul.product-all-item li{
-    background-color: white;
-    border-radius: 10px;
-    flex-basis: 30%;
-    padding-left: 15px;
-    padding-right: 15px;
-    box-sizing: border-box;
-    margin-bottom: 30px;
-    text-align: center;
-    margin-bottom: 20px;
-    height: 400px;
-  }
-  ul.product-all-item li img{
-  max-width: 100%;
-  height: auto;
-  }
-  .product-description-12 p{
-    font-size: 14px;
-    font-weight: 700;
-    height: 42px;
-    display: -webkit-box;        
-    -webkit-box-orient: vertical; 
-    overflow: hidden;            
-    -webkit-line-clamp: 2;       
-    text-overflow: ellipsis;     
-    /* padding: 10px; */
-    color: black;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
 }
-.product-pricing-12{
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0066ff;
+  /* Blue color */
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: 1px solid #0066ff;
+  background-color: white;
+  color: #0066ff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-buttons button.active {
+  background-color: #0066ff;
+  /* Active blue color */
+  color: white;
+}
+
+.filter-buttons button:hover {
+  background-color: #0056d6;
+  color: white;
+}
+
+.filter-section {
+  border: 1px solid #0066ff;
+  padding: 10px;
+  width: 200px;
+  background-color: white;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-item {
+  margin-bottom: 10px;
+}
+
+.filter-item label {
+  margin-left: 5px;
+}
+
+.show-more-btn {
+  color: #0066ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.filter-section {
+  border: 1px solid #0066ff;
+  padding: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-top: 2%;
+}
+
+.all-product {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+}
+
+ul.product-all-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* Thay thế margin bằng gap */
+  /* justify-content: space-between; */
+  /* Đảm bảo các sản phẩm được dàn đều */
+}
+
+ul.product-all-item li {
+  flex-basis: calc(33.33% - 20px);
+  /* Chiếm 1/3 hàng trừ khoảng cách */
+  box-sizing: border-box;
+  /* Padding và border không làm tăng kích thước */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.imgproduct {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.product-description-12 p {
+  font-size: 14px;
+  font-weight: 700;
+  height: 42px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  /* padding: 10px; */
+  color: black;
+}
+
+.product-pricing-12 {
   display: flex;
   justify-content: space-between;
 }
-.product-pricing-12 .tag-12{
-  margin: 0 0 -10px;
-  padding: 10px;
-  background-color:  rgb(255, 179, 179);
-  text-align: center;
-  height: 100%;
-  color: red;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-}
-.product-pricing-12 .price-12{
+
+.product-pricing-12 .price-12 {
   color: red;
   font-weight: 700;
   font-size: 16px;
+  padding-left: 10px;
 }
-.product-pricing-123{
+
+.product-pricing-123 {
   display: block;
   text-align: left;
   text-decoration: line-through;
   color: #888;
   font-size: 14px;
   margin-bottom: 10px;
+  padding-left: 10px;
 }
-.add-to-cart-btn-12{
+
+.add-to-cart-btn-12 {
   background-color: #E72C33;
   border-radius: 30px;
   color: white;
   margin-bottom: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  margin-left: 17%;
 }
-.add-to-cart-btn-12:hover{
+
+.add-to-cart-btn-12:hover {
   background-color: #218838;
 }
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -159,9 +175,9 @@
   gap: 15px;
   margin-right: 15%;
 }
-.product-all-item .imgproduct{
+
+.product-all-item .imgproduct {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
