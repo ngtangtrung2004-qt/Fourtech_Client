@@ -54,8 +54,12 @@ const items = [
     <Link to="/admin/contact-admin">Contact</Link>,
     "/admin/contact-admin",
     <PieChartOutlined />
-  ),
-];
+  ), getItem(
+    <Link to="/admin/comment-admin">Bình Luận</Link>,
+    "/admin/contact-admin",
+    <PieChartOutlined />
+  )
+]
 
 function SiderAdmin() {
   const location = useLocation(); // Lấy đường dẫn hiện tại

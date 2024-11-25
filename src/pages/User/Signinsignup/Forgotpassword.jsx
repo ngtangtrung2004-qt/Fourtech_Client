@@ -1,11 +1,13 @@
 import "./signUpSignIn.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
+import { showToastSuccess } from "../../../config/toastConfig";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
@@ -15,18 +17,18 @@ function ForgotPassword() {
     }
     setLoading(true);
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/forgot-password`,
-        { email }
-      );
-      alert("Email đặt lại mật khẩu đã được gửi.");
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/forgot-password`, {
+        email,
+      });
+      showToastSuccess("Email đặt lại mật khẩu đã được gửi.");
+      navigate("/login-register");
     } catch (error) {
       console.error("Lỗi khi yêu cầu đặt lại mật khẩu:", error);
       alert(
         error.response?.data?.message ||
           "Có lỗi xảy ra khi gửi email. Vui lòng thử lại sau."
       );
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -50,7 +52,9 @@ function ForgotPassword() {
             />
           </div>
           <div className="bot_dlmk">
-            <button onClick={handleForgotPassword}>{loading ? "Đang gửi..." : "Gửi email"}</button>
+            <button onClick={handleForgotPassword}>
+              {loading ? "Đang gửi..." : "Gửi email"}
+            </button>
           </div>
         </form>
       </div>
