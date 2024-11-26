@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 // import axios from "axios";
 import { UserContext } from "../../../components/context/authContext";
 import { http } from "../../../utils/http";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function Comment({ product_id }) {
   console.log("idprodcmment", product_id);
@@ -48,9 +49,11 @@ function Comment({ product_id }) {
   const handleNextPage = () => {
     if (page < totalPages) setPage(page + 1); // Tăng số trang
   };
+
+
   const handleAddComment = async () => {
     if (!user || !user.isAuthenticated) {
-      alert("Bạn phải đăng nhập để bình luận.");
+      showToastError("Bạn phải đăng nhập để bình luận.");
     } else {
       try {
         const token = localStorage.getItem("token"); // Lấy token từ localStorage
@@ -64,7 +67,7 @@ function Comment({ product_id }) {
           }
         );
         console.log("res", response);
-        alert("Thêm bình luận thành công");
+        showToastSuccess("Thêm bình luận thành công");
         const newCommentData = {
           id: response.data.comment.id,
           content: response.data.comment.content,
@@ -91,7 +94,7 @@ function Comment({ product_id }) {
   // Gửi phản hồi
   const handleReplySubmit = async () => {
     if (!user || !user.isAuthenticated) {
-      alert("Bạn phải đăng nhập để phản hồi.");
+      showToastError("Bạn phải đăng nhập để phản hồi.");
       return;
     }
     try {
@@ -105,7 +108,7 @@ function Comment({ product_id }) {
           },
         }
       );
-      alert("Thêm phản hồi thành công");
+      showToastSuccess("Thêm phản hồi thành công");
 
       // Cập nhật danh sách bình luận
       const updatedComments = comments.map((comment) => {

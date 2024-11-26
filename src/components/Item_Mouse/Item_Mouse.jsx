@@ -1,77 +1,144 @@
-import { useContext } from 'react';
-import './Item_Mouse.css'
-import { CartContext } from '../context/CartContext'
+import { useContext } from "react";
+import "./Item_Mouse.css";
+import { CartContext } from "../context/CartContext";
+import PropTypes from "prop-types";
+import { formatCurrency } from "../../config/config";
+import { Link } from "react-router-dom";
+import { UserContext } from "../context/authContext";
+import { showToastError } from "../../config/toastConfig";
+import CartService from "../../services/cartService";
 
+function Product_item({ data }) {
+  const { user } = useContext(UserContext);
+  const { cart, setCart, updateCart, setTotalQuantity } =
+    useContext(CartContext);
+  const userId = user.account.id;
 
+  const handleAddToCart = async (idProduct) => {
+    if (user.isAuthenticated === false) {
+      showToastError("Vui lòng đăng nhập");
+    } else {
+      try {
+        //Xác định số lượng sản phẩm cần thêm vào giỏ hàng là 1
+        const quantity = 1;
 
-const products_1 = [
-  {
-    id: 13,
-    name: 'Chuột Rapoo VT9 Air',
-    image: '../chuot.png', // đường dẫn ảnh của sản phẩm
-    price: 990000,
-    originalPrice: 4690000,
-    discount: '-20%',
-  },
-  {
-      id: 14,
-      name: 'Chuột Rapoo VT9 Air',
-      image: '../chuot.png', // đường dẫn ảnh của sản phẩm
-      price: 990000,
-      originalPrice: 1100000,
-      discount: '-20%',
-    },
-    {
-      id: 15,
-      name: 'Chuột Rapoo VT9 Air',
-      image: '../chuot.png', // đường dẫn ảnh của sản phẩm
-      price: 990000,
-      originalPrice: 1100000,
-      discount: '-20%',
-    },
-    {
-      id: 16,
-      name: 'Chuột Rapoo VT9 Air',
-      image: '../chuot.png', // đường dẫn ảnh của sản phẩm
-      price: 990000,
-      originalPrice: 1100000,
-      discount: '-20%',
-    },
-  // Có thể thêm các sản phẩm khác ở đây
-];
-const Item_Mouse = () => {
-  const { addToCart } = useContext(CartContext);
+        // Lấy thông tin giỏ hàng từ context
+        const cartItems = cart;
 
+        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa.
+        //Tìm kiếm trong (mảng cartItems) xem có sản phẩm nào có product_id trùng với idProduct (ID của sản phẩm cần thêm vào giỏ hàng) không.
+        //Nếu tìm thấy sản phẩm (existingCartItem), thì nó sẽ trả về sản phẩm đó, nếu không sẽ trả về undefined.
+        const existingCartItem = cartItems.find(
+          (item) => item.product_id === idProduct
+        );
+
+        if (existingCartItem) {
+          // Cập nhật số lượng nếu sản phẩm đã có trong giỏ hàng
+          //Nếu sản phẩm đã có trong giỏ hàng (existingCartItem), số lượng của sản phẩm này được tăng thêm
+          existingCartItem.quantity += quantity; // Tăng số lượng
+        } else {
+          // Thêm sản phẩm mới vào giỏ hàng
+          //Nếu sản phẩm chưa có trong giỏ hàng (else), một đối tượng sản phẩm mới được thêm vào giỏ hàng với product_id là idProduct và số lượng là quantity.
+          cartItems.push({
+            product_id: idProduct,
+            quantity: quantity,
+          });
+        }
+
+        // Cập nhật lại giỏ hàng trong context
+        //Sau khi cập nhật hoặc thêm sản phẩm mới, hàm gọi setCart(cartItems) để cập nhật lại giỏ hàng trong context.
+        //Điều này sẽ làm cho các component khác sử dụng CartContext nhận được giỏ hàng mới
+        setCart(cartItems);
+
+        // Cập nhật lại tổng số lượng trong giỏ hàng
+        const newTotalQuantity = cartItems.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+        //Tính tổng số lượng sản phẩm trong giỏ hàng. Hàm reduce sẽ cộng dồn giá trị của thuộc tính quantity của mỗi sản phẩm trong giỏ hàng.
+
+        // Cập nhật tổng số lượng sản phẩm trong giỏ hàng bằng newTotalQuantity
+        setTotalQuantity(newTotalQuantity);
+
+        // Gửi dữ liệu giỏ hàng lên server
+        const dataCart = await CartService.postCart({
+          user_id: userId,
+          product_id: idProduct,
+          quantity: quantity,
+        });
+
+        if (dataCart && dataCart.EC === 0) {
+          // Cập nhật lại cart và thông báo thành công
+          updateCart(cartItems);
+        } else {
+          console.error(
+            dataCart.message || "Không thể thêm sản phẩm vào giỏ hàng"
+          );
+        }
+      } catch (error) {
+        console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error.message);
+      }
+    }
+  };
+  console.log("data", data);
 
   return (
-    <>  
-        
-            <div className="products_1">
-            {products_1.map((products_1) => (
-                <ul className="productItem_1"  key={products_1.id}>
-                    <li className="item_1">
-                        <a href="">
-                            <img src={products_1.image} alt={products_1.name} />
-                        </a>
-                        <div className="productDescription_1">
-                            <p>{products_1.name}</p>
-                        </div>
-                        <div className="productPricing_1">
-                            <span className="price_1">{products_1.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
-                            <span className="tag_1">{products_1.discount}</span>
-                        </div>
-                        <div className="productPricing-12">{products_1.originalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                        <button className="add-to-cart-btn_1" onClick={() => addToCart(products_1)}>Thêm vào giỏ hàng</button>
-                    </li>
-                    
-                </ul>
-            ))}
-            
-            </div>
-        
+    <>
+      <div className="products_1">
+        {data.map((prd) => (
+          <ul className="productItem_1" key={prd.id}>
+            <li className="item_1">
+              <Link to={`/productDetail/${prd.id}`}>
+                <a href="">
+                  <img
+                    src={`${import.meta.env.VITE_API_URL}/uploads/${
+                      prd.image[0]
+                    }`}
+                    alt="san pham"
+                  />
+                </a>
+                <div className="productDescription_1">
+                  <p>{prd.name}</p>
+                </div>
+                <div className="productPricing_1">
+                  <span className="price_1">
+                    {formatCurrency(prd.promotion_price)}
+                  </span>
+                  <span className="tag_1">
+                    -
+                    {Math.round(
+                      ((prd.price - prd.promotion_price) / prd.price) * 100
+                    )}
+                    %
+                  </span>
+                </div>
+                <div className="productPricing-12">
+                  {formatCurrency(prd.price)}
+                </div>
+              </Link>
+              <button
+                className="add-to-cart-btn_1"
+                onClick={() => handleAddToCart(prd.id)}
+              >
+                Thêm vào giỏ hàng
+              </button>
+            </li>
+          </ul>
+        ))}
+      </div>
     </>
-  )
+  );
 }
 
-
-export default Item_Mouse
+Product_item.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      promotion_price: PropTypes.number, // Có thể không bắt buộc
+      image: PropTypes.arrayOf(PropTypes.string).isRequired, // Mảng các chuỗi
+    })
+  ),
+};
+export default Product_item;

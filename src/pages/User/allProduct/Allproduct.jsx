@@ -12,6 +12,7 @@ import { UserContext } from '../../../components/context/authContext';
 import { showToastError } from '../../../config/toastConfig';
 import { Link } from 'react-router-dom';
 import CategoryService from '../../../services/categoryService';
+// import Product_item from '../../../components/Item_Mouse/Item_Mouse';
 
 
 const AllProduct = () => {
@@ -240,6 +241,12 @@ const AllProduct = () => {
                 </li>
               ))}
             </ul>
+            
+            
+            {/* Có thể dùng prop như thế này cho gọn code  */}
+            {/* <Product_item data={pro}></Product_item> */}
+
+
           </div>
           <div className="filter-section">
             <div className="filter-group">

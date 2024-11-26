@@ -10,10 +10,10 @@ function Comment() {
   const [listComment, setlistComment] = useState([]);
   const [loading, setLoading] = useState(false); // Trạng thái khi đang xóa liên hệ
   useEffect(() => {
-    fetchCategory();
+    fetchComments();
   }, []);
 
-  const fetchCategory = async () => {
+  const fetchComments = async () => {
     try {
       const dataComment = await fetch(`${import.meta.env.VITE_API_URL}/api/comments`);
       const data = await dataComment.json()
@@ -103,7 +103,6 @@ function Comment() {
       ),
     },
   ];
-  // console.log(listComment)
   return (
     <>
       {listComment.length > 0 ?
@@ -119,7 +118,7 @@ function Comment() {
         )
         :
         (
-          <p style={{fontWeight:'bold'}}>Hiện không có bình luận nào ...</p>
+          <p style={{ fontWeight: 'bold' }}>Hiện không có bình luận nào ...</p>
         )
       }
     </>
