@@ -9,7 +9,9 @@ import {
   ShopOutlined,
   ShoppingOutlined,
   UnorderedListOutlined,
-  PieChartOutlined,
+  CommentOutlined,
+  UserOutlined,
+  ContactsOutlined,
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -46,19 +48,20 @@ const items = [
     <ShoppingOutlined />
   ),
   getItem(
-    <Link to="/admin/user-admin">Người dùng</Link>,
-    "/admin/user-admin",
-    <PieChartOutlined />
+    <Link to="/admin/comment-admin">Bình Luận</Link>,
+    "/admin/comment-admin",
+    <CommentOutlined />
   ),
   getItem(
-    <Link to="/admin/contact-admin">Contact</Link>,
+    <Link to="/admin/contact-admin">Liên hệ</Link>,
     "/admin/contact-admin",
-    <PieChartOutlined />
-  ), getItem(
-    <Link to="/admin/comment-admin">Bình Luận</Link>,
-    "/admin/contact-admin",
-    <PieChartOutlined />
-  )
+    <ContactsOutlined />
+  ),
+  getItem(
+    <Link to="/admin/user-admin">Người dùng</Link>,
+    "/admin/user-admin",
+    <UserOutlined />
+  ),
 ]
 
 function SiderAdmin() {
