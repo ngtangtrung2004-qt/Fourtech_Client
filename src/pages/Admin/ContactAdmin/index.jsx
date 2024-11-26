@@ -1,10 +1,11 @@
-import { Button, Table, Modal, message } from "antd"; // Thêm Modal và message
+import { Button, Table, Modal } from "antd"; // Thêm Modal và message
 import { useState, useEffect } from "react";
 import ReplyContact from "./replyModel";
 import { formatDate } from "../../../config/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function ContactAdmin() {
   const [dataContact, setDataContact] = useState([]);
@@ -32,10 +33,10 @@ function ContactAdmin() {
     };
     fetchContacts();
   }, []);
-console.log('data',dataContact)
+  console.log("data", dataContact);
   // Hàm xóa liên hệ
   const handleDeleteContact = async (id) => {
-    console.log(id)
+    console.log(id);
     Modal.confirm({
       title: "Xác nhận xóa",
       content: "Bạn có chắc chắn muốn xóa liên hệ này không?",
@@ -44,13 +45,15 @@ console.log('data',dataContact)
       onOk: async () => {
         setLoading(true);
         try {
-          await axios.delete(`${import.meta.env.VITE_API_URL}/api/contact/${id}`);
-          message.success("Xóa liên hệ thành công!");
+          await axios.delete(
+            `${import.meta.env.VITE_API_URL}/api/contact/${id}`
+          );
+          showToastSuccess("Xóa liên hệ thành công!");
           // Cập nhật lại danh sách sau khi xóa
           setDataContact(dataContact.filter((contact) => contact.id !== id));
         } catch (error) {
           console.error("Lỗi khi xóa liên hệ:", error);
-          message.error("Xóa liên hệ thất bại!");
+          showToastError("Xóa liên hệ thất bại!");
         } finally {
           setLoading(false);
         }
@@ -61,32 +64,32 @@ console.log('data',dataContact)
   // Cột cho bảng danh sách liên hệ
   const columns = [
     {
-      title: "ID",
+      title: "STT",
       dataIndex: "key",
     },
     {
-      title: "UserContact",
+      title: "Tên khách hàng",
       dataIndex: "UserContact",
     },
     {
-      title: "EmailContact",
+      title: "Email",
       dataIndex: "EmailContact",
     },
     {
-      title: "PhoneContact",
+      title: "Số điện thoại",
       dataIndex: "PhoneContact",
     },
     {
-      title: "Message",
+      title: "Nội dung",
       dataIndex: "messageContact",
     },
     {
-      title: "DateContact",
+      title: "Ngày gửi",
       dataIndex: "createdAt",
       render: (date) => formatDate(date),
     },
     {
-      title: "Action",
+      title: "Thao tác",
       render: (text, record) => (
         <>
           <span>
@@ -109,8 +112,19 @@ console.log('data',dataContact)
 
   return (
     <>
-      <div className="add-product"></div>
-      <Table columns={columns} dataSource={dataContact} pagination={false} />
+    {dataContact.length > 0 ?
+    (
+<Table
+        columns={columns}
+        dataSource={dataContact}
+        pagination={false}
+      />
+    )
+  :
+  (
+    <p style={{fontWeight: 'bold'}}>Hiện không có liên hệ nào ...</p>
+  )}
+      
     </>
   );
 }

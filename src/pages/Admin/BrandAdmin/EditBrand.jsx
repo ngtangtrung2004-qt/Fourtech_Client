@@ -70,14 +70,9 @@ function EditBrand({ brandItem, onEditSuccess }) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     // Kiểm tra nếu không có ảnh mới được chọn
-    const imageToSend = imagePreview || brandInfo.image;
+    // const imageToSend = imagePreview || brandInfo.image;
     if (!brandInfo.name) {
       showToastError("Vui lòng nhập tên danh mục.");
-      return;
-    }
-
-    if (!imageToSend) {
-      showToastError("Vui lòng chọn ảnh.");
       return;
     }
 
@@ -85,7 +80,13 @@ function EditBrand({ brandItem, onEditSuccess }) {
       const idBrand = brandInfo.id
       const formData = new FormData();
       formData.append('brandName', brandInfo.name);
-      formData.append('brandImage', brandInfo.logo);
+
+      // Gửi ảnh mới nếu có, nếu không giữ lại ảnh cũ
+      if (brandInfo.logo && brandInfo.logo !== imagePreview) {
+        formData.append('brandImage', brandInfo.logo);
+      } else if (imagePreview) {
+        formData.append('brandImage', brandInfo.logo);
+      }
 
       let data = await BrandService.putBrand(idBrand, formData);
 

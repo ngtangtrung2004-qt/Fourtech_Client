@@ -1,70 +1,117 @@
-// import  { useState } from 'react';
 import { Table, Button } from "antd";
-import { Link } from "react-router-dom";
 import "./orderDetail.css";
+import { useEffect, useState } from "react";
+import OrderService from "../../../services/orderService";
+import { formatCurrency } from "../../../config/config";
+import { useNavigate } from "react-router-dom";
 
-// Dữ liệu giả lập cho danh sách đơn hàng
-const orders = [
-  {
-    key: "1",
-    customerName: "Nguyễn Văn A",
-    totalAmount: 52000000,
-    // database thay bằng false hoặc true
-    status: "Chưa giao",
-  },
-  {
-    key: "2",
-    customerName: "Trần Thị B",
-    totalAmount: 9450000,
-    status: "Đã giao",
-  },
-  {
-    key: "3",
-    customerName: "Lê Văn C",
-    totalAmount: 22000000,
-    status: "Đã hủy",
-  },
-];
 
 function OrderList() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    fechtAPIAllOrder()
+  }, [])
+  const [listOrder, setListOrder] = useState([])
+
+  const fechtAPIAllOrder = async () => {
+    const dataAllOrder = await OrderService.getAllOrder()
+
+    if (dataAllOrder && dataAllOrder?.EC === 0) {
+      const formatData = dataAllOrder.data.map((order, index) => ({
+        ...order,
+        index: index + 1,
+        key: order.id
+      }))
+      setListOrder(formatData)
+    }
+  }
+
+  const handleOrderDetail = (order_id_code) => {
+    navigate(`/admin/orderDetail/${order_id_code}`)
+  }
+
+
   const columns = [
     {
+      title: "STT",
+      dataIndex: "index",
+    },
+    {
+      title: "Mã đặt hàng",
+      dataIndex: "order_id_code",
+    },
+    {
       title: "Khách hàng",
-      dataIndex: "customerName",
+      dataIndex: "full_name",
     },
     {
       title: "Tổng cộng",
-      dataIndex: "totalAmount",
-      //format lại giá tiền
-      render: (amount) => `${amount.toLocaleString()} đ`,
+      dataIndex: "total_price",
+      render: (text) => `${formatCurrency(text)}`,
     },
     {
-      title: "Trạng thái",
+      title: "Trạng thái thanh toán",
+      dataIndex: "payment_status",
+      render: (text) => {
+        switch (text) {
+          case 0:
+            return <p>Chưa thanh toán</p>
+          case 1:
+            return <p>Đã thanh toán</p>
+          default:
+            return <p>Trạng thái không xác định</p>
+        }
+      }
+    },
+    {
+      title: "Trạng thái đơn hàng",
       dataIndex: "status",
+      render: (text) => {
+        switch (text) {
+          case 0:
+            return <p>Đang chuẩn bị hàng</p>
+          case 1:
+            return <p>Đang chuẩn vận chuyển</p>
+          case 2:
+            return <p>Đã giao hàng </p>
+          default:
+            return <p>Trạng thái không xác định</p>
+        }
+      }
     },
     {
       title: "Hành động",
-      render: (text, record) => (
-        // <Link to={`/admin/orders/${record.key}`}>
-          <Button type="primary">
-            <Link to="/admin/orderDetail"> Xem chi tiết</Link>
-          </Button>
-        // </Link>
+      render: (text) => (
+        <Button
+          onClick={() => handleOrderDetail(text.order_id_code)}
+          type="primary"
+        >
+          Xem chi tiết
+        </Button>
       ),
     },
   ];
 
   return (
-    <div className="order-list">
-      <h2>Danh sách đơn hàng</h2>
-      <Table
-        columns={columns}
-        dataSource={orders}
-        pagination={{
-          pageSize: 5, // Số lượng đơn hàng hiển thị trên mỗi trang
-        }}
-      />
-    </div>
+    <>
+      <div className="order-list">
+        <h2>Danh sách đơn hàng</h2>
+        {listOrder.length > 0 ? (
+          <Table
+            columns={columns}
+            dataSource={listOrder}
+            pagination={{
+              pageSize: 10, // Số lượng đơn hàng hiển thị trên mỗi trang
+            }}
+          />
+        ) :
+          (
+            <p>Không có đơn hàng nào.</p>
+          )
+        }
+      </div>
+    </>
   );
 }
 
