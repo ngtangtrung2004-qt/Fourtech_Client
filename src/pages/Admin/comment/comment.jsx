@@ -7,7 +7,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function Comment() {
-    const [listComment, setlistComment] = useState([]);
+  const [listComment, setlistComment] = useState([]);
   const [loading, setLoading] = useState(false); // Trạng thái khi đang xóa liên hệ
   useEffect(() => {
     fetchCategory();
@@ -17,17 +17,17 @@ function Comment() {
     try {
       const dataComment = await fetch(`${import.meta.env.VITE_API_URL}/api/comments`);
       const data = await dataComment.json()
-      
-        const formatData = data.map((cmt, index) => ({
-          ...cmt,
-          key: cmt.id,
-          index: index + 1,
-          user:cmt.userData.full_name,
-          product:cmt.productData.name,
-          rating:cmt.rating,
-          content:cmt.content
-        }));
-        setlistComment(formatData);
+
+      const formatData = data.map((cmt, index) => ({
+        ...cmt,
+        key: cmt.id,
+        index: index + 1,
+        user: cmt.userData.full_name,
+        product: cmt.productData.name,
+        rating: cmt.rating,
+        content: cmt.content
+      }));
+      setlistComment(formatData);
     } catch (error) {
       console.error(error);
       showToastError("Lỗi hệ thống. Vui lòng thử lại sau!")
@@ -50,7 +50,7 @@ function Comment() {
           setlistComment(listComment.filter((cmt) => cmt.id !== id));
         } catch (error) {
           console.error("Lỗi khi xóa bình luận:", error);
-          showToastError("Xóa bình luận  thất bại!");
+          showToastError("Xóa bình luận thất bại!");
         } finally {
           setLoading(false);
         }
@@ -75,7 +75,7 @@ function Comment() {
       title: "Số sao",
       dataIndex: "rating",
     },
-    
+
     {
       title: "Nội dung",
       dataIndex: "content",
@@ -103,17 +103,25 @@ function Comment() {
       ),
     },
   ];
-// console.log(listComment)
+  // console.log(listComment)
   return (
     <>
-      <Table
-        columns={columns}
-        dataSource={listComment}
-        pagination={{
-          pageSize: 10, // Số lượng sản phẩm hiển thị trên mỗi trang
-        }}
-        style={{textAlign: 'center'}}
-      />
+      {listComment.length > 0 ?
+        (
+          <Table
+            columns={columns}
+            dataSource={listComment}
+            pagination={{
+              pageSize: 10, // Số lượng sản phẩm hiển thị trên mỗi trang
+            }}
+            style={{ textAlign: 'center' }}
+          />
+        )
+        :
+        (
+          <p style={{fontWeight:'bold'}}>Hiện không có bình luận nào ...</p>
+        )
+      }
     </>
   );
 }

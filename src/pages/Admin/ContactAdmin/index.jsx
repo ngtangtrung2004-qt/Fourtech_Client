@@ -64,32 +64,32 @@ function ContactAdmin() {
   // Cột cho bảng danh sách liên hệ
   const columns = [
     {
-      title: "ID",
+      title: "STT",
       dataIndex: "key",
     },
     {
-      title: "UserContact",
+      title: "Tên khách hàng",
       dataIndex: "UserContact",
     },
     {
-      title: "EmailContact",
+      title: "Email",
       dataIndex: "EmailContact",
     },
     {
-      title: "PhoneContact",
+      title: "Số điện thoại",
       dataIndex: "PhoneContact",
     },
     {
-      title: "Message",
+      title: "Nội dung",
       dataIndex: "messageContact",
     },
     {
-      title: "DateContact",
+      title: "Ngày gửi",
       dataIndex: "createdAt",
       render: (date) => formatDate(date),
     },
     {
-      title: "Action",
+      title: "Thao tác",
       render: (text, record) => (
         <>
           <span>
@@ -112,8 +112,19 @@ function ContactAdmin() {
 
   return (
     <>
-      <div className="add-product"></div>
-      <Table columns={columns} dataSource={dataContact} pagination={false} />
+    {dataContact.length > 0 ?
+    (
+<Table
+        columns={columns}
+        dataSource={dataContact}
+        pagination={false}
+      />
+    )
+  :
+  (
+    <p style={{fontWeight: 'bold'}}>Hiện không có liên hệ nào ...</p>
+  )}
+      
     </>
   );
 }
