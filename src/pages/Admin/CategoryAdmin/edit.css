@@ -1,5 +1,6 @@
 .form-edit-category {
   display: flex;
+  gap: 10px;
   flex-direction: column;
   align-items: center;
 }
@@ -11,6 +12,13 @@
   width: 100%;
   color: #fff;
   font-weight: 600;
+}
+
+.form-edit-category #categoryName {
+  width: 100%;
+  padding: 10px 10px;
+  outline: none;
+  border: 1px solid #ccc;
 }
 
 .btn-edit {

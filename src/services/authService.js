@@ -46,6 +46,15 @@ const AuthService = {
         }
     },
 
+    getOneUser: async (idUser) => {
+        try {
+            const { data } = await http.get(`/user/${idUser}`)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     deleteUser: async (id) => {
         try {
             const { data } = await http.delete(`/delete-user/${id}`)

@@ -168,16 +168,16 @@ const Cart = () => {
                 <p className="ght">Giỏ hàng của bạn đang trống.</p>
               )}
 
-              <Link to="/">
-                <div className="home-page">
+              <div className="home-page">
+                <Link to="/">
                   <div className="icon">
                     <AiOutlineArrowLeft className="icon-large" />
                   </div>
                   <div className="btn-home">
                     <button>Tiếp tục mua hàng</button>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
 
             <div className="tong-cart">

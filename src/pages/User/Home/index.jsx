@@ -204,11 +204,11 @@ function HomePage() {
                 )}
                 {/* <Item_Mouse /> */}
                 {category.find(cat => cat.name === "Chuột") && (
-                            <>
-                                <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} />
-                                <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
-                            </>
-                        )}
+                    <>
+                        <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} />
+                        <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
+                    </>
+                )}
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} />
 

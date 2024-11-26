@@ -4,10 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "./signUpSignIn.css";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function ResetPassword() {
- const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { token } = useParams(); // Lấy token từ URL
@@ -15,19 +16,23 @@ function ResetPassword() {
 
   const handleResetPassword = async () => {
     if (newPassword !== confirmPassword) {
-      alert('Mật khẩu không khớp.');
+      showToastError("Mật khẩu không khớp.");
       return;
     }
     setLoading(true);
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/reset-password`, { token, newPassword });
-      alert('Mật khẩu đã được đặt lại thành công.');
-      navigate('/login-register'); // Điều hướng người dùng đến trang đăng nhập
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/reset-password`, {
+        token,
+        newPassword,
+      });
+      showToastSuccess("Mật khẩu đã được đặt lại thành công.");
+      navigate("/login-register"); // Điều hướng người dùng đến trang đăng nhập
     } catch (error) {
-      console.error('Lỗi khi đặt lại mật khẩu:', error);
-      alert('Token không hợp lệ hoặc đã hết hạn.');
-    }finally{
+      console.error("Lỗi khi đặt lại mật khẩu:", error);
+      showToastError("Thời gian đặt lại mật khẩu đã hết hạn");
+      navigate("/forgotPassword");
+    } finally {
       setLoading(false);
     }
   };
@@ -36,9 +41,9 @@ function ResetPassword() {
     <div className="main_reset_password">
       <div className="reset_password">
         <div className="titele_reset_password">
-          <Link to='/login-register'>
-                    <FaArrowLeftLong/>
-                    </Link>
+          <Link to="/login-register">
+            <FaArrowLeftLong />
+          </Link>
           <h2>Đặt lại mật khẩu</h2>
         </div>
         <div className="reset_password_input">
@@ -61,7 +66,9 @@ function ResetPassword() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button className="resset-password-btn" onClick={handleResetPassword}>{loading ? "Đang đặt lại mật khẩu..." : "Đổi mật khẩu"}</button>
+        <button className="resset-password-btn" onClick={handleResetPassword}>
+          {loading ? "Đang đặt lại mật khẩu..." : "Đổi mật khẩu"}
+        </button>
       </div>
     </div>
   );

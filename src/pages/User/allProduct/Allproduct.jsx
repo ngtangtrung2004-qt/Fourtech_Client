@@ -15,16 +15,18 @@ import CategoryService from '../../../services/categoryService';
 
 
 const AllProduct = () => {
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [pro, setAllProduct] = useState([]);
-  const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
+  // const [selectedBrands, setSelectedBrands] = useState([]);
+  const [pro, setAllProduct] = useState([]);// Lấy tất cả sản phẩm
+  const [filteredProducts, setFilteredProducts] = useState([]); // Sản phẩm đã lọc
+  const [currentCategory, setCurrentCategory] = useState(""); // Danh mục hiện tại từ URL
+  // const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const itemsPerPage = 9; // Số sản phẩm mỗi trang
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const { user } = useContext(UserContext)
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState([]);// Lấy danh sách danh mục
   const userId = user.account.id
-  
+
 
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const AllProduct = () => {
     console.log(dataCategory.data);
     setCategory(dataCategory.data);
   };
-  
+
 
   useEffect(() => {
     fetchAPIAllProduct()
@@ -60,40 +62,40 @@ const AllProduct = () => {
       checked ? [...prevSelectedRanges, id] : prevSelectedRanges.filter((range) => range !== id)
     );
   };
-  // Hàm lọc sản phẩm theo giá
-  const filterByPrice = (product) => {
-    if (!selectedPriceRanges.length) return true;
+  // // Hàm lọc sản phẩm theo giá
+  // const filterByPrice = (product) => {
+  //   if (!selectedPriceRanges.length) return true;
 
-    return selectedPriceRanges.some((range) => {
-      const price = product.price; // Thay "product.price" nếu bạn lưu giá ở property khác
-      switch (range) {
-        case 'Giá dưới 1.000.000₫':
-          return price < 1000000;
-        case '1.000.000₫ - 2.000.000₫':
-          return price >= 1000000 && price <= 2000000;
-        case '2.000.000₫ - 3.000.000₫':
-          return price > 2000000 && price <= 3000000;
-        case '3.000.000₫ - 5.000.000₫':
-          return price > 3000000 && price <= 5000000;
-        case '5.000.000₫ - 7.000.000₫':
-          return price > 5000000 && price <= 7000000;
-        case '7.000.000₫ - 10.000.000₫':
-          return price > 7000000 && price <= 10000000;
-        case 'Giá trên 10.000.000₫':
-          return price > 10000000;
-        default:
-          return false;
-      }
-    });
-  };
+  //   return selectedPriceRanges.some((range) => {
+  //     const price = product.price; // Thay "product.price" nếu bạn lưu giá ở property khác
+  //     switch (range) {
+  //       case 'Giá dưới 1.000.000₫':
+  //         return price < 1000000;
+  //       case '1.000.000₫ - 2.000.000₫':
+  //         return price >= 1000000 && price <= 2000000;
+  //       case '2.000.000₫ - 3.000.000₫':
+  //         return price > 2000000 && price <= 3000000;
+  //       case '3.000.000₫ - 5.000.000₫':
+  //         return price > 3000000 && price <= 5000000;
+  //       case '5.000.000₫ - 7.000.000₫':
+  //         return price > 5000000 && price <= 7000000;
+  //       case '7.000.000₫ - 10.000.000₫':
+  //         return price > 7000000 && price <= 10000000;
+  //       case 'Giá trên 10.000.000₫':
+  //         return price > 10000000;
+  //       default:
+  //         return false;
+  //     }
+  //   });
+  // };
 
-  // Hàm xử lý thay đổi của checkbox
-  const handleBrandFilterChange = (event) => {
-    const { id, checked } = event.target;
-    setSelectedBrands((prevSelectedBrands) =>
-      checked ? [...prevSelectedBrands, id] : prevSelectedBrands.filter((brand) => brand !== id)
-    );
-  };
+  // // Hàm xử lý thay đổi của checkbox
+  // const handleBrandFilterChange = (event) => {
+  //   const { id, checked } = event.target;
+  //   setSelectedBrands((prevSelectedBrands) =>
+  //     checked ? [...prevSelectedBrands, id] : prevSelectedBrands.filter((brand) => brand !== id)
+  //   );
+  // };
 
   const handleAddToCart = async (idProduct) => {
 
@@ -157,24 +159,24 @@ const AllProduct = () => {
   };
 
 
-  // Lọc sản phẩm dựa trên các tiêu chí đã chọn
-const filteredProducts = pro.filter((product) => {
-  // Kiểm tra theo thương hiệu
-  const matchesBrand = selectedBrands.length
-    ? selectedBrands.some((brand) => product.name.toLowerCase().includes(brand.toLowerCase()))
-    : true;
+  // // Lọc sản phẩm dựa trên các tiêu chí đã chọn
+  // const filteredProducts = pro.filter((product) => {
+  //   // Kiểm tra theo thương hiệu
+  //   const matchesBrand = selectedBrands.length
+  //     ? selectedBrands.some((brand) => product.name.toLowerCase().includes(brand.toLowerCase()))
+  //     : true;
 
-  // Kiểm tra theo giá
-  const matchesPrice = filterByPrice(product);
+  //   // Kiểm tra theo giá
+  //   const matchesPrice = filterByPrice(product);
 
-  return matchesBrand && matchesPrice; // Chỉ giữ sản phẩm thỏa mãn cả hai điều kiện
-});
+  //   return matchesBrand && matchesPrice; // Chỉ giữ sản phẩm thỏa mãn cả hai điều kiện
+  // });
 
-// Tính toán phân trang dựa trên danh sách sản phẩm đã lọc
-const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-const startIndex = (currentPage - 1) * itemsPerPage;
-const endIndex = startIndex + itemsPerPage;
-const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+  // Tính toán phân trang dựa trên danh sách sản phẩm đã lọc
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
 
   //Xử lý chuyển trang
   const handleNextPage = () => {
@@ -188,6 +190,59 @@ const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
       setCurrentPage(currentPage - 1);
     }
   };
+  // Lấy tham số "category" từ URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryFromUrl = params.get("category"); // Lấy giá trị "category" từ URL
+    setCurrentCategory(categoryFromUrl || ""); // Nếu không có giá trị, đặt là rỗng
+  }, [location.search]);
+  // Fetch danh sách danh mục
+  useEffect(() => {
+    const fetchAPICategory = async () => {
+      try {
+        const dataCategory = await CategoryService.getAllCategory();
+        setCategory(dataCategory.data);
+      } catch (error) {
+        console.error("Lỗi khi tải danh mục:", error);
+      }
+    };
+    fetchAPICategory();
+  }, []);
+  // Fetch danh sách sản phẩm
+  useEffect(() => {
+    const fetchAPIAllProduct = async () => {
+      try {
+        const dataProduct = await ProductService.getAllProduct();
+        setAllProduct(dataProduct);
+
+        // Nếu có danh mục từ URL, lọc sản phẩm ngay sau khi tải
+        if (currentCategory) {
+          const filtered = dataProduct.filter((product) =>
+            product.category?.name?.toLowerCase() === currentCategory.toLowerCase()
+          );
+          setFilteredProducts(filtered);
+        } else {
+          setFilteredProducts(dataProduct); // Nếu không có danh mục, hiển thị tất cả sản phẩm
+        }
+      } catch (error) {
+        console.error("Lỗi khi tải sản phẩm:", error);
+      }
+    };
+    fetchAPIAllProduct();
+  }, [currentCategory]);
+  // Cập nhật danh sách sản phẩm khi danh mục hoặc danh sách thay đổi
+  useEffect(() => {
+    if (currentCategory) {
+      const filtered = pro.filter((product) =>
+        product.category?.name?.toLowerCase() === currentCategory.toLowerCase()
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(pro); // Hiển thị tất cả nếu không có danh mục
+    }
+  }, [currentCategory, pro]);
+
+
 
 
   
@@ -215,19 +270,30 @@ const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
                       <img
                         className='imgproduct' src={`${import.meta.env.VITE_API_URL}/uploads/${products?.image[0]}`} alt={products.name} />
                     )}
-                    
+
                     <div className="product-description-12">
                       <p>{products.name}</p>
                     </div>
-                    <div className="product-pricing-12">
-                      <span className="price-12">{formatCurrency(products.promotion_price)}</span>
-                    </div>
-                    </Link>
-                    <div className="product-pricing-123">{formatCurrency(products.price)}</div>
-                    <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
-                      Thêm vào giỏ hàng
-                    </button>
-                  
+                    {products?.promotion_price === 0 ?
+                      (
+                        <div className="product-pricing-12">
+                          <span className="price-12">{formatCurrency(products.price)}</span>
+                        </div>
+                      )
+                      :
+                      (
+                        <>
+                          <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                          <div className="product-pricing-12">
+                            <span className="price-12">{formatCurrency(products.promotion_price)}</span>
+                          </div>
+                        </>
+                      )
+                    }
+                  </Link>
+                  <button className="add-to-cart-btn-12" onClick={() => handleAddToCart(products.id)}>
+                    Thêm vào giỏ hàng
+                  </button>
                 </li>
               ))}
             </ul>
@@ -237,10 +303,10 @@ const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
               <h3>Hãng sản xuất</h3>
               {['Samsung', 'Acer', 'Apple', 'Asus', 'Dell', 'Logitech', 'Corsair', 'Sony', 'Razer', 'Keychron'].map((bran, index) => (
                 <div key={index} className="filter-item">
-                  <input name='xét hãng sản phẩm'
+                  {/* <input name='xét hãng sản phẩm'
                     type="checkbox"
                     id={bran}
-                    onChange={handleBrandFilterChange} />
+                    onChange={handleBrandFilterChange} /> */}
                   <label htmlFor={bran}>{bran}</label>
                 </div>
               ))}
@@ -253,10 +319,10 @@ const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
               <h3>Loại sản phẩm</h3>
               {category.map((category) => (
                 <div key={category.id} className="filter-item">
-                  <input name='xét soạn phẩm'
+                  {/* <input name='xét soạn phẩm'
                     type="checkbox"
                     // id={tag}
-                    onChange={handleBrandFilterChange} />
+                    onChange={handleBrandFilterChange} /> */}
                   <label htmlFor={category.name}>{category.name}</label>
 
                 </div>

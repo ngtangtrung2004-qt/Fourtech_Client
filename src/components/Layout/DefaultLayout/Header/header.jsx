@@ -22,7 +22,6 @@ function Header() {
   }, []);
   const fetchAPICategory = async () => {
     const dataCategory = await CategoryService.getAllCategory();
-    console.log(dataCategory.data);
     setHeaderCategory(dataCategory.data);
   };
 
@@ -85,7 +84,7 @@ const handleSearchSubmit = (e) => {
                   </Link>
                   <div className="sub-nav">
                     <ul className="sub-nav-list">
-                      {category.map((category) => (
+                      {category && category.map((category) => (
                         <li className="sub-nav-item" key={category.id}>
                         <Link to={`/allproduct?category=${category.name}`}>{category.name}</Link>
                         </li>

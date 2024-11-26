@@ -75,6 +75,7 @@ const EditProduct = () => {
       formData.append(key, values[key]);
     }
 
+    // Chỉ thêm ảnh mới nếu có ảnh được tải lên
     if (imageEdit.length > 0) {
       imageEdit.forEach((file) => {
         formData.append('image', file);

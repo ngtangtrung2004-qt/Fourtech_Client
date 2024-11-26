@@ -1,7 +1,15 @@
 .form-edit-brand {
   display: flex;
+  gap: 10px;
   flex-direction: column;
   align-items: center;
+}
+
+.form-edit-brand #brandName {
+  width: 100%;
+  padding: 10px 10px;
+  outline: none;
+  border: 1px solid #ccc;
 }
 
 .btn-edit.huy {
