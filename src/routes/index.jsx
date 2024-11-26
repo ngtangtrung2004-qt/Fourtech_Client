@@ -46,7 +46,7 @@ const publicRoutes = [
   { path: '/pay', component: Pay, layout: DefaultLayout },
   { path: '/contact', component: Contact, layout: DefaultLayout },
   { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
-  { path: '/info', component: InFor, layout: DefaultLayout },
+  { path: '/info/:id', component: InFor, layout: DefaultLayout },
   { path: '/article', component: Article, layout: DefaultLayout },
   { path: '/search', component: SearchProducts, layout: DefaultLayout },
   { path: '/newArticle', component: newArticle, layout: DefaultLayout },

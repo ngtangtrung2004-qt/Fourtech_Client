@@ -17,6 +17,8 @@ function Header() {
   const { totalQuantity } = useContext(CartContext);
   const [query,setQuery] = useState()
 
+  const idUser = user.account.id
+
   useEffect(() => {
     fetchAPICategory();
   }, []);
@@ -198,7 +200,7 @@ const handleSearchSubmit = (e) => {
                           ""
                         )}
                         <li>
-                          <Link to="/info">
+                          <Link to={`/info/${idUser}`}>
                             <FontAwesomeIcon
                               icon="fa-regular fa-id-badge"
                               fixedWidth
