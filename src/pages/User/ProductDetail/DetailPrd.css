@@ -78,7 +78,7 @@
 .describe_price {
   display: flex;
   text-align: center;
-  /* justify-content: center; */
+  gap: 5px;
   align-items: center;
   margin-bottom: 30px;
 }
@@ -183,7 +183,7 @@
 .btn_add_cart {
   width: 100%;
   border-radius: 30px;
-  margin-bottom: 15px;
+  margin-top: 15px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -192,12 +192,6 @@
 }
 .btn_add_cart span {
   margin-right: 10px;
-}
-.btn_buy {
-  width: 100%;
-  border-radius: 30px;
-  color: #ff0000;
-  border: 1px solid #ff0000;
 }
 
 /* collapsell */
@@ -399,7 +393,6 @@
 .card_product-info-price-old {
   text-decoration: line-through;
   color: #857474;
-  margin-bottom: 10px;
 }
 
 .info-name-ation {

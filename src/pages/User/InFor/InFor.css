@@ -78,7 +78,17 @@
     grid-template-columns: 100px 1fr;
     align-items: center;
 }
+.infor .phone_infor{
+    color: #6e6e6e;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+}
 .infor .email_infor .span-email{
+    color: rgb(165, 165, 165);
+    cursor: no-drop;
+}
+.infor .phone_infor .span-phone{
     color: rgb(165, 165, 165);
     cursor: no-drop;
 }

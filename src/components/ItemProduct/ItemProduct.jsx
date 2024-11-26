@@ -120,6 +120,12 @@ const ItemProduct = ({ filter }) => {
 
   const visibleProducts = products.slice(currentIndex, currentIndex + itemsPerPage); // Lấy nhóm sản phẩm hiển thị dựa trên chỉ số hiện tại.
 
+  //Tính % giá giảm
+  function calculateDiscount(originalPrice, discountedPrice) {
+    const discountPercent = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    return Math.round(discountPercent); // Làm tròn kết quả
+  }
+
   return (
     <>
 
@@ -134,15 +140,35 @@ const ItemProduct = ({ filter }) => {
                 <div className="product-description">
                   <p>{products.name}</p>
                 </div>
+                {/* <div className="product-pricing-1">
+                  {formatCurrency(products.price)}
+                </div>
                 <div className="product-pricing">
                   <span className="price">
                     {formatCurrency(products.promotion_price)}
                   </span>
-
-                </div>
-                <div className="product-pricing-1">
-                  {formatCurrency(products.price)}
-                </div>
+                </div> */}
+                {products?.promotion_price === 0 ?
+                  (
+                    <div className="product-pricing-12">
+                      <span className="price-12" style={{ marginTop: '20px' }}>{formatCurrency(products.price)}</span>
+                    </div>
+                  )
+                  :
+                  (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
+                        <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                        <span className="tag_1">
+                          {`-${calculateDiscount(products.price, products.promotion_price)}%`}
+                        </span>
+                      </div>
+                      <div className="product-pricing-12">
+                        <span className="price-12">{formatCurrency(products.promotion_price)}</span>
+                      </div>
+                    </>
+                  )
+                }
               </Link>
               <button className="add-to-cart-btn" onClick={() => handleAddToCart(products.id)}>
                 Thêm vào giỏ hàng

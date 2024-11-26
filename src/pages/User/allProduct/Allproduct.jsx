@@ -1,18 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-
 import Voucher from '../../../components/Voucher/Voucher';
 import './allProduct.css';
 import { CartContext } from '../../../components/context/CartContext';
 import Category from '../../../components/Category/Category';
 import ProductService from '../../../services/productService';
 import { formatCurrency } from '../../../config/config';
-
 import CartService from '../../../services/cartService';
 import { UserContext } from '../../../components/context/authContext';
 import { showToastError } from '../../../config/toastConfig';
 import { Link } from 'react-router-dom';
 import CategoryService from '../../../services/categoryService';
-// import Product_item from '../../../components/Item_Mouse/Item_Mouse';
 
 
 const AllProduct = () => {
@@ -190,6 +187,13 @@ const AllProduct = () => {
     }
   };
 
+  //Tính % giá giảm
+  function calculateDiscount(originalPrice, discountedPrice) {
+    const discountPercent = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    return Math.round(discountPercent); // Làm tròn kết quả
+  }
+
+
   return (
     <>
       <div className="container-allproduct">
@@ -221,13 +225,18 @@ const AllProduct = () => {
                     {products?.promotion_price === 0 ?
                       (
                         <div className="product-pricing-12">
-                          <span className="price-12">{formatCurrency(products.price)}</span>
+                          <span className="price-12" style={{ marginTop: '20px' }}>{formatCurrency(products.price)}</span>
                         </div>
                       )
                       :
                       (
                         <>
-                          <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                          <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
+                            <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                            <span className="tag_1">
+                              {`-${calculateDiscount(products.price, products.promotion_price)}%`}
+                            </span>
+                          </div>
                           <div className="product-pricing-12">
                             <span className="price-12">{formatCurrency(products.promotion_price)}</span>
                           </div>
@@ -241,8 +250,8 @@ const AllProduct = () => {
                 </li>
               ))}
             </ul>
-            
-            
+
+
             {/* Có thể dùng prop như thế này cho gọn code  */}
             {/* <Product_item data={pro}></Product_item> */}
 
