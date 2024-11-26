@@ -38,6 +38,7 @@ function ProductDetail() {
       .then((response) => setProductDetail(response.data.data))
       .catch((error) => console.error("Lỗi khi lấy dữ liệu:", error));
   }, [id])
+
   useEffect(() => {
     const fetchAPIAllProduct = async () => {
       const dataProduct = await ProductService.getAllProduct();
@@ -45,7 +46,14 @@ function ProductDetail() {
       setAllProduct(dataProduct);
     }
     fetchAPIAllProduct()
+    APIProductIncreaseView()
   }, [])
+
+
+  const APIProductIncreaseView = async () => {
+    const data = await ProductService.postProductIncreaseView(id)
+    return data.data
+  }
 
 
   function calculateDiscount(originalPrice, discountedPrice) {

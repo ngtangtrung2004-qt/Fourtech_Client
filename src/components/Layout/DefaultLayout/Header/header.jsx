@@ -8,7 +8,6 @@ import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
 import CategoryService from "../../../../services/categoryService";
-
 function Header() {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -61,6 +60,8 @@ const handleSearchSubmit = (e) => {
     
   };
 
+
+
   return (
     <>
       <header className="container-header">
@@ -85,9 +86,9 @@ const handleSearchSubmit = (e) => {
                   </Link>
                   <div className="sub-nav">
                     <ul className="sub-nav-list">
-                      {category && category.map((item) => (
-                        <li className="sub-nav-item" key={item.id}>
-                          <Link>{item.name}</Link>
+                      {category && category.map((category) => (
+                        <li className="sub-nav-item" key={category.id}>
+                        <Link to={`/allproduct?category=${category.name}`}>{category.name}</Link>
                         </li>
                       ))}
                     </ul>
