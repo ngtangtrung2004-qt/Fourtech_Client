@@ -11,8 +11,6 @@ import { UserContext } from '../../../components/context/authContext';
 import { showToastError } from '../../../config/toastConfig';
 import CategoryService from '../../../services/categoryService';
 
-// import Product_item from '../../../components/Item_Mouse/Item_Mouse';
-
 
 const AllProduct = () => {
   const [products, setProducts] = useState([]); // Tất cả sản phẩm
@@ -24,7 +22,6 @@ const AllProduct = () => {
   const { user } = useContext(UserContext);
   const location = useLocation(); // Lấy thông tin từ URL
   const [selectedCategory, setSelectedCategory] = useState(''); // Danh mục được chọn
-  const [selectedBrands, setSelectedBrands] = useState([]); // Các hãng sản phẩm đã chọn
   const [selectedPriceRange, setSelectedPriceRange] = useState([]); // Các mức giá đã chọn
   const userId = user?.account?.id || null;
 
@@ -146,11 +143,6 @@ const AllProduct = () => {
   useEffect(() => {
     let filtered = [...products];
 
-    // Lọc theo hãng
-    if (selectedBrands.length > 0) {
-      filtered = filtered.filter((product) => selectedBrands.includes(product.brand));
-    }
-
     // Lọc theo giá
     if (selectedPriceRange.length > 0) {
       filtered = filtered.filter((product) => {
@@ -179,20 +171,9 @@ const AllProduct = () => {
 
     setFilteredProducts(filtered);
     setCurrentPage(1); // Đặt lại trang về 1 khi lọc
-  }, [selectedBrands, selectedPriceRange, products]);
+  },);
 
   // Các hàm xử lý thay đổi lựa chọn lọc
-  const handleBrandChange = (event) => {
-    const { id, checked } = event.target;
-    setSelectedBrands((prevBrands) => {
-      if (checked) {
-        return [...prevBrands, id];
-      } else {
-        return prevBrands.filter((brand) => brand !== id);
-      }
-    });
-  };
-
   const handlePriceChange = (event) => {
     const { id, checked } = event.target;
     setSelectedPriceRange((prevRanges) => {
@@ -203,6 +184,13 @@ const AllProduct = () => {
       }
     });
   };
+
+
+  //Tính % giá giảm
+  function calculateDiscount(originalPrice, discountedPrice) {
+    const discountPercent = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    return Math.round(discountPercent); // Làm tròn kết quả
+  }
 
 
   return (
@@ -240,13 +228,18 @@ const AllProduct = () => {
                     {products?.promotion_price === 0 ?
                       (
                         <div className="product-pricing-12">
-                          <span className="price-12">{formatCurrency(products.price)}</span>
+                          <span className="price-12" style={{ marginTop: '20px' }}>{formatCurrency(products.price)}</span>
                         </div>
                       )
                       :
                       (
                         <>
-                          <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                          <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
+                            <div className="product-pricing-123">{formatCurrency(products.price)}</div>
+                            <span className="tag_1">
+                              {`-${calculateDiscount(products.price, products.promotion_price)}%`}
+                            </span>
+                          </div>
                           <div className="product-pricing-12">
                             <span className="price-12">{formatCurrency(products.promotion_price)}</span>
                           </div>
@@ -260,8 +253,8 @@ const AllProduct = () => {
                 </li>
               ))}
             </ul>
-            
-            
+
+
             {/* Có thể dùng prop như thế này cho gọn code  */}
             {/* <Product_item data={pro}></Product_item> */}
 

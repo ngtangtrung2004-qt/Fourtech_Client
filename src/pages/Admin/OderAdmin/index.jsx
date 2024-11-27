@@ -2,7 +2,7 @@ import { Table, Button } from "antd";
 import "./orderDetail.css";
 import { useEffect, useState } from "react";
 import OrderService from "../../../services/orderService";
-import { formatCurrency } from "../../../config/config";
+import { formatCurrency, formatDate } from "../../../config/config";
 import { useNavigate } from "react-router-dom";
 
 
@@ -79,6 +79,11 @@ function OrderList() {
             return <p>Trạng thái không xác định</p>
         }
       }
+    },
+    {
+      title: "Ngày đặt hàng",
+      dataIndex: "created_at",
+      render: (text) => formatDate(text)
     },
     {
       title: "Hành động",
