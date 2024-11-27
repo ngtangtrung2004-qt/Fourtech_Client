@@ -24,12 +24,14 @@ const AllProduct = () => {
   const { user } = useContext(UserContext);
   const location = useLocation(); // Lấy thông tin từ URL
   const [selectedCategory, setSelectedCategory] = useState(''); // Danh mục được chọn
+  const [selectedBrands, setSelectedBrands] = useState([]); // Các hãng sản phẩm đã chọn
+  const [selectedPriceRange, setSelectedPriceRange] = useState([]); // Các mức giá đã chọn
   const userId = user?.account?.id || null;
 
     // Lấy danh mục từ API
     useEffect(() => {
       const fetchAPICategory = async () => {
-        try {
+        try { 
           const dataCategory = await CategoryService.getAllCategory();
           setCategories(dataCategory.data); // Lưu danh mục vào state
         } catch (error) {
@@ -79,6 +81,16 @@ const AllProduct = () => {
       }
       setCurrentPage(1); // Đặt lại trang về 1 khi danh mục thay đổi
     }, [selectedCategory, products]);
+
+     // Cuộn mượt mà khi chuyển trang
+  useEffect(() => {
+    const middlePosition = window.innerHeight / 2; // Tính vị trí giữa của màn hình
+    window.scrollTo({
+      top: middlePosition, // Đặt vị trí giữa
+      behavior: "smooth", // Thêm hiệu ứng cuộn mượt mà
+    });
+  }, [currentPage]);
+
   
     // Phân trang
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -130,6 +142,68 @@ const AllProduct = () => {
         console.error('Lỗi khi thêm sản phẩm vào giỏ hàng:', error);
       }
     }
+    // Lọc sản phẩm theo các lựa chọn của người dùng
+  useEffect(() => {
+    let filtered = [...products];
+
+    // Lọc theo hãng
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((product) => selectedBrands.includes(product.brand));
+    }
+
+    // Lọc theo giá
+    if (selectedPriceRange.length > 0) {
+      filtered = filtered.filter((product) => {
+        return selectedPriceRange.some((range) => {
+          switch (range) {
+            case 'Giá dưới 1.000.000₫':
+              return product.price < 1000000;
+            case '1.000.000₫ - 2.000.000₫':
+              return product.price >= 1000000 && product.price <= 2000000;
+            case '2.000.000₫ - 3.000.000₫':
+              return product.price >= 2000000 && product.price <= 3000000;
+            case '3.000.000₫ - 5.000.000₫':
+              return product.price >= 3000000 && product.price <= 5000000;
+            case '5.000.000₫ - 7.000.000₫':
+              return product.price >= 5000000 && product.price <= 7000000;
+            case '7.000.000₫ - 10.000.000₫':
+              return product.price >= 7000000 && product.price <= 10000000;
+            case 'Giá trên 10.000.000₫':
+              return product.price > 10000000;
+            default:
+              return false;
+          }
+        });
+      });
+    }
+
+    setFilteredProducts(filtered);
+    setCurrentPage(1); // Đặt lại trang về 1 khi lọc
+  }, [selectedBrands, selectedPriceRange, products]);
+
+  // Các hàm xử lý thay đổi lựa chọn lọc
+  const handleBrandChange = (event) => {
+    const { id, checked } = event.target;
+    setSelectedBrands((prevBrands) => {
+      if (checked) {
+        return [...prevBrands, id];
+      } else {
+        return prevBrands.filter((brand) => brand !== id);
+      }
+    });
+  };
+
+  const handlePriceChange = (event) => {
+    const { id, checked } = event.target;
+    setSelectedPriceRange((prevRanges) => {
+      if (checked) {
+        return [...prevRanges, id];
+      } else {
+        return prevRanges.filter((range) => range !== id);
+      }
+    });
+  };
+
 
   return (
     <>
@@ -139,7 +213,11 @@ const AllProduct = () => {
         </div>
         <Voucher />
         <div className="product-filter">
-          <h2 className="product-title">Tất cả các sản phẩm</h2>
+          <h2 className="product-title">
+          <h2 className="product-title">
+                   {selectedCategory ? `Tất cả sản phẩm : ${selectedCategory}` : 'Tất cả sản phẩm'}
+            </h2>
+          </h2>
           <div className="filter-buttons">
 
           </div>
@@ -190,45 +268,17 @@ const AllProduct = () => {
 
           </div>
           <div className="filter-section">
-            <div className="filter-group">
-              <h3>Hãng sản xuất</h3>
-              {['Samsung', 'Acer', 'Apple', 'Asus', 'Dell', 'Logitech', 'Corsair', 'Sony', 'Razer', 'Keychron'].map((bran, index) => (
-                <div key={index} className="filter-item">
-                  {/* <input name='xét hãng sản phẩm'
-                    type="checkbox"
-                    id={bran}
-                    onChange={handleBrandFilterChange} /> */}
-                  <label htmlFor={bran}>{bran}</label>
-                </div>
-              ))}
-            </div>
             <div >
             </div>
-
-            <hr className="divider" />
-            <div className="filter-group">
-              <h3>Loại sản phẩm</h3>
-              {categories.map((categories) => (
-                <div key={categories.id} className="filter-item">
-                  {/* <input name='xét soạn phẩm'
-                    type="checkbox"
-                    id={categories.name}
-                    onChange={handleBrandFilterChange} /> */}
-                  <label htmlFor={categories.name}>{categories.name}</label>
-
-                </div>
-              ))}
-            </div>
-            <hr className="divider" />
             <div className="filter-group">
               <h3>Giá</h3>
               {['Giá dưới 1.000.000₫', '1.000.000₫ - 2.000.000₫', '2.000.000₫ - 3.000.000₫',
                 '3.000.000₫ - 5.000.000₫', '5.000.000₫ - 7.000.000₫', '7.000.000₫ - 10.000.000₫', 'Giá trên 10.000.000₫',].map((tag, index) => (
                   <div key={index} className="filter-item">
-                    {/* <input name='xét giá'
+                    <input name='xét giá'
                       type="checkbox"
                       id={tag}
-                      onChange={handlePriceFilterChange} /> */}
+                      onChange={handlePriceChange} />
                     <label htmlFor={tag}>{tag}</label>
                   </div>
                 ))}
