@@ -141,6 +141,8 @@ const AllProduct = () => {
       console.error('Lỗi khi thêm sản phẩm vào giỏ hàng:', error);
     }
   }
+
+
   // Lọc sản phẩm theo các lựa chọn của người dùng
   useEffect(() => {
     let filtered = [...products];
@@ -148,22 +150,23 @@ const AllProduct = () => {
     // Lọc theo giá
     if (selectedPriceRange.length > 0) {
       filtered = filtered.filter((product) => {
+        const effectivePrice = product.promotion_price > 0 ? product.promotion_price : product.price;
         return selectedPriceRange.some((range) => {
           switch (range) {
             case 'Giá dưới 1.000.000₫':
-              return product.price < 1000000;
+              return effectivePrice < 1000000;
             case '1.000.000₫ - 2.000.000₫':
-              return product.price >= 1000000 && product.price <= 2000000;
+              return effectivePrice >= 1000000 && effectivePrice <= 2000000;
             case '2.000.000₫ - 3.000.000₫':
-              return product.price >= 2000000 && product.price <= 3000000;
+              return effectivePrice >= 2000000 && effectivePrice <= 3000000;
             case '3.000.000₫ - 5.000.000₫':
-              return product.price >= 3000000 && product.price <= 5000000;
+              return effectivePrice >= 3000000 && effectivePrice <= 5000000;
             case '5.000.000₫ - 7.000.000₫':
-              return product.price >= 5000000 && product.price <= 7000000;
+              return effectivePrice >= 5000000 && effectivePrice <= 7000000;
             case '7.000.000₫ - 10.000.000₫':
-              return product.price >= 7000000 && product.price <= 10000000;
+              return effectivePrice >= 7000000 && effectivePrice <= 10000000;
             case 'Giá trên 10.000.000₫':
-              return product.price > 10000000;
+              return effectivePrice > 10000000;
             default:
               return false;
           }
