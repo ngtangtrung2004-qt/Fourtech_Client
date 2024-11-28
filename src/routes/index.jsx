@@ -20,13 +20,11 @@ import Brand from "../pages/Admin/brandAdmin";
 import Createbrand from "../pages/Admin/BrandAdmin/CreateBrand";
 import UserAdmin from "../pages/Admin/UserAdmin";
 import Contact from "../pages/User/Contact/Contact";
-import Article from "../pages/User/Article/article";
 // import {BrandAdmin} from "../pages/Admin/brandAdmin/index.jsx"
 // import BrandAdmin from "../pages/Admin/BrandAdmin"
 import InFor from "../pages/User/InFor/InFor";
 import Item_Mouse from "../components/Item_Mouse/Item_Mouse";
 import ContactAdmin from "../pages/Admin/ContactAdmin";
-import newArticle from "../pages/User/Article/newArticle";
 import ForgotPassword from "../pages/User/Signinsignup/Forgotpassword";
 import ResetPassword from "../pages/User/Signinsignup/ResetPassword";
 import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan";
@@ -34,6 +32,11 @@ import SearchProducts from "../pages/User/Search";
 import Comment from "../pages/Admin/comment/comment";
 
 import Thankyou from "../pages/User/pay/thankyou"
+import NewsAdmin from "../pages/Admin/NewsAdmin";
+import AddNew from "../pages/Admin/NewsAdmin/AddNew";
+import EditNews from "../pages/Admin/NewsAdmin/EditNew";
+import NewsDetail from "../pages/User/News/newsDetail.";
+import News from "../pages/User/News/news";
 
 const publicRoutes = [
   { path: "/", component: HomePage, layout: DefaultLayout },
@@ -47,9 +50,9 @@ const publicRoutes = [
   { path: '/contact', component: Contact, layout: DefaultLayout },
   { path: '/mouse', component: Item_Mouse, layout: DefaultLayout },
   { path: '/info/:id', component: InFor, layout: DefaultLayout },
-  { path: '/article', component: Article, layout: DefaultLayout },
+  { path: '/news', component: News, layout: DefaultLayout },
   { path: '/search', component: SearchProducts, layout: DefaultLayout },
-  { path: '/newArticle', component: newArticle, layout: DefaultLayout },
+  { path: '/NewsDetail/:id', component:NewsDetail, layout: DefaultLayout },
   { path: '/thankyou', component: Thankyou, layout: DefaultLayout },
 ]
 
@@ -99,6 +102,9 @@ const adminRoutes = [
 
   { path: "/admin/user-admin", component: UserAdmin, layout: LayoutAdmin },
   { path: "/admin/comment-admin", component: Comment, layout: LayoutAdmin },
+  { path: "/admin/news-admin", component: NewsAdmin, layout: LayoutAdmin },
+  { path: "/admin/add-new", component: AddNew, layout: LayoutAdmin },
+  { path: "/admin/edit-news:id", component: EditNews, layout: LayoutAdmin },
 ];
 
 export { publicRoutes, adminRoutes };

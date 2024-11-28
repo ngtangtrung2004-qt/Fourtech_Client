@@ -1,64 +1,67 @@
-.grid{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 50px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 50px;
 }
-.item-new{
-
+.item-new {
 }
-.cart-new{
-    /* width: calc(100%/3); */
-    height: auto;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-
+.cart-new {
+  /* width: calc(100%/3); */
+  height: auto;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }
-.cart-new img{
-    width: 100%;
-    border-radius: 5px;
+.cart-new img {
+  width: 100%;
+  height: 220px;
+  border-radius: 5px;
+  object-fit: cover;
 }
-.card-information{
-    text-align:justify;
+.card-information {
+  text-align: justify;
+  width: 100%;
 }
-.card-title{
-    color: #000;
-    margin-bottom: 5px;
-    font-size: 16px;
-    line-height: 1.2;
+.card-title {
+  text-align: center;
+  color: #000;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1.2;
 }
-.card-info{
-    /* color: ; */
-    line-height: 26px;
-    padding-bottom: 10px;
+.card-info {
+  display: block;
+  width: 100%;
+  max-height: 100px; /* Giới hạn chiều rộng */
+  overflow: hidden; /* Ẩn nội dung bị tràn */
+  text-overflow: ellipsis; /* Thêm dấu "..." khi bị cắt */
 }
-.card-action{
-    display: flex;
-    justify-content: space-between;
+.card-action {
+  display: flex;
+  justify-content: space-between;
 }
-.card-action span i{
-    font-size: 30px;
-    margin-right: 10px;
+.card-action span i {
+  font-size: 30px;
+  margin-right: 10px;
 }
-.card-date{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-size: 16px;
-    font-weight: 600;
-
+.card-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
 }
-.card-date span{
-    margin-right: 5px;
+.card-date span {
+  margin-right: 5px;
 }
-.card-btn{
-    outline: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: 1px solid #FF0000;
-    color: #FF0000;
-    background-color: #fff;
-    font-weight: 600;
+.card-btn {
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  background-color: #fff;
+  font-weight: 600;
 }

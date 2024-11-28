@@ -37,7 +37,7 @@ function ProductDetail() {
     setAllProduct(dataProduct);
   }
     fetchAPIAllProduct()
-  }, [])
+  }, [allProduct])
 
   return (
     <>

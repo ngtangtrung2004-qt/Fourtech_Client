@@ -11,6 +11,7 @@ import NewTechnology from '../../../components/newTechnology';
 import { useEffect, useState } from "react";
 import Category from '../../../components/Category/Category';
 import CategoryService from '../../../services/categoryService';
+// import axios from 'axios';
 
 
 
@@ -21,6 +22,7 @@ const images = [
 
 
 function HomePage() {
+    const [listNews, setListNews] = useState([])
     const [time, setTime] = useState({
         days: 0,
         hours: 0,
@@ -40,6 +42,22 @@ function HomePage() {
             setCategory(dataCategory.data)
         }
     }
+
+    useEffect(() => {
+    const fechtNews = async () => {
+        if (listNews.length > 0) return; // Nếu đã có dữ liệu, không gọi lại API
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
+            const data = await res.json();
+            setListNews(data.slice(0, 4)); // Chỉ lấy 4 phần tử
+        } catch (error) {
+            console.error("Lỗi khi lấy danh sách Tin tức", error);
+        }
+    };
+    fechtNews();
+
+    console.log(listNews)
+}, [listNews]);
 
 
 
@@ -182,7 +200,7 @@ function HomePage() {
                     <>
                         {category.find(cat => cat.name === "Tai Nghe") && (
                             <>
-                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} />
+                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} url={'/allproduct'}/>
                                 <ItemProduct filter={category.find(cat => cat.name === "Tai Nghe").id} />
                             </>
                         )}
@@ -193,7 +211,7 @@ function HomePage() {
 
                         {category.find(cat => cat.name === "Máy Chơi Game") && (
                             <>
-                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} />
+                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} url={'/allproduct'}/>
                                 <ItemProduct filter={category.find(cat => cat.name === "Máy Chơi Game").id} />
                             </>
                         )}
@@ -205,14 +223,14 @@ function HomePage() {
                 {/* <Item_Mouse /> */}
                 {category.find(cat => cat.name === "Chuột") && (
                     <>
-                        <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} />
+                        <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} url={'/allproduct'} />
                         <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
                     </>
                 )}
                 <ItemAccessory />
-                <HeaderProduct title={"Bản Tin công nghệ"} />
+                <HeaderProduct title={"Bản Tin công nghệ"} url={'/article'} />
 
-                <NewTechnology />
+                <NewTechnology data={listNews}/>
             </div>
 
         </>
