@@ -11,7 +11,9 @@ import {
   CommentOutlined,
   UserOutlined,
   ContactsOutlined,
+  AuditOutlined,
   AppstoreOutlined,
+
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -65,6 +67,11 @@ const items = [
     <Link to="/admin/user-admin">Người dùng</Link>,
     "/admin/user-admin",
     <UserOutlined />
+  ),
+   getItem(
+    <Link to="/admin/news-admin">Bản tin</Link>,
+    "/admin/news-admin",
+    <AuditOutlined />
   ),
 ]
 

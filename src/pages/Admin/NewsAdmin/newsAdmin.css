@@ -1,0 +1,73 @@
+.form-edit-news {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-edit-news #newsName {
+  width: 100%;
+  padding: 10px 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.btn-edit.huy {
+  background-color: #868585;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-edit {
+  background-color: #1677ff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+}
+.name_news {
+  width: 100%;
+}
+.name_news p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.name_news input {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/*CSS Modal*/
+
+.ant-modal-mask {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.4
+  ) !important; /* Điều chỉnh độ mờ bằng cách thay đổi giá trị alpha (0.5) */
+}
+
+.modal-delete .ant-modal-title,
+.modal-edit .ant-modal-title {
+  font-weight: bold;
+  font-size: 25px;
+}
+.modal-delete .custom-ok-button {
+  background-color: red;
+}

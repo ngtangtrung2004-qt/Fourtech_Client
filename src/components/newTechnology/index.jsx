@@ -3,67 +3,45 @@ import './NewTechelogy.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-function NewTechnology() {
+import PropTypes from 'prop-types';
+import { formatDate } from '../../config/config';
+function NewTechnology({data}) {
+  // console.log(data[0].content)
   return (<>
     <div className="item-new grid" >
-      <div className="cart-new">
-        <img src="../../../src/assets/images/../../../src/assets/images/bgr-new.jpg" alt="anh 1"></img>
+      {data.map((news,index)=>{
+        return(
+      <div className="cart-new" key={index}>
+        <img src={`${import.meta.env.VITE_API_URL}/uploads/${
+                      news.image
+                    }`} alt="anh 1"></img>
         <div className="card-information">
-          <h4 className="card-title">Google trình làng Google Gemini 1.0: Mô hình ngôn ngữ thông minh hàng đầu, tham vọng vượt mặt GPT-4 Nguyễn Công Minh</h4>
-          <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
+          <h4 className="card-title">{news.title}</h4>
+          <p className="card-info">{news.content}</p>
           <div className="card-action">
             <div className="card-date">
               <span><FontAwesomeIcon icon={faCalendarDay} /></span> 
-              <span>13/12/2002</span>
+              <span>{formatDate(news.createdAt)}</span>
             </div>
-            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
+            <Link to={`/NewsDetail/${news.id}`} ><button className="card-btn"> Xem chi tiết</button></Link>
           </div>
         </div>
       </div>
-      <div className="cart-new">
-        <img src="../../../src/assets/images/bgr-new.jpg" alt="anh 1"></img>
-        <div className="card-information">
-          <h4 className="card-title">Google trình làng Google Gemini 1.0: Mô hình ngôn ngữ thông minh hàng đầu, tham vọng vượt mặt GPT-4 Nguyễn Công Minh</h4>
-          <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
-          <div className="card-action">
-            <div className="card-date">
-              <span><FontAwesomeIcon icon={faCalendarDay} /></span>
-              <span>13/12/2002</span>
-            </div>
-            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
-          </div>
-        </div>
-      </div>
-      <div className="cart-new">
-        <img src="../../../src/assets/images/bgr-new.jpg" alt="anh 1"></img>
-        <div className="card-information">
-          <h4 className="card-title">Google trình làng Google Gemini 1.0: Mô hình ngôn ngữ thông minh hàng đầu, tham vọng vượt mặt GPT-4 Nguyễn Công Minh</h4>
-          <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
-          <div className="card-action">
-            <div className="card-date">
-              <span><FontAwesomeIcon icon={faCalendarDay} /></span>
-              <span>13/12/2002</span>
-            </div>
-            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
-          </div>
-        </div>
-      </div>
-      <div className="cart-new">
-        <img src="../../../src/assets/images/bgr-new.jpg" alt="anh 1"></img>
-        <div className="card-information">
-          <h4 className="card-title">Google trình làng Google Gemini 1.0: Mô hình ngôn ngữ thông minh hàng đầu, tham vọng vượt mặt GPT-4 Nguyễn Công Minh</h4>
-          <p className="card-info">Đây là mô hình ngôn ngữ lớn tốt nhất mà Google đã tạo ra, và sẽ có ba cấp độ khác nhau với sức mạnh...</p>
-          <div className="card-action">
-            <div className="card-date">
-              <span><FontAwesomeIcon icon={faCalendarDay} /></span>
-              <span>13/12/2002</span>
-            </div>
-            <Link to={'/newArticle'} ><button className="card-btn"> Xem chi tiết</button></Link>
-          </div>
-        </div>
-      </div>
+        )
+})}
     </div>
   </>);
 }
+
+NewTechnology.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired, 
+      content: PropTypes.string.isRequired, 
+      image: PropTypes.string.isRequired, 
+    })
+  ),
+};
 
 export default NewTechnology;

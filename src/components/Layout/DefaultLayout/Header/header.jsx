@@ -95,7 +95,7 @@ function Header() {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <Link to="/article">Bài viết</Link>
+                  <Link to="/news">Bản Tin</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/contact">Liên hệ</Link>

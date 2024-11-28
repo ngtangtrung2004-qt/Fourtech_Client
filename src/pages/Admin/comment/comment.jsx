@@ -47,7 +47,7 @@ function Comment() {
           await axios.delete(`${import.meta.env.VITE_API_URL}/api/comment/${id}`);
           showToastSuccess("Xóa bình luận thành công!");
           // Cập nhật lại danh sách sau khi xóa
-          setlistComment(listComment.filter((cmt) => cmt.id !== id));
+          await fetchComments();
         } catch (error) {
           console.error("Lỗi khi xóa bình luận:", error);
           showToastError("Xóa bình luận thất bại!");
