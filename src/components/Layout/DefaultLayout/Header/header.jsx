@@ -15,7 +15,7 @@ function Header() {
   const inputRef = useRef(null);
   const [category, setHeaderCategory] = useState([]);
   const { totalQuantity } = useContext(CartContext);
-  const [query,setQuery] = useState()
+  const [query, setQuery] = useState()
 
   const idUser = user.account.id
 
@@ -53,11 +53,11 @@ function Header() {
       navigate("/login-register");
     }
   };
-const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate(`/search?query=${query}`); // Điều hướng đến trang tìm kiếm
     setIsSearchOpen(false)
-    
+
   };
 
 
@@ -88,7 +88,7 @@ const handleSearchSubmit = (e) => {
                     <ul className="sub-nav-list">
                       {category && category.map((category) => (
                         <li className="sub-nav-item" key={category.id}>
-                        <Link to={`/allproduct?category=${category.name}`}>{category.name}</Link>
+                          <Link to={`/allproduct?category=${category.name}`}>{category.name}</Link>
                         </li>
                       ))}
                     </ul>
@@ -130,7 +130,7 @@ const handleSearchSubmit = (e) => {
                       <h3>TÌM KIẾM</h3>
                     </div>
                     <form onSubmit={handleSearchSubmit}>
-                    <div className="input">
+                      <div className="input">
                         <input
                           type="text"
                           placeholder="Tìm kiếm sản phẩm..."
@@ -142,8 +142,8 @@ const handleSearchSubmit = (e) => {
                             <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
                           </button>
                         </div>
-                    </div>
-                      </form>
+                      </div>
+                    </form>
 
                   </div>
                 )}
@@ -173,7 +173,7 @@ const handleSearchSubmit = (e) => {
                         "/uploads/" +
                         user?.account?.avatar
                       }
-                      style={{ height: 30, width: 30 }}
+                      style={{ height: 30, width: 30, borderRadius: "50%" }}
                       alt="avatar"
                     />
                     <div className="sub-user">
@@ -197,7 +197,17 @@ const handleSearchSubmit = (e) => {
                             </Link>
                           </li>
                         ) : (
-                          ""
+                          <>
+                            <li>
+                              <Link to="/order-user">
+                                <FontAwesomeIcon
+                                  icon="fa-solid fa-truck"
+                                  fixedWidth
+                                />
+                                <p>Đơn mua</p>
+                              </Link>
+                            </li>
+                          </>
                         )}
                         <li>
                           <Link to={`/info/${idUser}`}>
@@ -236,7 +246,7 @@ const handleSearchSubmit = (e) => {
             </div>
           </div>
         </div>
-      </header>
+      </header >
     </>
   );
 }

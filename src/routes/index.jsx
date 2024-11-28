@@ -28,6 +28,7 @@ import TrashCanProduct from "../pages/Admin/ProductAdmin/trashCan";
 import SearchProducts from "../pages/User/Search";
 import Comment from "../pages/Admin/comment/comment";
 import Thankyou from "../pages/User/pay/thankyou"
+import OrderUser from "../pages/User/OrderUser/orderUser";
 
 const publicRoutes = [
   { path: "/", component: HomePage, layout: DefaultLayout },
@@ -44,6 +45,7 @@ const publicRoutes = [
   { path: '/search', component: SearchProducts, layout: DefaultLayout },
   { path: '/newArticle', component: newArticle, layout: DefaultLayout },
   { path: '/thankyou', component: Thankyou, layout: DefaultLayout },
+  { path: '/order-user', component: OrderUser, layout: DefaultLayout },
 ]
 
 

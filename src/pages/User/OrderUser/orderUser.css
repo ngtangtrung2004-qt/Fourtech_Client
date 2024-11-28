@@ -1,0 +1,14 @@
+.modal_order_user {
+    z-index: 1000000 !important;
+}
+.box-san-pham-orderDetail {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.box-san-pham-orderDetail .infoProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

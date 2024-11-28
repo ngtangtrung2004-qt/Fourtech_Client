@@ -29,7 +29,14 @@ function HomeAdmin() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard-data`);
+                const token = localStorage.getItem("jwt"); // Lấy token từ localStorage
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard-data`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`, // Gửi token trong header
+                        },
+                    }
+                );
                 const data = response.data.data;
                 setDashboardData(data);
                 setLoading(false);

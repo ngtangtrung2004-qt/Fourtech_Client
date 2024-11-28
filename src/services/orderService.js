@@ -10,6 +10,15 @@ const OrderService = {
         }
     },
 
+    getOrderByUser: async (idUser) => {
+        try {
+            const { data } = await http.get(`/order-by-user/${idUser}`)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     getOrderDetail: async (dataOrderDetail) => {
         try {
             const { data } = await http.get(`/order/${dataOrderDetail}`)

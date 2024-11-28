@@ -13,7 +13,7 @@ import { UserContext } from '../../../components/context/authContext'
 import CartService from '../../../services/cartService'
 import { CartContext } from '../../../components/context/CartContext'
 import { formatCurrency } from '../../../config/config';
-import { showToastError, showToastSuccess } from '../../../config/toastConfig';
+import { showToastError, showToastSuccess, showToastWarning } from '../../../config/toastConfig';
 import PaymentMethod from '../../../services/paymentMethodService';
 import { Link } from 'react-router-dom';
 
@@ -109,6 +109,10 @@ function Pay() {
 
     const handleDatHang = async () => {
         if (!handleValidateInfo()) return
+
+        if (user.account.role === 'admin') {
+            return showToastWarning("Quản trị viên không được phép đặt hàng!")
+        }
 
         const productData = getProductsData()
 
@@ -309,7 +313,7 @@ function Pay() {
                         </div>
 
                         <div className="dat-hang">
-                            <Link to={'/cart'}>
+                            <Link to={`/cart/${idUser}`}>
                                 <p> {"< Quay về trang giỏ hàng"} </p>
                             </Link>
                             <Button type="primary" danger onClick={handleDatHang} disabled={isButtonDisabled()}>

@@ -21,5 +21,5 @@ export const showToastError = (message) => {
 };
 
 export const showToastWarning = (message) => {
-  toast.error(message, toastConfig);
+  toast.warning(message, toastConfig);
 };
