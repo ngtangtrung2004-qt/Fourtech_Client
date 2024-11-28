@@ -1,6 +1,32 @@
 import HeaderProduct from '../../pages/User/Home/headerProduct';
+import BrandService from '../../services/brandService';
 import './itemAccessory.css'
+import { useEffect,useState } from 'react';
+
+
+
+
+
 function ItemAccessory() {
+  // State để lưu danh sách thương hiệu
+  const [brands, setBrands] = useState([]);
+
+   // Lấy danh mục từ API
+   useEffect(() => {
+    const fetchAPIBrand = async () => {
+      try {
+        const dataBrand = await BrandService.getAllBrand()
+        console.log(dataBrand);
+
+        setBrands(dataBrand.data); // Lưu danh mục vào state
+      } catch (error) {
+        console.error('Lỗi khi lấy danh mục:', error);
+      }
+    };
+
+    fetchAPIBrand();
+  }, []);
+
   return (
     <>
     <HeaderProduct title="Phụ kiện chơi game"/>
@@ -80,16 +106,12 @@ function ItemAccessory() {
       </div>
 
       <div className="logo-grid">
-        <div className="logo-card"><img src="../../../src/assets/images/acer-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/Dell-log.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/iphon-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/msi-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/samsung-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/Xiaomi-Logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/dareu.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/Nokia-Logo.wine.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/Sony-logo.png" alt="Sony"/></div>
-        <div className="logo-card"><img src="../../../src/assets/images/ThinkPad-Logo.wine.png" alt="Sony"/></div>
+        {/* Duyệt qua các thương hiệu và hiển thị tối đa 10 thương hiệu */}
+        {brands.slice(0,10)?.map((brand, index) => (
+          <div className="logo-card" key={index}>
+            <img src={`${import.meta.env.VITE_API_URL}/uploads/${brand.logo}`} alt={brand.name} />
+          </div>
+        ))}
       </div>
       
 

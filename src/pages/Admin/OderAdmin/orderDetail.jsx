@@ -3,7 +3,7 @@ import OrderService from "../../../services/orderService";
 import "./orderDetail.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { formatCurrency } from "../../../config/config";
+import { formatCurrency, formatDate } from "../../../config/config";
 import { showToastSuccess } from "../../../config/toastConfig";
 
 function OrderDetail() {
@@ -156,6 +156,10 @@ function OrderDetail() {
 
           <Typography.Paragraph>
             <strong>Ghi chú:</strong> {orderDetail.note ? orderDetail.note : "Không có ghi chú"}
+          </Typography.Paragraph>
+
+          <Typography.Paragraph>
+            <strong>Ngày mua:</strong> {formatDate(orderDetail.created_at)}
           </Typography.Paragraph>
         </div>
       </div>

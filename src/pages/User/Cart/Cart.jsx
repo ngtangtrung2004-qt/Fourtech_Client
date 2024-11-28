@@ -117,7 +117,7 @@ const Cart = () => {
                     </div>
 
                     <div className="img">
-                      <Link to={`/detail/${item?.productData?.id}`}>
+                      <Link to={`/productDetail/${item?.productData?.id}`}>
                         {item?.productData?.image[0] && (
                           <img
                             style={{ width: '70px', height: '70px' }}

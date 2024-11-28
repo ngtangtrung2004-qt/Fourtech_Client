@@ -212,7 +212,7 @@ const SignupSignin = () => {
             <div className="form-container sign-in">
                 <form className="form" onSubmit={handleSubmitLogin}>
                     <h2>Đăng nhập</h2>
-                    <div className="social-icons">
+                    {/* <div className="social-icons">
                         <Link to={''} className="icon">
                             <i className="fa-brands fa-google-plus-g"></i>
                         </Link>
@@ -223,7 +223,7 @@ const SignupSignin = () => {
                         <Link to={''} className="icon">
                             <i className="fa-brands fa-linkedin-in"></i>
                         </Link>
-                    </div>
+                    </div> */}
 
                     <input
                         type="text"
