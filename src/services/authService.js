@@ -55,6 +55,21 @@ const AuthService = {
         }
     },
 
+    updateUser: async (idUser, formData) => {
+        try {
+            const { data } = await http.put(`/user/${idUser}`, formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            )
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     deleteUser: async (id) => {
         try {
             const { data } = await http.delete(`/delete-user/${id}`)
@@ -62,7 +77,8 @@ const AuthService = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+
 }
 
 export default AuthService

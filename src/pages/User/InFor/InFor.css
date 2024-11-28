@@ -1,4 +1,4 @@
-.main_infor{
+.main_infor {
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -9,31 +9,36 @@
     padding: 20px 0;
     gap: 20px;
 }
-.name_infor{
+
+.name_infor {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.name_infor hr{
+.name_infor hr {
     height: 50px;
     border: 2px solid black;
 }
+
 .name_infor .name_if {
     font-size: 30px;
     font-weight: 700;
 }
-.name_infor .icon_infor{
+
+.name_infor .icon_infor {
     font-size: 50px;
 }
-.infor_Content{
+
+.infor_Content {
     display: grid;
     grid-template-columns: 0.7fr 1fr;
     grid-column-gap: 40px;
-    padding:  0 40px;
+    padding: 0 40px;
 }
-.infor_Content .infor_avata{
+
+.infor_Content .infor_avata {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -41,57 +46,67 @@
     justify-content: center;
 }
 
-.infor_Content .infor_avata img{
+.infor_Content .infor_avata img {
     width: 100px;
     height: 100px;
 }
-.infor_Content .infor_avata input[type="file"]{
+
+.infor_Content .infor_avata input[type="file"] {
     display: none;
 }
-.infor_Content .infor_avata label{
+
+.infor_Content .infor_avata label {
     cursor: pointer;
 }
 
-.infor_Content .infor{
+.infor_Content .infor {
     width: 100%;
     text-align: left;
     display: grid;
     grid-row-gap: 20px;
 }
 
-.infor .ten_infor{
+.infor .ten_infor {
     color: #6e6e6e;
     display: grid;
     grid-template-columns: 100px 1fr;
     align-items: center;
+    cursor: no-drop;
 }
-.infor .hovaten-input{
+
+.infor .hovaten-input {
     width: 300px;
     height: 25px;
     border-radius: 5px;
     border: 0.5px solid #6e6e6e;
     padding: 5px;
+
 }
-.infor .email_infor{
+
+.infor .email_infor {
     color: #6e6e6e;
     display: grid;
     grid-template-columns: 100px 1fr;
     align-items: center;
 }
-.infor .phone_infor{
+
+.infor .phone_infor {
     color: #6e6e6e;
     display: grid;
     grid-template-columns: 100px 1fr;
     align-items: center;
 }
-.infor .email_infor .span-email{
+
+.infor .email_infor .span-email {
     color: rgb(165, 165, 165);
     cursor: no-drop;
 }
-.infor .phone_infor .span-phone{
+
+.infor .phone_infor .span-phone {
     color: rgb(165, 165, 165);
     cursor: no-drop;
 }
+
 .infor .gender-selection {
     display: grid;
     grid-template-columns: 100px 1fr 1fr 1fr;
@@ -101,7 +116,7 @@
     color: #666;
 }
 
-.infor .gender-selection label{
+.infor .gender-selection label {
     font-weight: bold;
     color: #666;
 }
@@ -115,6 +130,23 @@
     align-items: center;
     gap: 7px;
     color: #333;
+}
+
+.infor .address-selection {
+    color: #6e6e6e;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+
+}
+
+.infor .address-selection input {
+    height: 30px;
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #6e6e6e;
+    outline: none;
 }
 
 .infor .gender-option input[type="radio"] {
@@ -131,7 +163,8 @@
 
 .infor .gender-option input[type="radio"]::before {
     content: "";
-    width: 10px; /* Điều chỉnh kích thước dấu chọn */
+    width: 10px;
+    /* Điều chỉnh kích thước dấu chọn */
     height: 10px;
     background-color: #f53d2d;
     border-radius: 50%;
@@ -169,13 +202,14 @@
     cursor: pointer;
 }
 
-.btn_btn_infor{
+.btn_btn_infor {
     background-color: red;
     width: 40%;
     color: white;
     padding: 5px 20px;
 }
-.btn_btn_infor:hover{
+
+.btn_btn_infor:hover {
     background-color: green;
     color: white;
 }
