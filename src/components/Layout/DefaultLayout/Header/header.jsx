@@ -8,7 +8,6 @@ import { UserContext } from "../../../context/authContext";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
 import CategoryService from "../../../../services/categoryService";
-
 function Header() {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -60,6 +59,8 @@ const handleSearchSubmit = (e) => {
     setIsSearchOpen(false)
     
   };
+
+
 
   return (
     <>

@@ -3,8 +3,6 @@ import '../Home/index.css'
 import ItemProduct from '../../../components/ItemProduct/ItemProduct';
 import Voucher from '../../../components/Voucher/Voucher';
 import HeaderProduct from './headerProduct';
-// import Item_Mouse from '../../../components/Item_Mouse/Item_Mouse';
-
 import Event from '../../../components/Event/Event';
 import ItemAccessory from '../../../components/itemAccessory/itemAccessory';
 import NewTechnology from '../../../components/newTechnology';

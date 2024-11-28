@@ -116,6 +116,19 @@
     gap: 7px;
     color: #333;
 }
+.infor .address-selection{
+    color: #6e6e6e;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center; 
+   
+}
+.infor .address-selection input{
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #6e6e6e;
+}
 
 .infor .gender-option input[type="radio"] {
     appearance: none;

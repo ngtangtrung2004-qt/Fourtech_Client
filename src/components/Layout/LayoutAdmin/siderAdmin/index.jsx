@@ -5,14 +5,15 @@ import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 import {
   DropboxOutlined,
-  HomeOutlined,
   ShopOutlined,
   ShoppingOutlined,
   UnorderedListOutlined,
   CommentOutlined,
   UserOutlined,
   ContactsOutlined,
-  AuditOutlined
+  AuditOutlined,
+  AppstoreOutlined,
+
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -27,7 +28,11 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<Link to="/admin/">Trang chủ</Link>, "/admin/", <HomeOutlined />),
+  getItem(
+    <Link to="/admin/">Tổng quan</Link>,
+    "/admin/",
+    <AppstoreOutlined />
+  ),
   getItem(
     <Link to="/admin/brand-admin">Thương hiệu</Link>,
     "/admin/brand-admin",

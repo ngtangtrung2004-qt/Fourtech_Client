@@ -44,6 +44,16 @@ const ProductService = {
         }
     },
 
+    postProductIncreaseView: async (id) => {
+        try {
+            const { data } = await http.post(`product/increase-view/${id}`)
+            return data;
+        } catch (error) {
+            showToastError(error.response.data.error)
+            console.log(error);
+        }
+    },
+
     putProduct: async (id, formData) => {
         try {
             const data = await http.put(`/product/update/${id}`, formData, {
