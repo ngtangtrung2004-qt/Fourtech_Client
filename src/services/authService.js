@@ -62,7 +62,8 @@ const AuthService = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+    
 }
 
 export default AuthService

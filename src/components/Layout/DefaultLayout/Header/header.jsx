@@ -87,7 +87,7 @@ const handleSearchSubmit = (e) => {
                     <ul className="sub-nav-list">
                       {category && category.map((item) => (
                         <li className="sub-nav-item" key={item.id}>
-                          <Link>{item.name}</Link>
+                          <Link >{item.name}</Link>
                         </li>
                       ))}
                     </ul>
