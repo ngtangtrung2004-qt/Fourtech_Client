@@ -1,4 +1,4 @@
-import HeaderProduct from '../../pages/User/Home/headerProduct';
+// import HeaderProduct from '../../pages/User/Home/headerProduct';
 import BrandService from '../../services/brandService';
 import './itemAccessory.css'
 import { useEffect, useState } from 'react';
@@ -29,7 +29,7 @@ function ItemAccessory() {
 
   return (
     <>
-      <HeaderProduct title="Phụ kiện chơi game" />
+      {/* <HeaderProduct title="Phụ kiện chơi game" />
       <div className="products-item">
         <div className="product-card">
           <img src="../../../public/anh1.jpg" alt="PS5 Standard Edition" />
@@ -103,7 +103,7 @@ function ItemAccessory() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="logo-grid">
         {/* Duyệt qua các thương hiệu và hiển thị tối đa 10 thương hiệu */}
