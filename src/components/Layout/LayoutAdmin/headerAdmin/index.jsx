@@ -1,5 +1,5 @@
 
-import { Dropdown, Input, Layout, Space } from "antd";
+import { Dropdown,  Layout, Space } from "antd";
 import { DownOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useContext } from "react";
 import { UserContext } from "../../../context/authContext";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../../../../services/authService";
 import { showToastSuccess } from "../../../../config/toastConfig";
 
-const { Search } = Input;
+// const { Search } = Input;
 const { Header } = Layout;
 
 function HeaderAdmin() {
@@ -54,13 +54,14 @@ function HeaderAdmin() {
       }}
     >
       <div className="header-search">
-        <Search
+        <div></div>
+        {/* <Search
           placeholder="input search text"
           allowClear
           enterButton="Search"
           size="large"
           style={{ width: "25%" }}
-        />
+        /> */}
 
         {user && user.isAuthenticated === true ?
           <>
