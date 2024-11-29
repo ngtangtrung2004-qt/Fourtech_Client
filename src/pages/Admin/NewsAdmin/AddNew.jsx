@@ -1,12 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { showToastSuccess } from "../../../config/toastConfig";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  {useState}  from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { showToastSuccess } from "../../../config/toastConfig";
+
 function AddNew() {
   const navigate = useNavigate();
-  const [newsData, setnewsData] = useState({
+  const [newsData, setNewsData] = useState({
     newsName: "",
     newsContent: "",
     newsImage: null,
@@ -15,15 +16,14 @@ function AddNew() {
   const [errorValidate, setErrorValidate] = useState({});
   const [fileName, setFileName] = useState("Chưa có tệp nào được chọn");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-    setnewsData({
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewsData({
       ...newsData,
       [name]: value,
     });
   };
-  console.log('data',newsData)
-  // Cập nhật ảnh thương hiệu khi người dùng chọn một file
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -34,18 +34,24 @@ function AddNew() {
       };
       fileReader.readAsDataURL(file);
     }
-    setnewsData({
+    setNewsData({
       ...newsData,
       newsImage: file,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newError = {};
 
-    // Kiểm tra tên thương hiệu
+    // Kiểm tra tiêu đề
     if (!newsData.newsName.trim()) {
-      newError.newsName = "Tên thương hiệu không được để trống!";
+      newError.newsName = "Tiêu đề không được để trống!";
+    }
+
+    // Kiểm tra nội dung
+    if (!newsData.newsContent.trim()) {
+      newError.newsContent = "Nội dung bản tin không được để trống!";
     }
 
     // Kiểm tra hình ảnh
@@ -53,34 +59,36 @@ function AddNew() {
       newError.newsImage = "Chưa có hình ảnh!";
     }
 
-     if (!newsData.newsContent.trim()) {
-      newError.newsContent = "Tên thương hiệu không được để trống!";
-    }
-
     // Nếu có lỗi, dừng lại không gửi form
     if (Object.keys(newError).length > 0) {
-      setErrorValidate(newError); // Cập nhật lỗi
-      return; // Dừng và không gọi API
+      setErrorValidate(newError);
+      return;
     }
 
-    // Nếu không có lỗi, tiến hành gửi dữ liệu lên server
+    // Gửi dữ liệu lên server
     const formData = new FormData();
     formData.append("newsName", newsData.newsName);
     formData.append("newsContent", newsData.newsContent);
     formData.append("newsImage", newsData.newsImage);
-    console.log(formData)
-    const data = await axios.post( `${import.meta.env.VITE_API_URL}/api/news`,formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log('data',data)
-    if (data) {
-      showToastSuccess("thêm bản tin thành công");
-      navigate("/admin/news-admin");
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/news`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      if (response.data) {
+        showToastSuccess("Thêm bản tin thành công!");
+        navigate("/admin/news-admin");
+      }
+    } catch (error) {
+      console.error("Lỗi khi thêm bản tin:", error);
     }
   };
-//   console.log(newsData)
+
   return (
     <div className="news-form-container">
       <h2>Thêm Tin tức</h2>
@@ -91,10 +99,8 @@ function AddNew() {
             type="text"
             id="newsName"
             name="newsName"
-            // value={newsData.newsName}
             onChange={handleChange}
             placeholder="Nhập tiêu đề tin tức"
-            style={{ marginBottom: 0 }}
           />
           {errorValidate.newsName && (
             <span className="spanError">{errorValidate.newsName}</span>
@@ -103,8 +109,7 @@ function AddNew() {
 
         <div className="form-group">
           <label htmlFor="newsImage" className="custom-file-upload">
-            <FontAwesomeIcon icon={faCloudArrowUp} />
-            Upload file
+            Upload Hình ảnh
           </label>
           <input
             type="file"
@@ -129,16 +134,16 @@ function AddNew() {
             </div>
           )}
         </div>
+
         <div className="form-group">
-          <label htmlFor="newsName">Nội Dung</label>
-          <textarea
-            id="newsContent"
-            name="newsContent"
-            rows="4"
-            // value={newsData.newsName}
-            onChange={handleChange}
-            placeholder="Nhập nội dung tin tức"
-            style={{ marginBottom: 0 }}
+          <label htmlFor="newsContent">Nội dung</label>
+          <CKEditor
+            editor={ClassicEditor}
+            data=""
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setNewsData({ ...newsData, newsContent: data });
+            }}
           />
           {errorValidate.newsContent && (
             <span className="spanError">{errorValidate.newsContent}</span>
