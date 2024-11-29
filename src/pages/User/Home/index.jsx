@@ -42,20 +42,20 @@ function HomePage() {
     }
 
     useEffect(() => {
-    const fechtNews = async () => {
-        if (listNews.length > 0) return; // Nếu đã có dữ liệu, không gọi lại API
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
-            const data = await res.json();
-            setListNews(data.slice(0, 4)); // Chỉ lấy 4 phần tử
-        } catch (error) {
-            console.error("Lỗi khi lấy danh sách Tin tức", error);
-        }
-    };
-    fechtNews();
+        const fechtNews = async () => {
+            if (listNews.length > 0) return; // Nếu đã có dữ liệu, không gọi lại API
+            try {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
+                const data = await res.json();
+                setListNews(data.slice(0, 4)); // Chỉ lấy 4 phần tử
+            } catch (error) {
+                console.error("Lỗi khi lấy danh sách Tin tức", error);
+            }
+        };
+        fechtNews();
 
-    console.log(listNews)
-}, [listNews]);
+        console.log(listNews)
+    }, []);
 
 
 
@@ -198,7 +198,7 @@ function HomePage() {
                     <>
                         {category.find(cat => cat.name === "Tai Nghe") && (
                             <>
-                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} url={'/allproduct'}/>
+                                <HeaderProduct title={category.find(cat => cat.name === "Tai Nghe").name} url={'/allproduct'} />
                                 <ItemProduct filter={category.find(cat => cat.name === "Tai Nghe").id} />
                             </>
                         )}
@@ -209,7 +209,7 @@ function HomePage() {
 
                         {category.find(cat => cat.name === "Máy Chơi Game") && (
                             <>
-                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} url={'/allproduct'}/>
+                                <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} url={'/allproduct'} />
                                 <ItemProduct filter={category.find(cat => cat.name === "Máy Chơi Game").id} />
                             </>
                         )}
@@ -228,7 +228,7 @@ function HomePage() {
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} url={'/article'} />
 
-                <NewTechnology data={listNews}/>
+                <NewTechnology data={listNews} />
             </div>
 
         </>

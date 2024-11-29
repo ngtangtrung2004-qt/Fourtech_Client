@@ -212,7 +212,7 @@ function ProductAdmin() {
         columns={columns}
         dataSource={products}
         pagination={{
-          pageSize: 5,
+          pageSize: 10,
         }}
       />
     </>
