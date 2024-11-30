@@ -59,7 +59,8 @@ const UserProvder = ({ children }) => {
     const pathToNoCheck = [
         "/",
         "/allproduct",
-        "/article",
+        "/news",
+        "/NewsDetail/:id",
         "/contact",
         "/login-register",
         "/forgotPassword",

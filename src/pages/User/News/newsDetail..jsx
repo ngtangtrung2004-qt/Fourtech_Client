@@ -3,27 +3,40 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function NewsDetail() {
-    const {id} = useParams()
-    const [newsDetail,setNewsDetail]=useState([])
-     useEffect(()=>{
-    axios.get(
-        `${import.meta.env.VITE_API_URL}/api/news/${id}`,
-        
-      )
+  const { id } = useParams();
+  const [newsDetail, setNewsDetail] = useState({}); // Sử dụng object thay vì array
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/api/news/${id}`)
       .then((response) => setNewsDetail(response.data.data))
       .catch((error) => console.error("Lỗi khi lấy dữ liệu:", error));
-  },[id])
+  }, [id]);
 
-    return ( <>
-    <div>
-        <h3>{newsDetail.title}</h3>
-        <img src={`${import.meta.env.VITE_API_URL}/uploads/${
-                      newsDetail.image
-                    }`} alt="anh 1"></img>
-                    <p className="card-info">{newsDetail.content}</p>
+  return (
+    <div className="news-title">
+      {/* Tiêu đề */}
+      <h2>{newsDetail.title}</h2>
+
+      {/* Hình ảnh */}
+      {newsDetail.image && (
+        <img
+          src={`${API_URL}/uploads/${newsDetail.image}`}
+          alt="News"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
+      )}
+
+      {/* Nội dung */}
+      {newsDetail.content && (
+        <div
+          className="news-content"
+          dangerouslySetInnerHTML={{ __html: newsDetail.content }}
+        />
+      )}
     </div>
-    
-    </> );
+  );
 }
 
 export default NewsDetail;

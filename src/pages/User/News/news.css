@@ -6,3 +6,7 @@
 .news_content-item {
   margin-top: 20px;
 }
+.news-title h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}

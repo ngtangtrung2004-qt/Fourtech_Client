@@ -25,9 +25,11 @@ function NewsAdmin() {
       const dataNews = await axios.get(`${import.meta.env.VITE_API_URL}/api/news`);
         const formatData = dataNews.data.map((data, index) => ({
           ...data,
-          key: data.id,
-          index: index + 1,
-          image: data.image,
+          key: data.id || index,
+      index: index + 1,
+      title: data.title || "Không có tiêu đề",
+      content: data.content || "",
+      image: data.image || null,
         }));
         setNews(formatData);
 
@@ -104,14 +106,17 @@ function NewsAdmin() {
       dataIndex: "content",
       render: (text) => {
         const maxLength = 50;
-        if (text && text.length > maxLength) {
-          return (
-            <span title={text}>
-              {text.slice(0, maxLength) + "..."}
-            </span>
-          );
-        }
-        return <span title={text}>{text}</span>;
+        const contentPreview = text.slice(0, maxLength) + "...";
+        return (
+      <div
+        title={text}
+        dangerouslySetInnerHTML={{
+          __html: text.length > maxLength ? contentPreview : text,
+        }}
+        >
+          
+      </div>
+    );
       }
     },
     {

@@ -17,7 +17,7 @@ function NewTechnology({data}) {
                     }`} alt="anh 1"></img>
         <div className="card-information">
           <h4 className="card-title">{news.title}</h4>
-          <p className="card-info">{news.content}</p>
+          <p className="card-info" dangerouslySetInnerHTML={{ __html: news.content }}/>
           <div className="card-action">
             <div className="card-date">
               <span><FontAwesomeIcon icon={faCalendarDay} /></span> 

@@ -53,3 +53,7 @@
   color: rgb(233, 29, 29);
   font-size: 13px;
 }
+
+input, textarea {
+  background-color: #fff;
+}
