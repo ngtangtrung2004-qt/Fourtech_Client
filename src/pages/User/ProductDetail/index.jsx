@@ -226,9 +226,7 @@ function ProductDetail() {
         <div className="content_detail">
           <div className="detail_collapse">
             <Collapse title="Thông tin Sản phẩm" isOpenByDefault={true}>
-              <p>
-                {productDetail.description}
-              </p>
+            <div dangerouslySetInnerHTML={{ __html: productDetail.description }}/>
             </Collapse>
             <Comment product_id={id} />
           </div>

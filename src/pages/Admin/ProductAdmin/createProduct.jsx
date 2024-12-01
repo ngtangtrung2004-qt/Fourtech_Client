@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ProductService from "../../../services/productService";
 import { useNavigate } from "react-router-dom";
 import CategoryService from "../../../services/categoryService";
@@ -229,14 +231,22 @@ function CreateProduct() {
 
             <div className="form-group">
               <label htmlFor="description">Mô Tả Sản Phẩm</label>
-              <textarea
+              <CKEditor
+            editor={ClassicEditor}
+            data=""
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setFormDataProduct({ ...formDataProduct, description: data });
+            }}
+          />
+              {/* <textarea
                 id="description"
                 name="description"
                 value={formDataProduct.description}
                 onChange={handleChange}
                 rows="4"
                 placeholder="Nhập mô tả sản phẩm"
-              />
+              /> */}
             </div>
           </div>
 

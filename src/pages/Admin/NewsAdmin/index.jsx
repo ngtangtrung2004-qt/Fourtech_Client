@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { formatDate } from "../../../config/config";
-import { Button, Modal, Table } from "antd";
+import { Button, Modal, Table, Tooltip } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import './newsAdmin.css'
@@ -106,16 +106,19 @@ function NewsAdmin() {
       dataIndex: "content",
       render: (text) => {
         const maxLength = 50;
-        const contentPreview = text.slice(0, maxLength) + "...";
-        return (
-      <div
-        title={text}
-        dangerouslySetInnerHTML={{
-          __html: text.length > maxLength ? contentPreview : text,
-        }}
-        >
-          
-      </div>
+    const contentPreview = text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+
+    return (
+      <Tooltip
+        title={<div dangerouslySetInnerHTML={{ __html: text }} />} // Nội dung đầy đủ trong Tooltip
+        overlayStyle={{ maxWidth: "500px", wordWrap: "break-word" }} 
+      >
+        <div
+          dangerouslySetInnerHTML={{
+            __html: contentPreview, // Hiển thị bản tóm tắt trong bảng
+          }}
+        />
+      </Tooltip>
     );
       }
     },
