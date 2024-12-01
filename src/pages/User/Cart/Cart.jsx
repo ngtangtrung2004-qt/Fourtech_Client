@@ -42,14 +42,12 @@ const Cart = () => {
     const cartItem = cart.find(item => item.productData.id === productId)
 
     if (!cartItem) {
-      console.log('Không tìm thấy mục giỏ hàng!');
       return
     }
 
     const cartId = cartItem.cart_id
 
     const response = await CartService.deleteCartItem(cartId, productId)
-    console.log(response);
 
     if (response && response.EC === 0) {
       setCart(response.data);
@@ -79,10 +77,10 @@ const Cart = () => {
         setCart(updatedCart);
         updateCart(updatedCart); // Cập nhật CartContext
       } else {
-        console.error(response?.message || "Lỗi khi cập nhật số lượng");
+        // console.error(response?.message || "Lỗi khi cập nhật số lượng");
       }
     } catch (error) {
-      console.error("Lỗi khi gọi API cập nhật giỏ hàng:", error);
+      // console.error("Lỗi khi gọi API cập nhật giỏ hàng:", error);
     }
   };
 
@@ -113,7 +111,7 @@ const Cart = () => {
                 cart.map((item, index) => (
                   <div className="item-cart" key={index}>
                     <div className="check-box">
-                      <input type="checkbox" />
+                      {/* <input type="checkbox" /> */}
                     </div>
 
                     <div className="img">

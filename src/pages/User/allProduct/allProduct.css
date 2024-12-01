@@ -93,7 +93,7 @@
 
 ul.product-all-item {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -106,6 +106,13 @@ ul.product-all-item li {
   text-align: center;
   border-radius: 10px;
   min-height: 400px;
+  padding: 10px;
+}
+
+ul.product-all-item li:hover {
+  transform: scale(1.05);
+  /* Hiệu ứng phóng to nhẹ khi hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .imgproduct {
@@ -117,13 +124,12 @@ ul.product-all-item li {
 .product-description-12 p {
   font-size: 14px;
   font-weight: 700;
-  height: 42px;
+  height: 22px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   text-overflow: ellipsis;
-  /* padding: 10px; */
   color: black;
 }
 
@@ -160,7 +166,7 @@ ul.product-all-item li {
   background-color: #E72C33;
   border-radius: 30px;
   color: white;
-  width: 200px;
+  width: 100%;
   margin: 5px auto 10px;
 }
 

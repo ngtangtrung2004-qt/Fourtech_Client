@@ -53,8 +53,6 @@ function HomePage() {
             }
         };
         fechtNews();
-
-        console.log(listNews)
     }, []);
 
 
@@ -202,32 +200,24 @@ function HomePage() {
                                 <ItemProduct filter={category.find(cat => cat.name === "Tai Nghe").id} />
                             </>
                         )}
-
-
                         <Voucher />
                         <Event />
-
                         {category.find(cat => cat.name === "Máy Chơi Game") && (
                             <>
                                 <HeaderProduct title={category.find(cat => cat.name === "Máy Chơi Game").name} url={'/allproduct'} />
                                 <ItemProduct filter={category.find(cat => cat.name === "Máy Chơi Game").id} />
                             </>
                         )}
-
-                        {/* <HeaderProduct title={"Sản Phẩm Chuột Và Bàn Phím"} /> */}
-                        {/* <ItemProduct id={'chuotBanphim'}/> */}
-                    </>
-                )}
-                {/* <Item_Mouse /> */}
-                {category.find(cat => cat.name === "Chuột") && (
-                    <>
-                        <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} url={'/allproduct'} />
-                        <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
+                        {category.find(cat => cat.name === "Chuột") && (
+                            <>
+                                <HeaderProduct title={category.find(cat => cat.name === "Chuột").name} url={'/allproduct'} />
+                                <ItemProduct filter={category.find(cat => cat.name === "Chuột").id} />
+                            </>
+                        )}
                     </>
                 )}
                 <ItemAccessory />
                 <HeaderProduct title={"Bản Tin công nghệ"} url={'/article'} />
-
                 <NewTechnology data={listNews} />
             </div>
 

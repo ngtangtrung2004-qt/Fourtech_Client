@@ -52,6 +52,12 @@
     margin-top: 10px;
 }
 
+.container-footer .footer-main .dia-chi p,
+.container-footer .footer-main .dien-thoai p,
+.container-footer .footer-main .email p{
+    color: #fff;
+}
+
 .container-footer .footer-main .dia-chi .icon-dia-chi{
     width: 20px;
 }

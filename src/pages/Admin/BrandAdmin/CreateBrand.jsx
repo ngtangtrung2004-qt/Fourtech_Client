@@ -67,8 +67,7 @@ function CreateBrand() {
     const formData = new FormData();
     formData.append("brandName", brandData.brandName);
     formData.append("brandImage", brandData.brandImage);
-
-console.log(formData)
+    
     const data = await BrandService.postBrand(formData);
 
     if (data && data.data && data.data.EC === 0) {

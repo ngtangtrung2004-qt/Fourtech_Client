@@ -4,8 +4,6 @@
   gap: 25px;
   margin-bottom: 50px;
 }
-.item-new {
-}
 .cart-new {
   /* width: calc(100%/3); */
   height: auto;
@@ -29,6 +27,12 @@
   margin-bottom: 5px;
   font-size: 16px;
   line-height: 1.2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  color: black;
 }
 .card-info {
   display: block;

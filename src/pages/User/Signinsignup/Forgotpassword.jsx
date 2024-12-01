@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
-import { showToastSuccess } from "../../../config/toastConfig";
+import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ function ForgotPassword() {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     if (!email.trim()) {
-      alert("Vui lòng nhập email!");
+      showToastError("Vui lòng nhập email!")
       return;
     }
     setLoading(true);
@@ -23,16 +23,12 @@ function ForgotPassword() {
       showToastSuccess("Email đặt lại mật khẩu đã được gửi.");
       navigate("/login-register");
     } catch (error) {
-      console.error("Lỗi khi yêu cầu đặt lại mật khẩu:", error);
-      alert(
-        error.response?.data?.message ||
-          "Có lỗi xảy ra khi gửi email. Vui lòng thử lại sau."
-      );
+      // console.error("Lỗi khi yêu cầu đặt lại mật khẩu:", error);
+      showToastError("Có lỗi xảy ra khi gửi email. Vui lòng thử lại sau.")
     } finally {
       setLoading(false);
     }
   };
-  console.log(email);
   return (
     <>
       <div className="main_dlmk">

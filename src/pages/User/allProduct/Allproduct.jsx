@@ -17,7 +17,7 @@ const AllProduct = () => {
   const [filteredProducts, setFilteredProducts] = useState([]); // Sản phẩm đã lọc
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [categories, setCategories] = useState([]); // Danh sách danh mục
-  const itemsPerPage = 9; // Số sản phẩm mỗi trang
+  const itemsPerPage = 12; // Số sản phẩm mỗi trang
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const { user } = useContext(UserContext);
   const location = useLocation(); // Lấy thông tin từ URL
@@ -38,7 +38,6 @@ const AllProduct = () => {
 
     fetchAPICategory();
   }, []);
-  console.log(categories);
 
   // Lấy danh sách sản phẩm từ API
   useEffect(() => {
@@ -207,9 +206,7 @@ const AllProduct = () => {
         <Voucher />
         <div className="product-filter">
           <h2 className="product-title">
-            <h2 className="product-title">
-              {selectedCategory ? `Tất cả sản phẩm : ${selectedCategory}` : 'Tất cả sản phẩm'}
-            </h2>
+            {selectedCategory ? `Tất cả sản phẩm : ${selectedCategory}` : 'Tất cả sản phẩm'}
           </h2>
           {/* <div className="filter-buttons">
 
@@ -228,7 +225,7 @@ const AllProduct = () => {
                     )}
 
                     <div className="product-description-12">
-                      <p>{products.name}</p>
+                      <p title={products.name}>{products.name}</p>
                     </div>
                     {products?.promotion_price === 0 ?
                       (

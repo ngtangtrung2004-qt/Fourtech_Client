@@ -32,7 +32,6 @@ function UserAdmin() {
 
   const handleDelete = async (userId) => {
     const user = await AuthService.deleteUser(userId)
-    console.log(user);
     switch (user && user.EC) {
       case 1:
         showToastError(user.message)

@@ -147,7 +147,7 @@ function SearchProducts() {
                       :
                       (
                         <>
-                          <div className="productPricing-12">
+                          <div className="productPricing-12" style={{marginTop: '20px'}}>
                             {formatCurrency(prd.price)}
                           </div>
                         </>

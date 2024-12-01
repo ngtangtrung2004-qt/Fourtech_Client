@@ -81,6 +81,12 @@
     font-weight: 600;
     color: #0040FB;
 }
+.recommend .item-1{
+    margin: 20px 0 20px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #0040FB;
+}
 .recommend .item-2{
     text-align: left;
     margin: 30px 0 20px;

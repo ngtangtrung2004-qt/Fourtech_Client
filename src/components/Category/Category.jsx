@@ -24,7 +24,7 @@ function Category() {
                 {category && category.map((item) => (
                     <Link to={`/allproduct?category=${item.name}`} key={item.id}>
                         <div className="product-item">
-                            <img src={import.meta.env.VITE_API_URL + '/uploads/' + item.image} alt="Laptop" />
+                            <img src={import.meta.env.VITE_API_URL + '/uploads/' + item.image} />
                             <p>{item.name}</p>
                         </div>
                     </Link>

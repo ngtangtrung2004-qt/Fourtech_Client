@@ -17,7 +17,7 @@ const ItemProduct = ({ filter }) => {
   const { user } = useContext(UserContext)
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const [currentIndex, setCurrentIndex] = useState(0); // Khởi tạo state để theo dõi vị trí sản phẩm đang hiển thị (bắt đầu từ 0).
-  const itemsPerPage = 4; // Số lượng sản phẩm hiển thị mỗi trang.
+  const itemsPerPage = 5; // Số lượng sản phẩm hiển thị mỗi trang.
 
   useEffect(() => {
     let isMounted = true;
@@ -138,16 +138,8 @@ const ItemProduct = ({ filter }) => {
                   <img className='product-img' key={index} src={`${import.meta.env.VITE_API_URL}/uploads/${imgSrc}`} alt={products.name} />
                 ))}
                 <div className="product-description">
-                  <p>{products.name}</p>
+                  <p title={products.name}>{products.name}</p>
                 </div>
-                {/* <div className="product-pricing-1">
-                  {formatCurrency(products.price)}
-                </div>
-                <div className="product-pricing">
-                  <span className="price">
-                    {formatCurrency(products.promotion_price)}
-                  </span>
-                </div> */}
                 {products?.promotion_price === 0 ?
                   (
                     <div className="product-pricing-12">

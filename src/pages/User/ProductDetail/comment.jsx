@@ -8,7 +8,6 @@ import { http } from "../../../utils/http";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
 function Comment({ product_id }) {
-  console.log("idprodcmment", product_id);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [newRating, setNewRating] = useState(0);
@@ -30,7 +29,6 @@ function Comment({ product_id }) {
         const response = await http.get(`/comments/${product_id}`, {
           params: { page, limit }, // Gửi page và limit qua query string
         });
-        console.log("API Response:", response);
         setTotal(response.data.total);
         setComments(response.data.comments);
       } catch (error) {
@@ -50,11 +48,28 @@ function Comment({ product_id }) {
     if (page < totalPages) setPage(page + 1); // Tăng số trang
   };
 
+  const validateNewComment = () => {
+    if (!newComment) {
+      showToastError("Không được để trống nội dung!")
+      return false
+    }
+    return true
+  }
+
+  const validateReplyContent = () => {
+    if (!replyContent) {
+      showToastError("Không được để trống nội dung!")
+      return false
+    }
+    return true
+  }
+
 
   const handleAddComment = async () => {
     if (!user || !user.isAuthenticated) {
       showToastError("Bạn phải đăng nhập để bình luận.");
     } else {
+      if (!validateNewComment()) return
       try {
         const token = localStorage.getItem("token"); // Lấy token từ localStorage
         const response = await http.post(
@@ -66,7 +81,6 @@ function Comment({ product_id }) {
             },
           }
         );
-        console.log("res", response);
         showToastSuccess("Thêm bình luận thành công");
         const newCommentData = {
           id: response.data.comment.id,
@@ -97,6 +111,7 @@ function Comment({ product_id }) {
       showToastError("Bạn phải đăng nhập để phản hồi.");
       return;
     }
+    if (!validateReplyContent()) return
     try {
       const token = localStorage.getItem("token");
       const response = await http.post(

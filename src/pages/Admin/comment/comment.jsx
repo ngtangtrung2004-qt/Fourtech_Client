@@ -35,7 +35,6 @@ function Comment() {
   };
 
   const handleDeleteComment = async (id) => {
-    console.log(id)
     Modal.confirm({
       title: "Xác nhận xóa",
       content: "Bạn có chắc chắn muốn xóa bình luận  này không?",

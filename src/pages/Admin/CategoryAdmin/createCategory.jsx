@@ -62,7 +62,6 @@ function CreateCategory() {
     // Nếu có lỗi, dừng lại không gửi form
     if (Object.keys(newError).length > 0) {
       setErrorValidate(newError);  // Cập nhật lỗi
-      console.log('Form errors:', newError); // Log errors to debug
       return;  // Dừng và không gọi API
     }
     if (typeof categoryData.categoryImage === 'string') {

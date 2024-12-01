@@ -41,7 +41,6 @@ function HomeAdmin() {
                 setDashboardData(data);
                 setLoading(false);
             } catch (err) {
-                console.error('Error fetching dashboard data:', err);
                 setError(err.message || 'Something went wrong');
                 setLoading(false);
             }
@@ -74,8 +73,6 @@ function HomeAdmin() {
             },
         ],
     };
-
-    console.log(bestSellingProduct);
 
     return (
         <div>

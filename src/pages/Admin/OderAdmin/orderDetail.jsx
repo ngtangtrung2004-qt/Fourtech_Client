@@ -21,23 +21,30 @@ function OrderDetail() {
   }, [])
 
   const fechtAPIOrderDetail = async () => {
-    const dataOrderDetail = await OrderService.getOrderDetail(orderIdCode)
+    const dataOrderDetail = await OrderService.getOrderDetail(orderIdCode);
 
     if (dataOrderDetail && dataOrderDetail?.EC === 0) {
-
       const formatDataProductItem = dataOrderDetail.data.productItem.map((pro, index) => ({
         ...pro,
         key: index
-      }))
+      }));
+
       setOrderDetail({
         ...dataOrderDetail.data,
         productItem: formatDataProductItem
-      })
+      });
+
       // Đồng bộ giá trị ban đầu vào state
       setPaymentStatus(dataOrderDetail.data.payment_status || 0);
       setOrderStatus(dataOrderDetail.data.status || 0);
+
+      // Đảm bảo paymentStatus không thay đổi sau khi tải lại
+      setDataUpdate((prevData) => ({
+        ...prevData,
+        newPaymentStatus: dataOrderDetail.data.payment_status || prevData.newPaymentStatus
+      }));
     }
-  }
+  };
 
   const [dataUpdate, setDataUpdate] = useState({
     newStatus: orderStatus,
@@ -103,7 +110,6 @@ function OrderDetail() {
 
   const hanldeEditOrder = async () => {
     const response = await OrderService.putOrder(orderIdCode, dataUpdate);
-    console.log(response);
     if (response && response?.EC === 0) {
       showToastSuccess(response.message)
       setOpenModalEdit(false);

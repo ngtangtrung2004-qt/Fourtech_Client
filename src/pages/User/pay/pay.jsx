@@ -285,12 +285,12 @@ function Pay() {
 
                         <hr />
 
-                        <div className="ma-giam-gia">
+                        {/* <div className="ma-giam-gia">
                             <Input placeholder='Mã giảm giá' />
                             <Button type="primary" disabled danger>
                                 Áp dụng
                             </Button>
-                        </div>
+                        </div> */}
 
                         <hr />
 

@@ -109,7 +109,7 @@ function Header() {
                   <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
                   <div className="text-tim-kiem">
                     <div className="arrow-up"></div>
-                    <p>Tìm kiếm</p>
+                    <p style={{color: '#fff'}}>Tìm kiếm</p>
                   </div>
                 </div>
 
@@ -155,7 +155,7 @@ function Header() {
                     <FontAwesomeIcon icon="fa-cart-shopping" />
                     <div className="text-gio-hang">
                       <div className="arrow-up"></div>
-                      <p>Giỏ hàng</p>
+                      <p style={{color: '#fff'}}>Giỏ hàng</p>
                     </div>
                     <div className="soluong">
                       <span>{totalQuantity}</span>

@@ -16,8 +16,6 @@ function ItemAccessory() {
     const fetchAPIBrand = async () => {
       try {
         const dataBrand = await BrandService.getAllBrand()
-        console.log(dataBrand);
-
         setBrands(dataBrand.data); // Lưu danh mục vào state
       } catch (error) {
         console.error('Lỗi khi lấy danh mục:', error);

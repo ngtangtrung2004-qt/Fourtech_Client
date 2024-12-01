@@ -47,8 +47,6 @@ function TrashCanProduct() {
         try {
             if (productId) {
                 const brand = await ProductService.restoreProduct(productId);
-
-                console.log(productId);
                 if (brand && brand.EC === 0) {
                     showToastSuccess(brand.message);
                     await fetchProductsTrash();
@@ -63,8 +61,6 @@ function TrashCanProduct() {
         try {
             if (productId) {
                 const product = await ProductService.deleteProduct(productId);
-
-                console.log(productId);
                 if (product && product.EC === 0) {
                     showToastSuccess(product.message);
                     await fetchProductsTrash();
