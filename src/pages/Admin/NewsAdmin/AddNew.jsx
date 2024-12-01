@@ -1,4 +1,4 @@
-import  {useState}  from "react";
+import { useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
@@ -141,7 +141,10 @@ function AddNew() {
             editor={ClassicEditor}
             data=""
             onChange={(event, editor) => {
+
               const data = editor.getData();
+              console.log("data:", data);
+
               setNewsData({ ...newsData, newsContent: data });
             }}
           />

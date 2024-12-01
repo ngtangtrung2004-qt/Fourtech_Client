@@ -274,7 +274,7 @@ function Pay() {
                                                     <p style={{ fontSize: '16px', color: 'red' }} className="item-price">{formatCurrency(item?.productData?.promotion_price)}</p>
                                                 </>
                                             ) : (
-                                                <p className="item-price">{formatCurrency(item?.productData?.price)}</p>
+                                                <p style={{ fontSize: '16px', color: 'red' }} className="item-price">{formatCurrency(item?.productData?.price)}</p>
                                             )}
                                         </div>
                                         <p>x{item?.quantity}</p>
