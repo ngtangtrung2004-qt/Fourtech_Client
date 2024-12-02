@@ -226,7 +226,7 @@ function HomePage() {
                     </>
                 )}
                 <ItemAccessory />
-                <HeaderProduct title={"Bản Tin công nghệ"} url={'/article'} />
+                <HeaderProduct title={"Bản Tin công nghệ"} url={'/news'} />
 
                 <NewTechnology data={listNews} />
             </div>

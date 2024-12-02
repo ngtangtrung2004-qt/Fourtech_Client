@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './contact.css'
 import { useState } from 'react';
 import axios from 'axios';
+import { showToastError, showToastSuccess } from '../../../config/toastConfig';
 
 function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '',phone:'', message: '' });
@@ -14,12 +15,14 @@ function Contact() {
         e.preventDefault();
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData); // Gửi dữ liệu lên API
-            alert('Gửi thành công!');
+            showToastSuccess("Đã gửi liên hệ thành công")
+            setFormData({ name: '', email: '', phone: '', message: '' });
+
         } catch (error) {
+            showToastError('Gửi liên hệ thất bại ')
             console.error('Lỗi khi gửi phản hồi:', error);
         }
     };
-    console.log(formData)
     return ( 
         <>
         <div className="contact-form-container">
@@ -27,16 +30,19 @@ function Contact() {
                 <h2>ĐỂ LẠI LỜI NHẮN</h2>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Họ và tên:</label>
-                    <input type="text" id="name" name="name"  onChange={handleChange} />
+                    <input type="text" id="name" name="name"  
+                    value={formData.name}
+                    onChange={handleChange} />
 
                     <label htmlFor="email">Địa chỉ email:</label>
-                    <input type="email" id="email" name="email" onChange={handleChange} />
+                    <input type="email" id="email" name="email"
+                    value={formData.email} onChange={handleChange} />
 
                     <label htmlFor="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone"onChange={handleChange}  />
+                    <input type="text" id="phone" value={formData.phone}name="phone"onChange={handleChange}  />
 
                     <label htmlFor="message">Lời nhắn:</label>
-                    <textarea id="message" name="message" rows="4" onChange={handleChange} ></textarea>
+                    <textarea id="message" name="message" rows="4" value={formData.message} onChange={handleChange} ></textarea>
 
                     <button type="submit" className="submit_button-contact">GỬI TIN NHẮN</button>
                 </form>
