@@ -72,13 +72,15 @@ function AddNew() {
     formData.append("newsImage", newsData.newsImage);
 
     try {
+      const token = localStorage.getItem("jwt"); // Lấy token từ localStorage
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/news`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+          headers: {
+            "Content-Type": "multipart/form-data", Authorization: `Bearer ${token}` // Gửi token trong header },
+          }
+        })
 
       if (response.data) {
         showToastSuccess("Thêm bản tin thành công!");

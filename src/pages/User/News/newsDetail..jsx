@@ -15,16 +15,16 @@ function NewsDetail() {
   }, [id]);
 
   return (
-    <div className="news-title">
+    <div className="news-title" style={{textAlign: 'center', backgroundColor: '#fff', padding: '10px'}}>
       {/* Tiêu đề */}
-      <h2>{newsDetail.title}</h2>
+      <h2 style={{marginBottom: '5px', textAlign: 'left'}}>{newsDetail.title}</h2>
 
       {/* Hình ảnh */}
       {newsDetail.image && (
         <img
           src={`${API_URL}/uploads/${newsDetail.image}`}
           alt="News"
-          style={{ maxWidth: "100%", height: "auto" }}
+          style={{ maxWidth: "100%", height: "400px" }}
         />
       )}
 
@@ -33,6 +33,7 @@ function NewsDetail() {
         <div
           className="news-content"
           dangerouslySetInnerHTML={{ __html: newsDetail.content }}
+          style={{textAlign: 'justify'}}
         />
       )}
     </div>

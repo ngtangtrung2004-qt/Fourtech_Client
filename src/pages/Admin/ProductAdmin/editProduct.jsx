@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Form, Input, Button, Upload, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useNavigate, useParams } from "react-router-dom";
 import "./product.css";
 import ProductService from "../../../services/productService";
@@ -98,7 +100,9 @@ const EditProduct = () => {
     <div className="edit-product">
       <h2>CHỈNH SỬA SẢN PHẨM</h2>
       {product && (
-        <Form form={form} layout="vertical" onFinish={handleSubmitEdit}>
+        <Form form={form} layout="vertical" onFinish={handleSubmitEdit}
+        
+        >
           <Form.Item
             labelCol={{ style: { fontWeight: 'bold' } }}
             label="Tên Sản Phẩm"
@@ -186,7 +190,14 @@ const EditProduct = () => {
               { required: true, message: "Vui lòng nhập mô tả sản phẩm!" },
             ]}
           >
-            <Input.TextArea rows={10} />
+            <CKEditor
+              editor={ClassicEditor}
+              data={product.description}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                form.setFieldsValue({ description: data });
+              }}
+            />
           </Form.Item>
 
 

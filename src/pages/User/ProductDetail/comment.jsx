@@ -71,7 +71,7 @@ function Comment({ product_id }) {
     } else {
       if (!validateNewComment()) return
       try {
-        const token = localStorage.getItem("token"); // Lấy token từ localStorage
+        const token = localStorage.getItem("jwt"); // Lấy token từ localStorage
         const response = await http.post(
           `/comments/${product_id}`,
           { content: newComment, rating: newRating },
@@ -113,7 +113,7 @@ function Comment({ product_id }) {
     }
     if (!validateReplyContent()) return
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("jwt");
       const response = await http.post(
         `/comments/${product_id}`,
         { content: replyContent, parent_comment_id: replyToCommentId }, // Thêm parent_comment_id

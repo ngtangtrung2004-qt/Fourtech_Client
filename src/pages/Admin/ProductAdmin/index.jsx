@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal } from "antd";
+import { Table, Button, Modal, Tooltip } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import "./product.css";
 import ProductService from "../../../services/productService";
@@ -9,7 +9,7 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { showToastSuccess } from "../../../config/toastConfig";
 
 function ProductAdmin() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
 
@@ -30,7 +30,7 @@ function ProductAdmin() {
           ...pro,
           key: pro.id,
           index: index + 1,
-          image: pro.image && Array.isArray(pro.image) ? pro.image : []
+          image: pro.image && Array.isArray(pro.image) ? pro.image : [],
         }));
         setProducts(formatData);
       }
@@ -39,11 +39,9 @@ function ProductAdmin() {
     }
   };
 
-
   const handleEdit = (idProduct) => {
-    navigate(`/admin/edit-product/${idProduct}`)
-  }
-
+    navigate(`/admin/edit-product/${idProduct}`);
+  };
 
   const handleDelete = async () => {
     try {
@@ -72,14 +70,10 @@ function ProductAdmin() {
       render: (text) => {
         const maxLength = 40;
         if (text && text.length > maxLength) {
-          return (
-            <span title={text}>
-              {text.slice(0, maxLength) + "..."}
-            </span>
-          );
+          return <span title={text}>{text.slice(0, maxLength) + "..."}</span>;
         }
         return <span title={text}>{text}</span>;
-      }
+      },
     },
     {
       title: "Danh mục",
@@ -94,7 +88,15 @@ function ProductAdmin() {
       dataIndex: "image",
       render: (images) => {
         return (
-          <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', flexWrap: "wrap", gap: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
             {images.slice(0, 2).map((src, index) => (
               <img
                 key={index}
@@ -111,34 +113,40 @@ function ProductAdmin() {
     {
       title: "Giá gốc",
       dataIndex: "price",
-      render: (text) => formatCurrency(text)
+      render: (text) => formatCurrency(text),
     },
     {
       title: "Giá khuyến mãi",
       dataIndex: "promotion_price",
       render: (text) => {
         if (text === 0) {
-          return <p>Không có giá khuyến mãi</p>
+          return <p>Không có giá khuyến mãi</p>;
         } else {
-          return <p>{formatCurrency(text)}</p>
+          return <p>{formatCurrency(text)}</p>;
         }
-      }
+      },
     },
     {
-      title: "Mô tả",
-      dataIndex: "description",
-      render: (text) => {
-        const maxLength = 50;
-        if (text && text.length > maxLength) {
-          return (
-            <span title={text}>
-              {text.slice(0, maxLength) + "..."}
-            </span>
-          );
-        }
-        return <span title={text}>{text}</span>;
-      }
-    },
+  title: "Nội dung",
+  dataIndex: "description",
+  render: (text) => {
+    const maxLength = 50;
+    const descriptionPreview = text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+
+    return (
+      <Tooltip
+        title={<div dangerouslySetInnerHTML={{ __html: text }} />} // Nội dung đầy đủ trong Tooltip
+        overlayStyle={{ maxWidth: "500px", wordWrap: "break-word" }} 
+      >
+        <div
+          dangerouslySetInnerHTML={{
+            __html: descriptionPreview, // Hiển thị bản tóm tắt trong bảng
+          }}
+        />
+      </Tooltip>
+    );
+  },
+},
     {
       title: "Số lượng",
       dataIndex: "quantity",
@@ -150,15 +158,13 @@ function ProductAdmin() {
     {
       title: "Ngày thêm",
       dataIndex: "created_at",
-      render: (text) => formatDate(text)
+      render: (text) => formatDate(text),
     },
     {
       title: "Thao tác",
       render: (text, record) => (
         <span className="action-product">
-          <Button type="primary"
-            onClick={() => handleEdit(record.id)}
-          >
+          <Button type="primary" onClick={() => handleEdit(record.id)}>
             <FontAwesomeIcon icon={faPenToSquare} />
           </Button>
 
@@ -188,7 +194,6 @@ function ProductAdmin() {
               Bạn muốn xóa sản phẩm: <b>{record.name}</b>
             </p>
           </Modal>
-
         </span>
       ),
     },
@@ -201,9 +206,7 @@ function ProductAdmin() {
           <Link to="/admin/add-product">Thêm Sản Phẩm</Link>
         </Button>
         <Button type="primary" danger>
-          <Link to="/admin/trash-can-product">
-            Thùng rác
-          </Link>
+          <Link to="/admin/trash-can-product">Thùng rác</Link>
         </Button>
       </div>
 

@@ -49,6 +49,7 @@ const publicRoutes = [
   { path: '/news', component: News, layout: DefaultLayout },
   { path: '/search', component: SearchProducts, layout: DefaultLayout },
   { path: '/NewsDetail/:id', component: NewsDetail, layout: DefaultLayout },
+  
   { path: '/thankyou', component: Thankyou, layout: DefaultLayout },
   { path: '/order-user', component: OrderUser, layout: DefaultLayout },
 ]
@@ -78,7 +79,7 @@ const adminRoutes = [
   { path: "/admin/comment-admin", component: Comment, layout: LayoutAdmin },
   { path: "/admin/news-admin", component: NewsAdmin, layout: LayoutAdmin },
   { path: "/admin/add-new", component: AddNew, layout: LayoutAdmin },
-  { path: "/admin/edit-news:id", component: EditNews, layout: LayoutAdmin },
+  { path: "/admin/edit-news/:id", component: EditNews, layout: LayoutAdmin },
 ];
 
 export { publicRoutes, adminRoutes };

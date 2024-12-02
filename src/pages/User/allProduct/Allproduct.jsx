@@ -142,40 +142,46 @@ const AllProduct = () => {
   }
 
 
-  // Lọc sản phẩm theo các lựa chọn của người dùng
-  useEffect(() => {
-    let filtered = [...products];
+// Lọc sản phẩm theo các lựa chọn của người dùng
+useEffect(() => {
+  let filtered = [...products];
 
-    // Lọc theo giá
-    if (selectedPriceRange.length > 0) {
-      filtered = filtered.filter((product) => {
-        const effectivePrice = product.promotion_price > 0 ? product.promotion_price : product.price;
-        return selectedPriceRange.some((range) => {
-          switch (range) {
-            case 'Giá dưới 1.000.000₫':
-              return effectivePrice < 1000000;
-            case '1.000.000₫ - 2.000.000₫':
-              return effectivePrice >= 1000000 && effectivePrice <= 2000000;
-            case '2.000.000₫ - 3.000.000₫':
-              return effectivePrice >= 2000000 && effectivePrice <= 3000000;
-            case '3.000.000₫ - 5.000.000₫':
-              return effectivePrice >= 3000000 && effectivePrice <= 5000000;
-            case '5.000.000₫ - 7.000.000₫':
-              return effectivePrice >= 5000000 && effectivePrice <= 7000000;
-            case '7.000.000₫ - 10.000.000₫':
-              return effectivePrice >= 7000000 && effectivePrice <= 10000000;
-            case 'Giá trên 10.000.000₫':
-              return effectivePrice > 10000000;
-            default:
-              return false;
-          }
-        });
+  // Lọc theo danh mục nếu có
+  if (selectedCategory) {
+    filtered = filtered.filter((product) => product.category_name === selectedCategory);
+  }
+
+  // Lọc theo giá
+  if (selectedPriceRange.length > 0) {
+    filtered = filtered.filter((product) => {
+      const effectivePrice = product.promotion_price > 0 ? product.promotion_price : product.price;
+      return selectedPriceRange.some((range) => {
+        switch (range) {
+          case 'Giá dưới 1.000.000₫':
+            return effectivePrice < 1000000;
+          case '1.000.000₫ - 2.000.000₫':
+            return effectivePrice >= 1000000 && effectivePrice <= 2000000;
+          case '2.000.000₫ - 3.000.000₫':
+            return effectivePrice >= 2000000 && effectivePrice <= 3000000;
+          case '3.000.000₫ - 5.000.000₫':
+            return effectivePrice >= 3000000 && effectivePrice <= 5000000;
+          case '5.000.000₫ - 7.000.000₫':
+            return effectivePrice >= 5000000 && effectivePrice <= 7000000;
+          case '7.000.000₫ - 10.000.000₫':
+            return effectivePrice >= 7000000 && effectivePrice <= 10000000;
+          case 'Giá trên 10.000.000₫':
+            return effectivePrice > 10000000;
+          default:
+            return false;
+        }
       });
-    }
+    });
+  }
 
-    setFilteredProducts(filtered);
-    setCurrentPage(1); // Đặt lại trang về 1 khi lọc
-  }, [selectedPriceRange]);
+  setFilteredProducts(filtered);
+  setCurrentPage(1); // Đặt lại trang về 1 khi lọc
+}, [selectedCategory, selectedPriceRange, products]);
+
 
   // Các hàm xử lý thay đổi lựa chọn lọc
   const handlePriceChange = (event) => {

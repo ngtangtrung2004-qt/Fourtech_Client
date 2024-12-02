@@ -54,6 +54,8 @@ function Carousel({ imageDetailPrd }) {
                         ? "2px solid red"
                         : "2px solid transparent",
                     cursor: "pointer",
+                    height: '60px',
+                    width: '60px'
                   }}
                 />
               ))}
