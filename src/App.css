@@ -54,6 +54,17 @@
   font-size: 13px;
 }
 
-input, textarea {
-  background-color: #fff;
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: black;
+  }
+  input, textarea {
+    background-color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
 }

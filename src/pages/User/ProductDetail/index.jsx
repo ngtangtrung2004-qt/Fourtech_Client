@@ -57,7 +57,8 @@ function ProductDetail() {
 
 
   function calculateDiscount(originalPrice, discountedPrice) {
-    const discountPercent = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    const discountPercent = ((originalPrice - discountedPrice) / originalPrice * 100);
+    console.log(discountPercent);
     return Math.round(discountPercent); // Làm tròn kết quả
   }
 

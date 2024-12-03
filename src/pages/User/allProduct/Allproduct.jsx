@@ -17,7 +17,7 @@ const AllProduct = () => {
   const [filteredProducts, setFilteredProducts] = useState([]); // Sản phẩm đã lọc
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [categories, setCategories] = useState([]); // Danh sách danh mục
-  const itemsPerPage = 12; // Số sản phẩm mỗi trang
+  const itemsPerPage = 20; // Số sản phẩm mỗi trang
   const { cart, setCart, updateCart, setTotalQuantity } = useContext(CartContext);
   const { user } = useContext(UserContext);
   const location = useLocation(); // Lấy thông tin từ URL
