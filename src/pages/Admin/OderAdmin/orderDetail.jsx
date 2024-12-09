@@ -74,11 +74,13 @@ function OrderDetail() {
   const getOrderStatus = (status) => {
     switch (status) {
       case 0:
-        return "Đang chuẩn bị hàng";
+        return <p style={{ margin: '0', backgroundColor: 'blue', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đang chuẩn bị hàng</p>;
       case 1:
-        return "Đang vận chuyển";
+        return <p style={{ margin: '0', backgroundColor: 'yellow', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#000' }}>Đang vận chuyển</p>;
       case 2:
-        return "Đã giao hàng";
+        return <p style={{ margin: '0', backgroundColor: 'green', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã giao hàng</p>;
+      case 3:
+        return <p style={{ margin: '0', backgroundColor: 'red', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã hủy đơn</p>;
       default:
         return "Trạng thái không xác định";
     }
@@ -87,9 +89,11 @@ function OrderDetail() {
   const getPaymentStatus = (status) => {
     switch (status) {
       case 0:
-        return "Chưa thanh toán";
+        return <p style={{ margin: '0', backgroundColor: '#000', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Chưa thanh toán</p>;
       case 1:
-        return "Đã thanh toán";
+        return <p style={{ margin: '0', backgroundColor: 'green', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã thanh toán</p>;
+      case 3:
+        return <p style={{ margin: '0', backgroundColor: 'red', width: '30%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã hủy đơn</p>;
       default:
         return "Trạng thái không xác định";
     }
@@ -118,7 +122,7 @@ function OrderDetail() {
   };
 
   // Kiểm tra nếu tất cả các trường đều disabled
-  const isDisabled = orderDetail.payment_status === 1 && orderDetail.status === 2;
+  const isDisabled = (orderDetail.payment_status === 1 || orderDetail.payment_status === 3) && (orderDetail.status === 2 || orderDetail.status === 3);
 
   return (
     <div className="order-detail">
@@ -152,11 +156,11 @@ function OrderDetail() {
             <strong>Phương thức thanh toán:</strong> {orderDetail.payment_methor}
           </Typography.Paragraph>
 
-          <Typography.Paragraph>
+          <Typography.Paragraph style={{ display: 'flex', gap: '10px' }}>
             <strong>Trạng thái thanh toán:</strong> {getPaymentStatus(orderDetail.payment_status)}
           </Typography.Paragraph>
 
-          <Typography.Paragraph>
+          <Typography.Paragraph style={{ display: 'flex', gap: '10px' }}>
             <strong>Trạng thái đơn hàng:</strong> {getOrderStatus(orderDetail.status)}
           </Typography.Paragraph>
 
@@ -223,10 +227,11 @@ function OrderDetail() {
                 setPaymentStatus(value);
                 setDataUpdate({ ...dataUpdate, newPaymentStatus: value });
               }}
-              disabled={orderDetail.payment_status === 1} // Khóa dropdown nếu đã thanh toán
+              disabled={orderDetail.payment_status === 1 || orderDetail.payment_status === 3} // Khóa dropdown nếu đã thanh toán
             >
               <option value="0">Chưa thanh toán</option>
               <option value="1">Đã thanh toán</option>
+              <option value="3">Đã hủy đơn</option>
             </select>
           </div>
 
@@ -241,11 +246,12 @@ function OrderDetail() {
                 setOrderStatus(value);
                 setDataUpdate({ ...dataUpdate, newStatus: value });
               }}
-              disabled={orderDetail.status === 2}
+              disabled={orderDetail.status === 2 || orderDetail.status === 3}
             >
               <option value="0">Đang chuẩn bị hàng</option>
               <option value="1">Đang vận chuyển</option>
               <option value="2">Đã giao hàng</option>
+              <option value="3">Đã hủy đơn</option>
             </select>
           </div>
         </div>
@@ -264,7 +270,7 @@ function OrderDetail() {
         dataSource={orderDetail.productItem || []}
         pagination={false}
         footer={() => (
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ textAlign: 'right', fontSize: '25px' }}>
             <strong>Tổng cộng: {formatCurrency(totalPrice)}</strong>
           </div>
         )}

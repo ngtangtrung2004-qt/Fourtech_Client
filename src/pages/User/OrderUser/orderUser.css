@@ -12,3 +12,10 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.custom-ok-button {
+    background-color: red;
+}
+.custom-ok-button:hover {
+    background-color: rgb(249, 86, 86) !important;
+}

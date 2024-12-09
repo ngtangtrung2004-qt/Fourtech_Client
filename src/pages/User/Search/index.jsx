@@ -24,7 +24,7 @@ function SearchProducts() {
     } else {
       try {
         //Xác định số lượng sản phẩm cần thêm vào giỏ hàng là 1
-        const quantity = 1;
+        let quantity = 1;
 
         // Lấy thông tin giỏ hàng từ context
         const cartItems = cart;
@@ -40,6 +40,7 @@ function SearchProducts() {
           // Cập nhật số lượng nếu sản phẩm đã có trong giỏ hàng
           //Nếu sản phẩm đã có trong giỏ hàng (existingCartItem), số lượng của sản phẩm này được tăng thêm
           existingCartItem.quantity += quantity; // Tăng số lượng
+          quantity = existingCartItem.quantity
         } else {
           // Thêm sản phẩm mới vào giỏ hàng
           //Nếu sản phẩm chưa có trong giỏ hàng (else), một đối tượng sản phẩm mới được thêm vào giỏ hàng với product_id là idProduct và số lượng là quantity.

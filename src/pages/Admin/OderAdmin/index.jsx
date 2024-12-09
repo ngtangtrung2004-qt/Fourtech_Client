@@ -56,9 +56,11 @@ function OrderList() {
       render: (text) => {
         switch (text) {
           case 0:
-            return <p>Chưa thanh toán</p>
+            return <p style={{ backgroundColor: '#000', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Chưa thanh toán</p>
           case 1:
-            return <p>Đã thanh toán</p>
+            return <p style={{ backgroundColor: 'green', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã thanh toán</p>
+          case 3:
+            return <p style={{ backgroundColor: 'red', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã hủy đơn</p>
           default:
             return <p>Trạng thái không xác định</p>
         }
@@ -70,11 +72,13 @@ function OrderList() {
       render: (text) => {
         switch (text) {
           case 0:
-            return <p>Đang chuẩn bị hàng</p>
+            return <p style={{ backgroundColor: '#5600f5', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đang chuẩn bị hàng</p>
           case 1:
-            return <p>Đang chuẩn vận chuyển</p>
+            return <p style={{ backgroundColor: 'yellow', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#000' }}>Đang vận chuyển</p>
           case 2:
-            return <p>Đã giao hàng </p>
+            return <p style={{ backgroundColor: 'green', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã giao</p>
+          case 3:
+            return <p style={{ backgroundColor: 'red', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã hủy đơn </p>
           default:
             return <p>Trạng thái không xác định</p>
         }

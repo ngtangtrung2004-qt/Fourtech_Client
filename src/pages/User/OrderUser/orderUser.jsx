@@ -5,12 +5,15 @@ import { UserContext } from '../../../components/context/authContext';
 import OrderService from '../../../services/orderService';
 import './orderUser.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { showToastSuccess } from '../../../config/toastConfig';
 
 function OrderUser() {
     const { user } = useContext(UserContext)
     const [listOrder, setListOrder] = useState([])
     const [orderDetail, setOrderDetail] = useState({})
     const [openModal, setOpenModal] = useState()
+    const [openModalCancel, setOpenModalCancel] = useState(false)
+    const [openModalFinish, setOpenModalFinish] = useState(false)
 
     const idUser = user.account.id
 
@@ -38,23 +41,117 @@ function OrderUser() {
         }
     }
 
+    const handleCancelOrder = async (orderIdCode) => {
+        setOpenModalCancel(true)
+        const dataCancelOrder = await OrderService.putCancelOrder(orderIdCode)
+        if (dataCancelOrder?.EC === 0) {
+            showToastSuccess(dataCancelOrder.message)
+            setListOrder((pre) => (
+                pre.map((order) => (
+                    order.order_id_code === orderIdCode ? { ...order, status: 3 } : order
+                ))
+            ))
+            setOpenModalCancel(false)
+            setOpenModal(false)
+        }
+    }
+
+    const handleFinishOrder = async (orderIdCode) => {
+        setOpenModalFinish(true)
+        const dataFinishOrder = await OrderService.putFinishOrder(orderIdCode)
+        if (dataFinishOrder?.EC === 0) {
+            showToastSuccess(dataFinishOrder.message)
+            setListOrder((pre) => (
+                pre.map((order) => (
+                    order.order_id_code === orderIdCode ? { ...order, status: 2 } : order
+                ))
+            ))
+            setOpenModalFinish(false)
+            setOpenModal(false)
+        }
+    }
+
     const shippingInformation = (item) => {
         if (item === 0) {
             return (
-                <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', backgroundColor: '#5600f5', width: '40%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>
                     <FontAwesomeIcon icon="fa-solid fa-dumpster-fire" />Đang chuẩn bị hàng
                 </p>
             )
         } else if (item === 1) {
             return (
-                <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', backgroundColor: 'yellow', width: '40%', borderRadius: '5px', textAlign: 'center', color: '#000' }}>
                     <FontAwesomeIcon icon="fa-solid fa-truck-fast" />Đang giao hàng
                 </p>
             )
         } else if (item === 2) {
             return (
-                <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', backgroundColor: 'green', width: '40%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>
                     <FontAwesomeIcon icon="fa-solid fa-check" />Đã giao
+                </p>
+            )
+        } else if (item === 3) {
+            return (
+                <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', backgroundColor: 'red', width: '40%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>
+                    <FontAwesomeIcon icon="fa-solid fa-xmark" />Đã hủy đơn hàng
+                </p>
+            )
+        }
+    }
+
+    const paymentInformation = (item) => {
+        if (item === 0) {
+            return (
+                <p
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '5px',
+                        backgroundColor: '#000',
+                        width: '40%',
+                        borderRadius: '5px',
+                        textAlign: 'center',
+                        color: '#fff'
+                    }}
+                >
+                    Chưa thanh toán
+                </p>
+            )
+        } else if (item === 1) {
+            return (
+                <p
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '5px',
+                        backgroundColor: 'green',
+                        width: '40%',
+                        borderRadius: '5px',
+                        textAlign: 'center',
+                        color: '#fff'
+                    }}
+                >
+                    Đã thanh toán
+                </p>
+            )
+        } else if (item === 3) {
+            return (
+                <p
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '5px',
+                        backgroundColor: 'red',
+                        width: '40%',
+                        borderRadius: '5px',
+                        textAlign: 'center',
+                        color: '#fff'
+                    }}
+                >
+                    Đã hủy đơn hàng
                 </p>
             )
         }
@@ -75,11 +172,13 @@ function OrderUser() {
             render: (text) => {
                 switch (text) {
                     case 0:
-                        return <p>Đang chuẩn bị hàng</p>
+                        return <p style={{ backgroundColor: '#5600f5', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đang chuẩn bị hàng</p>
                     case 1:
-                        return <p>Đang chuẩn vận chuyển</p>
+                        return <p style={{ backgroundColor: 'yellow', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#000' }}>Đang giao hàng</p>
                     case 2:
-                        return <p>Đã giao hàng </p>
+                        return <p style={{ backgroundColor: 'green', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã giao hàng </p>
+                    case 3:
+                        return <p style={{ backgroundColor: 'red', width: '100%', borderRadius: '5px', textAlign: 'center', color: '#fff' }}>Đã hủy đơn hàng</p>
                     default:
                         return <p>Trạng thái không xác định</p>
                 }
@@ -124,6 +223,10 @@ function OrderUser() {
                                 </div>
                             </div>
                             <div>
+                                <h4>Thông tin thanh toán:</h4>
+                                {paymentInformation(orderDetail.payment_status)}
+                            </div>
+                            <div>
                                 <h4>Thông tin vận chuyển:</h4>
                                 {shippingInformation(orderDetail.status)}
                             </div>
@@ -149,6 +252,53 @@ function OrderUser() {
                             <div style={{ display: 'flex', gap: '10px', fontSize: '30px' }}>
                                 <h4>Tổng tiền: </h4>
                                 <p>{formatCurrency(orderDetail.total_price)}</p>
+                            </div>
+
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', width: '100%' }}>
+                                <button
+                                    onClick={() => setOpenModalCancel(true)}
+                                    disabled={orderDetail.status === 1 || orderDetail.status === 2 || orderDetail.status === 3}
+                                    style={{ backgroundColor: 'red', color: '#fff', width: '50%' }}
+                                >
+                                    Hủy đơn hàng
+                                </button>
+                                <Modal
+                                    title="Xác nhận hủy đơn!"
+                                    okText="Xác nhận"
+                                    cancelText='Hủy bỏ'
+                                    centered
+                                    open={openModalCancel}
+                                    onOk={() => handleCancelOrder(orderDetail.order_id_code)}
+                                    okButtonProps={{ className: "custom-ok-button" }}
+                                    onCancel={() => setOpenModalCancel(false)}
+                                    getContainer={false} // Render modal bên trong DOM thay vì toàn bộ body
+                                >
+                                    <p>
+                                        Bạn có muốn hủy đơn hàng này không?
+                                    </p>
+                                </Modal>
+
+                                <button
+                                    onClick={() => setOpenModalFinish(true)}
+                                    disabled={orderDetail.status === 0 || orderDetail.status === 3 || orderDetail.status === 2}
+                                    style={{ backgroundColor: 'green', color: '#fff', width: '50%' }}
+                                >
+                                    Đã nhận được hàng
+                                </button>
+                                <Modal
+                                    title="Xác nhận đã nhận đơn!"
+                                    okText="Đã nhận"
+                                    cancelText='Hủy bỏ'
+                                    centered
+                                    open={openModalFinish}
+                                    onOk={() => handleFinishOrder(orderDetail.order_id_code)}
+                                    onCancel={() => setOpenModalFinish(false)}
+                                    getContainer={false} // Render modal bên trong DOM thay vì toàn bộ body
+                                >
+                                    <p>
+                                        Bạn đã nhận được đơn hàng này chưa?
+                                    </p>
+                                </Modal>
                             </div>
                         </div>
                     </Modal>

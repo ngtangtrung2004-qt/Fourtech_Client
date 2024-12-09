@@ -75,6 +75,7 @@ button:focus-visible {
   padding-top: 100px !important;
 }
 
-.disabled{
+:disabled{
   cursor: no-drop;
+  background-color: #dadada !important;
 }

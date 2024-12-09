@@ -17,7 +17,7 @@ ul.productItem_1 li {
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
-    min-height: 350px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,7 +30,7 @@ ul.productItem_1 li:hover {
 
 ul.productItem_1 li img {
     max-width: 100%;
-    height: 200px;
+    height: 150px;
 }
 
 .product_name p {

@@ -36,6 +36,24 @@ const OrderService = {
             console.log(error);
         }
     },
+
+    putCancelOrder: async (orderIdCode) => {
+        try {
+            const { data } = await http.put(`/cancel-order/${orderIdCode}`)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    putFinishOrder: async (orderIdCode) => {
+        try {
+            const { data } = await http.put(`/finish-order/${orderIdCode}`)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
 }
 
 export default OrderService
