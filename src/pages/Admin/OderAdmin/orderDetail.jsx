@@ -231,7 +231,7 @@ function OrderDetail() {
             >
               <option value="0">Chưa thanh toán</option>
               <option value="1">Đã thanh toán</option>
-              <option value="3">Đã hủy đơn</option>
+              <option disabled value="3">Đã hủy đơn</option>
             </select>
           </div>
 
@@ -251,7 +251,7 @@ function OrderDetail() {
               <option value="0">Đang chuẩn bị hàng</option>
               <option value="1">Đang vận chuyển</option>
               <option value="2">Đã giao hàng</option>
-              <option value="3">Đã hủy đơn</option>
+              <option disabled value="3">Đã hủy đơn</option>
             </select>
           </div>
         </div>
