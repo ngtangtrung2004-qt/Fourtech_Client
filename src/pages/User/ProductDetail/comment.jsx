@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DetailPrd.css";
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 // import axios from "axios";
 import { UserContext } from "../../../components/context/authContext";
 import { http } from "../../../utils/http";
@@ -18,7 +18,31 @@ function Comment({ product_id }) {
   const [total, setTotal] = useState(0); // Tổng số bình luận
   // eslint-disable-next-line no-unused-vars
   const [limit, setLimit] = useState(5); // Số lượng bình luận mỗi trang
+  const lastCommentTimeRef = useRef(null);
+  
+  // Danh sách từ nhạy cảm
+  const blacklist = ["chết", "fuck", "ngu", "tởm", "mẹ mày"];
 
+  // Hàm thay thế từ nhạy cảm bằng dấu *
+  const filterSensitiveWords = (text) => {
+    const regex = new RegExp(`\\b(${blacklist.join("|")})\\b`, "gi"); // Regex phát hiện từ cấm
+    return text.replace(regex, (matched) => "*".repeat(matched.length));
+  };
+
+
+  // Kiểm tra và ngăn spam
+  const isSpamming = () => {
+    const now = Date.now();
+    if (
+      lastCommentTimeRef.current &&
+      now - lastCommentTimeRef.current < 10000
+    ) {
+      // Nếu thời gian giữa hai lần gửi nhỏ hơn 10 giây => Spam
+      return true;
+    }
+    lastCommentTimeRef.current = now; // Cập nhật timestamp
+    return false;
+  };
   const handleReplyClick = (commentId) => {
     setReplyToCommentId(commentId); // Hiển thị input dưới commentId được chọn
   };
@@ -50,31 +74,38 @@ function Comment({ product_id }) {
 
   const validateNewComment = () => {
     if (!newComment) {
-      showToastError("Không được để trống nội dung!")
-      return false
+      showToastError("Không được để trống nội dung!");
+      return false;
     }
-    return true
-  }
+    return true;
+  };
 
   const validateReplyContent = () => {
     if (!replyContent) {
-      showToastError("Không được để trống nội dung!")
-      return false
+      showToastError("Không được để trống nội dung!");
+      return false;
     }
-    return true
-  }
-
+    return true;
+  };
 
   const handleAddComment = async () => {
     if (!user || !user.isAuthenticated) {
       showToastError("Bạn phải đăng nhập để bình luận.");
     } else {
-      if (!validateNewComment()) return
+      if (isSpamming()) {
+        showToastError(
+          "Bạn bình luận quá nhanh . Xin vui lòng chờ trong giây lát!!!"
+        );
+        return;
+      }
+      if (!validateNewComment()) return;
+      // Lọc nội dung bình luận
+      const filteredComment = filterSensitiveWords(newComment);
       try {
         const token = localStorage.getItem("jwt"); // Lấy token từ localStorage
         const response = await http.post(
           `/comments/${product_id}`,
-          { content: newComment, rating: newRating },
+          { content: filteredComment, rating: newRating },
           {
             headers: {
               Authorization: `Bearer ${token}`, // Gửi token trong header
@@ -111,7 +142,7 @@ function Comment({ product_id }) {
       showToastError("Bạn phải đăng nhập để phản hồi.");
       return;
     }
-    if (!validateReplyContent()) return
+    if (!validateReplyContent()) return;
     try {
       const token = localStorage.getItem("jwt");
       const response = await http.post(
