@@ -4,7 +4,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
 
-function ReplyContact({ EmailContact }) {
+function ReplyContact({ EmailContact , contactId, updateContactState}) {
   // Giải cấu trúc EmailContact từ props
   const [replyMessage, setReplyMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,14 +17,25 @@ function ReplyContact({ EmailContact }) {
     setIsModalOpen(false);
   };
   const handleReply = async () => {
+    if (!replyMessage.trim()) {
+      showToastError("Nội dung phản hồi không được để trống!");
+      return;
+    }
     setLoading(true);
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/reply`, {
         email: EmailContact,
         message: replyMessage,
       });
+       // Gọi API cập nhật trạng thái isReplied
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/contact/${contactId}`, {
+        isReplied: true,
+      });
+      // Cập nhật state trên giao diện (React)s
+      updateContactState(contactId, true);
       showToastSuccess("Gửi email trả lời thành công!");
       setIsModalOpen(false);
+       setReplyMessage("");  
     } catch (error) {
       console.error("Lỗi khi gửi email:", error);
       showToastError("Gửi email trả lời thất bại!");

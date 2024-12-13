@@ -25,6 +25,7 @@ function ContactAdmin() {
           PhoneContact: ct.PhoneContact,
           messageContact: ct.messageContact,
           createdAt: ct.createdAt,
+          isReplied: ct.isReplied,
         }));
         setDataContact(formatData);
       } catch (error) {
@@ -59,6 +60,13 @@ function ContactAdmin() {
       },
     });
   };
+const updateContactState = (id, isReplied) => {
+  setDataContact((prevData) =>
+    prevData.map((contact) =>
+      contact.id === id ? { ...contact, isReplied } : contact
+    )
+  );
+};
 
   // Cột cho bảng danh sách liên hệ
   const columns = [
@@ -88,11 +96,22 @@ function ContactAdmin() {
       render: (date) => formatDate(date),
     },
     {
+  title: "Trạng thái",
+  dataIndex: "isReplied",
+  render: (isReplied) =>
+    isReplied ? (
+      <span style={{ color: "green", fontWeight: "bold" }}>Đã trả lời</span>
+    ) : (
+      <span style={{ color: "red", fontWeight: "bold" }}>Chưa trả lời</span>
+    ),
+},
+    {
       title: "Thao tác",
       render: (text, record) => (
         <>
           <span>
-            <ReplyContact EmailContact={record.EmailContact}></ReplyContact>
+            <ReplyContact EmailContact={record.EmailContact} contactId={record.id}
+            updateContactState={updateContactState}></ReplyContact>
           </span>
           <span>
             <Button
