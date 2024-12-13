@@ -70,6 +70,15 @@ const AuthService = {
         }
     },
 
+    updateUserRole: async (idUser, role) => {
+        try {
+            const { data } = await http.put(`/user/${idUser}/role`, role)
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     deleteUser: async (id) => {
         try {
             const { data } = await http.delete(`/delete-user/${id}`)

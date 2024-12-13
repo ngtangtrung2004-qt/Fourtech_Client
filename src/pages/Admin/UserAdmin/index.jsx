@@ -1,13 +1,17 @@
-import { Table, Button } from "antd";
+import { Table, Button, Modal } from "antd";
 import { useEffect, useState } from "react";
 import AuthService from "../../../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../../config/config";
 import { showToastError, showToastSuccess } from "../../../config/toastConfig";
+import "./user.css"
 
 function UserAdmin() {
   const [listUser, setListUser] = useState([])
+  const [userDetail, setUserDetail] = useState({})
+  // const [role, setRole] = useState()
+  const [openModalEdit, setOpenModalEdit] = useState(false)
 
   useEffect(() => {
     fetchUser()
@@ -27,6 +31,33 @@ function UserAdmin() {
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  const handleEdit = async (userId) => {
+    setOpenModalEdit(true)
+
+    let dataUser = await AuthService.getOneUser(userId);
+
+    if (dataUser && dataUser.data && dataUser.EC === 0) {
+      setUserDetail(dataUser.data)
+    }
+  }
+
+  const handleCancel = () => {
+    setOpenModalEdit(false)
+  }
+
+  const handleOkEdit = async () => {
+    try {
+      const updateUserRole = await AuthService.updateUserRole(userDetail.id, { role: userDetail.role })
+      if (updateUserRole?.EC === 0) {
+        showToastSuccess("Cập nhật thành công")
+        fetchUser()
+        setOpenModalEdit(false)
+      }
+    } catch (error) {
+      // console.log(error);
     }
   }
 
@@ -66,13 +97,16 @@ function UserAdmin() {
       title: "Số điện thoại",
       dataIndex: "phone",
     },
-    // {
-    //   title: "Địa chỉ",
-    //   dataIndex: "address",
-    // },
     {
       title: "Chức vụ",
-      dataIndex: 'role'
+      dataIndex: 'role',
+      render: (text) => {
+        if (text === 'user') {
+          return <p>Người dùng</p>
+        } else if (text === 'admin') {
+          return <p>Quản lý</p>
+        }
+      }
     },
     {
       title: "Ngày tạo tài khoản",
@@ -83,6 +117,44 @@ function UserAdmin() {
       title: "Thao tác",
       render: (text, record) => (
         <span className="action-user">
+          <Button type="primary"
+            onClick={() => handleEdit(record.id)}
+          >
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </Button>
+          <Modal
+            title="Chỉnh sửa chức vụ"
+            open={openModalEdit}
+            okText='Cập nhật'
+            onOk={() => handleOkEdit()}
+            onCancel={handleCancel}
+            centered
+          >
+            <div className='form-edit-user'>
+              <div className="form-edit-user-item">
+                <p><b>Họ và tên:</b> {userDetail.full_name} </p>
+              </div>
+              <div className="form-edit-user-item">
+                <p><b>Số điện thoại:</b> {userDetail.phone} </p>
+              </div>
+              <div className="form-edit-user-item">
+                <p><b>Email:</b> {userDetail.email} </p>
+              </div>
+              <div className="form-edit-user-item">
+                <label htmlFor="role"><b>Chức vụ:</b></label>
+                <select
+                  name="role"
+                  id="role"
+                  defaultValue={userDetail.role} // Sử dụng defaultValue cho giá trị ban đầu
+                  onChange={(e) => setUserDetail({ ...userDetail, role: e.target.value })}
+                >
+                  <option value="user">Người dùng</option>
+                  <option value="admin">Quản lý</option>
+                </select>
+              </div>
+            </div>
+          </Modal>
+
           <Button type="primary" danger
             onClick={() => handleDelete(record.id)}
           >
